@@ -13,8 +13,8 @@ import {
   type Modifiers,
   type SpatialQuery,
   useScene,
-} from '@pascal-app/core'
-import { beginPerfAction, cancelPerfAction, commitPerfAction } from '@pascal-app/viewer'
+} from '@intersign/core'
+import { beginPerfAction, cancelPerfAction, commitPerfAction } from '@intersign/viewer'
 import { useEffect, useRef } from 'react'
 
 const sceneApi = createSceneApi(useScene)

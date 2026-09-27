@@ -6,8 +6,8 @@ import {
   MeasurementNode,
   SiteNode,
   useScene,
-} from '@pascal-app/core'
-import { useViewer } from '@pascal-app/viewer'
+} from '@intersign/core'
+import { useViewer } from '@intersign/viewer'
 import {
   commitMeasurementDraft,
   finishMeasurementDraft,

@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test'
-import { type AnyNode, LeanToExtensionNode, LevelNode } from '@pascal-app/core'
+import { type AnyNode, LeanToExtensionNode, LevelNode } from '@intersign/core'
 import {
   resolveCanopyGutterJointLayout,
   resolveCanopyRoofPlaneJointLayout,

@@ -1,14 +1,8 @@
 import { afterEach, beforeEach, describe, expect, test } from 'bun:test'
+import { type AnyNodeId, BuildingNode, LevelNode, UnitNode, ZoneNode } from '@intersign/core/schema'
 import { Client } from '@modelcontextprotocol/sdk/client/index.js'
 import { InMemoryTransport } from '@modelcontextprotocol/sdk/inMemory.js'
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
-import {
-  type AnyNodeId,
-  BuildingNode,
-  LevelNode,
-  UnitNode,
-  ZoneNode,
-} from '@pascal-app/core/schema'
 import { SceneBridge } from '../bridge/scene-bridge'
 import type { SceneOperations } from '../operations'
 import { ADDITIVE_TOOL_ANNOTATIONS, READ_ONLY_TOOL_ANNOTATIONS } from './annotations'

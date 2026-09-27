@@ -13,7 +13,7 @@ import {
   type SceneGraph,
   sceneRegistry,
   useScene,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import { useFrame } from '@react-three/fiber'
 import { act, create } from '@react-three/test-renderer'
 import { Group, Mesh } from 'three'

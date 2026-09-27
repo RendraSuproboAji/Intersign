@@ -13,8 +13,8 @@ import {
   useScene,
   WallNode,
   WindowNode,
-} from '@pascal-app/core'
-import { useViewer } from '@pascal-app/viewer'
+} from '@intersign/core'
+import { useViewer } from '@intersign/viewer'
 import {
   copySelectedNodesToEditorClipboard,
   getEditorClipboardSnapshot,
@@ -271,7 +271,7 @@ describe('scene clipboard', () => {
     }))
 
     expect(copySelectedNodesToEditorClipboard([wall.id])).toBe(true)
-    expect(systemClipboardText).toContain('pascal.scene-nodes')
+    expect(systemClipboardText).toContain('intersign.scene-nodes')
 
     useScene.setState({
       materials: {},

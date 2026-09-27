@@ -3,7 +3,7 @@ import {
   measurementArea,
   measurementCentroid,
   measurementPerimeter,
-} from '@pascal-app/core'
+} from '@intersign/core'
 
 type PolygonPoint = readonly [number, number]
 

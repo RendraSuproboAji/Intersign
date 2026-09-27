@@ -6,8 +6,8 @@ import {
   useLiveNodeOverrides,
   useLiveTransforms,
   useScene,
-} from '@pascal-app/core'
-import { markPerfAction } from '@pascal-app/viewer'
+} from '@intersign/core'
+import { markPerfAction } from '@intersign/viewer'
 import useInteractionScope from '../store/use-interaction-scope'
 import { registeredDraftingConfig } from './interaction/registered-drafting'
 

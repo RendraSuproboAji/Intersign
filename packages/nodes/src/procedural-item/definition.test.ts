@@ -8,7 +8,7 @@ import {
   LevelNode,
   useInteractive,
   useScene,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   bedRecipe,
   evaluateRecipe,
@@ -16,7 +16,7 @@ import {
   parseRecipe,
   queryProceduralItem,
   radiatorRecipe,
-} from '@pascal-app/core/procedural-items'
+} from '@intersign/core/procedural-items'
 import { Euler, Vector3 } from 'three'
 import cabinetJson from '../../../core/src/procedural-items/__fixtures__/cabinet_two_doors_drawer.json'
 import {

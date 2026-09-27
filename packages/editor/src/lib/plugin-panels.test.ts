@@ -36,11 +36,11 @@ describe('managedPluginIds', () => {
   test('counts plugins, not panels — one plugin with two panels is one plugin', () => {
     expect(
       managedPluginIds([
-        panel('pascal:boots:game', 'pascal:boots'),
-        panel('pascal:boots:keep', 'pascal:boots'),
+        panel('intersign:boots:game', 'intersign:boots'),
+        panel('intersign:boots:keep', 'intersign:boots'),
         panel('pascal:trees:nature', 'pascal:trees'),
       ]),
-    ).toEqual(['pascal:boots', 'pascal:trees'])
+    ).toEqual(['intersign:boots', 'pascal:trees'])
   })
 
   test("the editor's own panels are not plugins", () => {
@@ -78,7 +78,7 @@ describe('showsPluginManager', () => {
 
   test('a writable scene always keeps it, even with zero plugins', () => {
     // The empty state is still useful to an owner: it is where "Create a
-    // Pascal plugin" lives.
+    // Intersign plugin" lives.
     expect(
       showsPluginManager({ managedPluginCount: 0, readOnly: false, workspaceMode: 'edit' }),
     ).toBe(true)

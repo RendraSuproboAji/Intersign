@@ -2,7 +2,7 @@ import {
   type AnyNode,
   type AnyNodeId,
   resolveSelectionProxyId,
-} from '@pascal-app/core'
+} from '@intersign/core'
 
 /**
  * Resolve selection proxies and drop duplicates / missing ids. Session groups

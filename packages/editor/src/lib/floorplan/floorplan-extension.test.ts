@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test'
-import type { GeometryContext } from '@pascal-app/core'
+import type { GeometryContext } from '@intersign/core'
 import {
   createFloorplanContextExtensions,
   normalizeFloorplanWallDimensionReference,

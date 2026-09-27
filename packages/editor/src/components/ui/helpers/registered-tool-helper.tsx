@@ -1,4 +1,4 @@
-import type { ToolHint } from '@pascal-app/core'
+import type { ToolHint } from '@intersign/core'
 import type { ContinuationContext } from '../../../lib/continuation'
 import type { SnapContext } from '../../../lib/snapping-mode'
 import { useVisibleToolHints } from '../../../lib/panel-tool-options'

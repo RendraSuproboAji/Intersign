@@ -9,14 +9,14 @@ import {
   useScene,
   type ZoneNode,
   type ZoneQuantityValue,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   formatAreaLabel,
   formatLinearMeasurement,
   formatVolumeLabel,
   PanelSection,
-} from '@pascal-app/editor'
-import { useViewer } from '@pascal-app/viewer'
+} from '@intersign/editor'
+import { useViewer } from '@intersign/viewer'
 import { useMemo } from 'react'
 import { useShallow } from 'zustand/react/shallow'
 import { PanelSelect } from '../shared/panel-fields'

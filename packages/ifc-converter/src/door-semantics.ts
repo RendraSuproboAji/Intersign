@@ -1,4 +1,4 @@
-import type { DoorNode } from '@pascal-app/core'
+import type { DoorNode } from '@intersign/core'
 
 type DoorStyle = Partial<DoorNode>
 
@@ -13,7 +13,7 @@ const glazedSegments: DoorNode['segments'] = [
   },
 ]
 
-/** Map standardized IfcDoor operation values to Pascal door families. */
+/** Map standardized IfcDoor operation values to Intersign door families. */
 export function doorStyleFromIfcOperation(operationType: unknown): DoorStyle {
   const operation = String(operationType ?? '').toUpperCase()
   const leafCount = operation.startsWith('DOUBLE_DOOR') ? 2 : 1

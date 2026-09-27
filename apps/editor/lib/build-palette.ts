@@ -1,4 +1,4 @@
-import { emitter, nodeRegistry, type RoofType } from '@pascal-app/core'
+import { emitter, nodeRegistry, type RoofType } from '@intersign/core'
 import {
   CATALOG_ITEMS,
   type FloorplanMode,
@@ -6,8 +6,8 @@ import {
   isFloorplanToolAvailableInMode,
   useEditor,
   useFloorplanMode,
-} from '@pascal-app/editor'
-import { useViewer } from '@pascal-app/viewer'
+} from '@intersign/editor'
+import { useViewer } from '@intersign/viewer'
 import { getRoofFootprintSource, type RoofFootprintSource } from '@/lib/build-tab-state'
 
 export type BuildType = {

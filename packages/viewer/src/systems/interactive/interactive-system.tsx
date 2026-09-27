@@ -8,8 +8,8 @@ import {
   useInteractive,
   useScene,
   type ZoneNode,
-} from '@pascal-app/core'
-import { evaluateRecipe, type ProceduralItemNode } from '@pascal-app/core/procedural-items'
+} from '@intersign/core'
+import { evaluateRecipe, type ProceduralItemNode } from '@intersign/core/procedural-items'
 import { Html } from '@react-three/drei'
 import { createPortal, useFrame } from '@react-three/fiber'
 import { useEffect, useMemo, useState } from 'react'

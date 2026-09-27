@@ -1,4 +1,4 @@
-import type { ZoneNode } from '@pascal-app/core'
+import type { ZoneNode } from '@intersign/core'
 import {
   createPolygonAddVertexAffordance,
   createPolygonDeleteVertexAffordance,

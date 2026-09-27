@@ -1,5 +1,5 @@
-import { emitter, type SiteNode, useLiveNodeOverrides, useScene } from '@pascal-app/core'
-import { SCENE_LAYER } from '@pascal-app/viewer'
+import { emitter, type SiteNode, useLiveNodeOverrides, useScene } from '@intersign/core'
+import { SCENE_LAYER } from '@intersign/viewer'
 import { useGLTF } from '@react-three/drei/core/Gltf'
 import { useFrame } from '@react-three/fiber'
 import { Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react'

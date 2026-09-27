@@ -26,8 +26,8 @@ import {
   sceneRegistry,
   useInteractive,
   useScene,
-} from '@pascal-app/core'
-import type { ProceduralItemNode } from '@pascal-app/core/procedural-items'
+} from '@intersign/core'
+import type { ProceduralItemNode } from '@intersign/core/procedural-items'
 import {
   BVHEcctrl,
   type BVHEcctrlApi,
@@ -44,7 +44,7 @@ import {
   setSurfaceRaycastLayers,
   useViewer,
   WALKTHROUGH_FOV,
-} from '@pascal-app/viewer'
+} from '@intersign/viewer'
 import { KeyboardControls } from '@react-three/drei'
 import { useFrame, useThree } from '@react-three/fiber'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'

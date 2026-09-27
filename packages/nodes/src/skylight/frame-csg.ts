@@ -1,11 +1,11 @@
-import type { SkylightNode } from '@pascal-app/core'
+import type { SkylightNode } from '@intersign/core'
 import {
   Brush,
   csgEvaluator,
   csgGeometry,
   prepareBrushForCSG,
   SUBTRACTION,
-} from '@pascal-app/viewer'
+} from '@intersign/viewer'
 import * as THREE from 'three'
 
 const visibleDummyMat = new THREE.MeshBasicMaterial()

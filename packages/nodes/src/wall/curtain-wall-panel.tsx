@@ -9,7 +9,7 @@ import {
   getWallCurveLength,
   getWallThickness,
   type WallNode,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   getLinearUnitLabel,
   linearControlValueToMeters,
@@ -18,7 +18,7 @@ import {
   SegmentedControl,
   SliderControl,
   ToggleControl,
-} from '@pascal-app/editor'
+} from '@intersign/editor'
 import { useState } from 'react'
 import { useCurtainPanelHighlight } from './curtain-panel-highlight'
 import { curtainGridPositions, curtainPanelType } from './curtain-wall-layout'

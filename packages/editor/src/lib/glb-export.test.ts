@@ -15,14 +15,14 @@ import {
   SiteNode,
   sceneRegistry,
   useScene,
-} from '@pascal-app/core'
-import { evaluateRecipe, ProceduralItemNode, parseRecipe } from '@pascal-app/core/procedural-items'
+} from '@intersign/core'
+import { evaluateRecipe, ProceduralItemNode, parseRecipe } from '@intersign/core/procedural-items'
 import {
   buildDoorPreviewMesh,
   markViewerPresentationTextureBorrowed,
   type ViewerPresentationContribution,
   viewerPresentationRegistry,
-} from '@pascal-app/viewer'
+} from '@intersign/viewer'
 import * as THREE from 'three'
 import type { GLTFWriter } from 'three/examples/jsm/exporters/GLTFExporter.js'
 import { GLTFExporter } from 'three/examples/jsm/exporters/GLTFExporter.js'
@@ -624,7 +624,7 @@ describe('prepareSceneForExport', () => {
       const procedural = new THREE.Group()
       const door = new THREE.Group()
       const leaf = meshWithNodeMaterial(nodeMaterial())
-      leaf.userData.pascalSwingLeaf = { axis: 'y', openRotationY: Math.PI / 2 }
+      leaf.userData.intersignSwingLeaf = { axis: 'y', openRotationY: Math.PI / 2 }
       door.add(leaf)
       excluded.add(procedural, door)
       root.add(excluded, meshWithNodeMaterial(nodeMaterial()))
@@ -674,7 +674,7 @@ describe('prepareSceneForExport', () => {
     stamped.flipY = false
     stamped.colorSpace = THREE.SRGBColorSpace
     stamped.updateMatrix()
-    stamped.userData.pascalTextureRef = {
+    stamped.userData.intersignTextureRef = {
       v: 1,
       kind: 'library-material',
       src: `${STORAGE_ORIGIN}/storage/v1/object/public/materials/user/material/oak_basecolor_512.ktx2`,
@@ -707,12 +707,12 @@ describe('prepareSceneForExport', () => {
     expect(placeholder.rotation).toBe(stamped.rotation)
     expect(placeholder.flipY).toBe(stamped.flipY)
     expect(placeholder.colorSpace).toBe(stamped.colorSpace)
-    expect(placeholder.userData.pascalTextureRef).toEqual(stamped.userData.pascalTextureRef)
+    expect(placeholder.userData.intersignTextureRef).toEqual(stamped.userData.intersignTextureRef)
     expect(material.normalMap).toBeInstanceOf(THREE.DataTexture)
     expect(Array.from((material.normalMap as THREE.DataTexture).image.data as Uint8Array)).toEqual([
       128, 128, 255, 255,
     ])
-    expect(material.normalMap?.userData.pascalTextureRef).toBeUndefined()
+    expect(material.normalMap?.userData.intersignTextureRef).toBeUndefined()
     const sharedMaterial = (scene.children[1] as THREE.Mesh).material as THREE.MeshStandardMaterial
     expect(sharedMaterial.map).toBe(placeholder)
   })
@@ -727,16 +727,16 @@ describe('prepareSceneForExport', () => {
       map: 'normal',
       colorSpace: 'linear',
     }
-    texture.userData.pascalTextureRef = ref
+    texture.userData.intersignTextureRef = ref
     const imageDef: { extras?: Record<string, unknown> } = {}
     const textureDef: { source: number; extras?: Record<string, unknown> } = { source: 0 }
     const writer = { json: { images: [imageDef] } } as unknown as GLTFWriter
 
     writeTextureReferenceExtras(writer, texture, textureDef)
 
-    expect(textureDef.extras?.pascalTextureRef).toEqual(ref)
-    expect(imageDef.extras?.pascalTextureRef).toEqual(ref)
-    expect(textureDef.extras?.pascalTextureRef).toEqual(imageDef.extras?.pascalTextureRef)
+    expect(textureDef.extras?.intersignTextureRef).toEqual(ref)
+    expect(imageDef.extras?.intersignTextureRef).toEqual(ref)
+    expect(textureDef.extras?.intersignTextureRef).toEqual(imageDef.extras?.intersignTextureRef)
   })
 
   test('strips editor overlays that live off the scene layer', () => {
@@ -1012,7 +1012,7 @@ describe('prepareSceneForExport', () => {
     const root = new THREE.Group()
     const doorGroup = new THREE.Group()
     const leaf = new THREE.Group()
-    leaf.userData.pascalSwingLeaf = { axis: 'y', openRotationY: Math.PI / 2 }
+    leaf.userData.intersignSwingLeaf = { axis: 'y', openRotationY: Math.PI / 2 }
     leaf.add(meshWithNodeMaterial(nodeMaterial()))
     doorGroup.add(leaf)
     root.add(doorGroup)
@@ -1043,7 +1043,7 @@ describe('prepareSceneForExport', () => {
     // The swing-leaf marker must not survive into glTF extras.
     let leafMarkerSurvived = false
     scene.traverse((object) => {
-      if (object.userData.pascalSwingLeaf) leafMarkerSurvived = true
+      if (object.userData.intersignSwingLeaf) leafMarkerSurvived = true
     })
     expect(leafMarkerSurvived).toBe(false)
   })
@@ -1132,7 +1132,7 @@ describe('prepareSceneForExport', () => {
     const root = new THREE.Group()
     const doorGroup = new THREE.Group()
     const leaf = new THREE.Group()
-    leaf.userData.pascalSwingLeaf = { axis: 'y', openRotationY: Math.PI / 2 }
+    leaf.userData.intersignSwingLeaf = { axis: 'y', openRotationY: Math.PI / 2 }
     leaf.add(meshWithNodeMaterial(nodeMaterial()))
     doorGroup.add(leaf)
     root.add(doorGroup)
@@ -1798,7 +1798,7 @@ describe('prepareSceneForExport', () => {
       const presentation = selectedArtifact.scene.getObjectByProperty('name', contribution.id)
       expect(presentation?.userData).toMatchObject({
         label: 'Acceptance surroundings',
-        pascalPresentationId: contribution.id,
+        intersignPresentationId: contribution.id,
       })
       const bounds = new THREE.Box3().setFromObject(presentation!)
       expect(bounds.getSize(new THREE.Vector3()).toArray()).toEqual([3, 1, 2])
@@ -2049,7 +2049,7 @@ describe('normal maps in async export preparation', () => {
     await withCanvasCapture(async () => {
       const root = new THREE.Group()
       const stamped = new THREE.CompressedTexture([], 4, 4)
-      stamped.userData.pascalTextureRef = {
+      stamped.userData.intersignTextureRef = {
         v: 1,
         kind: 'library-material',
         src: `${STORAGE_ORIGIN}/storage/v1/object/public/materials/user/material/oak_normal_512.ktx2`,
@@ -2074,8 +2074,8 @@ describe('normal maps in async export preparation', () => {
 
       const exported = (prepared.scene.children[0] as THREE.Mesh)
         .material as THREE.MeshStandardMaterial
-      expect(exported.normalMap?.userData.pascalTextureRef).toEqual(
-        stamped.userData.pascalTextureRef,
+      expect(exported.normalMap?.userData.intersignTextureRef).toEqual(
+        stamped.userData.intersignTextureRef,
       )
       expect(exported.normalScale.toArray()).toEqual([1, -1])
     })
@@ -2135,7 +2135,7 @@ describe('portable clips', () => {
     const root = new THREE.Group()
     const doorGroup = new THREE.Group()
     const leaf = new THREE.Group()
-    leaf.userData.pascalSwingLeaf = { axis: 'y', openRotationY: Math.PI / 2 }
+    leaf.userData.intersignSwingLeaf = { axis: 'y', openRotationY: Math.PI / 2 }
     leaf.add(meshWithNodeMaterial(nodeMaterial()))
     doorGroup.add(leaf)
     root.add(doorGroup)

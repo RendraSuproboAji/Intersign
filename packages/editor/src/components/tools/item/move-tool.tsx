@@ -1,5 +1,5 @@
-import type { AnyNodeId, ElevatorNode, SpawnNode } from '@pascal-app/core'
-import { createSceneApi, nodeRegistry, useScene } from '@pascal-app/core'
+import type { AnyNodeId, ElevatorNode, SpawnNode } from '@intersign/core'
+import { createSceneApi, nodeRegistry, useScene } from '@intersign/core'
 import { Suspense, useMemo } from 'react'
 import { useMovingNode } from '../../../store/use-interaction-scope'
 import { MoveElevatorTool } from '../elevator/move-elevator-tool'

@@ -1,5 +1,5 @@
 import { expect, test } from 'bun:test'
-import { CabinetModuleNode, CabinetNode } from '@pascal-app/core/schema'
+import { CabinetModuleNode, CabinetNode } from '@intersign/core/schema'
 import { apiGraphSchema } from './graph-schema'
 
 function buildGraph(nodes: Record<string, unknown>, rootNodeIds: string[] = []) {

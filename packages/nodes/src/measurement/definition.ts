@@ -1,5 +1,5 @@
-import { measurementReferenceNodeIds, type NodeDefinition } from '@pascal-app/core'
-import type { FloorplanNodeExtension } from '@pascal-app/editor'
+import { measurementReferenceNodeIds, type NodeDefinition } from '@intersign/core'
+import type { FloorplanNodeExtension } from '@intersign/editor'
 import { buildMeasurementFloorplan } from './floorplan'
 import { measurementMoveVertexAffordance } from './floorplan-affordance'
 import { MeasurementNode } from './schema'

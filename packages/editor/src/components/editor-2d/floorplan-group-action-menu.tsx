@@ -1,7 +1,7 @@
 'use client'
 
-import { useScene } from '@pascal-app/core'
-import { useViewer } from '@pascal-app/viewer'
+import { useScene } from '@intersign/core'
+import { useViewer } from '@intersign/viewer'
 import { useEffect, useMemo, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { isActive } from '../../lib/interaction/scope'

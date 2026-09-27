@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test'
-import { type AnyNode, SlabNode, WallNode } from '@pascal-app/core'
+import { type AnyNode, SlabNode, WallNode } from '@intersign/core'
 import { getRecessedSlabGroundHoles } from './recessed-slab-ground-holes'
 
 describe('getRecessedSlabGroundHoles', () => {

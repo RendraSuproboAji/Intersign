@@ -1,4 +1,4 @@
-import type { ParametricDescriptor, StairSegmentNode } from '@pascal-app/core'
+import type { ParametricDescriptor, StairSegmentNode } from '@intersign/core'
 
 export const stairSegmentParametrics: ParametricDescriptor<StairSegmentNode> = {
   groups: [

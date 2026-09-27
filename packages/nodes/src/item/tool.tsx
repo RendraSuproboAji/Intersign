@@ -1,7 +1,7 @@
 'use client'
 
-import type { AssetInput } from '@pascal-app/core'
-import { triggerSFX, useDraftNode, useEditor, usePlacementCoordinator } from '@pascal-app/editor'
+import type { AssetInput } from '@intersign/core'
+import { triggerSFX, useDraftNode, useEditor, usePlacementCoordinator } from '@intersign/editor'
 
 /**
  * Registry-driven item placement tool. Mounted by `ToolManager` when

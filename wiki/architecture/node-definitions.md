@@ -134,7 +134,7 @@ snapshot for the node. It must use geometry and materials supported by
 identity. The live editor tree is neither passed to the hook nor mutated.
 
 Use `bake: 'replace'` with `bakeGeometry` when the generic GLB should retain the
-portable static snapshot while Pascal's baked viewer hides it and mounts
+portable static snapshot while Intersign's baked viewer hides it and mounts
 `bakeReplaceRenderer` for the richer live result.
 
 `def.bakeGeometryAsync(node, ctx)` is the asynchronous counterpart for material
@@ -205,8 +205,8 @@ Use this when the kind composes its scene via JSX-only features and never needs 
 ```tsx
 // packages/nodes/src/<kind>/renderer.tsx
 import { useGLTF } from '@react-three/drei'
-import { useRegistry } from '@pascal-app/core'
-import { useNodeEvents } from '@pascal-app/viewer'
+import { useRegistry } from '@intersign/core'
+import { useNodeEvents } from '@intersign/viewer'
 
 const FurnitureRenderer = ({ node }: { node: FurnitureNode }) => {
   const ref = useRef<Group>(null!)

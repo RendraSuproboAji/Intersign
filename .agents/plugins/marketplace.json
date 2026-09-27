@@ -1,17 +1,16 @@
 {
-  "name": "pascal",
+  "name": "intersign",
   "interface": {
-    "displayName": "Pascal"
+    "displayName": "Intersign"
   },
   "plugins": [
     {
-      "name": "pascal-agent-skills",
+      "name": "intersign-agent-skills",
       "version": "0.1.10",
-      "description": "Create, inspect, validate, and assess furniture layouts with bounded next actions in Pascal through MCP.",
+      "description": "Create, inspect, validate, and assess furniture layouts with bounded next actions in Intersign through MCP.",
       "author": {
-        "name": "Pascal",
-        "email": "support@pascal.app",
-        "url": "https://pascal.app"
+        "name": "Intersign",
+        "url": "https://github.com/RendraSuproboAji/Intersign"
       },
       "source": {
         "source": "local",

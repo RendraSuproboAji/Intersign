@@ -5,7 +5,7 @@ import {
   type ItemNode,
   nodeRegistry,
   registerNode,
-} from '@pascal-app/core'
+} from '@intersign/core'
 
 const faceForHit = (object: unknown, faceIndex = 0) => {
   const geometry = (object as { geometry?: { userData?: Record<string, unknown> } }).geometry

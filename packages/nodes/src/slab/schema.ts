@@ -1,1 +1,1 @@
-export { SlabNode } from '@pascal-app/core'
+export { SlabNode } from '@intersign/core'

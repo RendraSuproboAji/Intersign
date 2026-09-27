@@ -9,8 +9,8 @@ import {
   UnitNode,
   useScene,
   type ZoneNode,
-} from '@pascal-app/core'
-import { useViewer } from '@pascal-app/viewer'
+} from '@intersign/core'
+import { useViewer } from '@intersign/viewer'
 import { useEffect } from 'react'
 import useEditor, { type StructureLayer } from '../store/use-editor'
 import { getActiveBuildingPose } from './world-grid-snap'

@@ -1,5 +1,5 @@
-import { type AnyNode, resolveLevelId, type SlabNode } from '@pascal-app/core'
-import { resolveSlabEdgeBandSnap, resolveSlabPlanPointSnap } from '@pascal-app/editor'
+import { type AnyNode, resolveLevelId, type SlabNode } from '@intersign/core'
+import { resolveSlabEdgeBandSnap, resolveSlabPlanPointSnap } from '@intersign/editor'
 import {
   createPolygonAddVertexAffordance,
   createPolygonDeleteVertexAffordance,

@@ -1,6 +1,6 @@
 'use client'
 
-import type { ConstructionDrawingType } from '@pascal-app/core'
+import type { ConstructionDrawingType } from '@intersign/core'
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
@@ -66,7 +66,7 @@ const useDrawingView = create<DrawingViewState>()(
         }),
     }),
     {
-      name: 'pascal-floorplan-drawing-view',
+      name: 'intersign-floorplan-drawing-view',
       merge: (persistedState, currentState) => ({
         ...currentState,
         annotationLayoutOverrides: normalizeAnnotationLayoutOverrides(

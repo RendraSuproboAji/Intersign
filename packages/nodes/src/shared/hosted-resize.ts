@@ -8,8 +8,8 @@ import {
   nodeRegistry,
   type SceneApi,
   surfaceRegionContainsFootprint,
-} from '@pascal-app/core'
-import { boundsOf, boxCorners, frame, transformPoint } from '@pascal-app/core/procedural-items'
+} from '@intersign/core'
+import { boundsOf, boxCorners, frame, transformPoint } from '@intersign/core/procedural-items'
 
 export type HostedEditPolicy = {
   host: (node: AnyNode) => boolean

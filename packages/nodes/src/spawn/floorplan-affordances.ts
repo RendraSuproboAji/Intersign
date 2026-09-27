@@ -4,8 +4,8 @@ import {
   type SpawnNode,
   useLiveNodeOverrides,
   useScene,
-} from '@pascal-app/core'
-import { isAngleSnapActive } from '@pascal-app/editor'
+} from '@intersign/core'
+import { isAngleSnapActive } from '@intersign/editor'
 import { rotateAffordanceDelta } from '../shared/rotate-affordance'
 
 export const spawnRotateAffordance: FloorplanAffordance<SpawnNode> = {

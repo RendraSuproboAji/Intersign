@@ -1,6 +1,6 @@
 # Plugin authoring
 
-*Public contract for external node packs that extend the Pascal editor.*
+*Public contract for external node packs that extend the Intersign editor.*
 
 Applies to: anything that ships a `Plugin` for the editor to load.
 
@@ -11,7 +11,7 @@ This page documents the **contract**, not a loader implementation. The host call
 A plugin is a JS object exporting one symbol — the manifest:
 
 ```ts
-import type { Plugin } from '@pascal-app/core'
+import type { Plugin } from '@intersign/core'
 
 export const myPlugin: Plugin = {
   id: 'acme:furniture-pack',
@@ -32,7 +32,7 @@ export const myPlugin: Plugin = {
 
 The standalone [`pascalorg/plugin-trees`](https://github.com/pascalorg/plugin-trees) repository is the worked example. Clone it as a starting point.
 
-The same shape powers the built-in `pascal:core` plugin in `@pascal-app/nodes` — there's no "internal" plugin format. Whatever works for built-ins works for third parties.
+The same shape powers the built-in `intersign:core` plugin in `@intersign/nodes` — there's no "internal" plugin format. Whatever works for built-ins works for third parties.
 
 ## What a `NodeDefinition` can contribute
 
@@ -95,7 +95,7 @@ that sample different points on a slope will visibly disagree. Background:
 
 ## Importing host packages
 
-A plugin imports from the published `@pascal-app/*` packages — same surface the built-ins use, peer-dependency-style:
+A plugin imports from the published `@intersign/*` packages — same surface the built-ins use, peer-dependency-style:
 
 ```ts
 // Schemas, types, registry types
@@ -104,16 +104,16 @@ import {
   type NodeDefinition,
   type Plugin,
   z, // re-exported from zod for schema authoring
-} from '@pascal-app/core'
+} from '@intersign/core'
 
 // Viewer-side primitives (lazy: only inside renderers / systems)
-import { useNodeEvents, NodeRenderer } from '@pascal-app/viewer'
+import { useNodeEvents, NodeRenderer } from '@intersign/viewer'
 
 // Editor-side primitives (lazy: only inside `tool` / `affordanceTools`)
-import { useDragAction, EDITOR_LAYER } from '@pascal-app/editor'
+import { useDragAction, EDITOR_LAYER } from '@intersign/editor'
 ```
 
-The packages are **peer dependencies**, not normal dependencies — the host app owns the version. A plugin that pins its own copy of `@pascal-app/core` would create two registries and silently fail. (npm peer-dep resolution catches this at install time.)
+The packages are **peer dependencies**, not normal dependencies — the host app owns the version. A plugin that pins its own copy of `@intersign/core` would create two registries and silently fail. (npm peer-dep resolution catches this at install time.)
 
 ## Following viewer appearance and performance preferences
 
@@ -163,8 +163,8 @@ graph TD
 The host calls `discoverPlugins()` after the built-in plugin loads. The default implementation returns `[]`. Apps that ship external plugins replace it before the bootstrap module evaluates:
 
 ```ts
-// In app boot, BEFORE `import './pascal-bootstrap'`
-import { setPluginDiscovery } from '@pascal-app/core'
+// In app boot, BEFORE `import './intersign-bootstrap'`
+import { setPluginDiscovery } from '@intersign/core'
 import { myPlugin } from '@acme/furniture-pack'
 
 setPluginDiscovery(async () => {
@@ -184,7 +184,7 @@ setPluginDiscovery(async () => {
 The core `Plugin` manifest remains renderer-agnostic. A plugin that also ships editor UI exports an `EditorHostPanel` separately:
 
 ```ts
-import type { EditorHostPanel } from '@pascal-app/editor'
+import type { EditorHostPanel } from '@intersign/editor'
 
 export const myHostPanel: EditorHostPanel = {
   id: 'acme:furniture-pack:catalog',
@@ -195,7 +195,7 @@ export const myHostPanel: EditorHostPanel = {
     name: 'Acme',
     url: 'https://acme.example',
   },
-  pluginUrl: 'https://github.com/acme/pascal-furniture-pack',
+  pluginUrl: 'https://github.com/acme/intersign-furniture-pack',
   icon: { kind: 'iconify', name: 'lucide:armchair' },
   component: () => import('./catalog-panel'),
 }
@@ -216,7 +216,7 @@ core manifest. Use this for scene-wide derived visuals such as atmosphere,
 weather, or surroundings that are not authored nodes:
 
 ```tsx
-import type { ViewerPresentationContribution } from '@pascal-app/viewer'
+import type { ViewerPresentationContribution } from '@intersign/viewer'
 
 export const myPresentation: ViewerPresentationContribution = {
   id: 'acme:landscape:presentation',
@@ -229,12 +229,12 @@ The application registers it during the same bootstrap pass as the plugin and
 host panel:
 
 ```ts
-import { registerViewerPresentation } from '@pascal-app/viewer'
+import { registerViewerPresentation } from '@intersign/viewer'
 
 registerViewerPresentation(myPresentation)
 ```
 
-`@pascal-app/editor` mounts the public `<ViewerPresentations />` contribution
+`@intersign/editor` mounts the public `<ViewerPresentations />` contribution
 host once in both its edit and preview viewers. A host composing raw
 `<Viewer>` mounts `<ViewerPresentations />` explicitly. Do not also put the
 same contribution in `viewerSceneSlot`; that double-mounts it.
@@ -262,9 +262,9 @@ A plugin's own data versioning is `schemaVersion` on each `NodeDefinition`. The 
 
 ## What's *not* a plugin contribution (yet)
 
-- **Materials** — there's no `plugin.materials` slot. Use `createMaterial` from `@pascal-app/viewer` inside your `def.renderer` / `def.system`.
+- **Materials** — there's no `plugin.materials` slot. Use `createMaterial` from `@intersign/viewer` inside your `def.renderer` / `def.system`.
 - **Floor-plan primitives** — the `FloorplanGeometry` union is host-owned. To draw something the union can't express, fall back to `def.renderer` and render through a different 2D mount (or open an issue).
-- **Panels / sidebar UI in the core manifest** — host-specific. Export an `EditorHostPanel` separately for hosts that use `@pascal-app/editor`.
+- **Panels / sidebar UI in the core manifest** — host-specific. Export an `EditorHostPanel` separately for hosts that use `@intersign/editor`.
 - **Clone remapping for plugin-owned references** — project clone (`cloneSceneGraph`) and subtree duplicate (`cloneNodesInto`) remap `id`, `parentId` and `children` only. A plugin field that stores other node ids (an ordered camera list, a target list) is copied verbatim and keeps pointing at the source scene. Keep hosted ids in `children` where you can.
 - **Stores** — plugins create their own Zustand stores; they don't extend `useScene`, `useEditor`, or `useViewer`. A renderer may subscribe read-only to exported host presentation state such as `useViewer` appearance axes, but must not treat host stores as plugin-owned state.
 - **Routes / pages** — plugins are visualisation + interaction code, not full app surfaces. Hosting a settings page belongs to the app.
@@ -273,10 +273,10 @@ The boundary stays narrow on purpose so the contract is shippable. Each "not yet
 
 ## Testing your plugin
 
-`@pascal-app/nodes` is the built-in reference implementation, and [`pascalorg/plugin-trees`](https://github.com/pascalorg/plugin-trees) is the standalone example. To test locally:
+`@intersign/nodes` is the built-in reference implementation, and [`pascalorg/plugin-trees`](https://github.com/pascalorg/plugin-trees) is the standalone example. To test locally:
 
-1. Build your plugin as a normal npm package with `@pascal-app/*` as peerDependencies.
+1. Build your plugin as a normal npm package with `@intersign/*` as peerDependencies.
 2. In a host app that consumes your built-ins (`apps/editor` is the easiest target), wire `setPluginDiscovery` to return your plugin.
-3. The dev-mode `[pascal:registry]` console log shows the loaded plugin id + node count — that's the verification anchor.
+3. The dev-mode `[intersign:registry]` console log shows the loaded plugin id + node count — that's the verification anchor.
 
 The host's own parity test (`packages/nodes/src/index.test.ts`) asserts every `AnyNode` discriminator has a registered kind. Plugin-contributed kinds don't participate in that test (they're not in `AnyNode`); add an equivalent test on your own side if you maintain a hand-typed union elsewhere.

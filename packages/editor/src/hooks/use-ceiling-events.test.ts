@@ -6,9 +6,9 @@ import {
   LevelNode,
   sceneRegistry,
   useScene,
-} from '@pascal-app/core'
-import { ProceduralItemNode, shelfRecipe } from '@pascal-app/core/procedural-items'
-import { hideFromScene, showInScene, useViewer } from '@pascal-app/viewer'
+} from '@intersign/core'
+import { ProceduralItemNode, shelfRecipe } from '@intersign/core/procedural-items'
+import { hideFromScene, showInScene, useViewer } from '@intersign/viewer'
 import { _roots, act, createRoot } from '@react-three/fiber'
 import { createElement } from 'react'
 import {

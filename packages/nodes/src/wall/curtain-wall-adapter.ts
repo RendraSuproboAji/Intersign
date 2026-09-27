@@ -1,5 +1,5 @@
-import { useLiveNodeOverrides, type WallNode } from '@pascal-app/core'
-import type { WallGeometryAdapter } from '@pascal-app/viewer'
+import { useLiveNodeOverrides, type WallNode } from '@intersign/core'
+import type { WallGeometryAdapter } from '@intersign/viewer'
 import type { Material, Mesh } from 'three'
 import { buildCurtainWallGeometry } from './curtain-wall-geometry'
 import { buildCurtainWallShadowGeometry, CURTAIN_WALL_SHADOW_NAME } from './curtain-wall-shadow'

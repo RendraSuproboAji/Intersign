@@ -1,5 +1,5 @@
-import type { CabinetNode } from '@pascal-app/core'
-import { CABINET_METRIC_DEFAULTS } from '@pascal-app/core'
+import type { CabinetNode } from '@intersign/core'
+import { CABINET_METRIC_DEFAULTS } from '@intersign/core'
 
 export type CabinetDimensionProfileId = 'metric-base' | 'us-base'
 

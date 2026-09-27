@@ -6,7 +6,7 @@ import {
   nodeRegistry,
   PipeFittingNode,
   PipeSegmentNode,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import { getDuctFittingPorts } from '../duct-fitting/ports'
 import { builtinPlugin } from '../index'
 import { getPipeFittingPorts } from '../pipe-fitting/ports'

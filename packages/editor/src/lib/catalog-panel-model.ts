@@ -1,4 +1,4 @@
-import { useViewer } from '@pascal-app/viewer'
+import { useViewer } from '@intersign/viewer'
 import { CATALOG_ITEMS, type CatalogItem } from '../components/ui/item-catalog/catalog-items'
 import useEditor, { type CatalogCategory } from '../store/use-editor'
 

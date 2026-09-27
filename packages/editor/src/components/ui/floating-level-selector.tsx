@@ -26,8 +26,8 @@ import {
   getStoredLevelHeight,
   LevelNode,
   useScene,
-} from '@pascal-app/core'
-import { markPerfAction, useViewer } from '@pascal-app/viewer'
+} from '@intersign/core'
+import { markPerfAction, useViewer } from '@intersign/viewer'
 import {
   ClipboardPaste,
   Copy,
@@ -51,7 +51,7 @@ import {
   buildLevelDuplicateCreateOps,
   type LevelDuplicatePreset,
 } from '../../lib/level-duplication'
-import { getDefaultLevelName, getLevelDisplayName } from '@pascal-app/core'
+import { getDefaultLevelName, getLevelDisplayName } from '@intersign/core'
 import { deleteLevelWithFallbackSelection } from '../../lib/level-selection'
 import { unitMemberLevels, leaveUnitFocus } from '../../lib/units'
 import { useLinearDisplay } from '../../lib/use-linear-display'

@@ -7,7 +7,7 @@ import type {
   LevelNode,
   UnitNode,
   ZoneNode,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import type { Object3D } from 'three'
 
 import { create } from 'zustand'

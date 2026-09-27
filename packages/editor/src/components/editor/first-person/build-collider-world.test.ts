@@ -18,8 +18,8 @@ import {
   SlabNode,
   sceneRegistry,
   useScene,
-} from '@pascal-app/core'
-import { hideFromScene, STAND_CLEARANCE, showInScene } from '@pascal-app/viewer'
+} from '@intersign/core'
+import { hideFromScene, STAND_CLEARANCE, showInScene } from '@intersign/viewer'
 import { BoxGeometry, Group, Mesh, MeshBasicMaterial, Raycaster, Vector3 } from 'three'
 import { buildFirstPersonColliderWorldFromRegistry } from './build-collider-world'
 

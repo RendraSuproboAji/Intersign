@@ -8,8 +8,8 @@ import {
   SlabNode,
   useRegistry,
   WallNode,
-} from '@pascal-app/core'
-import { hideFromScene, showInScene, useViewer } from '@pascal-app/viewer'
+} from '@intersign/core'
+import { hideFromScene, showInScene, useViewer } from '@intersign/viewer'
 import { _roots, act, createRoot } from '@react-three/fiber'
 import { createElement } from 'react'
 import {

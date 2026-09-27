@@ -1,4 +1,4 @@
-import type { AnyNodeId, BlockTopology, SceneApi } from '@pascal-app/core'
+import type { AnyNodeId, BlockTopology, SceneApi } from '@intersign/core'
 import {
   isGridSnapActive,
   meshEditScope,
@@ -6,7 +6,7 @@ import {
   swallowNextClick,
   useEditor,
   useInteractionScope,
-} from '@pascal-app/editor'
+} from '@intersign/editor'
 import {
   type Dispatch,
   type MutableRefObject,

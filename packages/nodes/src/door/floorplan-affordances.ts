@@ -7,7 +7,7 @@ import {
   useLiveNodeOverrides,
   useScene,
   type WallNode,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import { curtainOpeningLimits } from '../shared/curtain-opening-limits'
 import { projectPlanPointToWallLocalX } from '../shared/wall-attach-target'
 

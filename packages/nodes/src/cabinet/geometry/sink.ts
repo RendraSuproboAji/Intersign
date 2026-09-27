@@ -4,7 +4,7 @@ import {
   csgGeometry,
   prepareBrushForCSG,
   SUBTRACTION,
-} from '@pascal-app/viewer'
+} from '@intersign/viewer'
 import {
   BoxGeometry,
   CylinderGeometry,

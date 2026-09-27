@@ -6,14 +6,14 @@ import {
   resolveFenceSupportSlabPatch,
   useLiveNodeOverrides,
   useScene,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   getSegmentGridStep,
   isGridSnapActive,
   isSegmentLongEnough,
   snapPointToGrid,
-} from '@pascal-app/editor'
-import { useViewer } from '@pascal-app/viewer'
+} from '@intersign/editor'
+import { useViewer } from '@intersign/viewer'
 
 type PlanPoint = [number, number]
 

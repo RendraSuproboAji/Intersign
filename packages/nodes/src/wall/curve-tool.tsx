@@ -14,7 +14,7 @@ import {
   useLiveNodeOverrides,
   useScene,
   type WallNode,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   CursorSphere,
   getSegmentGridStep,
@@ -23,8 +23,8 @@ import {
   snapScalarToGrid,
   triggerSFX,
   useInteractionScope,
-} from '@pascal-app/editor'
-import { useViewer } from '@pascal-app/viewer'
+} from '@intersign/editor'
+import { useViewer } from '@intersign/viewer'
 import { useCallback, useEffect, useRef, useState } from 'react'
 
 /**

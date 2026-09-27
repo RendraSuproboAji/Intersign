@@ -3,14 +3,14 @@ import {
   type SceneMaterial,
   type SceneMaterialId,
   type WallNode,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   getMaterialsForWall,
   type RenderShading,
   resolveMaterialRef,
   type WallMaterialOverride,
   type WallMaterials,
-} from '@pascal-app/viewer'
+} from '@intersign/viewer'
 import type { Material } from 'three'
 import { MeshLambertNodeMaterial, MeshStandardNodeMaterial } from 'three/webgpu'
 

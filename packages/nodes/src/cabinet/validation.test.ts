@@ -1,5 +1,5 @@
 import { expect, test } from 'bun:test'
-import { type AnyNode, CabinetModuleNode, CabinetNode, LevelNode } from '@pascal-app/core'
+import { type AnyNode, CabinetModuleNode, CabinetNode, LevelNode } from '@intersign/core'
 import { validateCabinetRun } from './validation'
 
 test('validateCabinetRun accepts a flush modular base run', () => {

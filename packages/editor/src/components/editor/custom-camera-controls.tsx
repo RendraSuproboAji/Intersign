@@ -8,8 +8,8 @@ import {
   emitter,
   sceneRegistry,
   useScene,
-} from '@pascal-app/core'
-import { GRID_LAYER, getLevelPresentationY, useViewer, ZONE_LAYER } from '@pascal-app/viewer'
+} from '@intersign/core'
+import { GRID_LAYER, getLevelPresentationY, useViewer, ZONE_LAYER } from '@intersign/viewer'
 import { CameraControls, CameraControlsImpl } from '@react-three/drei'
 import { useFrame, useThree } from '@react-three/fiber'
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef } from 'react'

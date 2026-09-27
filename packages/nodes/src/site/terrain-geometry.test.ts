@@ -5,7 +5,7 @@ import {
   flattenPatch,
   type HeightPatch,
   type TerrainField,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   buildTerrainMesh,
   buildTerrainSkirt,

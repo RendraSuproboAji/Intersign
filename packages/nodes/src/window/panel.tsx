@@ -1,12 +1,6 @@
 'use client'
 
-import {
-  type AnyNode,
-  type AnyNodeId,
-  useInteractive,
-  useScene,
-  WindowNode,
-} from '@pascal-app/core'
+import { type AnyNode, type AnyNodeId, useInteractive, useScene, WindowNode } from '@intersign/core'
 import {
   ActionButton,
   ActionGroup,
@@ -18,8 +12,8 @@ import {
   ToggleControl,
   triggerSFX,
   useEditor,
-} from '@pascal-app/editor'
-import { useViewer } from '@pascal-app/viewer'
+} from '@intersign/editor'
+import { useViewer } from '@intersign/viewer'
 import { Copy, FlipHorizontal2, Move, Trash2 } from 'lucide-react'
 import { useCallback, useEffect, useMemo } from 'react'
 import { constrainCurtainOpening, curtainOpeningLimits } from '../shared/curtain-opening-limits'

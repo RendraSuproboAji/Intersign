@@ -1,6 +1,6 @@
 'use client'
 
-import { useViewer } from '@pascal-app/viewer'
+import { useViewer } from '@intersign/viewer'
 import { type ForwardedRef, Fragment, forwardRef } from 'react'
 import { formatLinearMeasurement, type MetricNotation } from '../../lib/measurements'
 

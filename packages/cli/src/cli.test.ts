@@ -3,29 +3,29 @@ import { mkdir, mkdtemp, rm, writeFile } from 'node:fs/promises'
 import os from 'node:os'
 import path from 'node:path'
 
-const executable = path.join(import.meta.dir, 'bin/pascal.ts')
-const testRoot = await mkdtemp(path.join(os.tmpdir(), 'pascal-cli-command-test-'))
+const executable = path.join(import.meta.dir, 'bin/intersign.ts')
+const testRoot = await mkdtemp(path.join(os.tmpdir(), 'intersign-cli-command-test-'))
 const testHome = path.join(testRoot, 'home')
 const claimFetchPreload = path.join(testRoot, 'claim-fetch-preload.mjs')
 
 await writeFile(
   claimFetchPreload,
   `globalThis.fetch = async (input, init) => {
-    if (String(input) !== process.env.PASCAL_AGENT_TEST_ENDPOINT) {
+    if (String(input) !== process.env.INTERSIGN_AGENT_TEST_ENDPOINT) {
       throw new Error('Unexpected agent endpoint')
     }
-    if (init?.method !== process.env.PASCAL_AGENT_TEST_METHOD) throw new Error('Unexpected method')
+    if (init?.method !== process.env.INTERSIGN_AGENT_TEST_METHOD) throw new Error('Unexpected method')
     if (init?.redirect !== 'error') throw new Error('Redirects must be disabled')
-    if (process.env.PASCAL_API_KEY !== undefined) {
-      throw new Error('PASCAL_API_KEY remained in the process environment')
+    if (process.env.INTERSIGN_API_KEY !== undefined) {
+      throw new Error('INTERSIGN_API_KEY remained in the process environment')
     }
     const authorization = new Headers(init?.headers).get('authorization')
-    if (authorization !== process.env.PASCAL_AGENT_TEST_AUTHORIZATION) {
+    if (authorization !== process.env.INTERSIGN_AGENT_TEST_AUTHORIZATION) {
       throw new Error('Unexpected agent authorization')
     }
-    return new Response(process.env.PASCAL_AGENT_TEST_BODY, {
+    return new Response(process.env.INTERSIGN_AGENT_TEST_BODY, {
       headers: { 'content-type': 'application/json' },
-      status: Number(process.env.PASCAL_AGENT_TEST_STATUS),
+      status: Number(process.env.INTERSIGN_AGENT_TEST_STATUS),
     })
   }
 `,
@@ -38,28 +38,28 @@ describe('command parsing', () => {
     const result = await runCli('status', '--help')
 
     expect(result.exitCode).toBe(0)
-    expect(result.stdout).toContain('pascal editor')
-    expect(result.stdout).toContain('npx @pascal-app/cli <command>')
-    expect(result.stdout).toContain('npm install --global @pascal-app/cli')
+    expect(result.stdout).toContain('intersign editor')
+    expect(result.stdout).toContain('npx @intersign/cli <command>')
+    expect(result.stdout).toContain('npm install --global @intersign/cli')
   })
 
   test('shows focused help for MCP commands', async () => {
     const result = await runCli('mcp', '--help')
 
     expect(result.exitCode).toBe(0)
-    expect(result.stdout).toContain('pascal mcp setup codex')
+    expect(result.stdout).toContain('intersign mcp setup codex')
     expect(result.stdout).toContain('dynamic loopback port')
-    expect(result.stdout).not.toContain('pascal plugin list')
+    expect(result.stdout).not.toContain('intersign plugin list')
   })
 
   test('shows focused help for hosted agent claims', async () => {
     const result = await runCli('agent', '--help')
 
     expect(result.exitCode).toBe(0)
-    expect(result.stdout).toContain('pascal agent claim')
-    expect(result.stdout).toContain('PASCAL_API_KEY')
+    expect(result.stdout).toContain('intersign agent claim')
+    expect(result.stdout).toContain('INTERSIGN_API_KEY')
     expect(result.stdout).toContain('does not transfer project ownership')
-    expect(result.stdout).not.toContain('pascal plugin list')
+    expect(result.stdout).not.toContain('intersign plugin list')
   })
 
   test('requires an environment credential before starting an agent claim', async () => {
@@ -68,7 +68,7 @@ describe('command parsing', () => {
     expect(result.exitCode).toBe(1)
     expect(JSON.parse(result.stderr)).toEqual({
       error: 'agent_api_key_missing',
-      message: "Set PASCAL_API_KEY to this autonomous agent's API key and try again.",
+      message: "Set INTERSIGN_API_KEY to this autonomous agent's API key and try again.",
     })
     expect(result.stdout).toBe('')
   })
@@ -156,7 +156,7 @@ describe('command parsing', () => {
     expect(result.exitCode).toBe(0)
     expect(result.stdout).toContain('Mode: autonomous')
     expect(result.stdout).toContain('Claimed: no')
-    expect(result.stdout).toContain('pascal agent claim')
+    expect(result.stdout).toContain('intersign agent claim')
     expect(result.stdout).not.toContain('\u001b')
     expect(result.stderr).toBe('')
   })
@@ -215,7 +215,7 @@ describe('command parsing', () => {
 
     expect(result.exitCode).toBe(0)
     expect(JSON.parse(result.stdout)).toEqual({
-      mcpServers: { pascal: { command: 'pascal', args: ['mcp', 'connect'] } },
+      mcpServers: { intersign: { command: 'intersign', args: ['mcp', 'connect'] } },
     })
   })
 
@@ -228,7 +228,7 @@ describe('command parsing', () => {
 
   test('reports a malformed plugin lock as managed-state corruption', async () => {
     await mkdir(testHome, { recursive: true })
-    await writeFile(path.join(testHome, 'pascal.plugins.lock'), '{"schemaVersion":1}')
+    await writeFile(path.join(testHome, 'intersign.plugins.lock'), '{"schemaVersion":1}')
 
     const result = await runCli('plugin', 'list', '--json')
 
@@ -241,9 +241,9 @@ async function runCli(...args: string[]) {
   const child = Bun.spawn([process.execPath, executable, ...args], {
     env: {
       ...process.env,
-      PASCAL_API_KEY: '',
-      PASCAL_HOME: testHome,
-      PASCAL_NO_OPEN: '1',
+      INTERSIGN_API_KEY: '',
+      INTERSIGN_HOME: testHome,
+      INTERSIGN_NO_OPEN: '1',
     },
     stdout: 'pipe',
     stderr: 'pipe',
@@ -263,14 +263,14 @@ async function runClaimCli(status: number, body: unknown, ...args: string[]) {
     {
       env: {
         ...process.env,
-        PASCAL_API_KEY: apiKey,
-        PASCAL_AGENT_TEST_AUTHORIZATION: `Bearer ${apiKey}`,
-        PASCAL_AGENT_TEST_BODY: typeof body === 'string' ? body : JSON.stringify(body),
-        PASCAL_AGENT_TEST_ENDPOINT: 'https://editor.pascal.app/api/auth/agent/claim/start',
-        PASCAL_AGENT_TEST_METHOD: 'POST',
-        PASCAL_AGENT_TEST_STATUS: String(status),
-        PASCAL_HOME: testHome,
-        PASCAL_NO_OPEN: '1',
+        INTERSIGN_API_KEY: apiKey,
+        INTERSIGN_AGENT_TEST_AUTHORIZATION: `Bearer ${apiKey}`,
+        INTERSIGN_AGENT_TEST_BODY: typeof body === 'string' ? body : JSON.stringify(body),
+        INTERSIGN_AGENT_TEST_ENDPOINT: 'https://editor.pascal.app/api/auth/agent/claim/start',
+        INTERSIGN_AGENT_TEST_METHOD: 'POST',
+        INTERSIGN_AGENT_TEST_STATUS: String(status),
+        INTERSIGN_HOME: testHome,
+        INTERSIGN_NO_OPEN: '1',
       },
       stdout: 'pipe',
       stderr: 'pipe',
@@ -291,14 +291,14 @@ async function runStatusCli(status: number, body: unknown, ...args: string[]) {
     {
       env: {
         ...process.env,
-        PASCAL_API_KEY: apiKey,
-        PASCAL_AGENT_TEST_AUTHORIZATION: `Bearer ${apiKey}`,
-        PASCAL_AGENT_TEST_BODY: typeof body === 'string' ? body : JSON.stringify(body),
-        PASCAL_AGENT_TEST_ENDPOINT: 'https://editor.pascal.app/api/auth/agent/status',
-        PASCAL_AGENT_TEST_METHOD: 'GET',
-        PASCAL_AGENT_TEST_STATUS: String(status),
-        PASCAL_HOME: testHome,
-        PASCAL_NO_OPEN: '1',
+        INTERSIGN_API_KEY: apiKey,
+        INTERSIGN_AGENT_TEST_AUTHORIZATION: `Bearer ${apiKey}`,
+        INTERSIGN_AGENT_TEST_BODY: typeof body === 'string' ? body : JSON.stringify(body),
+        INTERSIGN_AGENT_TEST_ENDPOINT: 'https://editor.pascal.app/api/auth/agent/status',
+        INTERSIGN_AGENT_TEST_METHOD: 'GET',
+        INTERSIGN_AGENT_TEST_STATUS: String(status),
+        INTERSIGN_HOME: testHome,
+        INTERSIGN_NO_OPEN: '1',
       },
       stdout: 'pipe',
       stderr: 'pipe',

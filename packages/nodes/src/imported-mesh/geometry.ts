@@ -1,4 +1,4 @@
-import type { ImportedMeshNode } from '@pascal-app/core'
+import type { ImportedMeshNode } from '@intersign/core'
 import {
   BufferGeometry,
   Float32BufferAttribute,

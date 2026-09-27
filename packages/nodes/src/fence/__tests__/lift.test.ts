@@ -9,7 +9,7 @@ import {
   flattenPatch,
   LevelNode,
   SlabNode,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import { resolveFenceLiftElevation, resolveFenceLiftElevationForNodes } from '../lift'
 
 const LEVEL_ID = 'level-1'

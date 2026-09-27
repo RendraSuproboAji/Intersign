@@ -10,7 +10,7 @@ import {
   resolveRoofWallTopElevation,
   type SceneApi,
   type WallNode,
-} from '@pascal-app/core'
+} from '@intersign/core'
 
 const DEFAULT_CONICAL_ROOF_PITCH = 40
 

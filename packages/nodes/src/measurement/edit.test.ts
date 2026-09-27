@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test'
-import { MeasurementNode, measurementDistance } from '@pascal-app/core'
+import { MeasurementNode, measurementDistance } from '@intersign/core'
 import {
   constrainMeasurementPlanEditPoint,
   constrainMeasurementSpatialEditPoint,

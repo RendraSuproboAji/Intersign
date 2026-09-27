@@ -1,6 +1,6 @@
 'use client'
 
-import { type ScanNode, sceneRegistry, useScene } from '@pascal-app/core'
+import { type ScanNode, sceneRegistry, useScene } from '@intersign/core'
 import {
   type CaptureArtifactReference,
   CaptureArtifactReferenceSchema,
@@ -13,7 +13,7 @@ import {
   type CaptureStreamPacket,
   captureLayerKey,
   DeviceMotionTrajectorySchema,
-} from '@pascal-app/core/capture'
+} from '@intersign/core/capture'
 import { createPortal, useFrame } from '@react-three/fiber'
 import {
   type ComponentType,

@@ -11,8 +11,8 @@ import {
   sceneRegistry,
   useLiveNodeOverrides,
   useScene,
-} from '@pascal-app/core'
-import { useViewer } from '@pascal-app/viewer'
+} from '@intersign/core'
+import { useViewer } from '@intersign/viewer'
 import { createPortal, type ThreeEvent } from '@react-three/fiber'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import {

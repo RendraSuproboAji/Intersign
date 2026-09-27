@@ -10,7 +10,7 @@ import {
   type SceneApi,
   WallNode,
   WindowNode,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import { resolveWindowHandlePortalTarget, windowDefinition } from './definition'
 
 const windowHandles = windowDefinition.handles as HandleDescriptor<WindowNode>[]

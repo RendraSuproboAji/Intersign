@@ -1,6 +1,6 @@
-import { DEFAULT_LEVEL_HEIGHT } from '@pascal-app/core'
-import type { SceneGraph } from '@pascal-app/core/clone-scene-graph'
-import type { AnyNode, AnyNodeId } from '@pascal-app/core/schema'
+import { DEFAULT_LEVEL_HEIGHT } from '@intersign/core'
+import type { SceneGraph } from '@intersign/core/clone-scene-graph'
+import type { AnyNode, AnyNodeId } from '@intersign/core/schema'
 
 /**
  * 40 m² studio apartment — a single open room with one window, one front door

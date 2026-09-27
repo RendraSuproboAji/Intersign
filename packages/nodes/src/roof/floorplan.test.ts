@@ -6,7 +6,7 @@ import {
   type GeometryContext,
   RoofNode,
   RoofSegmentNode,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import { buildRoofFloorplan } from './floorplan'
 
 function buildContext(

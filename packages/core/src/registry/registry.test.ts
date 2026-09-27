@@ -263,7 +263,7 @@ describe('loadPlugin', () => {
   })
 
   test('keeps built-in plugin kinds enabled independently of project installs', async () => {
-    await loadPlugin({ id: 'pascal:core', apiVersion: 1, nodes: [makeDefinition('wall')] })
+    await loadPlugin({ id: 'intersign:core', apiVersion: 1, nodes: [makeDefinition('wall')] })
 
     expect(isNodeKindEnabled('wall', [])).toBe(true)
   })

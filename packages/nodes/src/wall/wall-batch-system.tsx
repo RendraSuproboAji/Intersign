@@ -1,6 +1,6 @@
 'use client'
 
-import { type AnyNodeId, emitter, sceneRegistry, useScene, type WallNode } from '@pascal-app/core'
+import { type AnyNodeId, emitter, sceneRegistry, useScene, type WallNode } from '@intersign/core'
 import {
   drainRebuiltWalls,
   getPendingWallRebuildCount,
@@ -8,7 +8,7 @@ import {
   SCENE_LAYER,
   useViewer,
   type WallMode,
-} from '@pascal-app/viewer'
+} from '@intersign/viewer'
 import { useFrame, useThree } from '@react-three/fiber'
 import { useEffect, useRef } from 'react'
 import { type Material, Matrix4, Mesh, type Object3D } from 'three'

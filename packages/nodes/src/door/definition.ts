@@ -5,8 +5,8 @@ import type {
   NodeDefinition,
   RoofSegmentNode,
   WallNode,
-} from '@pascal-app/core'
-import type { FloorplanNodeExtension } from '@pascal-app/editor'
+} from '@intersign/core'
+import type { FloorplanNodeExtension } from '@intersign/editor'
 import { curtainOpeningResizeMax } from '../shared/curtain-opening-limits'
 import {
   buildDoorFloorplanSchedule,

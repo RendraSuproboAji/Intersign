@@ -15,14 +15,14 @@ import {
   useFloorplanMode,
   useSidebarStore,
   type ViewMode,
-} from '@pascal-app/editor'
+} from '@intersign/editor'
 import {
   CLAY_PALETTE,
   type EdgeMode,
   getSceneTheme,
   SCENE_THEMES,
   useViewer,
-} from '@pascal-app/viewer'
+} from '@intersign/viewer'
 import {
   Box,
   Check,

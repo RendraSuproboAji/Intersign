@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'bun:test'
-import { type AnyNode, RoofSegmentNode, type RoofType, WallNode } from '@pascal-app/core'
-import { generateRoofSegmentGeometry } from '@pascal-app/viewer'
+import { type AnyNode, RoofSegmentNode, type RoofType, WallNode } from '@intersign/core'
+import { generateRoofSegmentGeometry } from '@intersign/viewer'
 import * as THREE from 'three'
 import { prepareSceneForExport } from './glb-export'
 import { filterPreparedSceneForPrintContent } from './print-content-scope'
@@ -102,7 +102,7 @@ describe('print shell compiler baseline', () => {
     expect(print.report.volumeMm3).toBeCloseTo(12_000, 1)
   })
 
-  test('blocks a structural mesh without Pascal provenance', () => {
+  test('blocks a structural mesh without Intersign provenance', () => {
     const source = new THREE.Group()
     source.add(new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1)))
 

@@ -7,7 +7,7 @@ import {
   nodeRegistry,
   type RendererSource,
   type SceneGraph,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import { createPortal } from '@react-three/fiber'
 import { memo, Suspense } from 'react'
 import type { Object3D } from 'three'

@@ -1,4 +1,4 @@
-import type { AnyNode, ItemNode, Point2D, StairNode, StairSegmentNode } from '@pascal-app/core'
+import type { AnyNode, ItemNode, Point2D, StairNode, StairSegmentNode } from '@intersign/core'
 
 export type FloorplanNodeTransform = {
   position: Point2D

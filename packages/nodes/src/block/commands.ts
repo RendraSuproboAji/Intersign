@@ -7,7 +7,7 @@ import {
   getBlockFaceCentroid,
   getBlockFaceNormal,
   inspectBlockTopology,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import type { BlockSelection } from './selection-model'
 
 export type { BlockSelection } from './selection-model'

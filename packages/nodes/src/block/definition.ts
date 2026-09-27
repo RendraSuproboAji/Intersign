@@ -2,8 +2,8 @@ import {
   type BlockNode as BlockNodeType,
   createBoxBlockTopology,
   type NodeDefinition,
-} from '@pascal-app/core'
-import type { FloorplanNodeExtension } from '@pascal-app/editor'
+} from '@intersign/core'
+import type { FloorplanNodeExtension } from '@intersign/editor'
 import { blockContextualHelp } from './contextual-help'
 import { blockFaceHost } from './face-host'
 import { buildBlockFloorplan } from './floorplan'

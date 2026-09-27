@@ -1,13 +1,13 @@
 'use client'
 
-import { emitter } from '@pascal-app/core'
+import { emitter } from '@intersign/core'
 import {
   CLAY_PALETTE,
   type EdgeMode,
   getSceneTheme,
   SCENE_THEMES,
   useViewer,
-} from '@pascal-app/viewer'
+} from '@intersign/viewer'
 import {
   Box,
   Camera,

@@ -1,4 +1,3 @@
-import { mintHostPanel, mintPlugin } from '@mint/pascal-plugin'
 import {
   type AnyNodeDefinition,
   discoverPlugins,
@@ -6,9 +5,11 @@ import {
   loadPlugin,
   nodeRegistry,
   registerNode,
-} from '@pascal-app/core'
-import { registerEditorHostPanel } from '@pascal-app/editor'
-import { builtinPlugin } from '@pascal-app/nodes'
+} from '@intersign/core'
+import { registerEditorHostPanel } from '@intersign/editor'
+import { builtinPlugin } from '@intersign/nodes'
+import { registerViewerPresentation } from '@intersign/viewer'
+import { mintHostPanel, mintPlugin } from '@mint/pascal-plugin'
 import { bonesHostPanel, bonesPlugin } from '@pascal-app/plugin-bones'
 import {
   environmentHostPanel,
@@ -18,7 +19,6 @@ import {
 import { poolHostPanel, poolPlugin } from '@pascal-app/plugin-pool'
 import { streetscapeHostPanel, streetscapePlugin } from '@pascal-app/plugin-streetscape'
 import { treesHostPanel, treesPlugin } from '@pascal-app/plugin-trees'
-import { registerViewerPresentation } from '@pascal-app/viewer'
 import { webXRHostPanel, webXRPlugin } from '@webxr/plugin'
 
 // Idempotency guards: HMR can reload this module, but `registerNode`
@@ -50,7 +50,7 @@ function loadBuiltinsSync(): void {
   builtinsLoaded = true
   for (const def of builtinPlugin.nodes ?? []) {
     // Skip kinds the registry already has. The module-closure flag
-    // above resets on HMR, but the registry singleton (in @pascal-app/core)
+    // above resets on HMR, but the registry singleton (in @intersign/core)
     // persists — without this guard we'd throw on the first duplicate.
     if (nodeRegistry.has((def as AnyNodeDefinition).kind)) continue
     registerNode(def as AnyNodeDefinition)
@@ -60,14 +60,14 @@ function loadBuiltinsSync(): void {
     const kinds = Array.from(nodeRegistry.entries(), ([k]) => k)
     if (typeof console !== 'undefined') {
       console.info(
-        `[pascal:registry] loaded ${builtinPlugin.id} v${builtinPlugin.apiVersion} (${kinds.length} kinds: ${kinds.join(', ') || '∅'})`,
+        `[intersign:registry] loaded ${builtinPlugin.id} v${builtinPlugin.apiVersion} (${kinds.length} kinds: ${kinds.join(', ') || '∅'})`,
       )
     }
     // Expose the registry on globalThis for ad-hoc dev inspection. In
-    // prod the registry is reachable through @pascal-app/core's
+    // prod the registry is reachable through @intersign/core's
     // exports only.
     if (typeof globalThis !== 'undefined') {
-      ;(globalThis as { __pascalNodeRegistry?: typeof nodeRegistry }).__pascalNodeRegistry =
+      ;(globalThis as { __intersignNodeRegistry?: typeof nodeRegistry }).__intersignNodeRegistry =
         nodeRegistry
     }
   }
@@ -87,7 +87,7 @@ export async function loadExternalPlugins(): Promise<void> {
     await loadPlugin(plugin)
   }
   if (isDev() && externals.length > 0 && typeof console !== 'undefined') {
-    console.info(`[pascal:registry] + ${externals.length} discovered plugin(s)`)
+    console.info(`[intersign:registry] + ${externals.length} discovered plugin(s)`)
   }
 }
 
@@ -108,7 +108,7 @@ registerEditorHostPanel(mintHostPanel)
 extendPluginDiscovery(async () => [poolPlugin])
 registerEditorHostPanel(poolHostPanel)
 extendPluginDiscovery(async () => [streetscapePlugin])
-// The upstream manifest still names 'Pascal' as creator; credit the author.
+// The upstream manifest still names 'Intersign' as creator; credit the author.
 registerEditorHostPanel({
   ...streetscapeHostPanel,
   creator: { name: 'Sudhir Yadav', url: 'https://github.com/sudhir9297' },

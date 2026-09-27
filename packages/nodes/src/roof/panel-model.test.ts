@@ -5,7 +5,7 @@ import {
   ChimneyNode,
   RoofNode,
   RoofSegmentNode,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import { roofPanelModel } from './panel-model'
 
 describe('shared roof inspector', () => {

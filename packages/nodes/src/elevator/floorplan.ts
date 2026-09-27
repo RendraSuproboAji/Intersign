@@ -7,7 +7,7 @@ import {
   resolveElevatorServiceLevelIds,
   useInteractive,
   useLiveNodeOverrides,
-} from '@pascal-app/core'
+} from '@intersign/core'
 
 /**
  * Stage C floor-plan emitter for elevator. Architectural symbol style:

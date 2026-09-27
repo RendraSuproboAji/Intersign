@@ -10,8 +10,8 @@ import {
   runAsSingleSceneHistoryStep,
   useLiveNodeOverrides,
   useScene,
-} from '@pascal-app/core'
-import { useViewer } from '@pascal-app/viewer'
+} from '@intersign/core'
+import { useViewer } from '@intersign/viewer'
 import { type ThreeEvent, useThree } from '@react-three/fiber'
 import { useEffect, useRef } from 'react'
 import { type Camera, type Object3D, type Plane, type Ray, Vector2, type Vector3 } from 'three'

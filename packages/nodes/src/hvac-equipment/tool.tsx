@@ -6,9 +6,9 @@ import {
   HvacEquipmentNode,
   resolveSupportSlabPatch,
   useScene,
-} from '@pascal-app/core'
-import { isGridSnapActive, isMagneticSnapActive, triggerSFX, useEditor } from '@pascal-app/editor'
-import { useViewer } from '@pascal-app/viewer'
+} from '@intersign/core'
+import { isGridSnapActive, isMagneticSnapActive, triggerSFX, useEditor } from '@intersign/editor'
+import { useViewer } from '@intersign/viewer'
 import { Html } from '@react-three/drei'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { subscribeAccessorySnapping } from '../shared/accessory-snapping'

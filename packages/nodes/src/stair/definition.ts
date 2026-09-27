@@ -9,8 +9,8 @@ import {
   type StairSegmentNode,
   stairFootprintAABB,
   useScene,
-} from '@pascal-app/core'
-import type { FloorplanNodeExtension } from '@pascal-app/editor'
+} from '@intersign/core'
+import type { FloorplanNodeExtension } from '@intersign/editor'
 
 const MIN_CURVED_RISE = 0.3
 const MIN_CURVED_WIDTH = 0.4

@@ -7,8 +7,8 @@ import {
   type GeometryContext,
   nodeRegistry,
   useScene,
-} from '@pascal-app/core'
-import { useViewer } from '@pascal-app/viewer'
+} from '@intersign/core'
+import { useViewer } from '@intersign/viewer'
 import { memo, useMemo } from 'react'
 import { formatLinearMeasurement } from '../../../lib/measurements'
 import usePlacementPreview from '../../../store/use-placement-preview'

@@ -41,7 +41,7 @@ export async function startAgentClaim(
   if (!credential) {
     throw new CliError(
       'agent_api_key_missing',
-      "Set PASCAL_API_KEY to this autonomous agent's API key and try again.",
+      "Set INTERSIGN_API_KEY to this autonomous agent's API key and try again.",
     )
   }
 
@@ -65,7 +65,7 @@ export async function startAgentClaim(
       }
       throw new CliError(
         'agent_claim_unavailable',
-        'Pascal could not be reached while starting the agent claim. Try again.',
+        'Intersign could not be reached while starting the agent claim. Try again.',
       )
     }
 
@@ -93,7 +93,7 @@ export async function getAgentStatus(
   if (!credential) {
     throw new CliError(
       'agent_api_key_missing',
-      "Set PASCAL_API_KEY to this agent's API key and try again.",
+      "Set INTERSIGN_API_KEY to this agent's API key and try again.",
     )
   }
 
@@ -115,7 +115,7 @@ export async function getAgentStatus(
       if (controller.signal.aborted) throw statusTimeout()
       throw new CliError(
         'agent_status_unavailable',
-        'Pascal could not be reached while checking the agent status. Try again.',
+        'Intersign could not be reached while checking the agent status. Try again.',
       )
     }
 
@@ -217,13 +217,13 @@ function claimResponseError(status: number): CliError {
         { status },
       )
     case 401:
-      return new CliError('agent_claim_unauthorized', 'PASCAL_API_KEY is invalid or revoked.', {
+      return new CliError('agent_claim_unauthorized', 'INTERSIGN_API_KEY is invalid or revoked.', {
         status,
       })
     case 403:
       return new CliError(
         'agent_claim_forbidden',
-        'PASCAL_API_KEY must belong to an autonomous Pascal agent.',
+        'INTERSIGN_API_KEY must belong to an autonomous Intersign agent.',
         { status },
       )
     case 409:
@@ -239,7 +239,7 @@ function claimResponseError(status: number): CliError {
     default:
       return new CliError(
         'agent_claim_failed',
-        `Pascal could not start the agent claim (HTTP ${status}).`,
+        `Intersign could not start the agent claim (HTTP ${status}).`,
         { status },
       )
   }
@@ -248,19 +248,19 @@ function claimResponseError(status: number): CliError {
 function statusResponseError(status: number): CliError {
   switch (status) {
     case 401:
-      return new CliError('agent_status_unauthorized', 'PASCAL_API_KEY is invalid or revoked.', {
+      return new CliError('agent_status_unauthorized', 'INTERSIGN_API_KEY is invalid or revoked.', {
         status,
       })
     case 403:
       return new CliError(
         'agent_status_forbidden',
-        'PASCAL_API_KEY must belong to a Pascal agent.',
+        'INTERSIGN_API_KEY must belong to an Intersign agent.',
         { status },
       )
     default:
       return new CliError(
         'agent_status_failed',
-        `Pascal could not check the agent status (HTTP ${status}).`,
+        `Intersign could not check the agent status (HTTP ${status}).`,
         { status },
       )
   }
@@ -269,27 +269,27 @@ function statusResponseError(status: number): CliError {
 function invalidResponse(): CliError {
   return new CliError(
     'agent_claim_invalid_response',
-    'Pascal returned an invalid agent claim response. Try again.',
+    'Intersign returned an invalid agent claim response. Try again.',
   )
 }
 
 function invalidStatusResponse(): CliError {
   return new CliError(
     'agent_status_invalid_response',
-    'Pascal returned an invalid agent status response. Try again.',
+    'Intersign returned an invalid agent status response. Try again.',
   )
 }
 
 function claimTimeout(): CliError {
   return new CliError(
     'agent_claim_timeout',
-    'Pascal did not respond while starting the agent claim. Try again.',
+    'Intersign did not respond while starting the agent claim. Try again.',
   )
 }
 
 function statusTimeout(): CliError {
   return new CliError(
     'agent_status_timeout',
-    'Pascal did not respond while checking the agent status. Try again.',
+    'Intersign did not respond while checking the agent status. Try again.',
   )
 }

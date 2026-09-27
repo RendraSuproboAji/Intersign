@@ -2,7 +2,7 @@
 
 User request:
 
-> Add one window to the project in my Pascal workspace and leave everything else alone.
+> Add one window to the project in my Intersign workspace and leave everything else alone.
 
 Expected workflow:
 

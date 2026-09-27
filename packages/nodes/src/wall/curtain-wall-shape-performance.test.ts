@@ -1,6 +1,6 @@
 import { afterEach, expect, test } from 'bun:test'
-import { LevelNode, sceneRegistry, useScene, WallNode, WindowNode } from '@pascal-app/core'
-import { runWallBuildFrame } from '@pascal-app/viewer'
+import { LevelNode, sceneRegistry, useScene, WallNode, WindowNode } from '@intersign/core'
+import { runWallBuildFrame } from '@intersign/viewer'
 import { Mesh } from 'three'
 import { curtainWallGeometryAdapter } from './curtain-wall-adapter'
 

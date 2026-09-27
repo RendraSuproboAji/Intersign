@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test'
-import { type BlockTopology, createBoxBlockTopology } from '@pascal-app/core'
+import { type BlockTopology, createBoxBlockTopology } from '@intersign/core'
 import { PerspectiveCamera, Vector3 } from 'three'
 import { blockGeometrySnapThreshold, resolveBlockGeometrySnap } from './geometry-snap'
 

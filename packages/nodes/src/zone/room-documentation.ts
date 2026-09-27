@@ -3,8 +3,8 @@ import {
   deriveZoneQuantityReport,
   resolveAutoZonePolygon,
   type ZoneNode,
-} from '@pascal-app/core'
-import type { FloorplanSchedule } from '@pascal-app/editor'
+} from '@intersign/core'
+import type { FloorplanSchedule } from '@intersign/editor'
 import {
   type ConstructionLengthProfile,
   type ConstructionLinearUnit,

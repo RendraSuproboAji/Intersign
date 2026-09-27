@@ -11,7 +11,7 @@ import {
   sceneRegistry,
   useScene,
   WallNode,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import { BoxGeometry, Group, Mesh } from 'three'
 import { z } from 'zod'
 import {

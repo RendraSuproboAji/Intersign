@@ -49,7 +49,7 @@ fi
 export ASC_PRIVATE_KEY_PATH
 
 MAIN_SHA="$(git -C "$ROOT_DIR" rev-parse main)"
-WORKTREE_DIR="$(mktemp -d /tmp/pascal-release-XXXXXX)"
+WORKTREE_DIR="$(mktemp -d /tmp/intersign-release-XXXXXX)"
 
 cleanup() {
   if git -C "$ROOT_DIR" worktree list --porcelain | rg -q "^worktree ${WORKTREE_DIR}$"; then

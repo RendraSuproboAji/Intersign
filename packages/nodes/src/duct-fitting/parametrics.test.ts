@@ -5,7 +5,7 @@ import {
   DuctFittingNode,
   DuctSegmentNode,
   useScene,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import { readAutoOffsetTag, withAutoOffsetTag } from '../shared/auto-offset-tag'
 import { getDuctFittingPorts } from './ports'
 
@@ -61,7 +61,7 @@ function verticalRectRunFrom(point: Point, roll: number) {
 
 describe('ductFittingParametrics', () => {
   beforeAll(async () => {
-    mock.module('@pascal-app/editor', () => ({
+    mock.module('@intersign/editor', () => ({
       ActionButton: () => null,
     }))
     ;({ ductFittingParametrics } = await import('./parametrics'))

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'bun:test'
-import { getWallCurveLength, WallNode } from '@pascal-app/core'
+import { getWallCurveLength, WallNode } from '@intersign/core'
 import { buildWallLengthPatch } from './length-patch'
 
 describe('buildWallLengthPatch', () => {

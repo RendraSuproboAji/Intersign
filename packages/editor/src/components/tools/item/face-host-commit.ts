@@ -1,5 +1,5 @@
-import type { ItemNode, NodeEvent } from '@pascal-app/core'
-import { nodeRegistry, useScene } from '@pascal-app/core'
+import type { ItemNode, NodeEvent } from '@intersign/core'
+import { nodeRegistry, useScene } from '@intersign/core'
 import { stripTransient } from './placement-math'
 import { faceHostStrategy } from './placement-strategies'
 import type { CommitResult, PlacementContext } from './placement-types'

@@ -5,7 +5,7 @@ import {
   type ItemNode,
   type LevelNode,
   useLiveTransforms,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import { getRotatedRectanglePolygon, rotatePlanVector } from './geometry'
 import type { FloorplanItemEntry, FloorplanNodeTransform, LevelDescendantMap } from './types'
 

@@ -7,13 +7,13 @@ describe('cloneExportUserData', () => {
   test('keeps plain data and deep-copies it', () => {
     const source = {
       pascalId: 'wall-1',
-      pascalSwingLeaf: { axis: 'y', openRotationY: 1.2 },
+      intersignSwingLeaf: { axis: 'y', openRotationY: 1.2 },
       tags: ['a', 'b'],
       offsets: new Float32Array([1, 2, 3]),
     }
     const copy = cloneExportUserData(source)
     expect(copy).toEqual(source)
-    expect(copy.pascalSwingLeaf).not.toBe(source.pascalSwingLeaf)
+    expect(copy.intersignSwingLeaf).not.toBe(source.intersignSwingLeaf)
     expect(copy.tags).not.toBe(source.tags)
     expect(copy.offsets).not.toBe(source.offsets)
   })

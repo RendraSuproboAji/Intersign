@@ -13,8 +13,8 @@ import {
   sceneRegistry,
   WallNode,
   WindowNode,
-} from '@pascal-app/core'
-import { generateRoofSegmentGeometry, generateSlabGeometry } from '@pascal-app/viewer'
+} from '@intersign/core'
+import { generateRoofSegmentGeometry, generateSlabGeometry } from '@intersign/viewer'
 import * as THREE from 'three'
 
 const EMPTY_SLAB_CONTEXT: SlabPolygonContext = { walls: [], siblingSlabs: [] }

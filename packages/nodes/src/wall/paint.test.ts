@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test'
-import { sceneRegistry, type WallNode } from '@pascal-app/core'
+import { sceneRegistry, type WallNode } from '@intersign/core'
 import { BoxGeometry, Mesh, MeshBasicMaterial, Object3D, Ray, Vector3 } from 'three'
 import { resolveWallRole, wallPaint } from './paint'
 

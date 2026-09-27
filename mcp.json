@@ -1,9 +1,9 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json",
   "mcpServers": {
-    "pascal": {
+    "intersign": {
       "type": "stdio",
-      "command": "pascal",
+      "command": "intersign",
       "args": ["mcp", "connect"]
     }
   }

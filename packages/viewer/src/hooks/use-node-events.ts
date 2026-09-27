@@ -4,7 +4,7 @@ import {
   type EventSuffix,
   emitter,
   type NodeEvent,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import type { ThreeEvent } from '@react-three/fiber'
 import useViewer from '../store/use-viewer'
 

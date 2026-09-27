@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test'
-import type { AnyNode } from '@pascal-app/core'
+import type { AnyNode } from '@intersign/core'
 import {
   resolveFloatingActionMenuVisibility,
   resolveOverlayPolicy,

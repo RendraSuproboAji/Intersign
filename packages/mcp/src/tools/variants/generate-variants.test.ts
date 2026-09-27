@@ -1,9 +1,9 @@
 import { beforeEach, describe, expect, test } from 'bun:test'
+import type { SceneGraph } from '@intersign/core/clone-scene-graph'
+import { type AnyNodeId, AnyNode as AnyNodeSchema } from '@intersign/core/schema'
 import { Client } from '@modelcontextprotocol/sdk/client/index.js'
 import { InMemoryTransport } from '@modelcontextprotocol/sdk/inMemory.js'
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
-import type { SceneGraph } from '@pascal-app/core/clone-scene-graph'
-import { type AnyNodeId, AnyNode as AnyNodeSchema } from '@pascal-app/core/schema'
 import { SceneBridge } from '../../bridge/scene-bridge'
 import { createSceneOperations } from '../../operations'
 import {

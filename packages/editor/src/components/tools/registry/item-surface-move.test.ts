@@ -14,12 +14,12 @@ import {
   spatialGridManager,
   useLiveTransforms,
   useScene,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   ProceduralItemNode,
   proceduralFootprint,
   shelfRecipe,
-} from '@pascal-app/core/procedural-items'
+} from '@intersign/core/procedural-items'
 import { Group, Vector3 } from 'three'
 import { commitFreshPlacementSubtree } from '../../../lib/fresh-planar-placement'
 import { registerHostingTestNode } from '../__fixtures__/hosting'

@@ -1,6 +1,6 @@
 'use client'
 
-import { type AnyNode, getScaledDimensions, ItemNode, useScene } from '@pascal-app/core'
+import { type AnyNode, getScaledDimensions, ItemNode, useScene } from '@intersign/core'
 import {
   ActionButton,
   ActionGroup,
@@ -10,8 +10,8 @@ import {
   SliderControl,
   triggerSFX,
   useEditor,
-} from '@pascal-app/editor'
-import { useViewer } from '@pascal-app/viewer'
+} from '@intersign/editor'
+import { useViewer } from '@intersign/viewer'
 import { Copy, Link, Link2Off, Move, Trash2 } from 'lucide-react'
 import { useCallback, useRef, useState } from 'react'
 

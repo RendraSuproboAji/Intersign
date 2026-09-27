@@ -6,8 +6,8 @@ import {
   getWallCurveLength,
   LeanToExtensionNode,
   WallNode,
-} from '@pascal-app/core'
-import { generateRoofSegmentGeometry } from '@pascal-app/viewer'
+} from '@intersign/core'
+import { generateRoofSegmentGeometry } from '@intersign/viewer'
 import * as THREE from 'three'
 import { computeGutterMitres, type GutterMitres } from '../gutter/corner-mitre'
 import { buildGutterGeometry } from '../gutter/geometry'

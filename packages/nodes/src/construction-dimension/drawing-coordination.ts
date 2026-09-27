@@ -4,7 +4,7 @@ import {
   type ConstructionDrawingType,
   resolveConstructionDimensionDrawingOverride,
   resolveConstructionDimensionDrawingPresentation,
-} from '@pascal-app/core'
+} from '@intersign/core'
 
 export function resolveConstructionDimensionForDrawing(args: {
   node: ConstructionDimensionNode

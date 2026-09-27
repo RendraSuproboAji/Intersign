@@ -12,7 +12,7 @@ type IntendedSkill = {
 }
 
 export const intendedSkillDiscovery = new Map<string, IntendedSkill>([
-  ['skills/pascal-3d/SKILL.md', { name: 'pascal-3d', internal: false }],
+  ['skills/intersign-3d/SKILL.md', { name: 'intersign-3d', internal: false }],
   ['skills/furniture-fit/SKILL.md', { name: 'furniture-fit', internal: false }],
   ['.agents/skills/open-pr/SKILL.md', { name: 'open-pr', internal: true }],
   ['.agents/skills/open-pr2/SKILL.md', { name: 'open-pr2', internal: true }],

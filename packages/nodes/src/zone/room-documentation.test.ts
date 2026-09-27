@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test'
-import { type AnyNode, LevelNode, ZoneNode } from '@pascal-app/core'
+import { type AnyNode, LevelNode, ZoneNode } from '@intersign/core'
 import { buildRoomFloorplanSchedule } from './room-documentation'
 
 function room(overrides: Partial<ZoneNode> = {}) {

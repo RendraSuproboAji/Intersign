@@ -1,8 +1,8 @@
 'use client'
 
-import type { AnyNodeId } from '@pascal-app/core'
-import { DEFAULT_LEVEL_HEIGHT, LevelNode, type UnitNode, useScene } from '@pascal-app/core'
-import { useViewer } from '@pascal-app/viewer'
+import type { AnyNodeId } from '@intersign/core'
+import { DEFAULT_LEVEL_HEIGHT, LevelNode, type UnitNode, useScene } from '@intersign/core'
+import { useViewer } from '@intersign/viewer'
 import {
   AppWindow,
   ArrowRight,

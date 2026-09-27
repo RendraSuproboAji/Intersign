@@ -13,13 +13,13 @@ import {
   resolveSupportSlabPatch,
   useLiveNodeOverrides,
   useScene,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   evaluateRecipe,
   ProceduralItemNode,
   queryProceduralItem,
   shelfRecipe,
-} from '@pascal-app/core/procedural-items'
+} from '@intersign/core/procedural-items'
 import { itemFloorplanMoveTarget } from '../item/floorplan-move'
 import { proceduralItemDefinition } from './definition'
 import { proceduralFloorplanMoveTarget } from './move-session'

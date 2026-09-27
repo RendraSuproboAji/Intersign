@@ -44,18 +44,18 @@ describe('Cursor marketplace installs from skills/', () => {
   })
 
   test.each([
-    { type: 'stdio', command: 'pascal', args: ['mcp', 'connect'] },
-    { type: 'stdio', command: 'npx', args: ['--yes', '@pascal-app/cli@latest', 'mcp', 'connect'] },
+    { type: 'stdio', command: 'intersign', args: ['mcp', 'connect'] },
+    { type: 'stdio', command: 'npx', args: ['--yes', '@intersign/cli@latest', 'mcp', 'connect'] },
   ])('rejects a missing global executable or floating release: %j', (server) => {
     const target = fixture()
     for (const name of ['.cursor-plugin/mcp.json', 'skills/.cursor-plugin/mcp.json']) {
       const path = join(target, name)
       const config = JSON.parse(readFileSync(path, 'utf8'))
-      config.mcpServers.pascal = server
+      config.mcpServers.intersign = server
       writeFileSync(path, JSON.stringify(config))
     }
     expect(validateCursorPluginPackage(target)).toContain(
-      'Cursor local MCP must bootstrap the pinned npm CLI without a global Pascal dependency',
+      'Cursor local MCP must bootstrap the pinned npm CLI without a global Intersign dependency',
     )
   })
   test('rejects a legacy API-key header on the browser OAuth server', () => {
@@ -63,7 +63,9 @@ describe('Cursor marketplace installs from skills/', () => {
     for (const name of ['.cursor-plugin/mcp.json', 'skills/.cursor-plugin/mcp.json']) {
       const path = join(target, name)
       const config = JSON.parse(readFileSync(path, 'utf8'))
-      config.mcpServers['pascal-hosted'].headers = { Authorization: `Bearer \${PASCAL_API_KEY}` }
+      config.mcpServers['intersign-hosted'].headers = {
+        Authorization: `Bearer \${INTERSIGN_API_KEY}`,
+      }
       writeFileSync(path, JSON.stringify(config))
     }
     expect(validateCursorPluginPackage(target)).toContain(

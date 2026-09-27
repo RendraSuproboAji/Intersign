@@ -10,7 +10,7 @@ import {
   type SolarPanelPresetKey,
   useLiveNodeOverrides,
   useScene,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   ActionButton,
   ActionGroup,
@@ -19,8 +19,8 @@ import {
   SegmentedControl,
   SliderControl,
   triggerSFX,
-} from '@pascal-app/editor'
-import { useViewer } from '@pascal-app/viewer'
+} from '@intersign/editor'
+import { useViewer } from '@intersign/viewer'
 import { LayoutGrid, Trash2 } from 'lucide-react'
 import { useCallback, useEffect, useState } from 'react'
 import { computeAutoFit, flippedPanelDims } from './geometry'

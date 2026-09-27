@@ -6,7 +6,7 @@ import type {
   GeometryContext,
   RoofNode,
   RoofSegmentNode,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import { flueXPositions } from './geometry'
 
 /**

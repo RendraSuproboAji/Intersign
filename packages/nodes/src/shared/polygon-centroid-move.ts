@@ -8,13 +8,13 @@ import {
   sceneRegistry,
   useLiveTransforms,
   useScene,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   getSegmentGridStep,
   isMagneticSnapActive,
   useAlignmentGuides,
   type WallPlanPoint,
-} from '@pascal-app/editor'
+} from '@intersign/editor'
 import type * as THREE from 'three'
 import { createFloorplanCursorResolver } from './floorplan-cursor'
 

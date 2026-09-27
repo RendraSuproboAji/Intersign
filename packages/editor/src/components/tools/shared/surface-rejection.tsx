@@ -1,4 +1,4 @@
-import type { SurfaceRejectReason } from '@pascal-app/core'
+import type { SurfaceRejectReason } from '@intersign/core'
 
 export function createSurfaceRejectionFeedback(
   onChange?: (reason: SurfaceRejectReason | null) => void,

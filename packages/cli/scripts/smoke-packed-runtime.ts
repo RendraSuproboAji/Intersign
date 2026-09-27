@@ -10,7 +10,7 @@ import { Client } from '@modelcontextprotocol/sdk/client/index.js'
 import { StdioClientTransport } from '@modelcontextprotocol/sdk/client/stdio.js'
 
 const packageDirectory = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
-const smokeRoot = await mkdtemp(path.join(os.tmpdir(), 'pascal-cli-smoke-'))
+const smokeRoot = await mkdtemp(path.join(os.tmpdir(), 'intersign-cli-smoke-'))
 let tarballPath: string | null = null
 let smokeExecutable: string | null = null
 let mcpOnlyExecutable: string | null = null
@@ -21,13 +21,13 @@ const defaultPortBlocker = http.createServer((_request, response) => {
 /** MCP-only mode is verified in its own home so no web runtime can be installed there. */
 const mcpOnlyEnvironment = {
   ...process.env,
-  PASCAL_HOME: path.join(smokeRoot, 'home-mcp-only'),
-  PASCAL_NO_OPEN: '1',
+  INTERSIGN_HOME: path.join(smokeRoot, 'home-mcp-only'),
+  INTERSIGN_NO_OPEN: '1',
 }
 const smokeEnvironment = {
   ...process.env,
-  PASCAL_HOME: path.join(smokeRoot, 'home'),
-  PASCAL_NO_OPEN: '1',
+  INTERSIGN_HOME: path.join(smokeRoot, 'home'),
+  INTERSIGN_NO_OPEN: '1',
 }
 
 try {
@@ -44,7 +44,10 @@ try {
 
   const installDirectory = path.join(smokeRoot, 'install')
   await run('npm', ['install', '--ignore-scripts', '--prefix', installDirectory, tarballPath])
-  const executable = path.join(installDirectory, 'node_modules/@pascal-app/cli/dist/bin/pascal.js')
+  const executable = path.join(
+    installDirectory,
+    'node_modules/@intersign/cli/dist/bin/intersign.js',
+  )
 
   mcpOnlyExecutable = executable
   await checkMcpWithoutWebRuntime(executable)
@@ -83,7 +86,7 @@ try {
  * Phase 1: agent tools must work on a machine that has never downloaded the web runtime.
  */
 async function checkMcpWithoutWebRuntime(executable: string): Promise<void> {
-  const client = new Client({ name: 'pascal-cli-smoke-mcp-only', version: '0.0.0' })
+  const client = new Client({ name: 'intersign-cli-smoke-mcp-only', version: '0.0.0' })
   const transport = new StdioClientTransport({
     command: process.execPath,
     args: [executable, 'mcp', 'connect'],
@@ -203,10 +206,10 @@ async function checkEditorFromLocalArchive(executable: string, archiveFile: stri
     smokeEnvironment,
   )
   if (
-    !humanStart.stdout.includes('pascal status') ||
-    humanStart.stdout.includes('npm install --global @pascal-app/cli')
+    !humanStart.stdout.includes('intersign status') ||
+    humanStart.stdout.includes('npm install --global @intersign/cli')
   ) {
-    throw new Error('direct CLI start output did not use the persistent pascal command')
+    throw new Error('direct CLI start output did not use the persistent intersign command')
   }
   await run(
     process.execPath,
@@ -220,7 +223,7 @@ async function checkEditorFromLocalArchive(executable: string, archiveFile: stri
     env: smokeEnvironment as Record<string, string>,
     stderr: 'pipe',
   })
-  const mcpClient = new Client({ name: 'pascal-cli-smoke', version: '0.0.0' })
+  const mcpClient = new Client({ name: 'intersign-cli-smoke', version: '0.0.0' })
   try {
     await mcpClient.connect(mcpTransport)
     const tools = await mcpClient.listTools()
@@ -267,8 +270,8 @@ async function verifyStagedWebRuntime(): Promise<{ file: string; size: number; u
   if (source.version !== packageVersion) {
     throw new Error(`dist/runtime-source.json targets ${source.version}, not ${packageVersion}`)
   }
-  const archiveName = `pascal-web-runtime-${packageVersion}.tar.gz`
-  const expectedUrl = `https://github.com/pascalorg/editor/releases/download/@pascal-app/cli@${packageVersion}/${archiveName}`
+  const archiveName = `intersign-web-runtime-${packageVersion}.tar.gz`
+  const expectedUrl = `https://github.com/RendraSuproboAji/Intersign/releases/download/@intersign/cli@${packageVersion}/${archiveName}`
   if (source.url !== expectedUrl) {
     throw new Error(`dist/runtime-source.json points at ${source.url}, not ${expectedUrl}`)
   }

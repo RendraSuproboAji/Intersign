@@ -1,5 +1,4 @@
-import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
-import type { AnyNode, AnyNodeId, AssetInput } from '@pascal-app/core/schema'
+import type { AnyNode, AnyNodeId, AssetInput } from '@intersign/core/schema'
 import {
   CeilingNode,
   DoorNode,
@@ -8,7 +7,8 @@ import {
   WallNode,
   WindowNode,
   ZoneNode,
-} from '@pascal-app/core/schema'
+} from '@intersign/core/schema'
+import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
 import { z } from 'zod'
 import type { SceneOperations } from '../operations'
 import { ADDITIVE_TOOL_ANNOTATIONS, READ_ONLY_TOOL_ANNOTATIONS } from './annotations'

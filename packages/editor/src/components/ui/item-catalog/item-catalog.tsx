@@ -1,7 +1,7 @@
 'use client'
 
-import type { AssetInput } from '@pascal-app/core'
-import { resolveCdnUrl } from '@pascal-app/viewer'
+import type { AssetInput } from '@intersign/core'
+import { resolveCdnUrl } from '@intersign/viewer'
 import { useEffect } from 'react'
 import { triggerSFX } from './../../../lib/sfx-bus'
 import { cn } from './../../../lib/utils'

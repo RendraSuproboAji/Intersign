@@ -1,7 +1,7 @@
 {
-  "name": "@pascal-app/mcp",
+  "name": "@intersign/mcp",
   "version": "1.0.3",
-  "description": "Model Context Protocol server for Pascal 3D editor",
+  "description": "Model Context Protocol server for Intersign 3D editor",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -38,7 +38,7 @@
     }
   },
   "bin": {
-    "pascal-mcp": "dist/bin/pascal-mcp.js"
+    "intersign-mcp": "dist/bin/intersign-mcp.js"
   },
   "files": [
     "dist",
@@ -49,14 +49,14 @@
   "scripts": {
     "build": "tsc --build && bun ../../scripts/fix-node-esm-imports.ts ../core/dist && bun ../../scripts/fix-node-esm-imports.ts dist",
     "dev": "tsgo --build --watch",
-    "start": "bun dist/bin/pascal-mcp.js",
+    "start": "bun dist/bin/intersign-mcp.js",
     "test": "bun test",
     "smoke": "bun run scripts/smoke.ts",
-    "smoke:node": "node dist/bin/pascal-mcp.js --help",
+    "smoke:node": "node dist/bin/intersign-mcp.js --help",
     "prepublishOnly": "bun run build && bun test && bun run smoke:node"
   },
   "peerDependencies": {
-    "@pascal-app/core": "^1.0.3"
+    "@intersign/core": "^1.0.3"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.30.0",
@@ -64,15 +64,15 @@
     "zod": ">=4.5.4 <4.6"
   },
   "devDependencies": {
-    "@pascal-app/core": "^1.0.3",
-    "@pascal/typescript-config": "*",
+    "@intersign/core": "^1.0.3",
+    "@intersign/typescript-config": "*",
     "@types/node": "^22.19.20",
     "typescript": "6.0.3"
   },
   "keywords": [
     "mcp",
     "model-context-protocol",
-    "pascal",
+    "intersign",
     "3d",
     "building",
     "editor",
@@ -80,10 +80,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pascalorg/editor.git",
+    "url": "git+https://github.com/RendraSuproboAji/Intersign.git",
     "directory": "packages/mcp"
   },
   "license": "MIT",
-  "homepage": "https://github.com/pascalorg/editor/tree/main/packages/mcp#readme",
-  "bugs": "https://github.com/pascalorg/editor/issues"
+  "homepage": "https://github.com/RendraSuproboAji/Intersign/tree/main/packages/mcp#readme",
+  "bugs": "https://github.com/RendraSuproboAji/Intersign/issues"
 }

@@ -3,4 +3,4 @@ export {
   ConstructionDimensionChainMode,
   ConstructionDimensionMode,
   ConstructionDimensionNode,
-} from '@pascal-app/core'
+} from '@intersign/core'

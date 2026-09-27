@@ -6,7 +6,7 @@ import {
   type SlabNode,
   type Space,
   type WallNode,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   availablePaintScopes,
   cyclePaintScope,

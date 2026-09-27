@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, test } from 'bun:test'
-import { AnyNode, loadPlugin, nodeKindOf, nodeRegistry } from '@pascal-app/core'
+import { AnyNode, loadPlugin, nodeKindOf, nodeRegistry } from '@intersign/core'
 import { builtinPlugin } from './index'
 
 describe('builtinPlugin', () => {
@@ -8,7 +8,7 @@ describe('builtinPlugin', () => {
   })
 
   test('has the expected manifest shape', () => {
-    expect(builtinPlugin.id).toBe('pascal:core')
+    expect(builtinPlugin.id).toBe('intersign:core')
     expect(builtinPlugin.apiVersion).toBe(1)
     expect(Array.isArray(builtinPlugin.nodes)).toBe(true)
   })

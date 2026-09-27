@@ -9,7 +9,7 @@ import {
   normalizeRoofSegmentTrim,
   type RoofSegmentNode,
   type RoofShapeFaceVertex,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import * as THREE from 'three'
 import { mergeVertices } from 'three/examples/jsm/utils/BufferGeometryUtils.js'
 

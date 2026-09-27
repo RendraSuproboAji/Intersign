@@ -12,8 +12,8 @@ import {
   useRegistryVersion,
   useScene,
   validateBuildJson,
-} from '@pascal-app/core'
-import { useViewer, viewerPresentationRegistry } from '@pascal-app/viewer'
+} from '@intersign/core'
+import { useViewer, viewerPresentationRegistry } from '@intersign/viewer'
 import { TreeView, VisualJson } from '@visual-json/react'
 import {
   ArrowDown,
@@ -720,7 +720,7 @@ export function SettingsPanel({
       if (probe.status === 'unreachable') {
         setSendToBlenderMessage({
           tone: 'error',
-          text: 'Blender isn’t listening. Open Blender with the Pascal add-on installed and enabled, then try again.',
+          text: 'Blender isn’t listening. Open Blender with the Pascal Blender add-on installed and enabled, then try again.',
         })
         return
       }
@@ -1018,7 +1018,7 @@ export function SettingsPanel({
                   rel="noreferrer"
                   target="_blank"
                 >
-                  Pascal add-on for Blender
+                  Pascal add-on for Blender (upstream)
                 </a>{' '}
                 running in an open Blender.
               </p>

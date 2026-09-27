@@ -1,1 +1,1 @@
-export { ChimneyNode } from '@pascal-app/core'
+export { ChimneyNode } from '@intersign/core'

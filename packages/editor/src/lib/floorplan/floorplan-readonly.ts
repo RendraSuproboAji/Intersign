@@ -1,4 +1,4 @@
-import type { AnyNode, AnyNodeId, FloorplanPalette, GeometryContext } from '@pascal-app/core'
+import type { AnyNode, AnyNodeId, FloorplanPalette, GeometryContext } from '@intersign/core'
 import {
   createFloorplanContextExtensions,
   type FloorplanWallDimensionReference,

@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       bump:
-        description: "Version bump applied to every @pascal-app package at once, from the highest version in the tree (beta publishes a prerelease on the beta dist-tag; patch/minor/major on a prerelease graduates it to its base version on latest; none republishes the current version)"
+        description: "Version bump applied to every @intersign package at once, from the highest version in the tree (beta publishes a prerelease on the beta dist-tag; patch/minor/major on a prerelease graduates it to its base version on latest; none republishes the current version)"
         required: true
         type: choice
         options:
@@ -38,7 +38,7 @@ jobs:
 
       - name: Smoke-test the packed CLI and editor runtime
         env:
-          PASCAL_PORTABLE_BUILD: "1"
+          INTERSIGN_PORTABLE_BUILD: "1"
         run: |
           bun run build --filter editor
           cd packages/cli
@@ -79,7 +79,7 @@ jobs:
       # npm refuses direct publishing with 2FA-bypass tokens (EOTP, see
       # https://gh.io/npm-gat-bypass2fa-deprecation), so no NODE_AUTH_TOKEN is set
       # and npm >= 11.5 exchanges the GitHub Actions OIDC token itself. Every
-      # @pascal-app package must list this repository, this workflow file and
+      # @intersign package must list this repository, this workflow file and
       # the `npm` environment as a trusted publisher on npmjs.com; a package that
       # does not exist on npm yet needs one manual first publish before that.
       - name: Enable npm trusted publishing
@@ -137,7 +137,7 @@ jobs:
             echo "NPM_TAG=latest" >> "$GITHUB_ENV"
           fi
 
-          # Every @pascal-app package ships at the same version. The next one is
+          # Every @intersign package ships at the same version. The next one is
           # computed once, from the highest version currently in the tree, so a
           # package that ran ahead (a cli-only hotfix) pulls the others up to it
           # instead of being republished under an older number.
@@ -164,7 +164,7 @@ jobs:
           done
           NEW=$(bump_version "$BASE")
           echo "RELEASE_VERSION=$NEW" >> "$GITHUB_ENV"
-          echo "Releasing every @pascal-app package at $NEW (highest version in the tree: $BASE)"
+          echo "Releasing every @intersign package at $NEW (highest version in the tree: $BASE)"
 
           for pkg in $PACKAGES; do
             CUR=$(jq -r '.version' packages/$pkg/package.json)
@@ -172,15 +172,15 @@ jobs:
             UPPER=$(echo "$pkg" | tr '[:lower:]' '[:upper:]' | tr '-' '_')
             # Also export for the publish/commit/tag steps that follow.
             echo "${UPPER}_VERSION=$NEW" >> $GITHUB_ENV
-            echo "Bumped @pascal-app/$pkg: $CUR → $NEW"
+            echo "Bumped @intersign/$pkg: $CUR → $NEW"
           done
 
           # Sync inter-package references in dependencies, peerDependencies, and devDependencies.
-          # Every @pascal-app/* range becomes ^NEW.
+          # Every @intersign/* range becomes ^NEW.
           for pkg in $PACKAGES; do
             FILE=packages/$pkg/package.json
             for dep in $PACKAGES; do
-              jq --arg name "@pascal-app/$dep" --arg v "^$NEW" '
+              jq --arg name "@intersign/$dep" --arg v "^$NEW" '
                 if .dependencies[$name] then .dependencies[$name] = $v else . end
                 | if .peerDependencies[$name] then .peerDependencies[$name] = $v else . end
                 | if .devDependencies[$name] then .devDependencies[$name] = $v else . end
@@ -188,10 +188,10 @@ jobs:
             done
           done
 
-          echo "=== @pascal-app/* refs after sync ==="
+          echo "=== @intersign/* refs after sync ==="
           for pkg in core viewer editor nodes mcp ifc-converter cli; do
             echo "--- packages/$pkg/package.json ---"
-            jq '{ dependencies: (.dependencies // {} | with_entries(select(.key | startswith("@pascal-app/")))), peerDependencies: (.peerDependencies // {} | with_entries(select(.key | startswith("@pascal-app/")))), devDependencies: (.devDependencies // {} | with_entries(select(.key | startswith("@pascal-app/")))) }' packages/$pkg/package.json
+            jq '{ dependencies: (.dependencies // {} | with_entries(select(.key | startswith("@intersign/")))), peerDependencies: (.peerDependencies // {} | with_entries(select(.key | startswith("@intersign/")))), devDependencies: (.devDependencies // {} | with_entries(select(.key | startswith("@intersign/")))) }' packages/$pkg/package.json
           done
 
           # Version and dependency ranges changed after the frozen install.
@@ -200,7 +200,7 @@ jobs:
 
       - name: Validate portable editor runtime
         env:
-          PASCAL_PORTABLE_BUILD: "1"
+          INTERSIGN_PORTABLE_BUILD: "1"
         run: |
           bun run build --filter editor
           cd packages/cli
@@ -213,13 +213,13 @@ jobs:
         run: |
           bun run build
           if [ "${{ inputs.dry-run }}" = "true" ]; then
-            echo "🏜️ Dry run — would publish @pascal-app/core@$CORE_VERSION"
+            echo "🏜️ Dry run — would publish @intersign/core@$CORE_VERSION"
             npm publish --dry-run --access public --tag "$NPM_TAG"
-          elif npm view "@pascal-app/core@$CORE_VERSION" version >/dev/null 2>&1; then
-            echo "📦 @pascal-app/core@$CORE_VERSION is already published; continuing release recovery"
+          elif npm view "@intersign/core@$CORE_VERSION" version >/dev/null 2>&1; then
+            echo "📦 @intersign/core@$CORE_VERSION is already published; continuing release recovery"
           else
             npm publish --access public --tag "$NPM_TAG"
-            echo "📦 Published @pascal-app/core@$CORE_VERSION"
+            echo "📦 Published @intersign/core@$CORE_VERSION"
           fi
 
       - name: Build & publish viewer
@@ -227,26 +227,26 @@ jobs:
         run: |
           bun run build
           if [ "${{ inputs.dry-run }}" = "true" ]; then
-            echo "🏜️ Dry run — would publish @pascal-app/viewer@$VIEWER_VERSION"
+            echo "🏜️ Dry run — would publish @intersign/viewer@$VIEWER_VERSION"
             npm publish --dry-run --access public --tag "$NPM_TAG"
-          elif npm view "@pascal-app/viewer@$VIEWER_VERSION" version >/dev/null 2>&1; then
-            echo "📦 @pascal-app/viewer@$VIEWER_VERSION is already published; continuing release recovery"
+          elif npm view "@intersign/viewer@$VIEWER_VERSION" version >/dev/null 2>&1; then
+            echo "📦 @intersign/viewer@$VIEWER_VERSION is already published; continuing release recovery"
           else
             npm publish --access public --tag "$NPM_TAG"
-            echo "📦 Published @pascal-app/viewer@$VIEWER_VERSION"
+            echo "📦 Published @intersign/viewer@$VIEWER_VERSION"
           fi
 
       - name: Publish editor
         working-directory: packages/editor
         run: |
           if [ "${{ inputs.dry-run }}" = "true" ]; then
-            echo "🏜️ Dry run — would publish @pascal-app/editor@$EDITOR_VERSION"
+            echo "🏜️ Dry run — would publish @intersign/editor@$EDITOR_VERSION"
             npm publish --dry-run --access public --tag "$NPM_TAG"
-          elif npm view "@pascal-app/editor@$EDITOR_VERSION" version >/dev/null 2>&1; then
-            echo "📦 @pascal-app/editor@$EDITOR_VERSION is already published; continuing release recovery"
+          elif npm view "@intersign/editor@$EDITOR_VERSION" version >/dev/null 2>&1; then
+            echo "📦 @intersign/editor@$EDITOR_VERSION is already published; continuing release recovery"
           else
             npm publish --access public --tag "$NPM_TAG"
-            echo "📦 Published @pascal-app/editor@$EDITOR_VERSION"
+            echo "📦 Published @intersign/editor@$EDITOR_VERSION"
           fi
 
       - name: Build & publish nodes
@@ -254,13 +254,13 @@ jobs:
         run: |
           bun run build
           if [ "${{ inputs.dry-run }}" = "true" ]; then
-            echo "🏜️ Dry run — would publish @pascal-app/nodes@$NODES_VERSION"
+            echo "🏜️ Dry run — would publish @intersign/nodes@$NODES_VERSION"
             npm publish --dry-run --access public --tag "$NPM_TAG"
-          elif npm view "@pascal-app/nodes@$NODES_VERSION" version >/dev/null 2>&1; then
-            echo "📦 @pascal-app/nodes@$NODES_VERSION is already published; continuing release recovery"
+          elif npm view "@intersign/nodes@$NODES_VERSION" version >/dev/null 2>&1; then
+            echo "📦 @intersign/nodes@$NODES_VERSION is already published; continuing release recovery"
           else
             npm publish --access public --tag "$NPM_TAG"
-            echo "📦 Published @pascal-app/nodes@$NODES_VERSION"
+            echo "📦 Published @intersign/nodes@$NODES_VERSION"
           fi
 
       - name: Build & publish mcp
@@ -268,29 +268,29 @@ jobs:
         run: |
           bun run build
           if [ "${{ inputs.dry-run }}" = "true" ]; then
-            echo "🏜️ Dry run — would publish @pascal-app/mcp@$MCP_VERSION"
+            echo "🏜️ Dry run — would publish @intersign/mcp@$MCP_VERSION"
             npm publish --dry-run --access public --tag "$NPM_TAG"
-          elif npm view "@pascal-app/mcp@$MCP_VERSION" version >/dev/null 2>&1; then
-            echo "📦 @pascal-app/mcp@$MCP_VERSION is already published; continuing release recovery"
+          elif npm view "@intersign/mcp@$MCP_VERSION" version >/dev/null 2>&1; then
+            echo "📦 @intersign/mcp@$MCP_VERSION is already published; continuing release recovery"
           else
             npm publish --access public --tag "$NPM_TAG"
-            echo "📦 Published @pascal-app/mcp@$MCP_VERSION"
+            echo "📦 Published @intersign/mcp@$MCP_VERSION"
           fi
 
       - name: Build & publish ifc-converter
         run: |
-          # ifc-converter depends on @pascal-app/core (workspace) — build it first
-          bun run build --filter @pascal-app/core 2>/dev/null || (cd packages/core && bun run build)
+          # ifc-converter depends on @intersign/core (workspace) — build it first
+          bun run build --filter @intersign/core 2>/dev/null || (cd packages/core && bun run build)
           cd packages/ifc-converter
           bun run build
           if [ "${{ inputs.dry-run }}" = "true" ]; then
-            echo "🏜️ Dry run — would publish @pascal-app/ifc-converter@$IFC_CONVERTER_VERSION"
+            echo "🏜️ Dry run — would publish @intersign/ifc-converter@$IFC_CONVERTER_VERSION"
             npm publish --dry-run --access public --tag "$NPM_TAG"
-          elif npm view "@pascal-app/ifc-converter@$IFC_CONVERTER_VERSION" version >/dev/null 2>&1; then
-            echo "📦 @pascal-app/ifc-converter@$IFC_CONVERTER_VERSION is already published; continuing release recovery"
+          elif npm view "@intersign/ifc-converter@$IFC_CONVERTER_VERSION" version >/dev/null 2>&1; then
+            echo "📦 @intersign/ifc-converter@$IFC_CONVERTER_VERSION is already published; continuing release recovery"
           else
             npm publish --access public --tag "$NPM_TAG"
-            echo "📦 Published @pascal-app/ifc-converter@$IFC_CONVERTER_VERSION"
+            echo "📦 Published @intersign/ifc-converter@$IFC_CONVERTER_VERSION"
           fi
 
       - name: Publish CLI
@@ -299,19 +299,19 @@ jobs:
           cd packages/cli
           # The tarball embeds the URL and digest of the web runtime archive, so the archive
           # must be staged (by "Validate portable editor runtime") before anything is published.
-          ARCHIVE="build/pascal-web-runtime-$CLI_VERSION.tar.gz"
+          ARCHIVE="build/intersign-web-runtime-$CLI_VERSION.tar.gz"
           test -f "$ARCHIVE"
           test -f "$ARCHIVE.sha256"
-          test -f dist/services/pascal-mcp.mjs
+          test -f dist/services/intersign-mcp.mjs
           jq -e --arg v "$CLI_VERSION" '.version == $v' dist/runtime-source.json
           if [ "${{ inputs.dry-run }}" = "true" ]; then
-            echo "🏜️ Dry run — would publish @pascal-app/cli@$CLI_VERSION"
+            echo "🏜️ Dry run — would publish @intersign/cli@$CLI_VERSION"
             npm publish --ignore-scripts --dry-run --access public --tag "$NPM_TAG"
-          elif npm view "@pascal-app/cli@$CLI_VERSION" version >/dev/null 2>&1; then
-            echo "📦 @pascal-app/cli@$CLI_VERSION is already published; continuing release recovery"
+          elif npm view "@intersign/cli@$CLI_VERSION" version >/dev/null 2>&1; then
+            echo "📦 @intersign/cli@$CLI_VERSION is already published; continuing release recovery"
           else
             npm publish --ignore-scripts --access public --tag "$NPM_TAG"
-            echo "📦 Published @pascal-app/cli@$CLI_VERSION"
+            echo "📦 Published @intersign/cli@$CLI_VERSION"
           fi
 
       - name: Commit version bumps & tag
@@ -321,8 +321,8 @@ jobs:
           PKGS=""
           TAGS=""
           for pkg in core viewer editor nodes mcp ifc-converter cli; do
-            PKGS="$PKGS @pascal-app/$pkg@$RELEASE_VERSION"
-            TAGS="$TAGS @pascal-app/$pkg@$RELEASE_VERSION"
+            PKGS="$PKGS @intersign/$pkg@$RELEASE_VERSION"
+            TAGS="$TAGS @intersign/$pkg@$RELEASE_VERSION"
           done
 
           if git diff --cached --quiet; then
@@ -353,11 +353,11 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          TAG="@pascal-app/cli@$CLI_VERSION"
-          ARCHIVE="build/pascal-web-runtime-$CLI_VERSION.tar.gz"
+          TAG="@intersign/cli@$CLI_VERSION"
+          ARCHIVE="build/intersign-web-runtime-$CLI_VERSION.tar.gz"
           if ! gh release view "$TAG" >/dev/null 2>&1; then
             [ "$NPM_TAG" = "beta" ] && PRERELEASE=--prerelease || PRERELEASE=
-            gh release create "$TAG" $PRERELEASE --title "$TAG" --notes "The Pascal web editor runtime for \`@pascal-app/cli@$CLI_VERSION\`. The CLI downloads \`$(basename "$ARCHIVE")\` the first time a command starts the editor and verifies it against the digest published inside the npm package. Offline installs can pass the archive directly: \`pascal editor --runtime $(basename "$ARCHIVE")\`."
+            gh release create "$TAG" $PRERELEASE --title "$TAG" --notes "The Intersign web editor runtime for \`@intersign/cli@$CLI_VERSION\`. The CLI downloads \`$(basename "$ARCHIVE")\` the first time a command starts the editor and verifies it against the digest published inside the npm package. Offline installs can pass the archive directly: \`intersign editor --runtime $(basename "$ARCHIVE")\`."
           fi
           gh release upload "$TAG" "$ARCHIVE" "$ARCHIVE.sha256" --clobber
           echo "🌐 Uploaded $(basename "$ARCHIVE") to $TAG"

@@ -1,4 +1,4 @@
-import { getLibraryMaterialsVersion, subscribeLibraryMaterials } from '@pascal-app/core'
+import { getLibraryMaterialsVersion, subscribeLibraryMaterials } from '@intersign/core'
 import { useSyncExternalStore } from 'react'
 
 /**

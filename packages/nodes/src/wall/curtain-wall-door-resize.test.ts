@@ -6,8 +6,8 @@ import {
   useLiveNodeOverrides,
   useScene,
   WallNode,
-} from '@pascal-app/core'
-import { runWallBuildFrame } from '@pascal-app/viewer'
+} from '@intersign/core'
+import { runWallBuildFrame } from '@intersign/viewer'
 import { DoubleSide, Mesh, MeshBasicMaterial, Raycaster, Vector3 } from 'three'
 import { curtainWallGeometryAdapter } from './curtain-wall-adapter'
 

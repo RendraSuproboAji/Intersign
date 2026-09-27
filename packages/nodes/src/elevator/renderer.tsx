@@ -22,7 +22,7 @@ import {
   useLiveTransforms,
   useRegistry,
   useScene,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   type ColorPreset,
   createDefaultMaterial,
@@ -32,7 +32,7 @@ import {
   resolveSlotDefaultMaterial,
   useNodeEvents,
   useViewer,
-} from '@pascal-app/viewer'
+} from '@intersign/viewer'
 import { useFrame } from '@react-three/fiber'
 import { createContext, useCallback, useContext, useLayoutEffect, useMemo, useRef } from 'react'
 import {

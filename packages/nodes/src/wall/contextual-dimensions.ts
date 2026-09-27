@@ -7,8 +7,8 @@ import {
   getWallThickness,
   isCurvedWall,
   type WallNode,
-} from '@pascal-app/core'
-import { formatLinearMeasurement, readFloorplanMetricNotationOverride } from '@pascal-app/editor'
+} from '@intersign/core'
+import { formatLinearMeasurement, readFloorplanMetricNotationOverride } from '@intersign/editor'
 
 type WallHostedOpening = {
   position: readonly [number, number, number]

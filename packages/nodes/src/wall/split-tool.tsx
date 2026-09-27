@@ -1,13 +1,13 @@
 'use client'
-import { type AnyNode, getWallThickness, sceneRegistry, useScene } from '@pascal-app/core'
+import { type AnyNode, getWallThickness, sceneRegistry, useScene } from '@intersign/core'
 import {
   DRAFT_LABEL_Y_OFFSET,
   DraftMeasurementLabel,
   EDITOR_LAYER,
   formatLinearMeasurement,
   NO_RAYCAST,
-} from '@pascal-app/editor'
-import { BATCHED_LAYER, getSceneTheme, SCENE_LAYER, useViewer } from '@pascal-app/viewer'
+} from '@intersign/editor'
+import { BATCHED_LAYER, getSceneTheme, SCENE_LAYER, useViewer } from '@intersign/viewer'
 import { useFrame, useThree } from '@react-three/fiber'
 import { useEffect, useRef } from 'react'
 import { type Group, type Mesh, Raycaster, Vector2 } from 'three'
@@ -100,7 +100,7 @@ export default function WallSplitTool(_props: { node: AnyNode }) {
             key={index}
             position={[point.x, 0, point.y]}
             rotation={[0, -Math.atan2(tangent.y, tangent.x), 0]}
-            userData={{ testId: 'pascal-split-marker', valid: preview.valid }}
+            userData={{ testId: 'intersign-split-marker', valid: preview.valid }}
           >
             <mesh
               layers={EDITOR_LAYER}

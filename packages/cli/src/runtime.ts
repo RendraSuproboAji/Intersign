@@ -3,7 +3,7 @@ import path from 'node:path'
 import { CliError } from './errors.js'
 import { withFileLock } from './file-lock.js'
 import { readJsonFile, writeJsonFile } from './json-files.js'
-import type { PascalPaths } from './paths.js'
+import type { IntersignPaths } from './paths.js'
 
 export interface RuntimeManifest {
   schemaVersion: 2
@@ -22,14 +22,14 @@ export async function readRuntimeManifest(directory: string): Promise<RuntimeMan
   try {
     manifest = await readJsonFile<RuntimeManifest>(path.join(directory, 'runtime-manifest.json'))
   } catch {
-    throw new CliError('invalid_runtime', `Invalid Pascal runtime at ${directory}.`)
+    throw new CliError('invalid_runtime', `Invalid Intersign runtime at ${directory}.`)
   }
   if (
     manifest?.schemaVersion !== 2 ||
     typeof manifest.version !== 'string' ||
     typeof manifest.entrypoint !== 'string'
   ) {
-    throw new CliError('invalid_runtime', `Invalid Pascal runtime at ${directory}.`)
+    throw new CliError('invalid_runtime', `Invalid Intersign runtime at ${directory}.`)
   }
   if (!/^[0-9A-Za-z][0-9A-Za-z._-]*$/.test(manifest.version)) {
     throw new CliError('invalid_runtime', `Invalid runtime version: ${manifest.version}`)
@@ -55,21 +55,21 @@ export async function readRuntimeManifest(directory: string): Promise<RuntimeMan
  * the same archive twice, which is why the timeout is caller-controlled.
  */
 export async function withRuntimeInstallLock<T>(
-  paths: PascalPaths,
+  paths: IntersignPaths,
   action: () => Promise<T>,
   options: { timeoutMs?: number } = {},
 ): Promise<T> {
   return withFileLock(
     path.join(paths.run, 'runtime-install.lock'),
     'install_locked',
-    'Another Pascal runtime installation is active.',
+    'Another Intersign runtime installation is active.',
     action,
     options,
   )
 }
 
 export async function installBundledRuntime(
-  paths: PascalPaths,
+  paths: IntersignPaths,
   sourceDirectory: string,
   options: { activate?: boolean } = {},
 ): Promise<ActiveRuntime> {
@@ -80,7 +80,7 @@ export async function installBundledRuntime(
 
 /** Requires `withRuntimeInstallLock`; call `installBundledRuntime` when no lock is held. */
 export async function installRuntimeDirectory(
-  paths: PascalPaths,
+  paths: IntersignPaths,
   sourceDirectory: string,
   options: { activate?: boolean } = {},
 ): Promise<ActiveRuntime> {
@@ -111,7 +111,7 @@ export async function installRuntimeDirectory(
     : activateRuntime(paths, sourceManifest.version, targetDirectory)
 }
 
-export async function readActiveRuntime(paths: PascalPaths): Promise<ActiveRuntime | null> {
+export async function readActiveRuntime(paths: IntersignPaths): Promise<ActiveRuntime | null> {
   let active: ActiveRuntime | null
   try {
     active = await readJsonFile<ActiveRuntime>(paths.currentRuntime)
@@ -127,7 +127,10 @@ export async function readActiveRuntime(paths: PascalPaths): Promise<ActiveRunti
   }
   const resolvedDirectory = path.resolve(active.directory)
   if (!resolvedDirectory.startsWith(`${path.resolve(paths.runtime)}${path.sep}`)) {
-    throw new CliError('invalid_runtime', 'The active runtime is outside Pascal runtime storage.')
+    throw new CliError(
+      'invalid_runtime',
+      'The active runtime is outside Intersign runtime storage.',
+    )
   }
   const manifest = await readRuntimeManifest(resolvedDirectory)
   if (manifest.version !== active.version) {
@@ -137,13 +140,13 @@ export async function readActiveRuntime(paths: PascalPaths): Promise<ActiveRunti
 }
 
 export async function activateRuntime(
-  paths: PascalPaths,
+  paths: IntersignPaths,
   version: string,
   directory: string,
 ): Promise<ActiveRuntime> {
   const resolvedDirectory = path.resolve(directory)
   if (!resolvedDirectory.startsWith(`${path.resolve(paths.runtime)}${path.sep}`)) {
-    throw new CliError('invalid_runtime', 'Cannot activate a runtime outside Pascal storage.')
+    throw new CliError('invalid_runtime', 'Cannot activate a runtime outside Intersign storage.')
   }
   const manifest = await readRuntimeManifest(resolvedDirectory)
   if (manifest.version !== version) {
@@ -155,7 +158,7 @@ export async function activateRuntime(
 }
 
 export async function findInstalledRuntime(
-  paths: PascalPaths,
+  paths: IntersignPaths,
   version: string,
 ): Promise<ActiveRuntime | null> {
   const directory = path.join(paths.runtime, version)

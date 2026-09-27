@@ -15,15 +15,15 @@ import {
   spatialGridManager,
   useLiveNodeOverrides,
   useScene,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   frame,
   nodeLevelFrame,
   ProceduralItemNode,
   type Recipe,
   transformPoint,
-} from '@pascal-app/core/procedural-items'
-import { useViewer } from '@pascal-app/viewer'
+} from '@intersign/core/procedural-items'
+import { useViewer } from '@intersign/viewer'
 import { act, create } from '@react-three/test-renderer'
 import { FloorplanRegistryMoveOverlay } from '../../../editor/src/components/editor-2d/floorplan-registry-move-overlay'
 import useEditor from '../../../editor/src/store/use-editor'

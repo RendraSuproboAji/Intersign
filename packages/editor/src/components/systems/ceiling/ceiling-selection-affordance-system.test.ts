@@ -7,8 +7,8 @@ import {
   sceneRegistry,
   useLiveNodeOverrides,
   useScene,
-} from '@pascal-app/core'
-import { useViewer } from '@pascal-app/viewer'
+} from '@intersign/core'
+import { useViewer } from '@intersign/viewer'
 import { _roots, act, createRoot, events, extend, type RootState } from '@react-three/fiber'
 import { createElement } from 'react'
 import { Group, InstancedMesh, OrthographicCamera, Vector3, type WebGLRenderer } from 'three'

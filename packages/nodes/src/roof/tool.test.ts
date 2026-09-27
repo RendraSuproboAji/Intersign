@@ -7,8 +7,8 @@ import {
   resolveRoomRoofFootprint,
   type SceneApi,
   WallNode,
-} from '@pascal-app/core'
-import { useEditor } from '@pascal-app/editor'
+} from '@intersign/core'
+import { useEditor } from '@intersign/editor'
 import { commitRoofFootprint, commitRoofPlacement } from './tool'
 
 const originalDefaults = useEditor.getState().toolDefaults

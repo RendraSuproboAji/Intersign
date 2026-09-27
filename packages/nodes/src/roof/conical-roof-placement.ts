@@ -5,7 +5,7 @@ import {
   type RoofNode,
   type RoofSegmentNode,
   type RoofSupport,
-} from '@pascal-app/core'
+} from '@intersign/core'
 
 export type ConicalRoofLevelPlacement = {
   valid: true

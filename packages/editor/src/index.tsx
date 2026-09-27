@@ -1,7 +1,7 @@
 // Re-exports of the scene / viewer hooks so consumers composing their
-// own shells on top of `@pascal-app/editor` (community-app, embedders)
+// own shells on top of `@intersign/editor` (community-app, embedders)
 // don't have to learn three separate package imports. The canonical
-// definitions still live in `@pascal-app/core` / `@pascal-app/viewer`.
+// definitions still live in `@intersign/core` / `@intersign/viewer`.
 export {
   type ApplySceneSnapshotOptions,
   acquireSceneReadOnlyLease,
@@ -16,8 +16,8 @@ export {
   type SceneSnapshot,
   subscribeSceneCommits,
   useScene,
-} from '@pascal-app/core'
-export { useViewer } from '@pascal-app/viewer'
+} from '@intersign/core'
+export { useViewer } from '@intersign/viewer'
 export type { EditorProps } from './components/editor'
 export { default as Editor } from './components/editor'
 // Headless component aliases: the implementation files keep their
@@ -59,7 +59,7 @@ export {
 export { NodeActionMenu } from './components/editor/node-action-menu'
 // In-world arrow handle primitives (chevron geometry, invisible hit area,
 // shared material, palette + scale constants). Re-exported so kind-owned
-// 3D selection affordances in `@pascal-app/nodes` (duct side-move / height /
+// 3D selection affordances in `@intersign/nodes` (duct side-move / height /
 // extend arrows) reuse the same UI family as the wall / fence side handles.
 export {
   ARROW_COLOR,
@@ -111,8 +111,8 @@ export type {
   SelectionAffordanceProps,
 } from './components/systems/selection-affordance-services'
 // Phase 5 Stage D transitional exports — pure drafting / angle helpers
-// consumed by kind-owned drag actions in @pascal-app/nodes. Stage F
-// cleanup moves these into @pascal-app/nodes (fence/drafting.ts +
+// consumed by kind-owned drag actions in @intersign/nodes. Stage F
+// cleanup moves these into @intersign/nodes (fence/drafting.ts +
 // shared/segment-angle.ts) once every Stage D port is in.
 export {
   createFenceOnCurrentLevel,
@@ -122,7 +122,7 @@ export {
 } from './components/tools/fence/fence-drafting'
 export { MoveTool } from './components/tools/item/move-tool'
 // Placement-math helpers — shared by kind-owned placement tools in
-// `@pascal-app/nodes` (wall curve sagitta snap, door / window placement,
+// `@intersign/nodes` (wall curve sagitta snap, door / window placement,
 // item drop) so kinds don't reach into editor internals.
 export {
   calculateItemRotation,
@@ -135,7 +135,7 @@ export {
 } from './components/tools/item/placement-math'
 export type { PlacementState } from './components/tools/item/placement-types'
 // Item placement / move primitives. Re-exported here so the registry-driven
-// item move-tool in `@pascal-app/nodes` can compose them — same hooks the
+// item move-tool in `@intersign/nodes` can compose them — same hooks the
 // legacy `MoveItemContent` + `ItemTool` use. Once item placement is fully
 // owned by `nodes`, these can be inlined there and dropped from editor.
 export { type DraftNodeHandle, useDraftNode } from './components/tools/item/use-draft-node'
@@ -416,7 +416,7 @@ export { getFloatingMenuScale } from './lib/floating-menu-scale'
 // Floor-plan stair helpers — the cumulative-transform walk
 // (`computeFloorplanStairSegmentTransforms`) and the rich segment-entry
 // builder (`buildFloorplanStairEntry`) used by the kind-owned stair
-// floor-plan emitter in `@pascal-app/nodes/src/stair/floorplan.ts`.
+// floor-plan emitter in `@intersign/nodes/src/stair/floorplan.ts`.
 // Each flight's transform depends on every prior sibling's length /
 // height / `attachmentSide`, so individual stair-segments can't compute
 // their own polygon in isolation — the stair (parent) owns the
@@ -606,7 +606,7 @@ export {
 } from './lib/quick-measurement'
 export { clearRoofDuplicateMetadata, duplicateRoofSubtree } from './lib/roof-duplication'
 // Roof wall-face hit resolution + overlap guard — shared by the
-// kind-owned door / window tools in `@pascal-app/nodes` and the item
+// kind-owned door / window tools in `@intersign/nodes` and the item
 // placement coordinator's roof-wall strategy.
 export { hasRoofFaceChildOverlap, type RoofWallHit, resolveRoofWallHit } from './lib/roof-wall-hit'
 export type { SceneGraph } from './lib/scene'
@@ -664,7 +664,7 @@ export {
 } from './lib/terrain-sculpt'
 export { exportSceneToUsdz, type UsdzExportOptions } from './lib/usdz-export'
 export { useLinearDisplay } from './lib/use-linear-display'
-// `cn` (twMerge + clsx) — used by kind-owned panels in `@pascal-app/
+// `cn` (twMerge + clsx) — used by kind-owned panels in `@intersign/
 // nodes` so they don't need their own copy / their own tailwind-merge
 // dependency.
 export { cn } from './lib/utils'

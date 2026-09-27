@@ -1,4 +1,4 @@
-import { type AnyNodeId, type GeometryContext, getMaterialPresetByRef } from '@pascal-app/core'
+import { type AnyNodeId, type GeometryContext, getMaterialPresetByRef } from '@intersign/core'
 import {
   applyMaterialPresetToMaterials,
   type ColorPreset,
@@ -9,7 +9,7 @@ import {
   type RenderShading,
   resolveMaterialRef,
   resolveSlotDefaultMaterial,
-} from '@pascal-app/viewer'
+} from '@intersign/viewer'
 import { FrontSide, Group, type Material, Mesh, type Texture } from 'three'
 import { resolveFenceLiftElevation } from './lift'
 import type { FenceNode } from './schema'

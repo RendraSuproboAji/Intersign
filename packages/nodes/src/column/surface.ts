@@ -4,7 +4,7 @@ import {
   hitDerivedSurfaceProvider,
   type SurfaceProvider,
   type SurfaceRegion,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   columnCapitalBlocks,
   columnShaftLayout,

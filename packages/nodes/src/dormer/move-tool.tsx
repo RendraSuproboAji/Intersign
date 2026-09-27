@@ -7,9 +7,9 @@ import {
   type RoofSegmentNode,
   sceneRegistry,
   useScene,
-} from '@pascal-app/core'
-import { commitFreshPlacementSubtree, useEditor } from '@pascal-app/editor'
-import { useViewer } from '@pascal-app/viewer'
+} from '@intersign/core'
+import { commitFreshPlacementSubtree, useEditor } from '@intersign/editor'
+import { useViewer } from '@intersign/viewer'
 import { useEffect, useMemo } from 'react'
 import { DormerPlacementGuides } from './placement-guides'
 import DormerPreview from './preview'

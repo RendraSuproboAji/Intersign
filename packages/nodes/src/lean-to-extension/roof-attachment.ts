@@ -11,7 +11,7 @@ import {
   type RoofNode,
   type RoofSegmentNode,
   type WallNode,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import { getRoofTopSurfaceY } from '../shared/roof-surface'
 import { leanToLowEdgeHeight } from './layout'
 

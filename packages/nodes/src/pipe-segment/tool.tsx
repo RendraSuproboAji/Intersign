@@ -1,13 +1,13 @@
 'use client'
 
-import { type AnyNode, type PipeFittingNode, PipeSegmentNode } from '@pascal-app/core'
+import { type AnyNode, type PipeFittingNode, PipeSegmentNode } from '@intersign/core'
 import {
   EDITOR_LAYER,
   triggerSFX,
   useEditor,
   usePathDraftPreview,
   useRegistryToolContext,
-} from '@pascal-app/editor'
+} from '@intersign/editor'
 import { useEffect, useRef, useState } from 'react'
 import { Vector3 } from 'three'
 import {

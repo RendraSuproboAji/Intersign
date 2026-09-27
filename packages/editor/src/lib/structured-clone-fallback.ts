@@ -7,7 +7,7 @@
  * run in time and the whole editor bundle fails to load.
  *
  * This has to be imported for its side effect from the module that pulls lingo
- * in, so it is installed wherever `@pascal-app/editor` is loaded — the OSS app,
+ * in, so it is installed wherever `@intersign/editor` is loaded — the OSS app,
  * the hosted app, and any npm consumer. An app-level polyfill would only cover
  * the app that declares it.
  *

@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test'
-import { installGlobalPascalCommand, isNpxInvocation } from './command-install.js'
+import { installGlobalIntersignCommand, isNpxInvocation } from './command-install.js'
 
 describe('short command installation', () => {
   test('recognizes npm exec package-runner invocations', () => {
@@ -12,7 +12,7 @@ describe('short command installation', () => {
 
   test('installs the exact running version without lifecycle scripts', async () => {
     let invocation: { command: string; args: string[] } | undefined
-    const installed = await installGlobalPascalCommand('1.2.3', async (command, args) => {
+    const installed = await installGlobalIntersignCommand('1.2.3', async (command, args) => {
       invocation = { command, args }
       return 0
     })
@@ -20,11 +20,11 @@ describe('short command installation', () => {
     expect(installed).toBe(true)
     expect(invocation).toEqual({
       command: process.platform === 'win32' ? 'npm.cmd' : 'npm',
-      args: ['install', '--global', '--ignore-scripts', '@pascal-app/cli@1.2.3'],
+      args: ['install', '--global', '--ignore-scripts', '@intersign/cli@1.2.3'],
     })
   })
 
   test('reports an installer failure without throwing', async () => {
-    expect(await installGlobalPascalCommand('1.2.3', async () => 1)).toBe(false)
+    expect(await installGlobalIntersignCommand('1.2.3', async () => 1)).toBe(false)
   })
 })

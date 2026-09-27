@@ -8,7 +8,7 @@ import {
   TurbineVentNode as TurbineVentSchema,
   useLiveNodeOverrides,
   useScene,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   ActionButton,
   ActionGroup,
@@ -18,8 +18,8 @@ import {
   SliderControl,
   triggerSFX,
   useEditor,
-} from '@pascal-app/editor'
-import { useViewer } from '@pascal-app/viewer'
+} from '@intersign/editor'
+import { useViewer } from '@intersign/viewer'
 import { Copy, Move, Pause, Play, Trash2 } from 'lucide-react'
 import { useCallback, useRef } from 'react'
 import type { TurbineVentNode } from './schema'

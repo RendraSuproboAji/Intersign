@@ -1,6 +1,6 @@
 import { expect, test } from 'bun:test'
-import { useInteractive } from '@pascal-app/core'
-import { ProceduralItemNode, parseRecipe } from '@pascal-app/core/procedural-items'
+import { useInteractive } from '@intersign/core'
+import { ProceduralItemNode, parseRecipe } from '@intersign/core/procedural-items'
 import { BoxGeometry, Group, Mesh, MeshStandardMaterial } from 'three'
 import pendant from '../../../core/src/procedural-items/__fixtures__/pendant_lamp.json'
 import { proceduralItemDefinition } from './definition'

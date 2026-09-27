@@ -1,1 +1,1 @@
-export { ScanNode } from '@pascal-app/core'
+export { ScanNode } from '@intersign/core'

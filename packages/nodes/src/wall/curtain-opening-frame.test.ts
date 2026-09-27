@@ -5,8 +5,8 @@ import {
   sceneRegistry,
   WallNode,
   WindowNode,
-} from '@pascal-app/core'
-import { generateExtrudedWall } from '@pascal-app/viewer'
+} from '@intersign/core'
+import { generateExtrudedWall } from '@intersign/viewer'
 import { DoubleSide, Mesh, MeshBasicMaterial, Raycaster, Vector3 } from 'three'
 import {
   buildCurtainOpeningFrame,

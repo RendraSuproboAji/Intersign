@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'bun:test'
-import { LeanToExtensionNode } from '@pascal-app/core'
-import { generateRoofSegmentGeometry, resolveSurfaceColor } from '@pascal-app/viewer'
+import { LeanToExtensionNode } from '@intersign/core'
+import { generateRoofSegmentGeometry, resolveSurfaceColor } from '@intersign/viewer'
 import {
   Box3,
   type BoxGeometry,

@@ -6,7 +6,7 @@ import {
   LevelNode,
   SiteNode,
   useScene,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import { create } from '@react-three/test-renderer'
 import { type SaveStatus, useAutoSave } from './use-auto-save'
 

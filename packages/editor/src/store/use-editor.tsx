@@ -1,6 +1,6 @@
 'use client'
 
-import type { AssetInput } from '@pascal-app/core'
+import type { AssetInput } from '@intersign/core'
 import {
   type AnyNode,
   type AnyNodeId,
@@ -17,8 +17,8 @@ import {
   type TerrainVerb,
   useScene,
   type WallSurfaceSide,
-} from '@pascal-app/core'
-import { useViewer } from '@pascal-app/viewer'
+} from '@intersign/core'
+import { useViewer } from '@intersign/viewer'
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import {
@@ -1541,7 +1541,7 @@ const useEditor = create<EditorState>()(
       setModelExport: (modelExport) => set({ modelExport }),
     }),
     {
-      name: 'pascal-editor-ui-preferences',
+      name: 'intersign-editor-ui-preferences',
       merge: (persistedState, currentState) => {
         const uiState = normalizePersistedEditorUiState(
           persistedState as Partial<PersistedEditorState>,

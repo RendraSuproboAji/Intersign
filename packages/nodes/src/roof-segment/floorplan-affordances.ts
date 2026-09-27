@@ -7,8 +7,8 @@ import {
   snapScalar,
   useLiveNodeOverrides,
   useScene,
-} from '@pascal-app/core'
-import { getSegmentGridStep, isAngleSnapActive, isGridSnapActive } from '@pascal-app/editor'
+} from '@intersign/core'
+import { getSegmentGridStep, isAngleSnapActive, isGridSnapActive } from '@intersign/editor'
 import { createFloorplanCursorResolver } from '../shared/floorplan-cursor'
 import { rotateAffordanceDelta } from '../shared/rotate-affordance'
 

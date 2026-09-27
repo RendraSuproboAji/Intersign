@@ -8,8 +8,8 @@ import {
   type TerrainField,
   terrainFieldOf,
   useLiveTerrain,
-} from '@pascal-app/core'
-import { useViewer } from '@pascal-app/viewer'
+} from '@intersign/core'
+import { useViewer } from '@intersign/viewer'
 import { Html } from '@react-three/drei'
 import { useFrame, useThree } from '@react-three/fiber'
 import { type MutableRefObject, useEffect, useMemo, useRef } from 'react'

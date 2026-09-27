@@ -10,7 +10,7 @@ import {
   type ShelfNode,
   useLiveNodeOverrides,
   useScene,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   applyFloorplanAlignment,
   getFloorStackPreviewPosition,
@@ -19,7 +19,7 @@ import {
   isMagneticSnapActive,
   triggerSFX,
   type WallPlanPoint,
-} from '@pascal-app/editor'
+} from '@intersign/editor'
 import { createFloorplanCursorResolver } from '../shared/floorplan-cursor'
 
 /**

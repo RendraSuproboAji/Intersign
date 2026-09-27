@@ -1,6 +1,6 @@
 'use client'
 
-import { ActionButton, ActionGroup, PanelSection } from '@pascal-app/editor'
+import { ActionButton, ActionGroup, PanelSection } from '@intersign/editor'
 import { Copy, Move, Trash2 } from 'lucide-react'
 
 /**

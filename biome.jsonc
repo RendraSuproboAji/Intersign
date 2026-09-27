@@ -143,7 +143,7 @@
               "level": "error",
               "options": {
                 "paths": {
-                  "@pascal-app/nodes": "Framework packages must not import from @pascal-app/nodes — consult nodeRegistry.get(kind) instead. See plans/editor-node-registry.md."
+                  "@intersign/nodes": "Framework packages must not import from @intersign/nodes — consult nodeRegistry.get(kind) instead. See plans/editor-node-registry.md."
                 }
               }
             }

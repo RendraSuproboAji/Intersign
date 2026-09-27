@@ -4,9 +4,9 @@ Research date: 2026-09-07
 
 ## Recommendation
 
-Use PipeIt's interaction model as the reference, but keep Pascal's engineering-specific duct and DWV rules. The best first implementation slice is exact typed length plus in-draw step-back in the shared distribution-run engine. Follow it with visible direction candidates and endpoint “continue” affordances. These improve both tools without requiring a scene-schema migration.
+Use PipeIt's interaction model as the reference, but keep Intersign's engineering-specific duct and DWV rules. The best first implementation slice is exact typed length plus in-draw step-back in the shared distribution-run engine. Follow it with visible direction candidates and endpoint “continue” affordances. These improve both tools without requiring a scene-schema migration.
 
-PipeIt's deeper advantage is its explicit connected-network model. Pascal already infers a connection graph from coincident typed ports and preserves connected geometry during moves, so persistent network topology should be evaluated only after the high-value drawing improvements have shipped.
+PipeIt's deeper advantage is its explicit connected-network model. Intersign already infers a connection graph from coincident typed ports and preserves connected geometry during moves, so persistent network topology should be evaluated only after the high-value drawing improvements have shipped.
 
 ## Verified PipeIt workflow and features
 
@@ -29,9 +29,9 @@ All product claims below come from PipeIt's official documentation/site or its p
 
 PipeIt's published web editor shows the aiming algorithm behind the drawing guide. It builds legal direction candidates from the current piece direction, including perpendicular 90° turns and normalized 45° blends. For each candidate it solves the closest approach between the camera cursor ray and the candidate ray from the connection point. It clamps that distance to the fitting/socket minimum, then chooses the candidate whose resulting point has the smallest angle to the camera ray. The camera therefore selects among true model-space directions; it does not redefine which way is vertical. [Official live editor](https://pipeit-plugin.com/editor/), [official drawing guide](https://pipeit-plugin.com/docs/guide/drawing-pipes/)
 
-## Current Pascal comparison
+## Current Intersign comparison
 
-| Capability | Pascal today | Gap / next move |
+| Capability | Intersign today | Gap / next move |
 |---|---|---|
 | Continuous drawing | The shared engine keeps the last endpoint as the next start and both tools place repeated runs. | Preserve this; add explicit finish semantics rather than treating `Esc` only as clearing the current start. |
 | Grid and angle behavior | Connected runs now resolve true 3D straight, perpendicular, and 45° directions against the building-local camera ray. The preview shows the winning direction and alternatives; Alt remains an explicit vertical override. | Filter candidates against exact fitting-clearance rules before showing them. |
@@ -43,7 +43,7 @@ PipeIt's published web editor shows the aiming algorithm behind the drawing guid
 | Connection-preserving edits | Core reconstructs a graph from coincident compatible ports; shared move connectivity propagates changes to attached runs/fittings. Endpoint tools re-aim fittings. | Strong foundation, but connections are inferred geometrically within tolerance rather than persisted as topology. Add stable joint identity only when network operations require it. |
 | Committed-run editing | 3D and 2D path-point handles exist; run translation and duct roll are supported, with live connected previews. | Consolidate node/edge selection language and contextual actions across duct and DWV. Add walk-selection and clearer affected-chain highlighting. |
 | Styles | Duct and pipe expose engineering properties such as shape, size, system, material, insulation, roll, and slope. | Prefer engineering “system/profile presets” over copying PipeIt's art-mesh kits literally. A preset must not move topology. |
-| Surface snap | Duct supports ceiling-mode placement; ports and run bodies snap automatically according to Pascal's snap mode. | Add an explicit directional terminate-at-surface operation. Do not copy PipeIt's `Ctrl` binding directly because Pascal reserves Ctrl to cycle the grid step. |
+| Surface snap | Duct supports ceiling-mode placement; ports and run bodies snap automatically according to Intersign's snap mode. | Add an explicit directional terminate-at-surface operation. Do not copy PipeIt's `Ctrl` binding directly because Intersign reserves Ctrl to cycle the grid step. |
 | Curves | Paths can contain multiple straight sections; no PipeIt-style editable spline edge exists here. | Later: support flex duct or engineered long-radius bends as domain-specific geometry. Do not permit arbitrary DWV splines. |
 | Brackets/hangers | No corresponding associative support workflow exists in these folders. | Later: shared hanger/support nodes with surface association; spacing and support rules should be system-specific. |
 
@@ -88,7 +88,7 @@ Acceptance criteria: the preview is structurally identical to the commit; unavai
 
 ### Phase 4 — Surface and engineering workflows
 
-1. Add directional terminate-at-surface snapping using Pascal's existing snap-mode conventions and a non-conflicting control.
+1. Add directional terminate-at-surface snapping using Intersign's existing snap-mode conventions and a non-conflicting control.
 2. Add topology-preserving profile/system presets, including valid size transitions.
 3. Add associative hangers/supports with shared surface tracing and duct/DWV-specific spacing rules.
 4. Consider explicit persistent joint IDs if inferred coincident-port connectivity becomes ambiguous during insert/delete/multi-select operations.
@@ -102,6 +102,6 @@ Acceptance criteria: the preview is structurally identical to the commit; unavai
 
 ## What not to copy directly
 
-- PipeIt is an environment-art tool, whereas Pascal models engineering systems. Arbitrary mesh variants and flexible curves must remain constrained by fitting, slope, profile, and system rules.
-- PipeIt's `Ctrl` surface-snap shortcut conflicts with Pascal's documented Ctrl grid-step behavior.
+- PipeIt is an environment-art tool, whereas Intersign models engineering systems. Arbitrary mesh variants and flexible curves must remain constrained by fitting, slope, profile, and system rules.
+- PipeIt's `Ctrl` surface-snap shortcut conflicts with Intersign's documented Ctrl grid-step behavior.
 - Unreal-specific Blueprint/runtime editing and mesh baking do not improve the immediate duct/DWV authoring workflow and should not lead the roadmap.

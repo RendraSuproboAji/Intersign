@@ -1,12 +1,12 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.pascalorg/editor",
-  "title": "Pascal 3D Editor",
-  "description": "Create, inspect, validate, and save editable 3D building scenes with Pascal's hosted MCP server.",
+  "title": "Intersign 3D Editor",
+  "description": "Create, inspect, validate, and save editable 3D building scenes with the hosted Pascal MCP server.",
   "version": "0.6.1",
   "websiteUrl": "https://editor.pascal.app/docs/developers/mcp",
   "repository": {
-    "url": "https://github.com/pascalorg/editor",
+    "url": "https://github.com/RendraSuproboAji/Intersign",
     "source": "github"
   },
   "icons": [
@@ -32,7 +32,7 @@
       "headers": [
         {
           "name": "Authorization",
-          "description": "Bearer API key created in Pascal Settings, formatted as Bearer sk_live_...",
+          "description": "Bearer API key created in Intersign Settings, formatted as Bearer sk_live_...",
           "isRequired": true,
           "isSecret": true
         }

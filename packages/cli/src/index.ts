@@ -3,7 +3,7 @@ export {
   activateEditorRuntime,
   type EditorState,
   type EditorStatus,
-  ensurePascalDirectories,
+  ensureIntersignDirectories,
   getEditorStatus,
   type RuntimeActivationResult,
   restartEditor,
@@ -19,7 +19,7 @@ export {
   type McpServiceStatus,
   stopMcpService,
 } from './mcp-service.js'
-export { type PascalPaths, resolvePascalPaths } from './paths.js'
+export { type IntersignPaths, resolveIntersignPaths } from './paths.js'
 export {
   type ActiveRuntime,
   installBundledRuntime,

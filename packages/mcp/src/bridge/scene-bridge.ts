@@ -1,16 +1,16 @@
 // Side-effect import MUST come first: installs RAF polyfill before core loads.
 import './node-shims'
-import { HIDDEN_SITE_NOTE } from '@pascal-app/core'
-import type { SceneGraph } from '@pascal-app/core/clone-scene-graph'
-import type { AnyNode } from '@pascal-app/core/schema'
+import { HIDDEN_SITE_NOTE } from '@intersign/core'
+import type { SceneGraph } from '@intersign/core/clone-scene-graph'
+import type { AnyNode } from '@intersign/core/schema'
 import {
   type AnyNodeId,
   AnyNode as AnyNodeSchema,
   type AnyNodeType,
   parseNode,
-} from '@pascal-app/core/schema'
-// Per PLAN §0.6: `useScene` is the DEFAULT export from `@pascal-app/core/store`.
-import useScene from '@pascal-app/core/store'
+} from '@intersign/core/schema'
+// Per PLAN §0.6: `useScene` is the DEFAULT export from `@intersign/core/store`.
+import useScene from '@intersign/core/store'
 import type { SceneMeta } from '../storage/types'
 
 export type ValidationError = { nodeId: string; path: string; message: string }
@@ -34,7 +34,7 @@ export type ActiveSceneMeta = Pick<
 type SetSceneExtra = Parameters<ReturnType<typeof useScene.getState>['setScene']>[2]
 
 /**
- * Headless bridge to the `@pascal-app/core` Zustand store.
+ * Headless bridge to the `@intersign/core` Zustand store.
  *
  * All mutation flows through the real core store so undo/redo works via Zundo.
  * No renderer is attached; `dirtyNodes` accumulates and can be drained via

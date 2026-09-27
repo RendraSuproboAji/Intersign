@@ -1,4 +1,4 @@
-import type { SelectionAffordanceInteractionApi } from '@pascal-app/editor'
+import type { SelectionAffordanceInteractionApi } from '@intersign/editor'
 import type { MutableRefObject } from 'react'
 
 type FinishModal = (commit: boolean) => void

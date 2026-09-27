@@ -1,4 +1,4 @@
-import { PipeFittingNode, PipeSegmentNode } from '@pascal-app/core'
+import { PipeFittingNode, PipeSegmentNode } from '@intersign/core'
 import { Euler, Quaternion, Vector3 } from 'three'
 import type { RunBodyHit } from '../shared/ports'
 import { pipeFittingLegLength } from './ports'

@@ -6,7 +6,7 @@ import {
   PipeFittingNode,
   registerNode,
   useScene,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import { ductFittingDefinition } from '../duct-fitting/definition'
 import { getDuctFittingPorts } from '../duct-fitting/ports'
 import { ductSegmentDefinition } from '../duct-segment/definition'

@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test'
-import { hiddenWallPointerEventsHeld, holdHiddenWallPointerEvents } from '@pascal-app/core'
+import { hiddenWallPointerEventsHeld, holdHiddenWallPointerEvents } from '@intersign/core'
 import {
   extractWallSelectionRay,
   HIDDEN_WALL_SELECTION_EPSILON,

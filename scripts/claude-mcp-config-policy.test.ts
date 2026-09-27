@@ -22,15 +22,15 @@ const upgradeGuidancePaths = [
   'README.md',
   'skills/README.md',
   'skills/VALIDATION.md',
-  'skills/pascal-3d/references/setup.md',
+  'skills/intersign-3d/references/setup.md',
   'skills/furniture-fit/references/setup.md',
 ] as const
 const hostedGuidancePaths = [
-  'skills/pascal-3d/references/setup.md',
+  'skills/intersign-3d/references/setup.md',
   'skills/furniture-fit/references/setup.md',
 ] as const
 
-const localServer = { type: 'stdio', command: 'pascal', args: ['mcp', 'connect'] }
+const localServer = { type: 'stdio', command: 'intersign', args: ['mcp', 'connect'] }
 const hostedServer = {
   type: 'http',
   url: hostedMcpUrl,
@@ -42,7 +42,7 @@ function withServers(servers: Record<string, unknown>): Record<string, unknown> 
 }
 
 const canonicalKeyOption = (canonicalPlugin.userConfig as Record<string, unknown>)
-  .pascal_api_key as Record<string, unknown>
+  .intersign_api_key as Record<string, unknown>
 
 function pluginWithUserConfig(userConfig: unknown): Record<string, unknown> {
   return { ...canonicalPlugin, userConfig }
@@ -56,28 +56,31 @@ describe('Claude plugin MCP configuration', () => {
   })
 
   test.each([
-    ['a third server', withServers({ pascal: localServer, 'pascal-hosted': hostedServer, o: {} })],
-    ['a missing hosted server', withServers({ pascal: localServer })],
-    ['a missing local server', withServers({ 'pascal-hosted': hostedServer })],
+    [
+      'a third server',
+      withServers({ intersign: localServer, 'intersign-hosted': hostedServer, o: {} }),
+    ],
+    ['a missing hosted server', withServers({ intersign: localServer })],
+    ['a missing local server', withServers({ 'intersign-hosted': hostedServer })],
     [
       'a remote URL on the local server',
       withServers({
-        pascal: { type: 'http', url: 'https://editor.pascal.app/api/mcp' },
-        'pascal-hosted': hostedServer,
+        intersign: { type: 'http', url: 'https://editor.pascal.app/api/mcp' },
+        'intersign-hosted': hostedServer,
       }),
     ],
     [
       'request headers on the local server',
       withServers({
-        pascal: { ...localServer, headers: { Authorization: 'Bearer placeholder' } },
-        'pascal-hosted': hostedServer,
+        intersign: { ...localServer, headers: { Authorization: 'Bearer placeholder' } },
+        'intersign-hosted': hostedServer,
       }),
     ],
     [
       'environment credentials on the local server',
       withServers({
-        pascal: { ...localServer, env: { PASCAL_API_KEY: 'placeholder' } },
-        'pascal-hosted': hostedServer,
+        intersign: { ...localServer, env: { INTERSIGN_API_KEY: 'placeholder' } },
+        'intersign-hosted': hostedServer,
       }),
     ],
   ])('rejects %s', (_label, config) => {
@@ -89,11 +92,11 @@ describe('Claude plugin MCP configuration', () => {
   test.each([
     [
       'a literal hosted credential',
-      { ...hostedServer, headers: { Authorization: 'Bearer pascal_live_placeholder' } },
+      { ...hostedServer, headers: { Authorization: 'Bearer intersign_live_placeholder' } },
     ],
     [
       'an unexpected hosted header',
-      { ...hostedServer, headers: { ...hostedServer.headers, 'X-Pascal-Org': 'acme' } },
+      { ...hostedServer, headers: { ...hostedServer.headers, 'X-Intersign-Org': 'acme' } },
     ],
     ['a redirected hosted URL', { ...hostedServer, url: 'https://mcp.example.com/api/mcp' }],
     ['a non-HTTP hosted transport', { ...hostedServer, type: 'sse' }],
@@ -101,7 +104,7 @@ describe('Claude plugin MCP configuration', () => {
   ])('rejects hosted %s', (_label, server) => {
     expect(
       validateClaudeMcpPolicy(
-        withServers({ pascal: localServer, 'pascal-hosted': server }),
+        withServers({ intersign: localServer, 'intersign-hosted': server }),
         canonicalPlugin,
         canonicalMarketplaceEntry,
       ).length,
@@ -112,15 +115,15 @@ describe('Claude plugin MCP configuration', () => {
     expect(
       validateClaudeMcpPolicy(
         withServers({
-          pascal: { type: 'stdio', command: 'npx', args: ['pascal', 'mcp', 'connect'] },
-          'pascal-hosted': hostedServer,
+          intersign: { type: 'stdio', command: 'npx', args: ['intersign', 'mcp', 'connect'] },
+          'intersign-hosted': hostedServer,
         }),
         canonicalPlugin,
         canonicalMarketplaceEntry,
       ),
     ).toEqual([
-      'skills/.mcp.json pascal server command must be pascal',
-      'skills/.mcp.json pascal server args must be exactly ["mcp", "connect"]',
+      'skills/.mcp.json intersign server command must be intersign',
+      'skills/.mcp.json intersign server args must be exactly ["mcp", "connect"]',
     ])
   })
 
@@ -130,21 +133,23 @@ describe('Claude plugin MCP configuration', () => {
     [
       'an extra user configuration option',
       pluginWithUserConfig({
-        pascal_api_key: canonicalKeyOption,
-        pascal_password: { type: 'string', sensitive: true, required: false },
+        intersign_api_key: canonicalKeyOption,
+        intersign_password: { type: 'string', sensitive: true, required: false },
       }),
     ],
     [
       'a plaintext hosted key option',
-      pluginWithUserConfig({ pascal_api_key: { ...canonicalKeyOption, sensitive: false } }),
+      pluginWithUserConfig({ intersign_api_key: { ...canonicalKeyOption, sensitive: false } }),
     ],
     [
       'a required hosted key option',
-      pluginWithUserConfig({ pascal_api_key: { ...canonicalKeyOption, required: true } }),
+      pluginWithUserConfig({ intersign_api_key: { ...canonicalKeyOption, required: true } }),
     ],
     [
       'a default hosted credential',
-      pluginWithUserConfig({ pascal_api_key: { ...canonicalKeyOption, default: 'placeholder' } }),
+      pluginWithUserConfig({
+        intersign_api_key: { ...canonicalKeyOption, default: 'placeholder' },
+      }),
     ],
   ])('rejects plugin-manifest %s', (_label, pluginManifest) => {
     expect(
@@ -172,16 +177,16 @@ describe('Claude plugin MCP upgrade guidance', () => {
   test.each(upgradeGuidancePaths)('%s warns about the duplicate local connection', (path) => {
     const content = readFileSync(join(repositoryRoot, path), 'utf8')
     expect(content).toContain('Claude Code 2.1.258 loads both')
-    expect(content).toContain('claude mcp remove --scope user pascal')
+    expect(content).toContain('claude mcp remove --scope user intersign')
     expect(content).toContain('before reloading or restarting Claude Code')
     expect(content).toContain('one-active-agent-client-per-local-service requirement')
   })
 
   test.each(hostedGuidancePaths)('%s documents the plugin hosted key path', (path) => {
     const content = readFileSync(join(repositoryRoot, path), 'utf8')
-    expect(content).toContain('pascal-hosted')
+    expect(content).toContain('intersign-hosted')
     expect(content).toContain(
-      'claude plugin install pascal-agent-skills@pascal --config pascal_api_key=',
+      'claude plugin install intersign-agent-skills@intersign --config intersign_api_key=',
     )
     expect(content).toContain('keychain')
   })

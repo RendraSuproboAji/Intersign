@@ -1,5 +1,5 @@
-import { subtractPolygonsFromPolygon } from '@pascal-app/core'
-import { ensureRenderableGeometryAttributes } from '@pascal-app/viewer'
+import { subtractPolygonsFromPolygon } from '@intersign/core'
+import { ensureRenderableGeometryAttributes } from '@intersign/viewer'
 import { BufferGeometry, Float32BufferAttribute, ShapeUtils, Vector2 } from 'three'
 import type { CurtainWallPiece } from './curtain-wall-layout'
 

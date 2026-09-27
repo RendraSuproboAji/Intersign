@@ -1,9 +1,9 @@
 'use client'
 
-import type { LevelNode } from '@pascal-app/core'
+import type { LevelNode } from '@intersign/core'
 import { useEffect, useState } from 'react'
 import type { LevelDuplicatePreset } from '../../lib/level-duplication'
-import { getLevelDisplayName } from '@pascal-app/core'
+import { getLevelDisplayName } from '@intersign/core'
 import { cn } from '../../lib/utils'
 import {
   Dialog,

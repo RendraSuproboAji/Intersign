@@ -84,7 +84,7 @@ const useFloorplanMode = create<FloorplanModeState>()(
         }),
     }),
     {
-      name: 'pascal-floorplan-mode-by-project',
+      name: 'intersign-floorplan-mode-by-project',
       merge: (persistedState, currentState) => {
         const persisted = persistedState as
           | { hasShownDefaultReassurance?: unknown; modesByProject?: unknown }

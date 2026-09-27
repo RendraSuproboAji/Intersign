@@ -1,9 +1,15 @@
 import { Agentation } from 'agentation'
 import { GeistPixelSquare } from 'geist/font/pixel'
+import type { Metadata } from 'next'
 import { Barlow } from 'next/font/google'
 import localFont from 'next/font/local'
 import { ClientBootstrap } from './client-bootstrap'
 import './globals.css'
+
+export const metadata: Metadata = {
+  title: 'Intersign — Interior Design Editor',
+  description: 'Intersign: an open-source, local-first 3D interior and building editor.',
+}
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -27,7 +33,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   const enableDevDiagnostics =
-    process.env.NODE_ENV === 'development' && process.env.PASCAL_DEV_DIAGNOSTICS === '1'
+    process.env.NODE_ENV === 'development' && process.env.INTERSIGN_DEV_DIAGNOSTICS === '1'
 
   return (
     <html

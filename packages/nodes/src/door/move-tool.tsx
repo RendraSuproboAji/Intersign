@@ -12,7 +12,7 @@ import {
   useLiveTransforms,
   useScene,
   type WallEvent,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   calculateItemRotation,
   clearPlacementSurface,
@@ -28,8 +28,8 @@ import {
   useAlignmentGuides,
   useEditor,
   useFacingPose,
-} from '@pascal-app/editor'
-import { useViewer } from '@pascal-app/viewer'
+} from '@intersign/editor'
+import { useViewer } from '@intersign/viewer'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { BoxGeometry, EdgesGeometry, type Group, Vector3 } from 'three'
 import { LineBasicNodeMaterial } from 'three/webgpu'

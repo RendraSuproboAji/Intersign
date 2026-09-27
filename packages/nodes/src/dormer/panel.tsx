@@ -11,7 +11,7 @@ import {
   useLiveNodeOverrides,
   useScene,
   WindowNode,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   cn,
   createFreshPlacementSubtree,
@@ -20,8 +20,8 @@ import {
   SliderControl,
   triggerSFX,
   useEditor,
-} from '@pascal-app/editor'
-import { useViewer } from '@pascal-app/viewer'
+} from '@intersign/editor'
+import { useViewer } from '@intersign/viewer'
 import { useCallback, useState } from 'react'
 import { useShallow } from 'zustand/react/shallow'
 import { DormerActionsSection } from './panel-actions-section'

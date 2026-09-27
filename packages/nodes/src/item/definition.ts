@@ -4,8 +4,8 @@ import {
   type HandleDescriptor,
   type ItemNode as ItemNodeType,
   type NodeDefinition,
-} from '@pascal-app/core'
-import type { FloorplanNodeExtension } from '@pascal-app/editor'
+} from '@intersign/core'
+import type { FloorplanNodeExtension } from '@intersign/editor'
 import {
   itemHasLights,
   itemHasMechanisms,

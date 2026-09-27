@@ -1,4 +1,4 @@
-import { type AnyNode, type NodeDefinition, useScene } from '@pascal-app/core'
+import { type AnyNode, type NodeDefinition, useScene } from '@intersign/core'
 import { ductBodyPaint, ductBodySlots } from '../shared/duct-body-paint'
 import { createPathPointMoveAffordance } from '../shared/path-point-affordance'
 import { createSegmentMoveAffordance } from '../shared/path-segment-affordance'

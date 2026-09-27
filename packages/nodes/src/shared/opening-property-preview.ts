@@ -1,4 +1,4 @@
-import type { AnyNode, AnyNodeId, DoorNode, WindowNode } from '@pascal-app/core'
+import type { AnyNode, AnyNodeId, DoorNode, WindowNode } from '@intersign/core'
 import { constrainCurtainOpening } from './curtain-opening-limits'
 
 export type OpeningPropertyPreviewDependencies = {

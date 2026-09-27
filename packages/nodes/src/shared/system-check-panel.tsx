@@ -6,8 +6,8 @@ import {
   emitter,
   getLevelElevations,
   summarizeSystemFor,
-} from '@pascal-app/core'
-import { useViewer } from '@pascal-app/viewer'
+} from '@intersign/core'
+import { useViewer } from '@intersign/viewer'
 import {
   AlertTriangle,
   CheckCircle2,

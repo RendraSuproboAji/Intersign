@@ -1,4 +1,4 @@
-import type { ToolHint } from '@pascal-app/core'
+import type { ToolHint } from '@intersign/core'
 import { create } from 'zustand'
 
 export type RunHangerTool = 'duct-segment' | 'pipe-segment'

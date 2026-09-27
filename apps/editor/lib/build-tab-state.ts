@@ -1,4 +1,4 @@
-import type { RoofType } from '@pascal-app/core'
+import type { RoofType } from '@intersign/core'
 
 export type RoofFeatureIdentity = {
   id: string

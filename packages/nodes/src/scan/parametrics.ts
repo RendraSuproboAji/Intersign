@@ -1,4 +1,4 @@
-import type { ParametricDescriptor, ScanNode } from '@pascal-app/core'
+import type { ParametricDescriptor, ScanNode } from '@intersign/core'
 
 export const scanParametrics: ParametricDescriptor<ScanNode> = {
   groups: [

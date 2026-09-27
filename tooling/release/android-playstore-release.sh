@@ -55,7 +55,7 @@ if [[ ! -f "$GOOGLE_SA_ABS" ]]; then
 fi
 
 MAIN_SHA="$(git -C "$ROOT_DIR" rev-parse main)"
-WORKTREE_DIR="$(mktemp -d /tmp/pascal-release-android-XXXXXX)"
+WORKTREE_DIR="$(mktemp -d /tmp/intersign-release-android-XXXXXX)"
 
 cleanup() {
   if git -C "$ROOT_DIR" worktree list --porcelain | rg -q "^worktree ${WORKTREE_DIR}$"; then

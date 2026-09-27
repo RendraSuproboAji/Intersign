@@ -1,6 +1,6 @@
 'use client'
 
-import { useScene } from '@pascal-app/core'
+import { useScene } from '@intersign/core'
 import { useEffect } from 'react'
 import { createSlabDependencyTracker } from './dependency-tracker'
 

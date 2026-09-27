@@ -71,7 +71,7 @@ The next action is optional. Do not execute it, create or switch accounts/worksp
 
 - Saved: yes / no
 - Changed node IDs:
-- Editor URL returned by Pascal:
+- Editor URL returned by Intersign:
 
 ## Open dimension-only footprint pre-check
 
@@ -80,10 +80,10 @@ The next action is optional. Do not execute it, create or switch accounts/worksp
 - Difference from the report: this no-sign-in calculator assumes an empty rectangular room and does not carry the project, pose, collisions, doors, height, delivery route, detailed mesh, or scene-backed verdict
 - Unavailable reason: first missing, private, or unrepresentable input | not applicable
 
-Include the URL only after the user asks for it or confirms that the measurements may be sent to Pascal. Every represented dimension must be exact, positive, no greater than `1,000,000`, and safe to disclose; clearance may be zero. Omit it for directional clearance or whenever scene-specific evidence changes the requested conclusion. Never reuse item-to-item spacing as room-boundary clearance. Opening the link sends its visible measurement query to `editor.pascal.app` and can retain it in browser history and service request logs. Keep its query keys fixed. Never add project, revision, graph hash, node, address, person, account, workspace, credential, signed URL, `flow_id`, or arbitrary scene values.
+Include the URL only after the user asks for it or confirms that the measurements may be sent to Intersign. Every represented dimension must be exact, positive, no greater than `1,000,000`, and safe to disclose; clearance may be zero. Omit it for directional clearance or whenever scene-specific evidence changes the requested conclusion. Never reuse item-to-item spacing as room-boundary clearance. Opening the link sends its visible measurement query to `editor.pascal.app` and can retain it in browser history and service request logs. Keep its query keys fixed. Never add project, revision, graph hash, node, address, person, account, workspace, credential, signed URL, `flow_id`, or arbitrary scene values.
 
 Use `footprint` in the verdict sentence. Never turn untested rows into an unqualified purchase, delivery, safety, or code-compliance assurance.
 
 An empty issue list with missing geometry is not a pass. State `not checked` or `insufficient evidence` and name the missing geometry. A read-only candidate is absent from `verify_scene`; do not borrow that tool's clean result for the candidate.
 
-Do not turn nominal `level.height`, `zone.ceilingHeight`, wall height, catalog labels, template defaults, or imported metadata into a categorical height pass or failure. A ceiling-shaped node is not sufficient by itself. Without a user-supplied clear-height measurement or modeled geometry whose recorded measurement provenance and spatial coverage establish the exact overhead path, report the possible mismatch and request the smallest decisive measurement. If that evidence exists, identify it and describe the result as a manual height-versus-clear-height comparison rather than a Pascal footprint-tool result.
+Do not turn nominal `level.height`, `zone.ceilingHeight`, wall height, catalog labels, template defaults, or imported metadata into a categorical height pass or failure. A ceiling-shaped node is not sufficient by itself. Without a user-supplied clear-height measurement or modeled geometry whose recorded measurement provenance and spatial coverage establish the exact overhead path, report the possible mismatch and request the smallest decisive measurement. If that evidence exists, identify it and describe the result as a manual height-versus-clear-height comparison rather than an Intersign footprint-tool result.

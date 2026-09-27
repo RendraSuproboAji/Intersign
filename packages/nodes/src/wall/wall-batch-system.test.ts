@@ -1,7 +1,7 @@
 import { afterAll, afterEach, describe, expect, spyOn, test } from 'bun:test'
-import { sceneRegistry, useScene } from '@pascal-app/core'
-import * as viewerExports from '@pascal-app/viewer'
-import { SCENE_LAYER, useViewer } from '@pascal-app/viewer'
+import { sceneRegistry, useScene } from '@intersign/core'
+import * as viewerExports from '@intersign/viewer'
+import { SCENE_LAYER, useViewer } from '@intersign/viewer'
 import {
   BufferGeometry,
   Float32BufferAttribute,

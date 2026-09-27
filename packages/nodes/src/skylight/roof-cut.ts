@@ -1,5 +1,5 @@
-import type { RoofSegmentNode, SkylightNode } from '@pascal-app/core'
-import { getRoofOuterSurfaceFrameAtPoint } from '@pascal-app/viewer'
+import type { RoofSegmentNode, SkylightNode } from '@intersign/core'
+import { getRoofOuterSurfaceFrameAtPoint } from '@intersign/viewer'
 import * as THREE from 'three'
 
 /**

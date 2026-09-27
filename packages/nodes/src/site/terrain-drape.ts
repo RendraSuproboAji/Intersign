@@ -28,7 +28,7 @@
  * than eyeballed on a canvas.
  */
 
-import { surfaceHeightAt, type TerrainField } from '@pascal-app/core'
+import { surfaceHeightAt, type TerrainField } from '@intersign/core'
 
 /** A draped polyline: xyz per vertex, plus normalized arc length per vertex. */
 export type DrapedPolyline = {

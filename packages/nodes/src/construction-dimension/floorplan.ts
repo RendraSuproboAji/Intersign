@@ -9,18 +9,18 @@ import type {
   MeasurementAnchor,
   MeasurementPoint,
   WallNode,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   constructionDimensionRequiredAnchorCount,
   getWallArcData,
   getWallCurveFrameAt,
   getWallThickness,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   readFloorplanContext,
   readFloorplanMetricNotationOverride,
   withFloorplanGeometryMetadata,
-} from '@pascal-app/editor'
+} from '@intersign/editor'
 import { resolveMeasurementAnchor } from '../measurement/resolve'
 import {
   type ConstructionLengthFormatOptions,

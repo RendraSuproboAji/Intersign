@@ -1,4 +1,4 @@
-import type { TerrainVerb } from '@pascal-app/core'
+import type { TerrainVerb } from '@intersign/core'
 import mitt from 'mitt'
 import useAudio from '../store/use-audio'
 import {

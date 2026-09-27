@@ -1,4 +1,4 @@
-import type { AnyNode, AnyNodeId, GeometryContext } from '@pascal-app/core'
+import type { AnyNode, AnyNodeId, GeometryContext } from '@intersign/core'
 import {
   BufferGeometry,
   ExtrudeGeometry,

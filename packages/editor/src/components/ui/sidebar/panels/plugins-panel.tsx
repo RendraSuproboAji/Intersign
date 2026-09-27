@@ -1,7 +1,7 @@
 'use client'
 
 import { Icon } from '@iconify/react'
-import { type IconRef, useScene } from '@pascal-app/core'
+import { type IconRef, useScene } from '@intersign/core'
 import { ChevronLeft, ChevronRight, ExternalLink, Puzzle } from 'lucide-react'
 import { lazy, type ReactNode, Suspense, useState, useSyncExternalStore } from 'react'
 import { editorHostPanelRegistry } from '../../../../lib/plugin-panels'
@@ -151,7 +151,7 @@ export function PluginsPanel() {
             rel="noreferrer"
             target="_blank"
           >
-            Create a Pascal plugin
+            Create an Intersign plugin
             <ExternalLink className="h-3.5 w-3.5" />
           </a>
         </div>
@@ -209,7 +209,7 @@ export function PluginsPanel() {
           rel="noreferrer"
           target="_blank"
         >
-          Create a Pascal plugin
+          Create an Intersign plugin
           <ExternalLink className="h-3.5 w-3.5" />
         </a>
       </div>

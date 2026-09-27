@@ -1,1 +1,1 @@
-export { StairSegmentNode } from '@pascal-app/core'
+export { StairSegmentNode } from '@intersign/core'

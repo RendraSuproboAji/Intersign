@@ -6,7 +6,7 @@ import {
   CabinetModuleNode,
   CabinetNode,
   type SceneApi,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import { cabinetDefinition, cabinetModuleDefinition } from '../definition'
 import { CABINET_PRESETS, cabinetPresetById } from '../presets'
 import { addWallChildAbove } from '../run-ops'

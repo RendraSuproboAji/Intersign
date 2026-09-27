@@ -1,4 +1,4 @@
-import type { CameraPose } from '@pascal-app/core'
+import type { CameraPose } from '@intersign/core'
 
 const MIN_PERSPECTIVE_FOV = 1
 const MAX_PERSPECTIVE_FOV = 179

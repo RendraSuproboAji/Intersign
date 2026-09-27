@@ -8,7 +8,7 @@ import {
   useLiveNodeOverrides,
   useRegistry,
   useScene,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   getStairBodyMaterials,
   getStairRailingMaterial,
@@ -18,7 +18,7 @@ import {
   type StairBodyMaterials,
   useNodeEvents,
   useViewer,
-} from '@pascal-app/viewer'
+} from '@intersign/viewer'
 import { useEffect, useLayoutEffect, useMemo, useRef } from 'react'
 import * as THREE from 'three'
 import { createPlaceholderGeometry } from '../shared/placeholder-geometry'

@@ -5,12 +5,12 @@ import {
   LevelNode,
   StairNode,
   StairSegmentNode,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   buildFloorplanStairEntry,
   createFloorplanContextExtensions,
   readFloorplanGeometryMetadata,
-} from '@pascal-app/editor'
+} from '@intersign/editor'
 import {
   buildStairDocumentation,
   resolveStairPlanDirection,

@@ -14,10 +14,10 @@
     "check-types": "next typegen && tsc --noEmit"
   },
   "dependencies": {
-    "@pascal-app/core": "*",
-    "@pascal-app/ifc-converter": "*",
-    "@pascal-app/nodes": "*",
-    "@pascal-app/viewer": "*",
+    "@intersign/core": "*",
+    "@intersign/ifc-converter": "*",
+    "@intersign/nodes": "*",
+    "@intersign/viewer": "*",
     "lucide-react": "^1.7.0",
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.5.0",
@@ -33,7 +33,7 @@
     "web-ifc": "^0.0.77"
   },
   "devDependencies": {
-    "@pascal/typescript-config": "*",
+    "@intersign/typescript-config": "*",
     "@types/node": "^22.19.12",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.3",

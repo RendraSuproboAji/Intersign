@@ -1,4 +1,4 @@
-import { type AnyNode, type Interactive, useInteractive } from '@pascal-app/core'
+import { type AnyNode, type Interactive, useInteractive } from '@intersign/core'
 
 type InteractiveState = ReturnType<typeof useInteractive.getState>
 

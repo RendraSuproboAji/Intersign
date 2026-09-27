@@ -1,4 +1,4 @@
-import { type AnyNode, getWallThickness } from '@pascal-app/core'
+import { type AnyNode, getWallThickness } from '@intersign/core'
 import {
   mergePrintExportDiagnostics,
   type PrintExportDiagnostic,

@@ -9,8 +9,8 @@ import {
   registerNode,
   type SceneApi,
   useScene,
-} from '@pascal-app/core'
-import { useViewer } from '@pascal-app/viewer'
+} from '@intersign/core'
+import { useViewer } from '@intersign/viewer'
 import { act, create } from '@react-three/test-renderer'
 import { type ComponentType, useEffect } from 'react'
 import { z } from 'zod'

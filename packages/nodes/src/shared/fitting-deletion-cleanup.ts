@@ -6,7 +6,7 @@ import type {
   NodePort,
   PipeFittingNode,
   PipeSegmentNode,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import { Euler, Matrix4, Quaternion, Vector3 } from 'three'
 import { getDuctFittingPorts } from '../duct-fitting/ports'
 import { getPipeFittingPorts } from '../pipe-fitting/ports'

@@ -18,7 +18,7 @@ import {
   useLiveNodeOverrides,
   useRegistry,
   useScene,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   type ColorPreset,
   catalogLightSource,
@@ -31,11 +31,11 @@ import {
   type RenderShading,
   resolveCdnUrl,
   resolveMaterialRef,
-  stampPascalTextureRef,
+  stampIntersignTextureRef,
   useItemLightPool,
   useNodeEvents,
   useViewer,
-} from '@pascal-app/viewer'
+} from '@intersign/viewer'
 import { useAnimations } from '@react-three/drei'
 import { Clone } from '@react-three/drei/core/Clone'
 import { useFrame, useLoader, useThree } from '@react-three/fiber'
@@ -85,7 +85,7 @@ type CapturedMultiItemMaterialData = {
 type CapturedItemMaterialData = CapturedSingleItemMaterialData | CapturedMultiItemMaterialData
 
 type ItemMeshUserData = Mesh['userData'] & {
-  pascalItemMaterialCapture?: CapturedItemMaterialData
+  intersignItemMaterialCapture?: CapturedItemMaterialData
   slotId?: string | null | (string | null)[]
 }
 
@@ -95,7 +95,7 @@ const getAuthoredSlotId = (material: Material): string | null =>
   isSlotMaterialName(material.name) ? deriveSlotId(material.name) : null
 
 function curatedRefFromMaterial(material: Material): string | undefined {
-  const raw = (material.userData as { pascal_material?: unknown }).pascal_material
+  const raw = (material.userData as { intersign_material?: unknown }).intersign_material
   if (typeof raw !== 'string' || raw.length === 0) return undefined
   if (raw.startsWith(LIBRARY_MATERIAL_REF_PREFIX) || raw.startsWith(SCENE_MATERIAL_REF_PREFIX)) {
     return raw
@@ -105,7 +105,7 @@ function curatedRefFromMaterial(material: Material): string | undefined {
 
 const captureItemMeshMaterials = (mesh: Mesh): CapturedItemMaterialData => {
   const userData = mesh.userData as ItemMeshUserData
-  const captured = userData.pascalItemMaterialCapture
+  const captured = userData.intersignItemMaterialCapture
   if (captured?.captured) {
     userData.slotId = captured.slotIds
     return captured
@@ -121,7 +121,7 @@ const captureItemMeshMaterials = (mesh: Mesh): CapturedItemMaterialData => {
       curatedRefs,
       slotIds,
     }
-    userData.pascalItemMaterialCapture = next
+    userData.intersignItemMaterialCapture = next
     userData.slotId = slotIds
     return next
   }
@@ -134,7 +134,7 @@ const captureItemMeshMaterials = (mesh: Mesh): CapturedItemMaterialData => {
     curatedRefs: curatedRef,
     slotIds: slotId,
   }
-  userData.pascalItemMaterialCapture = next
+  userData.intersignItemMaterialCapture = next
   userData.slotId = slotId
   return next
 }
@@ -295,7 +295,7 @@ function stampItemTextureReferences(gltf: LoadedItemGltf, src: string) {
         const imageIndex = getItemTextureImageIndex(gltf, texture)
         if (imageIndex === null) continue
         if (
-          stampPascalTextureRef(texture, {
+          stampIntersignTextureRef(texture, {
             kind: 'item-glb',
             src,
             slot,

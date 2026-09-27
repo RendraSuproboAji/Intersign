@@ -1,6 +1,6 @@
 'use client'
 
-import { type MaterialTarget, toLibraryMaterialRef } from '@pascal-app/core'
+import { type MaterialTarget, toLibraryMaterialRef } from '@intersign/core'
 import { Plus } from 'lucide-react'
 import { useMaterialCatalogModel, type MaterialSourceFilter } from '../../../lib/material-catalog-model'
 import { triggerSFX } from '../../../lib/sfx-bus'

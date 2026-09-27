@@ -8,7 +8,7 @@ import {
   useLiveNodeOverrides,
   useScene,
   WallNode,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import { wallDefinition } from '../wall/definition'
 import { moveConstructionDimensionWitnessAffordance } from './floorplan-affordances'
 

@@ -5,11 +5,11 @@ export * from './sqlite-scene-store'
 export * from './types'
 
 /**
- * Factory for Pascal's local-first scene store.
+ * Factory for Intersign's local-first scene store.
  *
  * The store is backed by the runtime's built-in SQLite driver. By default it
- * writes to `~/.pascal/data/pascal.db`; set `PASCAL_DB_PATH` for an exact file
- * path or `PASCAL_DATA_DIR` for a directory containing `pascal.db`.
+ * writes to `~/.intersign/data/intersign.db`; set `INTERSIGN_DB_PATH` for an exact file
+ * path or `INTERSIGN_DATA_DIR` for a directory containing `intersign.db`.
  */
 export async function createSceneStore(env?: NodeJS.ProcessEnv): Promise<SceneStore> {
   const mod = await import('./sqlite-scene-store')

@@ -5,7 +5,7 @@ import {
   BuildingNode,
   LevelNode,
   StairNode,
-} from '@pascal-app/core/schema'
+} from '@intersign/core/schema'
 import {
   getBuildingLevelsForLevel,
   getStairLevelOptions,

@@ -4,7 +4,7 @@ import {
   isOperationDoorType,
   useInteractive,
   useScene,
-} from '@pascal-app/core'
+} from '@intersign/core'
 
 export const DOOR_SWING_OPEN_ANGLE = Math.PI / 2
 export const DOOR_TOGGLE_ANIMATION_MS = 520

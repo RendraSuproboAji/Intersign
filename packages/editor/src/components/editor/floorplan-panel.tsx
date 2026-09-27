@@ -58,9 +58,9 @@ import {
   wallRectangleCorners,
   ZoneNode as ZoneNodeSchema,
   type ZoneNode as ZoneNodeType,
-} from '@pascal-app/core'
-import { useSegmentDraftChain, useWallSnapIndicator } from '@pascal-app/editor'
-import { getSceneTheme, useViewer } from '@pascal-app/viewer'
+} from '@intersign/core'
+import { useSegmentDraftChain, useWallSnapIndicator } from '@intersign/editor'
+import { getSceneTheme, useViewer } from '@intersign/viewer'
 import { Command, Ruler } from 'lucide-react'
 import {
   type ComponentProps,
@@ -251,7 +251,7 @@ const FLOORPLAN_MAJOR_GRID_STROKE_WIDTH = 0.26
 const FLOORPLAN_WALL_THICKNESS_SCALE = 1.18
 const FLOORPLAN_MIN_VISIBLE_WALL_THICKNESS = 0.13
 const FLOORPLAN_MAX_EXTRA_THICKNESS = 0.035
-const FLOORPLAN_PANEL_LAYOUT_STORAGE_KEY = 'pascal-editor-floorplan-panel-layout'
+const FLOORPLAN_PANEL_LAYOUT_STORAGE_KEY = 'intersign-editor-floorplan-panel-layout'
 const EMPTY_WALL_MITER_DATA = calculateLevelMiters([])
 const EDITOR_CURSOR = "url('/cursor.svg') 4 2, default"
 const FLOORPLAN_CURSOR_INDICATOR_LINE_HEIGHT = 18
@@ -7037,7 +7037,7 @@ export function FloorplanPanel({
   )
   const wallSelectionHatchId = useMemo(() => `floorplan-wall-selection-hatch-${isDark}`, [isDark])
   // Subset of the legacy palette surfaced to registry-driven kinds via
-  // <FloorplanRenderProvider>. Mirrors `FloorplanPalette` in `@pascal-app/
+  // <FloorplanRenderProvider>. Mirrors `FloorplanPalette` in `@intersign/
   // core` — keep slot names + meanings in sync.
   const floorplanRegistryPalette = useMemo<FloorplanRenderContextValue['palette']>(
     () => ({
@@ -11390,7 +11390,7 @@ export function FloorplanPanel({
           // panel, so pan/zoom is preserved across the toggle.
           <svg
             className="h-full w-full touch-none"
-            data-pascal-floorplan-2d
+            data-intersign-floorplan-2d
             onClick={isMarqueeSelectionToolActive ? undefined : handleSvgClick}
             onContextMenu={(event) => event.preventDefault()}
             onDoubleClick={isMarqueeSelectionToolActive ? undefined : handleBackgroundDoubleClick}

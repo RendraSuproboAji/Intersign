@@ -1,6 +1,6 @@
 import { expect, test } from 'bun:test'
-import { calculateLevelMiters, useLiveNodeOverrides, WallNode, WindowNode } from '@pascal-app/core'
-import { generateExtrudedWall } from '@pascal-app/viewer'
+import { calculateLevelMiters, useLiveNodeOverrides, WallNode, WindowNode } from '@intersign/core'
+import { generateExtrudedWall } from '@intersign/viewer'
 import { DoubleSide, Mesh, MeshBasicMaterial, Raycaster, Vector3 } from 'three'
 import { curtainWallGeometryAdapter } from './curtain-wall-adapter'
 import { buildCurtainWallGeometry } from './curtain-wall-geometry'

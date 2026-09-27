@@ -1,4 +1,4 @@
-import type { GridEvent } from '@pascal-app/core'
+import type { GridEvent } from '@intersign/core'
 
 export type GridEventScreenProjection = {
   pointer: [number, number]

@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test'
-import { ImportedMeshNode } from '@pascal-app/core'
+import { ImportedMeshNode } from '@intersign/core'
 import type { Mesh } from 'three'
 import { importedMeshDefinition } from '../definition'
 import { buildImportedMeshGeometry } from '../geometry'

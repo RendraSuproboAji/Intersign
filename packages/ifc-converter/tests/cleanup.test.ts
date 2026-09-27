@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'bun:test'
-import type { AnyNode } from '@pascal-app/core'
+import type { AnyNode } from '@intersign/core'
 import { simplifyConvertedSceneGraph } from '../src/cleanup'
 
 function level(id = 'level_1', children: string[] = []): AnyNode {

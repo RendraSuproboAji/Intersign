@@ -15,7 +15,7 @@ import {
   useScene,
   type WallMiterData,
   type WallNode,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   CursorSphere,
   clearPlacementSurface,
@@ -47,9 +47,9 @@ import {
   useFenceCurveDraft,
   useFloorplanDraftPreview,
   useSegmentDraftChain,
-} from '@pascal-app/editor'
+} from '@intersign/editor'
 
-import { getSceneTheme, useViewer } from '@pascal-app/viewer'
+import { getSceneTheme, useViewer } from '@intersign/viewer'
 import { useThree } from '@react-three/fiber'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { BufferGeometry, type Camera, DoubleSide, type Group, type Mesh, Vector3 } from 'three'

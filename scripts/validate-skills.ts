@@ -13,7 +13,7 @@ import {
 } from './public-skill-discovery-policy'
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
-const skillNames = ['pascal-3d', 'furniture-fit'] as const
+const skillNames = ['intersign-3d', 'furniture-fit'] as const
 const skillVersions = new Map<string, string>()
 const portablePluginSchema = 'https://agent-plugins.org/schemas/1.0.0/plugin.schema.json'
 const portableMcpSchema = 'https://agent-plugins.org/schemas/1.0.0/mcp.schema.json'
@@ -325,8 +325,8 @@ for (const skillName of skillNames) {
   for (const requiredOpenClawMetadata of [
     '  openclaw:',
     '    homepage: https://editor.pascal.app/docs/developers/mcp',
-    '    primaryEnv: PASCAL_API_KEY',
-    '      - name: PASCAL_API_KEY',
+    '    primaryEnv: INTERSIGN_API_KEY',
+    '      - name: INTERSIGN_API_KEY',
     '        required: false',
   ]) {
     if (!content.includes(requiredOpenClawMetadata)) {
@@ -844,7 +844,7 @@ function firstMarketplaceEntry(marketplace: Record<string, unknown>): Record<str
 function cursorAuthorSubset(value: unknown): string {
   if (typeof value !== 'object' || value === null) return 'missing'
   const { name, email } = value as Record<string, unknown>
-  return normalizedAuthor({ name, email })
+  return normalizedAuthor(email === undefined ? { name } : { name, email })
 }
 
 function normalizedAuthor(value: unknown): string {
@@ -869,7 +869,7 @@ const pluginDescriptors = [
 ] as const
 
 for (const [label, descriptor] of pluginDescriptors) {
-  if (descriptor.name !== 'pascal-agent-skills') fail(`${label}: unexpected plugin name`)
+  if (descriptor.name !== 'intersign-agent-skills') fail(`${label}: unexpected plugin name`)
   if (descriptor.version !== pluginVersion) {
     fail(`${label}: version must match the root plugin.json version ${pluginVersion}`)
   }
@@ -926,16 +926,16 @@ if (Object.keys(portableMcpConfig).sort().join(',') !== '$schema,mcpServers') {
 }
 const claudeMcpServers = (claudeMcpConfig.mcpServers ?? {}) as Record<string, unknown>
 const portableMcpServers = (portableMcpConfig.mcpServers ?? {}) as Record<string, unknown>
-if (Object.keys(portableMcpServers).sort().join(',') !== 'pascal') {
-  fail('Portable mcp.json must declare only the local pascal server')
+if (Object.keys(portableMcpServers).sort().join(',') !== 'intersign') {
+  fail('Portable mcp.json must declare only the local intersign server')
 }
-if (canonicalJson(portableMcpServers.pascal) !== canonicalJson(claudeMcpServers.pascal)) {
-  fail('Portable mcp.json and skills/.mcp.json must declare an identical pascal server')
+if (canonicalJson(portableMcpServers.intersign) !== canonicalJson(claudeMcpServers.intersign)) {
+  fail('Portable mcp.json and skills/.mcp.json must declare an identical intersign server')
 }
 // The hosted server reads its key through ${user_config.*}, which only Claude Code substitutes, so
 // it stays in the Claude plugin root instead of the portable Agent Plugins manifest.
-if (Object.keys(claudeMcpServers).sort().join(',') !== 'pascal,pascal-hosted') {
-  fail('skills/.mcp.json must add only the Claude-specific pascal-hosted server')
+if (Object.keys(claudeMcpServers).sort().join(',') !== 'intersign,intersign-hosted') {
+  fail('skills/.mcp.json must add only the Claude-specific intersign-hosted server')
 }
 
 if (cursorPlugin.mcpServers !== cursorMcpConfigPath) {
@@ -946,21 +946,27 @@ if (Object.keys(cursorMcpConfig).sort().join(',') !== 'mcpServers') {
   fail('Cursor mcp.json must contain only the mcpServers object')
 }
 const cursorMcpServers = (cursorMcpConfig.mcpServers ?? {}) as Record<string, unknown>
-if (Object.keys(cursorMcpServers).sort().join(',') !== 'pascal,pascal-hosted') {
-  fail('Cursor mcp.json must declare exactly the pascal and pascal-hosted servers')
+if (Object.keys(cursorMcpServers).sort().join(',') !== 'intersign,intersign-hosted') {
+  fail('Cursor mcp.json must declare exactly the intersign and intersign-hosted servers')
 }
 for (const failure of validateCursorPluginPackage(root)) fail(failure)
 const claudeUserConfig = (claudePlugin.userConfig ?? {}) as Record<string, unknown>
-const claudeHostedKeyOption = claudeUserConfig.pascal_api_key as Record<string, unknown> | undefined
+const claudeHostedKeyOption = claudeUserConfig.intersign_api_key as
+  | Record<string, unknown>
+  | undefined
 if (claudeHostedKeyOption?.sensitive !== true) {
-  fail('Claude plugin userConfig.pascal_api_key must set sensitive so the key never reaches a file')
+  fail(
+    'Claude plugin userConfig.intersign_api_key must set sensitive so the key never reaches a file',
+  )
 }
 if (claudeHostedKeyOption?.required !== false) {
-  fail('Claude plugin userConfig.pascal_api_key must set required to false for local-only installs')
+  fail(
+    'Claude plugin userConfig.intersign_api_key must set required to false for local-only installs',
+  )
 }
 
-const portablePascalServer = portableMcpServers.pascal as Record<string, unknown> | undefined
-if (geminiExtension.name !== 'pascal') fail('Gemini CLI extension name must be pascal')
+const portableIntersignServer = portableMcpServers.intersign as Record<string, unknown> | undefined
+if (geminiExtension.name !== 'intersign') fail('Gemini CLI extension name must be intersign')
 if (geminiExtension.version !== pluginVersion) {
   fail(`Gemini CLI extension version must match the root plugin.json version ${pluginVersion}`)
 }
@@ -979,17 +985,17 @@ if (
   fail(`Gemini CLI extension contextFileName must point at an existing file: ${geminiContextFile}`)
 }
 const geminiServers = geminiExtension.mcpServers as Record<string, unknown> | undefined
-const geminiPascalServer = geminiServers?.pascal as Record<string, unknown> | undefined
-if (!geminiServers || Object.keys(geminiServers).join(',') !== 'pascal') {
-  fail('Gemini CLI extension must declare exactly one server named pascal')
+const geminiIntersignServer = geminiServers?.intersign as Record<string, unknown> | undefined
+if (!geminiServers || Object.keys(geminiServers).join(',') !== 'intersign') {
+  fail('Gemini CLI extension must declare exactly one server named intersign')
 } else if (
   // Gemini CLI's MCP server type field accepts only sse or http; stdio is inferred from command.
-  'type' in (geminiPascalServer ?? {}) ||
-  geminiPascalServer?.command !== portablePascalServer?.command ||
-  canonicalJson(geminiPascalServer?.args) !== canonicalJson(portablePascalServer?.args)
+  'type' in (geminiIntersignServer ?? {}) ||
+  geminiIntersignServer?.command !== portableIntersignServer?.command ||
+  canonicalJson(geminiIntersignServer?.args) !== canonicalJson(portableIntersignServer?.args)
 ) {
   fail(
-    'Gemini CLI extension pascal server must run the mcp.json command and args without a transport type',
+    'Gemini CLI extension intersign server must run the mcp.json command and args without a transport type',
   )
 }
 if (
@@ -1117,7 +1123,7 @@ if ('screenshots' in (portableInterface ?? {})) {
 }
 
 if (codexPlugin.skills !== './skills/') fail('Codex plugin must point to canonical ./skills/')
-if (codexMarketplace.name !== 'pascal') fail('Codex marketplace name must be pascal')
+if (codexMarketplace.name !== 'intersign') fail('Codex marketplace name must be intersign')
 const codexEntries = codexMarketplace.plugins
 if (!Array.isArray(codexEntries) || codexEntries.length !== 1) {
   fail('Codex marketplace must contain exactly one plugin')
@@ -1133,7 +1139,7 @@ if (!Array.isArray(codexEntries) || codexEntries.length !== 1) {
   }
   if (entry.category !== 'Productivity') fail('Codex marketplace category must be declared')
 }
-if (claudeMarketplace.name !== 'pascal') fail('Claude marketplace name must be pascal')
+if (claudeMarketplace.name !== 'intersign') fail('Claude marketplace name must be intersign')
 if (claudeMarketplace.version !== pluginVersion) {
   fail(`Claude marketplace version must be ${pluginVersion}`)
 }
@@ -1173,17 +1179,17 @@ if (!Array.isArray(marketplacePlugins) || marketplacePlugins.length !== 1) {
 }
 
 const releaseNotes = read(join(root, 'plugin-evals', 'release-notes.md'))
-if (!releaseNotes.includes(`Pascal agent skills ${pluginVersion} **With MCP** submission`)) {
+if (!releaseNotes.includes(`Intersign agent skills ${pluginVersion} **With MCP** submission`)) {
   fail(`OpenAI release notes must describe the ${pluginVersion} submission candidate`)
 }
 
 const readme = read(join(root, 'README.md'))
 for (const expected of [
   '[![Install with skills](https://skills.sh/b/pascalorg/editor)](https://skills.sh/pascalorg/editor)',
-  'npx skills add pascalorg/editor',
-  '/plugin marketplace add pascalorg/editor',
-  'codex plugin marketplace add pascalorg/editor',
-  'codex plugin add pascal-agent-skills@pascal',
+  'npx skills add RendraSuproboAji/Intersign',
+  '/plugin marketplace add RendraSuproboAji/Intersign',
+  'codex plugin marketplace add RendraSuproboAji/Intersign',
+  'codex plugin add intersign-agent-skills@intersign',
   'OpenClaw installation becomes available after the skills are published',
 ]) {
   if (!readme.includes(expected)) fail(`README is missing install instruction: ${expected}`)

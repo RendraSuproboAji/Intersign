@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test'
-import { getDutchRoofMetrics, getRidgeVentLinesForSegment, RoofSegmentNode } from '@pascal-app/core'
+import { getDutchRoofMetrics, getRidgeVentLinesForSegment, RoofSegmentNode } from '@intersign/core'
 import type * as THREE from 'three'
 import { getRoofTopSurfaceY } from '../../shared/roof-surface'
 import { buildRidgeVentGeometry } from '../geometry'

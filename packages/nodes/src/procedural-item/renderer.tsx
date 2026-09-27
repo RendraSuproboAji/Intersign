@@ -7,12 +7,12 @@ import {
   useLiveTransforms,
   useRegistry,
   useScene,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   type ProceduralItemNode,
   ProceduralMotionController,
   proceduralLocalPose,
-} from '@pascal-app/core/procedural-items'
+} from '@intersign/core/procedural-items'
 import {
   cloneWithProceduralEmission,
   createSurfaceRoleMaterial,
@@ -25,7 +25,7 @@ import {
   useLibraryMaterialsVersion,
   useNodeEvents,
   useViewer,
-} from '@pascal-app/viewer'
+} from '@intersign/viewer'
 import { useFrame, useThree } from '@react-three/fiber'
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { type Group, Mesh, Vector3 } from 'three'
@@ -207,7 +207,7 @@ export default function ProceduralRenderer({ node }: { node: ProceduralItemNode 
   useLayoutEffect(
     () => () => {
       for (const material of materials.values())
-        if (!material.userData.__pascalCachedMaterial) material.dispose()
+        if (!material.userData.__intersignCachedMaterial) material.dispose()
     },
     [materials],
   )

@@ -8,7 +8,7 @@ import {
   snapPointAlongAngleRay,
   snapPointToGrid,
   useScene,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   CursorSphere,
   clearCeilingSnapFeedback,
@@ -20,8 +20,8 @@ import {
   triggerSFX,
   useEditor,
   useFloorplanDraftPreview,
-} from '@pascal-app/editor'
-import { useViewer } from '@pascal-app/viewer'
+} from '@intersign/editor'
+import { useViewer } from '@intersign/viewer'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { BufferGeometry, DoubleSide, type Group, type Line, Shape, Vector3 } from 'three'
 import { mix, positionLocal } from 'three/tsl'

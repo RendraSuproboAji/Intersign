@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test'
-import { ColumnNode } from '@pascal-app/core'
+import { ColumnNode } from '@intersign/core'
 import { columnDefinition } from './definition'
 
 describe('column definition', () => {

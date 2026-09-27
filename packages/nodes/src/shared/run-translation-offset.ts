@@ -1,9 +1,4 @@
-import {
-  type AnyNode,
-  type AnyNodeId,
-  DuctSegmentNode,
-  type PortConnection,
-} from '@pascal-app/core'
+import { type AnyNode, type AnyNodeId, DuctSegmentNode, type PortConnection } from '@intersign/core'
 import { fittingLegLength } from '../duct-fitting/ports'
 import type { DuctFittingNode } from '../duct-fitting/schema'
 import {

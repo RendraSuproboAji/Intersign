@@ -1,139 +1,118 @@
-# Pascal Editor
+<p align="center">
+  <img src="apps/editor/public/intersign-logo-full.svg" alt="Intersign — Interior Design" width="460" />
+</p>
 
-An open-source, local-first 3D building editor built with React Three Fiber and
-WebGPU. Run it in the browser or from the CLI, and connect AI agents through MCP.
+# Intersign Editor
 
-[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![npm @pascal-app/core](https://img.shields.io/npm/v/@pascal-app/core?label=%40pascal-app%2Fcore)](https://www.npmjs.com/package/@pascal-app/core)
-[![npm @pascal-app/viewer](https://img.shields.io/npm/v/@pascal-app/viewer?label=%40pascal-app%2Fviewer)](https://www.npmjs.com/package/@pascal-app/viewer)
-[![npm @pascal-app/cli](https://img.shields.io/npm/v/@pascal-app/cli?label=%40pascal-app%2Fcli)](https://www.npmjs.com/package/@pascal-app/cli)
-[![Discord](https://img.shields.io/badge/Discord-Join%20Server-5865F2?logo=discord&logoColor=white)](https://discord.gg/XRKsDcpqgS)
-[![X (Twitter)](https://img.shields.io/badge/follow-%40pascal__app-black?logo=x&logoColor=white)](https://x.com/pascal_app)
+An open-source, local-first 3D interior and building editor built with React Three Fiber
+and WebGPU. Run it in the browser or from the CLI, and connect AI agents through MCP.
 
-https://github.com/user-attachments/assets/8b50e7cf-cebe-4579-9cf3-8786b35f7b6b
+[![MIT License](https://img.shields.io/badge/license-MIT-1F4D2E.svg)](LICENSE)
 
-## A first look at Pascal Next
+> Intersign is a fork of [Pascal Editor](https://github.com/pascalorg/editor) (MIT).
+> See [NOTICE.md](NOTICE.md) for attribution and for the upstream services and plugins
+> this fork still relies on.
 
-[Explore the live demo](https://editor.pascal.app/next) — a real home reconstructed
-in detail, from its rooms and finishes to the structure and systems behind the walls.
-This hosted preview explores the direction of the next Pascal editor; the experience
-shown here is not yet part of the open-source editor release.
-
-| Exploded view — see how the home fits together | Cut view — slice through the building |
-| --- | --- |
-| [![Roof lifted above the reconstructed home](docs/media/next-demo/exploded.gif)](https://editor.pascal.app/next) | [![A section cut reveals the roof framing and interior](docs/media/next-demo/cutview.gif)](https://editor.pascal.app/next) |
-| **X-ray — reveal the modeled systems** | **Walkthrough — step inside at eye level** |
-| [![Building systems isolated with the walls hidden](docs/media/next-demo/xray.gif)](https://editor.pascal.app/next) | [![Walking through the home toward the pool terrace](docs/media/next-demo/walkthrough.gif)](https://editor.pascal.app/next) |
-| **Interactions — open doors and explore** | **Environment — change the light and atmosphere** |
-| [![Interacting with doors in the reconstructed home](docs/media/next-demo/interactions.gif)](https://editor.pascal.app/next) | [![Changing the lighting around the reconstructed home](docs/media/next-demo/environment.gif)](https://editor.pascal.app/next) |
-
-We are exploring what this could make possible for facility management, home services,
-architecture, home building, and infrastructure.
-[Join the discussion on X](https://x.com/pascal_app/status/2102097655031558496)
-and tell us where you would use it.
-
-### Make something with these videos
-
-Making a video, tutorial, article, or social post about Pascal? You are welcome to
-use and edit this footage, including in monetized content, under
-[CC BY 4.0](docs/media/next-demo/LICENSE.md). Credit Pascal, link the license,
-and note your edits; no separate permission is needed.
-
-[Download the six original videos and see the creator guide](docs/media/next-demo/README.md).
+> **Note:** the `@intersign/*` packages are not published to npm yet. Until they are,
+> run the editor from source (see [SETUP.md](SETUP.md) and [Getting Started](#getting-started) below);
+> the `npx @intersign/cli` commands in this README describe the intended workflow.
 
 ## Run the Editor Locally
 
-Node.js 22.13 or newer can create a persistent local Pascal installation without
+Node.js 22.13 or newer can create a persistent local Intersign installation without
 cloning this repository:
 
 ```bash
-npx @pascal-app/cli editor
+npx @intersign/cli editor
 ```
 
 The CLI starts the editor and an authenticated MCP service in the background, selects
-collision-free loopback ports, and keeps projects in `~/.pascal/data/pascal.db`. The npm
+collision-free loopback ports, and keeps projects in `~/.intersign/data/intersign.db`. The npm
 package holds the CLI and that MCP service; the web editor runtime is downloaded once per
 version on the first command that starts the editor and verified against a digest published
-inside the package. Configure an agent to launch `pascal mcp connect`, which needs neither
-the editor process nor that download. Install the `pascal` command with
-`npm install --global @pascal-app/cli`. See [Run Pascal locally](https://editor.pascal.app/docs/developers/local-editor)
+inside the package. Configure an agent to launch `intersign mcp connect`, which needs neither
+the editor process nor that download. Install the `intersign` command with
+`npm install --global @intersign/cli`. See [Run Intersign locally](https://editor.pascal.app/docs/developers/local-editor)
 for pnpm/Bun commands, project management, MCP setup, updates, storage paths, and
 troubleshooting.
 
-Use one active agent client per local CLI service. The standalone local HTTP runtime shares active scene state between clients; use separate `PASCAL_HOME` directories and service processes when independent concurrent work is required.
+Use one active agent client per local CLI service. The standalone local HTTP runtime shares active scene state between clients; use separate `INTERSIGN_HOME` directories and service processes when independent concurrent work is required.
 
 ## Agent skills
 
 [![Install with skills](https://skills.sh/b/pascalorg/editor)](https://skills.sh/pascalorg/editor)
 
-Install Pascal's public agent workflows from this repository with [skills.sh](https://skills.sh):
+The skills.sh badge links to the upstream Pascal listing, which carries the original
+`pascal-3d` and `furniture-fit` skills.
+
+Install Intersign's public agent workflows from this repository with [skills.sh](https://skills.sh):
 
 ```bash
-npx skills add pascalorg/editor \
-  --skill pascal-3d \
+npx skills add RendraSuproboAji/Intersign \
+  --skill intersign-3d \
   --skill furniture-fit
 ```
 
 Claude Code users can install the same canonical skill source as a plugin:
 
 ```text
-/plugin marketplace add pascalorg/editor
-/plugin install pascal-agent-skills@pascal
+/plugin marketplace add RendraSuproboAji/Intersign
+/plugin install intersign-agent-skills@intersign
 ```
 
-The Claude plugin also supplies the local `pascal mcp connect` server. Install and start the Pascal CLI first, and keep `pascal` on the `PATH` used to launch Claude Code. This local connector needs no Pascal account or API key and does not upload projects automatically. Its plugin root is this repository's `skills/` directory, so an install copies only the skill bundles and their plugin metadata rather than the repository.
+The Claude plugin also supplies the local `intersign mcp connect` server. Install and start the Intersign CLI first, and keep `intersign` on the `PATH` used to launch Claude Code. This local connector needs no Intersign account or API key and does not upload projects automatically. Its plugin root is this repository's `skills/` directory, so an install copies only the skill bundles and their plugin metadata rather than the repository.
 
-The plugin bundles two servers: the local `pascal` connector above and a hosted `pascal-hosted` server for `https://editor.pascal.app/api/mcp`, which prompts for an optional Pascal API key at enable time and stores it in the OS keychain. Leave the key empty to run local-only.
+The plugin bundles two servers: the local `intersign` connector above and a hosted `intersign-hosted` server for `https://editor.pascal.app/api/mcp`, which prompts for an optional Intersign API key at enable time and stores it in the OS keychain. Leave the key empty to run local-only.
 
-Claude Code 2.1.258 loads both the user-scoped `pascal` server created by `pascal mcp setup claude` and the plugin-provided server. Remove the manual entry before reloading or restarting Claude Code so only the plugin owns the connection lifecycle:
+Claude Code 2.1.258 loads both the user-scoped `intersign` server created by `intersign mcp setup claude` and the plugin-provided server. Remove the manual entry before reloading or restarting Claude Code so only the plugin owns the connection lifecycle:
 
 ```bash
-claude mcp remove --scope user pascal
+claude mcp remove --scope user intersign
 ```
 
-Use `/mcp` to remove or disable any project- or local-scoped Pascal connection too. Leaving both connections active violates the one-active-agent-client-per-local-service requirement. When the intended project is hosted in a Pascal account or organization, disable the plugin-provided local server in `/mcp` and configure the hosted endpoint from the skill setup guide instead.
+Use `/mcp` to remove or disable any project- or local-scoped Intersign connection too. Leaving both connections active violates the one-active-agent-client-per-local-service requirement. When the intended project is hosted in an Intersign account or organization, disable the plugin-provided local server in `/mcp` and configure the hosted endpoint from the skill setup guide instead.
 
 Codex users can install the same plugin from the repository marketplace:
 
 ```bash
-codex plugin marketplace add pascalorg/editor
-codex plugin add pascal-agent-skills@pascal
+codex plugin marketplace add RendraSuproboAji/Intersign
+codex plugin add intersign-agent-skills@intersign
 ```
 
-OpenClaw installation becomes available after the skills are published under Pascal's ClawHub publisher. See [skills/README.md](skills/README.md) for the owner-qualified install and verification commands.
+OpenClaw installation becomes available after the skills are published under Intersign's ClawHub publisher. See [skills/README.md](skills/README.md) for the owner-qualified install and verification commands.
 
-[`pascal-3d`](skills/pascal-3d/SKILL.md) covers safe local or hosted MCP setup and verified scene work. [`furniture-fit`](skills/furniture-fit/SKILL.md) produces a bounded, evidence-based footprint assessment without claiming unsupported height, swing, or delivery checks. See [skills/README.md](skills/README.md) for package details and validation.
+[`intersign-3d`](skills/intersign-3d/SKILL.md) covers safe local or hosted MCP setup and verified scene work. [`furniture-fit`](skills/furniture-fit/SKILL.md) produces a bounded, evidence-based footprint assessment without claiming unsupported height, swing, or delivery checks. See [skills/README.md](skills/README.md) for package details and validation.
 
 The skills inspect the connected MCP tool schemas before using optional fields. A capability present in this repository may be absent from an older installed or hosted release; the agent should report the narrower supported result instead of assuming source-only inputs are available.
 
-These workflows require a connected Pascal MCP server for their tool-backed actions. An OpenAI directory submission must therefore use **With MCP** and submit the production hosted MCP endpoint together with the skills. The repository package does not prove that the endpoint, OAuth flow, reviewer credentials, domain verification, or portal scan is ready for review.
+These workflows require a connected Intersign MCP server for their tool-backed actions. An OpenAI directory submission must therefore use **With MCP** and submit the production hosted MCP endpoint together with the skills. The repository package does not prove that the endpoint, OAuth flow, reviewer credentials, domain verification, or portal scan is ready for review.
 
 ### MCP Registry
 
-[`server.json`](server.json) is Pascal's manifest for the official MCP Registry. Its
+[`server.json`](server.json) is Intersign's manifest for the official MCP Registry. Its
 version tracks the hosted MCP implementation independently of the npm package version.
-Pull requests validate the manifest and production endpoint. A Pascal organization
+Pull requests validate the manifest and production endpoint. An Intersign organization
 owner publishes an approved version from `main` with the official registry publisher.
 
 ## Using Published Packages
 
 The viewer runtime and built-in node definitions are separate packages. Install the full built-in
 viewer set, then load the built-in plugin once before mounting `<Viewer>`. Capture sessions are an
-optional extension shipped inside those packages as the `@pascal-app/core/capture` and
-`@pascal-app/viewer/capture` subpaths:
+optional extension shipped inside those packages as the `@intersign/core/capture` and
+`@intersign/viewer/capture` subpaths:
 
 ```bash
-npm install @pascal-app/core @pascal-app/viewer @pascal-app/editor @pascal-app/nodes
+npm install @intersign/core @intersign/viewer @intersign/editor @intersign/nodes
 ```
 
 ```typescript
-import { loadPlugin } from '@pascal-app/core'
-import { builtinPlugin } from '@pascal-app/nodes'
+import { loadPlugin } from '@intersign/core'
+import { builtinPlugin } from '@intersign/nodes'
 
 await loadPlugin(builtinPlugin)
 ```
 
-See the [`@pascal-app/viewer` quick start](packages/viewer/README.md#usage) for a React example.
+See the [`@intersign/viewer` quick start](packages/viewer/README.md#usage) for a React example.
 
 
 ## Repository Architecture
@@ -159,12 +138,12 @@ editor/
 
 | Package | Responsibility |
 |---------|---------------|
-| **@pascal-app/core** | Node schemas, scene state (Zustand), registry contracts, spatial queries, and event bus. `core/capture` adds versioned capture manifests, normalized streams, and transport-neutral static/live sources |
-| **@pascal-app/viewer** | 3D rendering via React Three Fiber, shared render systems, default camera/controls, and post-processing. `viewer/capture` adds the capture runtime and reference model, device-motion, point-cloud, and surface-mesh layers |
-| **@pascal-app/editor** | Editing tools, panels, selection, and direct-manipulation UI |
-| **@pascal-app/nodes** | Built-in registry plugin with node definitions, renderers, geometry, and systems |
-| **@pascal-app/cli** | Installs and manages a versioned standalone editor runtime and persistent local data |
-| **@pascal-app/mcp** | Exposes scene tools, resources, prompts, and local storage to MCP-compatible AI hosts |
+| **@intersign/core** | Node schemas, scene state (Zustand), registry contracts, spatial queries, and event bus. `core/capture` adds versioned capture manifests, normalized streams, and transport-neutral static/live sources |
+| **@intersign/viewer** | 3D rendering via React Three Fiber, shared render systems, default camera/controls, and post-processing. `viewer/capture` adds the capture runtime and reference model, device-motion, point-cloud, and surface-mesh layers |
+| **@intersign/editor** | Editing tools, panels, selection, and direct-manipulation UI |
+| **@intersign/nodes** | Built-in registry plugin with node definitions, renderers, geometry, and systems |
+| **@intersign/cli** | Installs and manages a versioned standalone editor runtime and persistent local data |
+| **@intersign/mcp** | Exposes scene tools, resources, prompts, and local storage to MCP-compatible AI hosts |
 | **apps/editor** | Standalone Next.js host for the editor packages |
 
 The **viewer** renders the scene with sensible defaults. The **editor** extends it with interactive tools, selection management, and editing capabilities.
@@ -175,8 +154,8 @@ Each package has its own Zustand store for managing state:
 
 | Store | Package | Responsibility |
 |-------|---------|----------------|
-| `useScene` | `@pascal-app/core` | Scene data: nodes, root IDs, dirty nodes, CRUD operations. Persisted to IndexedDB with undo/redo via Zundo. |
-| `useViewer` | `@pascal-app/viewer` | Viewer state: current selection (building/level/zone IDs), level display mode (stacked/exploded/solo), camera mode. |
+| `useScene` | `@intersign/core` | Scene data: nodes, root IDs, dirty nodes, CRUD operations. Persisted to IndexedDB with undo/redo via Zundo. |
+| `useViewer` | `@intersign/viewer` | Viewer state: current selection (building/level/zone IDs), level display mode (stacked/exploded/solo), camera mode. |
 | `useEditor` | `apps/editor` | Editor state: active tool, structure layer visibility, panel states, editor-specific preferences. |
 
 **Access patterns:**
@@ -232,7 +211,7 @@ Nodes are stored in a **flat dictionary** (`Record<id, Node>`), not a nested tre
 
 ### Scene State (Zustand Store)
 
-The scene is managed by a Zustand store in `@pascal-app/core`:
+The scene is managed by a Zustand store in `@intersign/core`:
 
 ```typescript
 useScene.getState() = {
@@ -322,7 +301,7 @@ const WallRenderer = ({ node }) => {
 
 Systems are React components that run in the render loop (`useFrame`) to update geometry and transforms. They process **dirty nodes** marked by the store.
 
-**Core Systems (in `@pascal-app/core`):**
+**Core Systems (in `@intersign/core`):**
 
 | System | Responsibility |
 |--------|---------------|
@@ -332,7 +311,7 @@ Systems are React components that run in the render loop (`useFrame`) to update 
 | `RoofSystem` | Generates roof geometry |
 | `ItemSystem` | Positions items on walls, ceilings, or floors (slab elevation) |
 
-**Viewer Systems (in `@pascal-app/viewer`):**
+**Viewer Systems (in `@intersign/viewer`):**
 
 | System | Responsibility |
 |--------|---------------|
@@ -505,7 +484,7 @@ bun install
 bun dev
 
 # This will:
-# 1. Build @pascal-app/core and @pascal-app/viewer
+# 1. Build @intersign/core and @intersign/viewer
 # 2. Start watching both packages for changes
 # 3. Start the Next.js editor dev server
 # Open http://localhost:3002
@@ -520,14 +499,14 @@ bun dev
 turbo build
 
 # Build specific package
-turbo build --filter=@pascal-app/core
+turbo build --filter=@intersign/core
 ```
 
 ### Publishing Packages
 
 Releases run from `.github/workflows/release.yml` (`workflow_dispatch`, with
 `package`, `bump`, and `dry-run` inputs). The workflow bumps versions, rewrites
-the internal `@pascal-app/*` ranges, builds, publishes in dependency order
+the internal `@intersign/*` ranges, builds, publishes in dependency order
 (`core` → `viewer` → `editor` → `nodes` → `mcp` → `ifc-converter` → `cli`),
 then commits the release and pushes one tag per package. A dry run validates
 the builds without touching the registry.
@@ -554,18 +533,16 @@ the builds without touching the registry.
 Bug fixes, features, docs and ideas are all welcome. Start with [CONTRIBUTING.md](CONTRIBUTING.md) for setup, code style and the PR flow.
 
 - New node kinds and sidebar panels ship as [plugins](https://editor.pascal.app/docs/developers/plugins) rather than edits to the built-ins — [`pascalorg/plugin-trees`](https://github.com/pascalorg/plugin-trees) is a worked example
-- Questions and ideas go to [Discussions](https://github.com/pascalorg/editor/discussions); reproducible bugs go to [Issues](https://github.com/pascalorg/editor/issues)
+- Questions and ideas go to [Discussions](https://github.com/RendraSuproboAji/Intersign/discussions); reproducible bugs go to [Issues](https://github.com/RendraSuproboAji/Intersign/issues)
 - Participation is covered by our [Code of Conduct](CODE_OF_CONDUCT.md)
 - Security problems go to [SECURITY.md](SECURITY.md), not a public issue
 
 ---
 
-## Contributors
+## Upstream Contributors
+
+Intersign builds on the work of the [Pascal Editor](https://github.com/pascalorg/editor) contributors:
 
 <a href="https://github.com/Aymericr"><img src="https://avatars.githubusercontent.com/u/4444492?v=4" width="60" height="60" alt="Aymeric Rabot" style="border-radius:50%"></a>
 <a href="https://github.com/wass08"><img src="https://avatars.githubusercontent.com/u/6551176?v=4" width="60" height="60" alt="Wassim Samad" style="border-radius:50%"></a>
 <a href="https://github.com/sudhir9297"><img src="https://avatars.githubusercontent.com/sudhir9297?v=4" width="60" height="60" alt="Sudhir" style="border-radius:50%"></a>
-
----
-
-<a href="https://trendshift.io/repositories/23831" target="_blank"><img src="https://trendshift.io/api/badge/repositories/23831" alt="pascalorg/editor | Trendshift" width="250" height="55"/></a>

@@ -11,7 +11,7 @@ import {
   StairSegmentNode as StairSegmentNodeSchema,
   type StairSegmentType,
   useScene,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   ActionButton,
   ActionGroup,
@@ -22,8 +22,8 @@ import {
   ToggleControl,
   triggerSFX,
   useEditor,
-} from '@pascal-app/editor'
-import { useViewer } from '@pascal-app/viewer'
+} from '@intersign/editor'
+import { useViewer } from '@intersign/viewer'
 import { Copy, Move, Trash2 } from 'lucide-react'
 import { useCallback } from 'react'
 

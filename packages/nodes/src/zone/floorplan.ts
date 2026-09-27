@@ -4,8 +4,8 @@ import {
   type GeometryContext,
   resolveAutoZonePolygon,
   type ZoneNode,
-} from '@pascal-app/core'
-import { floorplanGeometryMetadata, readFloorplanContext } from '@pascal-app/editor'
+} from '@intersign/core'
+import { floorplanGeometryMetadata, readFloorplanContext } from '@intersign/editor'
 import {
   type ConstructionLengthProfile,
   formatConstructionLength,

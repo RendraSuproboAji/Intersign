@@ -3,7 +3,7 @@ import {
   getResolvedElevatorDoorPanelStyle,
   getResolvedElevatorShaftStyle,
   type SlotDeclaration,
-} from '@pascal-app/core'
+} from '@intersign/core'
 
 export type ElevatorSlotId = 'cab' | 'doors' | 'shaft' | 'glass'
 

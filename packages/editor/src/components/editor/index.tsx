@@ -10,7 +10,7 @@ import {
   initSpatialGridSync,
   spatialGridManager,
   useScene,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   type HoverStyles,
   InteractiveSystem,
@@ -21,7 +21,7 @@ import {
   Viewer,
   type ViewerImmersiveSession,
   ViewerPresentations,
-} from '@pascal-app/viewer'
+} from '@intersign/viewer'
 import {
   memo,
   Profiler,

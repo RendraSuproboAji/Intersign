@@ -13,7 +13,7 @@ import {
   useLiveNodeOverrides,
   useScene,
   type WallNode,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   alignFloorplanDraftPoint,
   getSegmentGridStep,
@@ -27,7 +27,7 @@ import {
   snapWallDraftPoint,
   useAlignmentGuides,
   type WallPlanPoint,
-} from '@pascal-app/editor'
+} from '@intersign/editor'
 
 /**
  * Floor-plan 2D drag affordances for wall.

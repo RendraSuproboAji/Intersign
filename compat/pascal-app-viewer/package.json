@@ -1,0 +1,15 @@
+{
+  "name": "@pascal-app/viewer",
+  "version": "1.0.3",
+  "private": true,
+  "description": "Compatibility alias: re-exports @intersign/viewer so third-party plugins written against the upstream @pascal-app/viewer API share the same module instance.",
+  "type": "module",
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "exports": {
+    ".": "./index.ts"
+  },
+  "dependencies": {
+    "@intersign/viewer": "*"
+  }
+}

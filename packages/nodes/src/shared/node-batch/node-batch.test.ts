@@ -7,9 +7,9 @@ import {
   useLiveNodeOverrides,
   useLiveTransforms,
   useScene,
-} from '@pascal-app/core'
-import * as viewerExports from '@pascal-app/viewer'
-import { SCENE_LAYER, useViewer } from '@pascal-app/viewer'
+} from '@intersign/core'
+import * as viewerExports from '@intersign/viewer'
+import { SCENE_LAYER, useViewer } from '@intersign/viewer'
 import {
   BackSide,
   type BatchedMesh,

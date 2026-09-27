@@ -10,7 +10,7 @@ import {
   useLiveTerrain,
   useRegistry,
   useScene,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   backdropGradient,
   deepSkyColor,
@@ -22,7 +22,7 @@ import {
   useSceneAtmosphere,
   useSceneGroundReplacement,
   useViewer,
-} from '@pascal-app/viewer'
+} from '@intersign/viewer'
 import { useEffect, useMemo, useRef } from 'react'
 import { BufferAttribute, BufferGeometry, type Group, Path, Shape, ShapeGeometry } from 'three'
 import {

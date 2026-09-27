@@ -9,8 +9,8 @@ import {
   sceneRegistry,
   spatialGridManager,
   useScene,
-} from '@pascal-app/core'
-import { setSurfaceRaycastLayers, useViewer } from '@pascal-app/viewer'
+} from '@intersign/core'
+import { setSurfaceRaycastLayers, useViewer } from '@intersign/viewer'
 import { type Camera, type Object3D, type Ray, Raycaster, Vector3 } from 'three'
 import { resolveTerrainGroundHit } from '../../../lib/ground-surface'
 import { scopeNodeId } from '../../../lib/interaction/scope'

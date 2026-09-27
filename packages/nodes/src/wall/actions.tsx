@@ -4,9 +4,9 @@ import {
   planWallMerge,
   runAsSingleSceneHistoryStep,
   useScene,
-} from '@pascal-app/core'
-import { Tooltip, TooltipContent, TooltipTrigger, triggerSFX } from '@pascal-app/editor'
-import { useViewer } from '@pascal-app/viewer'
+} from '@intersign/core'
+import { Tooltip, TooltipContent, TooltipTrigger, triggerSFX } from '@intersign/editor'
+import { useViewer } from '@intersign/viewer'
 import { FoldHorizontal, Scissors } from 'lucide-react'
 import { useMemo } from 'react'
 import { openWallSplit } from './split-session'

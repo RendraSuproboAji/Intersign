@@ -10,7 +10,7 @@ import {
   resolveSelectionProxyId,
   type SceneApi,
   useScene,
-} from '@pascal-app/core'
+} from '@intersign/core'
 
 function resolveHandles(node: AnyNode): HandleDescriptor<AnyNode>[] {
   const handles = nodeRegistry.get(node.type)?.handles

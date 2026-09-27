@@ -1,7 +1,7 @@
 'use client'
 
-import { useScene } from '@pascal-app/core'
-import { useViewer } from '@pascal-app/viewer'
+import { useScene } from '@intersign/core'
+import { useViewer } from '@intersign/viewer'
 import { type RefObject, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import {
   createQuickMeasurementPointerScheduler,

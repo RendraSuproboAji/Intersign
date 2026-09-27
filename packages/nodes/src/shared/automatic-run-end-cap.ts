@@ -5,7 +5,7 @@ import {
   type DuctSegmentNode,
   PipeFittingNode,
   type PipeSegmentNode,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import { Euler, Quaternion, Vector3 } from 'three'
 import { localFittingPorts } from '../duct-fitting/ports'
 import { ductPortDiameterIn } from '../duct-segment/geometry'

@@ -4,8 +4,8 @@ import {
   type GeometryContext,
   resolveAutoZonePolygon,
   type ZoneNode,
-} from '@pascal-app/core'
-import { formatAreaLabel } from '@pascal-app/editor'
+} from '@intersign/core'
+import { formatAreaLabel } from '@intersign/editor'
 
 export function buildZoneContextualDimensions(
   node: ZoneNode,

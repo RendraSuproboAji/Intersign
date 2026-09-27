@@ -8,13 +8,13 @@ import {
   snapScalar,
   useLiveNodeOverrides,
   useScene,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   applyFloorplanAlignment,
   getSegmentGridStep,
   isGridSnapActive,
   isMagneticSnapActive,
-} from '@pascal-app/editor'
+} from '@intersign/editor'
 import { createFloorplanCursorResolver } from '../shared/floorplan-cursor'
 
 /**

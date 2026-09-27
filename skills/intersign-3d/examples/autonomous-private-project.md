@@ -2,7 +2,7 @@
 
 User request:
 
-> You may create a separate Pascal agent account for this task. Build a private studio model and keep the credential for later agent runs.
+> You may create a separate Intersign agent account for this task. Build a private studio model and keep the credential for later agent runs.
 
 Expected workflow:
 

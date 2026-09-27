@@ -1,5 +1,5 @@
 export type {
   DormerSurfaceMaterialRole,
   DormerSurfaceMaterialSpec,
-} from '@pascal-app/core'
-export { DormerNode, getEffectiveDormerSurfaceMaterial } from '@pascal-app/core'
+} from '@intersign/core'
+export { DormerNode, getEffectiveDormerSurfaceMaterial } from '@intersign/core'

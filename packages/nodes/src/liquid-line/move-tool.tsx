@@ -9,7 +9,7 @@ import {
   LiquidLineNode,
   sceneRegistry,
   useScene,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   DragBoundingBox,
   EDITOR_LAYER,
@@ -21,8 +21,8 @@ import {
   triggerSFX,
   useAlignmentGuides,
   useEditor,
-} from '@pascal-app/editor'
-import { useViewer } from '@pascal-app/viewer'
+} from '@intersign/editor'
+import { useViewer } from '@intersign/viewer'
 import { useEffect, useRef, useState } from 'react'
 import { Vector3 } from 'three'
 import {

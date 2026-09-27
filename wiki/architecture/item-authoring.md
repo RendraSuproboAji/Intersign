@@ -36,8 +36,8 @@ The default look of a slot is **the authored material's own data** (its
 default; resetting returns to it.
 
 Curated cross-item defaults (e.g. "this seat defaults to the catalog linen") travel
-**with the asset** as `pascal_material` glTF material extras, read at runtime from
-`material.userData.pascal_material`. They're optional — with none present, the authored
+**with the asset** as `intersign_material` glTF material extras, read at runtime from
+`material.userData.intersign_material`. They're optional — with none present, the authored
 material is the default.
 
 ## Reserved names
@@ -72,7 +72,7 @@ under any finish.
 ## Export (critical)
 
 - **Custom Properties must be enabled.** In the Blender glTF exporter, turn on
-  *Include → Custom Properties*, or `pascal_material` extras never reach the GLB and
+  *Include → Custom Properties*, or `intersign_material` extras never reach the GLB and
   curated defaults are silently lost.
 - **Preserve extras through optimisation.** Run an extras-preserving optimiser — gltfpack
   with `-ke` (keep extras). Author-side extras are read once at upload, so any stripping

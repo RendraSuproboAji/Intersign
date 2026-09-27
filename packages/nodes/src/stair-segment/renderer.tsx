@@ -6,8 +6,8 @@ import {
   type StairSegmentNode,
   useRegistry,
   useScene,
-} from '@pascal-app/core'
-import { getStraightStairSegmentBodyMaterials, useNodeEvents, useViewer } from '@pascal-app/viewer'
+} from '@intersign/core'
+import { getStraightStairSegmentBodyMaterials, useNodeEvents, useViewer } from '@intersign/viewer'
 import { useEffect, useLayoutEffect, useMemo, useRef } from 'react'
 import type * as THREE from 'three'
 import { createPlaceholderGeometry } from '../shared/placeholder-geometry'

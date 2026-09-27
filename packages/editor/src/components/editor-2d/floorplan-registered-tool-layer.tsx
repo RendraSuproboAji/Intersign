@@ -1,7 +1,7 @@
 'use client'
 
-import { createSceneApi, nodeRegistry, useScene } from '@pascal-app/core'
-import { useViewer } from '@pascal-app/viewer'
+import { createSceneApi, nodeRegistry, useScene } from '@intersign/core'
+import { useViewer } from '@intersign/viewer'
 import { type ComponentType, lazy, Suspense, useCallback, useMemo } from 'react'
 import { useRegisteredToolEnabled } from '../../hooks/use-registered-tool-enabled'
 import {

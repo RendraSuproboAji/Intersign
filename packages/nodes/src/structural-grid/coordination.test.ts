@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test'
-import { StructuralGridNode } from '@pascal-app/core'
+import { StructuralGridNode } from '@intersign/core'
 import {
   collectStructuralGridAxes,
   resolveStructuralGridReference,

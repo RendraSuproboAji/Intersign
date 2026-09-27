@@ -7,9 +7,9 @@ import {
   type RoofSegmentWallFace,
   roofFacePointToSegment,
   sceneRegistry,
-} from '@pascal-app/core'
-import { hasRoofFaceChildOverlap, resolveRoofWallHit } from '@pascal-app/editor'
-import { useViewer } from '@pascal-app/viewer'
+} from '@intersign/core'
+import { hasRoofFaceChildOverlap, resolveRoofWallHit } from '@intersign/editor'
+import { useViewer } from '@intersign/viewer'
 import { Vector3 } from 'three'
 
 /**

@@ -9,13 +9,13 @@ import {
   type SkylightNode,
   sceneRegistry,
   useScene,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   consumePlacementDragRelease,
   markToolCancelConsumed,
   triggerSFX,
   useEditor,
-} from '@pascal-app/editor'
+} from '@intersign/editor'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
 import {

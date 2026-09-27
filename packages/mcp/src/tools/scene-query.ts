@@ -1,13 +1,13 @@
-import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
 import {
   DEFAULT_LEVEL_HEIGHT,
   getStoredLevelHeight,
   getWallPlaneTop,
   resolveStairTotalRise,
   resolveWallEffectiveHeight,
-} from '@pascal-app/core'
-import type { AnyNode, AnyNodeId } from '@pascal-app/core/schema'
-import { computeWallSlabSupport } from '@pascal-app/core/spatial-grid'
+} from '@intersign/core'
+import type { AnyNode, AnyNodeId } from '@intersign/core/schema'
+import { computeWallSlabSupport } from '@intersign/core/spatial-grid'
+import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
 import { z } from 'zod'
 import type { SceneOperations } from '../operations'
 import { READ_ONLY_TOOL_ANNOTATIONS } from './annotations'

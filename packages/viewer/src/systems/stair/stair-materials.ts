@@ -2,7 +2,7 @@ import {
   getEffectiveStairSurfaceMaterial,
   type StairNode,
   type StairSegmentNode,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import type * as THREE from 'three'
 import {
   type ColorPreset,

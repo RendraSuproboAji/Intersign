@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test'
-import { useEditor } from '@pascal-app/editor'
+import { useEditor } from '@intersign/editor'
 import {
   findAccessoryPort,
   snapAccessoryPoint,

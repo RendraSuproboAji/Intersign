@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, test } from 'bun:test'
-import type { CameraPose } from '@pascal-app/core'
+import type { CameraPose } from '@intersign/core'
 import { cameraPoseStore, publishCameraPose, subscribeCameraPose } from './camera-pose-store'
 
 const pose: CameraPose = {

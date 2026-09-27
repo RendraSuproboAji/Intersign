@@ -1,5 +1,5 @@
-import type { GeometryContext } from '@pascal-app/core'
-import type { ColorPreset, RenderShading } from '@pascal-app/viewer'
+import type { GeometryContext } from '@intersign/core'
+import type { ColorPreset, RenderShading } from '@intersign/viewer'
 import {
   BufferGeometry,
   CylinderGeometry,

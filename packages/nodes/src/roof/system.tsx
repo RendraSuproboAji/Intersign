@@ -1,5 +1,5 @@
 'use client'
 
-import { RoofSystem } from '@pascal-app/viewer'
+import { RoofSystem } from '@intersign/viewer'
 
 export default RoofSystem

@@ -8,7 +8,7 @@ import {
   useLiveNodeOverrides,
   useRegistry,
   useScene,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   type ColorPreset,
   createMaterial,
@@ -17,7 +17,7 @@ import {
   resolveMaterialRef,
   useNodeEvents,
   useViewer,
-} from '@pascal-app/viewer'
+} from '@intersign/viewer'
 import { useEffect, useMemo, useRef } from 'react'
 import * as THREE from 'three'
 import { computeEaveY } from '../gutter/eave-snap'

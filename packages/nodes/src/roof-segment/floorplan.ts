@@ -6,7 +6,7 @@ import {
   getDutchRoofMetrics,
   type RoofNode,
   type RoofSegmentNode,
-} from '@pascal-app/core'
+} from '@intersign/core'
 
 /**
  * Stage C floor-plan builder for roof segment. Renders the segment as a

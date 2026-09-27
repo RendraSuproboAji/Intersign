@@ -1,5 +1,5 @@
-import type { BuildStats, SchemaIssue, ValidateBuildJsonResult } from '@pascal-app/core'
-import { useViewer } from '@pascal-app/viewer'
+import type { BuildStats, SchemaIssue, ValidateBuildJsonResult } from '@intersign/core'
+import { useViewer } from '@intersign/viewer'
 import {
   AlertTriangle,
   AppWindow,

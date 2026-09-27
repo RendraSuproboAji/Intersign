@@ -8,14 +8,14 @@ import {
   useLiveTransforms,
   useRegistry,
   useScene,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   createSurfaceRoleMaterial,
   NodeRenderer,
   resolveSurfaceColor,
   useNodeEvents,
   useViewer,
-} from '@pascal-app/viewer'
+} from '@intersign/viewer'
 import { useEffect, useLayoutEffect, useMemo, useRef } from 'react'
 import { BackSide, type Mesh } from 'three/webgpu'
 import { createPlaceholderGeometry } from '../shared/placeholder-geometry'

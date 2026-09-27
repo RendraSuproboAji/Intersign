@@ -1,6 +1,6 @@
 'use client'
 
-import { DoorAnimationSystem, DoorSystem } from '@pascal-app/viewer'
+import { DoorAnimationSystem, DoorSystem } from '@intersign/viewer'
 
 /**
  * Registry-driven door system bundle.

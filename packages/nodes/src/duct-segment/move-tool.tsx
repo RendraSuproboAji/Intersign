@@ -10,7 +10,7 @@ import {
   type GridEvent,
   sceneRegistry,
   useScene,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   consumePlacementDragRelease,
   DragBoundingBox,
@@ -23,8 +23,8 @@ import {
   triggerSFX,
   useAlignmentGuides,
   useEditor,
-} from '@pascal-app/editor'
-import { useViewer } from '@pascal-app/viewer'
+} from '@intersign/editor'
+import { useViewer } from '@intersign/viewer'
 import { useEffect, useRef, useState } from 'react'
 import { Matrix4, Vector3 } from 'three'
 import {

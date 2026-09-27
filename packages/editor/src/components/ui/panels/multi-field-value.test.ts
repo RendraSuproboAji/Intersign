@@ -8,7 +8,7 @@ import {
   useLiveNodeOverrides,
   useScene,
   WallNode,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   buildMultiNodePatches,
   commitMultiNodeFields,

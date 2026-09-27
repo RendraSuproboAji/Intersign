@@ -14,7 +14,7 @@ import {
   useLiveTransforms,
   useScene,
   type WallNode,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import { type Camera, type Material, Matrix4, type Mesh, type Object3D, Vector3 } from 'three'
 import { getMaterialTextureVersion } from '../../lib/materials'
 import useViewer, { type WallMode } from '../../store/use-viewer'

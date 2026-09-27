@@ -4,8 +4,8 @@ import {
   type GridEvent,
   sceneRegistry,
   useScene,
-} from '@pascal-app/core'
-import { setSurfaceRaycastLayers } from '@pascal-app/viewer'
+} from '@intersign/core'
+import { setSurfaceRaycastLayers } from '@intersign/viewer'
 import { Matrix3, Raycaster, Vector3 } from 'three'
 
 export function accessoryCursor(

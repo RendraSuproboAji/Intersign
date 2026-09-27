@@ -4,7 +4,7 @@ import {
   nodeRegistry,
   type ParametricDescriptor,
   useScene,
-} from '@pascal-app/core'
+} from '@intersign/core'
 
 export function commitParametricNodeFields(
   nodeId: AnyNodeId,

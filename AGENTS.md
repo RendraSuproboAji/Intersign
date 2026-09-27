@@ -1,13 +1,13 @@
-# Agent Instructions — `pascalorg/editor`
+# Agent Instructions — `RendraSuproboAji/Intersign`
 
-Public, open-source home of `@pascal-app/{core,viewer,editor,mcp}` and the standalone editor app. Consumed both as npm packages and (in `pascalorg/private-editor`) as a git submodule.
+Public, open-source home of `@intersign/{core,viewer,editor,mcp}` and the standalone editor app. Consumed both as npm packages and (in `pascalorg/private-editor`) as a git submodule.
 
 ## Repo Shape
 
 | Path | Purpose |
 |---|---|
-| `packages/core` | Scene graph, node schemas, stores, event bus, core systems — pure logic, no Three.js. `src/capture/` holds the capture-session contracts published as `@pascal-app/core/capture` |
-| `packages/viewer` | Standalone 3D canvas: renderers, viewer systems, presentation state. `src/capture/` holds the capture runtime and reference layers published as `@pascal-app/viewer/capture` |
+| `packages/core` | Scene graph, node schemas, stores, event bus, core systems — pure logic, no Three.js. `src/capture/` holds the capture-session contracts published as `@intersign/core/capture` |
+| `packages/viewer` | Standalone 3D canvas: renderers, viewer systems, presentation state. `src/capture/` holds the capture runtime and reference layers published as `@intersign/viewer/capture` |
 | `packages/editor` | Editor UI components reused by the standalone app and embedders |
 | `packages/mcp` | MCP server and scene storage adapters |
 | `apps/editor` | Standalone editor app — composes `viewer` + `editor` + tools |

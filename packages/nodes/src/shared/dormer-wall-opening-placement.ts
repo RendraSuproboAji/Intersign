@@ -7,7 +7,7 @@ import {
   getDormerWallOpeningVerticalBounds,
   type WindowEvent,
   type WindowNode,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import { type Object3D, Vector3 } from 'three'
 
 export type DormerWindowTarget = {

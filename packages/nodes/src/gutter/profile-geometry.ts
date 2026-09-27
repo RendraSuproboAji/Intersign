@@ -1,4 +1,4 @@
-import type { GutterNode } from '@pascal-app/core'
+import type { GutterNode } from '@intersign/core'
 
 /**
  * Shared outlet/profile geometry constants + math used by the gutter

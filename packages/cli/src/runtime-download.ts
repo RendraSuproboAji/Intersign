@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url'
 import { CliError } from './errors.js'
 import { downloadToFile } from './http-download.js'
 import { readJsonFile } from './json-files.js'
-import type { PascalPaths } from './paths.js'
+import type { IntersignPaths } from './paths.js'
 import {
   type ActiveRuntime,
   activateRuntime,
@@ -39,7 +39,7 @@ export type RuntimeProvisionProgress =
   | { step: 'runtime-installing' }
 
 export interface EnsureWebRuntimeOptions {
-  paths: PascalPaths
+  paths: IntersignPaths
   /** A directory or `.tar.gz` archive from `--runtime`; archives are digest-verified. */
   runtimeSource?: string
   /** `false` installs the runtime without pointing the active runtime at it (used by updates). */
@@ -59,7 +59,7 @@ export async function ensureWebRuntime(
 ): Promise<WebRuntimeResult> {
   const { paths } = options
   const environment = options.environment ?? process.env
-  const override = options.runtimeSource ?? environment.PASCAL_BUNDLED_RUNTIME_DIR
+  const override = options.runtimeSource ?? environment.INTERSIGN_BUNDLED_RUNTIME_DIR
   if (override) return installOverride(paths, override, options)
 
   const source = await readRuntimeSource(options.sourceFile)
@@ -73,7 +73,10 @@ export async function ensureWebRuntime(
         return { runtime: await useInstalled(paths, peerInstalled, options), installed: false }
       }
       return withWorkDirectory(paths, async (workDirectory) => {
-        const archiveFile = path.join(workDirectory, `pascal-web-runtime-${source.version}.tar.gz`)
+        const archiveFile = path.join(
+          workDirectory,
+          `intersign-web-runtime-${source.version}.tar.gz`,
+        )
         await download(source, archiveFile, options)
         options.onProgress?.({ step: 'runtime-verifying' })
         await verifyArchiveDigest(archiveFile, source.sha256, { deleteOnMismatch: true })
@@ -117,7 +120,7 @@ export async function readRuntimeSource(sourceFile?: string): Promise<RuntimeSou
   ) {
     throw new CliError(
       'invalid_runtime_source',
-      `This CLI cannot resolve the Pascal web runtime it was published with (${file}). Reinstall @pascal-app/cli, or pass "--runtime <directory-or-archive>".`,
+      `This CLI cannot resolve the Intersign web runtime it was published with (${file}). Reinstall @intersign/cli, or pass "--runtime <directory-or-archive>".`,
     )
   }
   return { version: source.version, url: source.url, sha256: source.sha256, size: source.size }
@@ -140,17 +143,17 @@ export async function verifyArchiveDigest(
   throw new CliError(
     'runtime_digest_mismatch',
     [
-      'The Pascal web runtime archive does not match the digest published with this CLI.',
+      'The Intersign web runtime archive does not match the digest published with this CLI.',
       `  archive:  ${archiveFile}`,
       `  expected: ${expectedSha256}`,
       `  actual:   ${actual}`,
-      'The archive was not installed. Download it again from the Pascal release page.',
+      'The archive was not installed. Download it again from the Intersign release page.',
     ].join('\n'),
   )
 }
 
 async function installOverride(
-  paths: PascalPaths,
+  paths: IntersignPaths,
   override: string,
   options: EnsureWebRuntimeOptions,
 ): Promise<WebRuntimeResult> {
@@ -159,7 +162,7 @@ async function installOverride(
   try {
     info = await stat(resolved)
   } catch {
-    throw new CliError('runtime_source_missing', `No Pascal web runtime exists at ${resolved}.`)
+    throw new CliError('runtime_source_missing', `No Intersign web runtime exists at ${resolved}.`)
   }
   if (info.isDirectory()) {
     options.onProgress?.({ step: 'runtime-installing' })
@@ -182,7 +185,7 @@ async function installOverride(
 }
 
 async function useInstalled(
-  paths: PascalPaths,
+  paths: IntersignPaths,
   runtime: ActiveRuntime,
   options: EnsureWebRuntimeOptions,
 ): Promise<ActiveRuntime> {
@@ -226,13 +229,13 @@ async function download(
     throw new CliError(
       'runtime_download_failed',
       [
-        `Unable to download the Pascal web runtime ${source.version}.`,
+        `Unable to download the Intersign web runtime ${source.version}.`,
         `  archive: ${source.url}`,
         `  sha256:  ${source.sha256}`,
         `  reason:  ${error instanceof Error ? error.message : String(error)}`,
         'Download that archive on a connected machine, copy it over, then run:',
-        `  pascal editor --runtime /path/to/pascal-web-runtime-${source.version}.tar.gz`,
-        'HTTPS_PROXY and NO_PROXY are honoured. "pascal mcp connect" needs no web runtime.',
+        `  intersign editor --runtime /path/to/intersign-web-runtime-${source.version}.tar.gz`,
+        'HTTPS_PROXY and NO_PROXY are honoured. "intersign mcp connect" needs no web runtime.',
       ].join('\n'),
     )
   }
@@ -243,7 +246,7 @@ async function download(
  * `.install-*` directory there before it copies, which would race a partial extraction.
  */
 async function withWorkDirectory<T>(
-  paths: PascalPaths,
+  paths: IntersignPaths,
   action: (directory: string) => Promise<T>,
 ): Promise<T> {
   await mkdir(paths.tmp, { recursive: true, mode: 0o700 })

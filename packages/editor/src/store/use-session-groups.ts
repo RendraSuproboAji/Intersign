@@ -1,5 +1,5 @@
-import { type AnyNodeId, useScene } from '@pascal-app/core'
-import { useViewer } from '@pascal-app/viewer'
+import { type AnyNodeId, useScene } from '@intersign/core'
+import { useViewer } from '@intersign/viewer'
 import { create } from 'zustand'
 import {
   canCreateSessionGroup,

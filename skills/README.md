@@ -1,6 +1,6 @@
-# Pascal agent skills
+# Intersign agent skills
 
-These public skills teach MCP-capable agents to use Pascal for editable building models and bounded spatial answers.
+These public skills teach MCP-capable agents to use Intersign for editable building models and bounded spatial answers.
 
 ## Channel status
 
@@ -12,9 +12,9 @@ marketplace install may continue to use the older bundle until Cursor publishes 
 
 | Channel | Status |
 | --- | --- |
-| [skills.sh](https://skills.sh/pascalorg/editor) | Indexed automatically from this repository; installable, with install counts on that listing. |
+| [skills.sh](https://skills.sh/pascalorg/editor) | Upstream Pascal listing (`pascal-3d`, `furniture-fit`); this fork installs from its own repository with `npx skills add RendraSuproboAji/Intersign`. |
 | Claude Code plugin | Installable from this Git marketplace; not submitted to the Anthropic plugin directory. |
-| Codex and Cursor Agent Plugin | Installable from this repository, including the root [`mcp.json`](../mcp.json) server; a Cursor-native [`.cursor-plugin/plugin.json`](../.cursor-plugin/plugin.json) carries the marketplace logo and category and uses browser sign-in for hosted access; [listed in the Cursor marketplace](https://cursor.com/marketplace/pascal). The corrected Cursor bundle below still needs marketplace refresh; OpenAI submission remains separate. |
+| Codex and Cursor Agent Plugin | Installable from this repository, including the root [`mcp.json`](../mcp.json) server; a Cursor-native [`.cursor-plugin/plugin.json`](../.cursor-plugin/plugin.json) carries the marketplace logo and category and uses browser sign-in for hosted access; [listed in the Cursor marketplace](https://cursor.com/marketplace/intersign). The corrected Cursor bundle below still needs marketplace refresh; OpenAI submission remains separate. |
 | Gemini CLI extension | Root [`gemini-extension.json`](../gemini-extension.json) is present; installable from a release tag that carries it, and gallery listing waits on the `gemini-cli-extension` repository topic. |
 | Official MCP Registry | `io.github.pascalorg/editor` 0.6.1 is published. |
 | ClawHub and OpenClaw | Not published; waiting on an authorized publisher accepting the MIT-0 terms. |
@@ -24,91 +24,91 @@ marketplace install may continue to use the older bundle until Cursor publishes 
 List the available skills:
 
 ```bash
-npx skills add https://github.com/pascalorg/editor/tree/main/skills --list
+npx skills add https://github.com/RendraSuproboAji/Intersign/tree/main/skills --list
 ```
 
 Install both skills:
 
 ```bash
-npx skills add https://github.com/pascalorg/editor/tree/main/skills \
-  --skill pascal-3d \
+npx skills add https://github.com/RendraSuproboAji/Intersign/tree/main/skills \
+  --skill intersign-3d \
   --skill furniture-fit
 ```
 
 Install just the furniture workflow:
 
 ```bash
-npx skills add https://github.com/pascalorg/editor/tree/main/skills/furniture-fit
+npx skills add https://github.com/RendraSuproboAji/Intersign/tree/main/skills/furniture-fit
 ```
 
 Use `-g` for a user-wide installation or `-a claude-code -a codex` to choose hosts explicitly.
 
-skills.sh indexes this repository automatically, so no submission step is involved; its listing at [skills.sh/pascalorg/editor](https://skills.sh/pascalorg/editor) also reports install counts from the `skills` CLI.
+skills.sh indexes this repository automatically, so no submission step is involved; the upstream Pascal listing at [skills.sh/pascalorg/editor](https://skills.sh/pascalorg/editor) also reports install counts from the `skills` CLI.
 
 ## Install with OpenClaw
 
-After publication under Pascal's ClawHub publisher, use the owner-qualified registry references and verify their trust envelopes:
+After publication under Intersign's ClawHub publisher, use the owner-qualified registry references and verify their trust envelopes:
 
 ```bash
-openclaw skills install @pascalorg/pascal-3d
-openclaw skills install @pascalorg/furniture-fit
-openclaw skills verify @pascalorg/pascal-3d
-openclaw skills verify @pascalorg/furniture-fit
+openclaw skills install @intersignorg/intersign-3d
+openclaw skills install @intersignorg/furniture-fit
+openclaw skills verify @intersignorg/intersign-3d
+openclaw skills verify @intersignorg/furniture-fit
 ```
 
-The references above remain unavailable until an authorized Pascal publisher accepts ClawHub's MIT-0 publication terms and creates the releases. OpenClaw's `skills-sh:` resolver also requires the skill to be indexed by ClawHub, so the existing skills.sh listing is not a pre-publication workaround. Installing either skill provides instructions only; follow its setup reference to connect Pascal MCP.
+The references above remain unavailable until an authorized Intersign publisher accepts ClawHub's MIT-0 publication terms and creates the releases. OpenClaw's `skills-sh:` resolver also requires the skill to be indexed by ClawHub, so the existing skills.sh listing is not a pre-publication workaround. Installing either skill provides instructions only; follow its setup reference to connect Intersign MCP.
 
 ## Install as a Claude Code or Codex plugin
 
 This repository is also a shared plugin marketplace containing one plugin backed by the same `skills/` folders. For Claude Code:
 
 ```text
-/plugin marketplace add pascalorg/editor
-/plugin install pascal-agent-skills@pascal
+/plugin marketplace add RendraSuproboAji/Intersign
+/plugin install intersign-agent-skills@intersign
 ```
 
 For Codex:
 
 ```bash
-codex plugin marketplace add pascalorg/editor
-codex plugin add pascal-agent-skills@pascal
+codex plugin marketplace add RendraSuproboAji/Intersign
+codex plugin add intersign-agent-skills@intersign
 ```
 
-The Claude plugin installs the instructions from the canonical `skills/` directory and supplies two servers: a local stdio server that runs `pascal mcp connect`, and a hosted `pascal-hosted` server for `https://editor.pascal.app/api/mcp` that prompts for an optional Pascal API key when the plugin is enabled and keeps it in the OS keychain. This `skills/` directory is itself the Claude plugin root, so an install copies only the two skill bundles and their plugin metadata rather than the repository. Install and start the Pascal CLI first, and keep `pascal` on Claude Code's `PATH`. The bundled local connector needs no Pascal account or API key and does not upload projects automatically; leaving the hosted key empty keeps the install local-only. Codex and individually installed skills still use the setup reference included in either skill.
+The Claude plugin installs the instructions from the canonical `skills/` directory and supplies two servers: a local stdio server that runs `intersign mcp connect`, and a hosted `intersign-hosted` server for `https://editor.pascal.app/api/mcp` that prompts for an optional Intersign API key when the plugin is enabled and keeps it in the OS keychain. This `skills/` directory is itself the Claude plugin root, so an install copies only the two skill bundles and their plugin metadata rather than the repository. Install and start the Intersign CLI first, and keep `intersign` on Claude Code's `PATH`. The bundled local connector needs no Intersign account or API key and does not upload projects automatically; leaving the hosted key empty keeps the install local-only. Codex and individually installed skills still use the setup reference included in either skill.
 
-Claude Code 2.1.258 loads both the user-scoped `pascal` server created by `pascal mcp setup claude` and the plugin-provided server. Run `claude mcp remove --scope user pascal` before reloading or restarting Claude Code so only the plugin owns the connection lifecycle. Use `/mcp` to remove or disable any project- or local-scoped Pascal connection too. Leaving both connections active violates the one-active-agent-client-per-local-service requirement. For a hosted Pascal project, disable the plugin-provided local server in `/mcp`, then configure the hosted endpoint from the setup reference.
+Claude Code 2.1.258 loads both the user-scoped `intersign` server created by `intersign mcp setup claude` and the plugin-provided server. Run `claude mcp remove --scope user intersign` before reloading or restarting Claude Code so only the plugin owns the connection lifecycle. Use `/mcp` to remove or disable any project- or local-scoped Intersign connection too. Leaving both connections active violates the one-active-agent-client-per-local-service requirement. For a hosted Intersign project, disable the plugin-provided local server in `/mcp`, then configure the hosted endpoint from the setup reference.
 
 Plugin installation alone never creates an account, uploads a project, or authorizes paid work.
 
-The root [`plugin.json`](../plugin.json) is the portable Agent Plugins manifest used for OpenAI submission, and the root [`mcp.json`](../mcp.json) is the MCP configuration path Codex reads; Claude Code reads the same local server from [`.mcp.json`](.mcp.json) in its `skills/` plugin root, next to [`.claude-plugin/plugin.json`](.claude-plugin/plugin.json), and Cursor uses its pinned npm launcher from [`.cursor-plugin/mcp.json`](.cursor-plugin/mcp.json) inside the installed `skills/` directory. Each host keeps its own hosted configuration: Claude Code uses `${user_config.pascal_api_key}`, and Cursor uses a managed public OAuth client — while the portable `mcp.json` stays local-only: Agent Plugins 1.0.0 forbids secrets and placeholder expansion in `headers`, and Codex strips a plugin-supplied `Authorization`, so Codex users register the hosted endpoint with `codex mcp add --bearer-token-env-var PASCAL_API_KEY`. The repository keeps `.codex-plugin/plugin.json` as a compatibility fallback and validates that both expose the same OpenAI listing metadata. Public-directory submission, review, and publication are separate external steps; a Git marketplace install does not make the plugin publicly listed in ChatGPT or Codex.
+The root [`plugin.json`](../plugin.json) is the portable Agent Plugins manifest used for OpenAI submission, and the root [`mcp.json`](../mcp.json) is the MCP configuration path Codex reads; Claude Code reads the same local server from [`.mcp.json`](.mcp.json) in its `skills/` plugin root, next to [`.claude-plugin/plugin.json`](.claude-plugin/plugin.json), and Cursor uses its pinned npm launcher from [`.cursor-plugin/mcp.json`](.cursor-plugin/mcp.json) inside the installed `skills/` directory. Each host keeps its own hosted configuration: Claude Code uses `${user_config.intersign_api_key}`, and Cursor uses a managed public OAuth client — while the portable `mcp.json` stays local-only: Agent Plugins 1.0.0 forbids secrets and placeholder expansion in `headers`, and Codex strips a plugin-supplied `Authorization`, so Codex users register the hosted endpoint with `codex mcp add --bearer-token-env-var INTERSIGN_API_KEY`. The repository keeps `.codex-plugin/plugin.json` as a compatibility fallback and validates that both expose the same OpenAI listing metadata. Public-directory submission, review, and publication are separate external steps; a Git marketplace install does not make the plugin publicly listed in ChatGPT or Codex.
 
-`@pascal-app/cli` 1.0.0 on the npm `latest` tag carries the read-only `check_collisions.candidate` capability used by the current furniture workflow.
+`@intersign/cli` 1.0.0 on the npm `latest` tag carries the read-only `check_collisions.candidate` capability used by the current furniture workflow.
 
 Use one active agent client per local CLI service. Its standalone HTTP runtime shares active scene state; the hosted endpoint uses a separate session-isolated bridge.
 
 ## Install in Cursor
 
-The Cursor marketplace installs this repository's `skills/` directory. Its `.cursor-plugin/plugin.json` explicitly selects the Cursor MCP configuration, so the Claude-only `${user_config.pascal_api_key}` header is never used by Cursor. The local server runs `npx --yes --package=@pascal-app/cli@1.0.0 pascal mcp connect`; Node.js 22.13 or newer and npm must be available to Cursor. No global `pascal` installation or web-editor runtime is required. The first connection downloads the pinned CLI from npm, and later connections reuse npm's cache. This starts only the local MCP service and keeps existing local project storage. If Cursor reports `spawn npx ENOENT`, install Node.js/npm and fully restart Cursor so it picks up the executable path. For an older installed bundle that still runs `pascal`, update the plugin; `npm install --global @pascal-app/cli@1.0.0` followed by **Customize → MCPs → pascal → Reload** repairs that legacy local command.
+The Cursor marketplace installs this repository's `skills/` directory. Its `.cursor-plugin/plugin.json` explicitly selects the Cursor MCP configuration, so the Claude-only `${user_config.intersign_api_key}` header is never used by Cursor. The local server runs `npx --yes --package=@intersign/cli@1.0.0 intersign mcp connect`; Node.js 22.13 or newer and npm must be available to Cursor. No global `intersign` installation or web-editor runtime is required. The first connection downloads the pinned CLI from npm, and later connections reuse npm's cache. This starts only the local MCP service and keeps existing local project storage. If Cursor reports `spawn npx ENOENT`, install Node.js/npm and fully restart Cursor so it picks up the executable path. For an older installed bundle that still runs `intersign`, update the plugin; `npm install --global @intersign/cli@1.0.0` followed by **Customize → MCPs → intersign → Reload** repairs that legacy local command.
 
-The hosted `pascal-hosted` server uses browser sign-in. In **Customize → MCPs**, choose **Authenticate** (or **Connect**) beside `pascal-hosted`. Pascal opens in your browser: sign in or create an account with Google or email, choose the intended workspace, review access, then return to Cursor. No API key or plugin variable is required. Let the user approve the account and workspace shown in consent. Ordinary access covers reading and editing projects; it does not authorize publishing, credit spending, external AI processing, community posting, or account management. Disconnect at `https://editor.pascal.app/settings/connected-apps`.
+The hosted `intersign-hosted` server uses browser sign-in. In **Customize → MCPs**, choose **Authenticate** (or **Connect**) beside `intersign-hosted`. Intersign opens in your browser: sign in or create an account with Google or email, choose the intended workspace, review access, then return to Cursor. No API key or plugin variable is required. Let the user approve the account and workspace shown in consent. Ordinary access covers reading and editing projects; it does not authorize publishing, credit spending, external AI processing, community posting, or account management. Disconnect at `https://editor.pascal.app/settings/connected-apps`.
 
-For local-only work, use `pascal` and leave `pascal-hosted` disconnected. Local project storage stays on this machine. If browser sign-in is unavailable, verify that the installed plugin and hosted service support this flow; do not create another account or fall back to a different workspace implicitly.
+For local-only work, use `intersign` and leave `intersign-hosted` disconnected. Local project storage stays on this machine. If browser sign-in is unavailable, verify that the installed plugin and hosted service support this flow; do not create another account or fall back to a different workspace implicitly.
 
 ## Install as a Gemini CLI extension
 
-The root [`gemini-extension.json`](../gemini-extension.json) declares the same `pascal mcp connect` server and loads this file as the extension context. Gemini CLI resolves a plain repository URL to the GitHub release marked **Latest**, which predates this manifest, so install from a release tag that contains it:
+The root [`gemini-extension.json`](../gemini-extension.json) declares the same `intersign mcp connect` server and loads this file as the extension context. Gemini CLI resolves a plain repository URL to the GitHub release marked **Latest**, which predates this manifest, so install from a release tag that contains it:
 
 ```bash
-gemini extensions install https://github.com/pascalorg/editor --ref <release tag>
+gemini extensions install https://github.com/RendraSuproboAji/Intersign --ref <release tag>
 ```
 
-Gemini CLI copies the extension on install; run `gemini extensions update pascal` to pull later changes.
+Gemini CLI copies the extension on install; run `gemini extensions update intersign` to pull later changes.
 
 ## Included skills
 
 | Skill | Use it for |
 | --- | --- |
-| [`pascal-3d`](pascal-3d/SKILL.md) | Connect Pascal safely, inspect or edit a scene, validate it, save it, and return a verified handoff. |
+| [`intersign-3d`](intersign-3d/SKILL.md) | Connect Intersign safely, inspect or edit a scene, validate it, save it, and return a verified handoff. |
 | [`furniture-fit`](furniture-fit/SKILL.md) | Assess a furniture footprint at stated poses and report collisions, door keep-outs, evidence gaps, and one bounded blocker-aware next action. |
 
 Each skill is standalone. Its `references/`, `examples/`, and `evals/` folders travel with that skill when installed individually.

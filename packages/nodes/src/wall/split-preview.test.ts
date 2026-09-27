@@ -8,7 +8,7 @@ import {
   planWallDivision,
   WallNode,
   WindowNode,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   snapWallSplitDistance,
   wallSplitAnchors,

@@ -1,5 +1,5 @@
-import type { CabinetModuleNode, CabinetNode, GeometryContext } from '@pascal-app/core'
-import type { ColorPreset, RenderShading } from '@pascal-app/viewer'
+import type { CabinetModuleNode, CabinetNode, GeometryContext } from '@intersign/core'
+import type { ColorPreset, RenderShading } from '@intersign/viewer'
 import { Group, Mesh } from 'three'
 import { getCabinetCountertopLayout } from '../countertop-layout'
 import { buildFrontGeometry } from './fronts'

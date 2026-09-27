@@ -3,7 +3,7 @@ import { afterEach, beforeEach, describe, expect, test } from 'bun:test'
 import * as fs from 'node:fs/promises'
 import * as os from 'node:os'
 import * as path from 'node:path'
-import type { SceneGraph } from '@pascal-app/core/clone-scene-graph'
+import type { SceneGraph } from '@intersign/core/clone-scene-graph'
 import {
   resolveDefaultDatabasePath,
   SqliteSceneStore,
@@ -37,7 +37,7 @@ function makeGraph(overrides: Partial<SceneGraph> = {}): SceneGraph {
 }
 
 async function mkTmpRoot(): Promise<string> {
-  return fs.mkdtemp(path.join(os.tmpdir(), 'pascal-sqlite-test-'))
+  return fs.mkdtemp(path.join(os.tmpdir(), 'intersign-sqlite-test-'))
 }
 
 async function rmrf(p: string): Promise<void> {
@@ -46,34 +46,36 @@ async function rmrf(p: string): Promise<void> {
 
 function createStore(rootDir: string, opts: Partial<SqliteSceneStoreOptions> = {}) {
   return new SqliteSceneStore({
-    databasePath: path.join(rootDir, 'pascal.db'),
+    databasePath: path.join(rootDir, 'intersign.db'),
     ...opts,
   })
 }
 
 describe('resolveDefaultDatabasePath', () => {
-  test('respects PASCAL_DB_PATH when set', () => {
-    expect(resolveDefaultDatabasePath({ PASCAL_DB_PATH: '/tmp/custom.db' })).toBe('/tmp/custom.db')
+  test('respects INTERSIGN_DB_PATH when set', () => {
+    expect(resolveDefaultDatabasePath({ INTERSIGN_DB_PATH: '/tmp/custom.db' })).toBe(
+      '/tmp/custom.db',
+    )
   })
 
-  test('resolves PASCAL_DATA_DIR to pascal.db', () => {
-    expect(resolveDefaultDatabasePath({ PASCAL_DATA_DIR: '/tmp/pascal-data' })).toBe(
-      path.join('/tmp/pascal-data', 'pascal.db'),
+  test('resolves INTERSIGN_DATA_DIR to intersign.db', () => {
+    expect(resolveDefaultDatabasePath({ INTERSIGN_DATA_DIR: '/tmp/intersign-data' })).toBe(
+      path.join('/tmp/intersign-data', 'intersign.db'),
     )
   })
 
   test('falls back to XDG_DATA_HOME on Unix', () => {
     if (process.platform === 'win32') return
     expect(resolveDefaultDatabasePath({ XDG_DATA_HOME: '/xdg/share' })).toBe(
-      path.join('/xdg/share', 'pascal', 'data', 'pascal.db'),
+      path.join('/xdg/share', 'intersign', 'data', 'intersign.db'),
     )
   })
 
-  test('falls back to homedir + .pascal/data/pascal.db', () => {
+  test('falls back to homedir + .intersign/data/intersign.db', () => {
     if (process.platform === 'win32') return
-    expect(resolveDefaultDatabasePath({}).endsWith(path.join('.pascal', 'data', 'pascal.db'))).toBe(
-      true,
-    )
+    expect(
+      resolveDefaultDatabasePath({}).endsWith(path.join('.intersign', 'data', 'intersign.db')),
+    ).toBe(true)
   })
 })
 
@@ -236,7 +238,7 @@ describe('SqliteSceneStore', () => {
     await store.save({ id: 'rev', name: 'Rev', graph: makeGraph() })
     await store.rename('rev', 'Renamed', { expectedVersion: 1 })
 
-    const dbPath = path.join(rootDir, 'pascal.db')
+    const dbPath = path.join(rootDir, 'intersign.db')
     const db = new Database(dbPath)
     try {
       const beforeDelete = db
@@ -329,7 +331,7 @@ describe('SqliteSceneStore', () => {
   test('load returns null for missing scenes and errors on corrupt graph rows', async () => {
     expect(await store.load('missing')).toBeNull()
 
-    const db = new Database(path.join(rootDir, 'pascal.db'), { create: true })
+    const db = new Database(path.join(rootDir, 'intersign.db'), { create: true })
     try {
       db.exec(`
         CREATE TABLE IF NOT EXISTS scenes (
