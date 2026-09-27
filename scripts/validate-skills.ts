@@ -1185,7 +1185,7 @@ if (!releaseNotes.includes(`Intersign agent skills ${pluginVersion} **With MCP**
 
 const readme = read(join(root, 'README.md'))
 for (const expected of [
-  '[![Install with skills](https://skills.sh/b/RendraSuproboAji/Intersign)](https://skills.sh/RendraSuproboAji/Intersign)',
+  '[![Install with skills](https://skills.sh/b/pascalorg/editor)](https://skills.sh/pascalorg/editor)',
   'npx skills add RendraSuproboAji/Intersign',
   '/plugin marketplace add RendraSuproboAji/Intersign',
   'codex plugin marketplace add RendraSuproboAji/Intersign',

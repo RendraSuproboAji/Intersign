@@ -12,7 +12,7 @@ marketplace install may continue to use the older bundle until Cursor publishes 
 
 | Channel | Status |
 | --- | --- |
-| [skills.sh](https://skills.sh/RendraSuproboAji/Intersign) | Indexed automatically from this repository; installable, with install counts on that listing. |
+| [skills.sh](https://skills.sh/pascalorg/editor) | Upstream Pascal listing (`pascal-3d`, `furniture-fit`); this fork installs from its own repository with `npx skills add RendraSuproboAji/Intersign`. |
 | Claude Code plugin | Installable from this Git marketplace; not submitted to the Anthropic plugin directory. |
 | Codex and Cursor Agent Plugin | Installable from this repository, including the root [`mcp.json`](../mcp.json) server; a Cursor-native [`.cursor-plugin/plugin.json`](../.cursor-plugin/plugin.json) carries the marketplace logo and category and uses browser sign-in for hosted access; [listed in the Cursor marketplace](https://cursor.com/marketplace/intersign). The corrected Cursor bundle below still needs marketplace refresh; OpenAI submission remains separate. |
 | Gemini CLI extension | Root [`gemini-extension.json`](../gemini-extension.json) is present; installable from a release tag that carries it, and gallery listing waits on the `gemini-cli-extension` repository topic. |
@@ -43,7 +43,7 @@ npx skills add https://github.com/RendraSuproboAji/Intersign/tree/main/skills/fu
 
 Use `-g` for a user-wide installation or `-a claude-code -a codex` to choose hosts explicitly.
 
-skills.sh indexes this repository automatically, so no submission step is involved; its listing at [skills.sh/RendraSuproboAji/Intersign](https://skills.sh/RendraSuproboAji/Intersign) also reports install counts from the `skills` CLI.
+skills.sh indexes this repository automatically, so no submission step is involved; the upstream Pascal listing at [skills.sh/pascalorg/editor](https://skills.sh/pascalorg/editor) also reports install counts from the `skills` CLI.
 
 ## Install with OpenClaw
 

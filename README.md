@@ -40,7 +40,10 @@ Use one active agent client per local CLI service. The standalone local HTTP run
 
 ## Agent skills
 
-[![Install with skills](https://skills.sh/b/RendraSuproboAji/Intersign)](https://skills.sh/RendraSuproboAji/Intersign)
+[![Install with skills](https://skills.sh/b/pascalorg/editor)](https://skills.sh/pascalorg/editor)
+
+The skills.sh badge links to the upstream Pascal listing, which carries the original
+`pascal-3d` and `furniture-fit` skills.
 
 Install Intersign's public agent workflows from this repository with [skills.sh](https://skills.sh):
 
