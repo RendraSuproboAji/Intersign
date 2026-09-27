@@ -1,6 +1,6 @@
-import type { DoorNode, RoofSegmentNode, WindowNode } from '@pascal-app/core'
-import { getRoofWallFaceFrame, roofFacePointToSegment } from '@pascal-app/core'
-import { buildOpeningCutoutGeometry, getOpeningCutoutBottomPadding } from '@pascal-app/viewer'
+import type { DoorNode, RoofSegmentNode, WindowNode } from '@intersign/core'
+import { getRoofWallFaceFrame, roofFacePointToSegment } from '@intersign/core'
+import { buildOpeningCutoutGeometry, getOpeningCutoutBottomPadding } from '@intersign/viewer'
 import * as THREE from 'three'
 
 /**

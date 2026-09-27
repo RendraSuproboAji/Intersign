@@ -26,7 +26,7 @@ import {
   type StairNode,
   type StairSurfaceMaterialRole,
   type WallSurfaceSide,
-} from '@pascal-app/core'
+} from '@intersign/core'
 
 export type PaintableMaterialTarget =
   | Extract<
@@ -220,7 +220,7 @@ export function buildSingleSurfaceMaterialPatch<
 }
 
 // Chimney / dormer patch builders moved to
-// `@pascal-app/nodes/<kind>/paint.ts` and are wired into the kind's
+// `@intersign/nodes/<kind>/paint.ts` and are wired into the kind's
 // `capabilities.paint.buildPatch`. The selection-manager invokes them
 // through the registry; no editor-side helper needed here.
 //

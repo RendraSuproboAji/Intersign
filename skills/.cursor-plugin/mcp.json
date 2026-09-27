@@ -1,15 +1,15 @@
 {
   "mcpServers": {
-    "pascal": {
+    "intersign": {
       "type": "stdio",
       "command": "npx",
-      "args": ["--yes", "--package=@pascal-app/cli@1.0.0", "pascal", "mcp", "connect"]
+      "args": ["--yes", "--package=@intersign/cli@1.0.0", "intersign", "mcp", "connect"]
     },
-    "pascal-hosted": {
+    "intersign-hosted": {
       "type": "http",
       "url": "https://editor.pascal.app/api/mcp",
       "auth": {
-        "CLIENT_ID": "pascal-cursor",
+        "CLIENT_ID": "intersign-cursor",
         "scopes": ["openid", "profile", "offline_access", "scene:read", "scene:write"]
       }
     }

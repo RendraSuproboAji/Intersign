@@ -5,11 +5,11 @@ import { cn } from '../../lib/utils'
 import { Button } from './primitives/button'
 
 const LOADERS = [
-  'pascal-loader-1',
-  'pascal-loader-2',
-  'pascal-loader-3',
-  'pascal-loader-4',
-  'pascal-loader-5',
+  'intersign-loader-1',
+  'intersign-loader-2',
+  'intersign-loader-3',
+  'intersign-loader-4',
+  'intersign-loader-5',
 ]
 
 interface SceneLoaderProps {

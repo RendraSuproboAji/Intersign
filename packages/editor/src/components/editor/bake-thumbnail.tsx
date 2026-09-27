@@ -1,7 +1,7 @@
 'use client'
 
-import { sceneRegistry, useInteractive, useScene } from '@pascal-app/core'
-import { evaluateRecipe } from '@pascal-app/core/procedural-items'
+import { sceneRegistry, useInteractive, useScene } from '@intersign/core'
+import { evaluateRecipe } from '@intersign/core/procedural-items'
 import {
   computeHeroFraming,
   createSnapshotPipeline,
@@ -12,7 +12,7 @@ import {
   temporarilyHideNodeTypes,
   useSceneAtmosphere,
   useViewer,
-} from '@pascal-app/viewer'
+} from '@intersign/viewer'
 import { useThree } from '@react-three/fiber'
 import { useEffect, useRef } from 'react'
 import { type Material, PerspectiveCamera } from 'three'
@@ -158,7 +158,7 @@ export function BakeThumbnail({
         for (const [id, on] of priorLights)
           useInteractive
             .getState()
-            .setProceduralLights(id as import('@pascal-app/core').AnyNodeId, on)
+            .setProceduralLights(id as import('@intersign/core').AnyNodeId, on)
         restoreNodeVisibility()
       }
     }

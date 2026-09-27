@@ -1,4 +1,4 @@
-import { type AnyNodeId, useLiveNodeOverrides, useScene } from '@pascal-app/core'
+import { type AnyNodeId, useLiveNodeOverrides, useScene } from '@intersign/core'
 import { isFridgeCompartmentType, stackForCabinet } from './stack'
 
 /**

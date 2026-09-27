@@ -1,4 +1,4 @@
-import type { HeightPatch, TerrainField } from '@pascal-app/core'
+import type { HeightPatch, TerrainField } from '@intersign/core'
 import { BufferAttribute, BufferGeometry, DynamicDrawUsage, Sphere } from 'three'
 import {
   buildTerrainMesh,

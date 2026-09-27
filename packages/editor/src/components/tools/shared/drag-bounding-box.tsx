@@ -1,6 +1,6 @@
 'use client'
 
-import { type AnyNodeId, resolveFacingIndicator, sceneRegistry, useScene } from '@pascal-app/core'
+import { type AnyNodeId, resolveFacingIndicator, sceneRegistry, useScene } from '@intersign/core'
 import { useEffect, useMemo } from 'react'
 import {
   Box3,

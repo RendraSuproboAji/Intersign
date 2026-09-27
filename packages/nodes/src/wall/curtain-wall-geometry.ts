@@ -6,7 +6,7 @@ import {
   getWallThickness,
   isCurvedWall,
   type WallNode,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   Brush,
   Evaluator,
@@ -14,7 +14,7 @@ import {
   INTERSECTION,
   prepareBrushForCSG,
   SUBTRACTION,
-} from '@pascal-app/viewer'
+} from '@intersign/viewer'
 import { BufferGeometry, ExtrudeGeometry, Shape } from 'three'
 import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js'
 import { buildCurtainOpeningFrame, mapCurtainOpeningGeometryToWall } from './curtain-opening-frame'

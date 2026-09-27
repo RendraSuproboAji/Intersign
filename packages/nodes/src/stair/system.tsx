@@ -1,5 +1,5 @@
 'use client'
 
-import { StairSystem } from '@pascal-app/viewer'
+import { StairSystem } from '@intersign/viewer'
 
 export default StairSystem

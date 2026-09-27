@@ -1,7 +1,7 @@
 'use client'
 
-import { type AnyNodeId, nodeRegistry, useScene } from '@pascal-app/core'
-import { useViewer } from '@pascal-app/viewer'
+import { type AnyNodeId, nodeRegistry, useScene } from '@intersign/core'
+import { useViewer } from '@intersign/viewer'
 import { type ComponentType, lazy, Suspense } from 'react'
 import { useShallow } from 'zustand/react/shallow'
 import { getFloorplanNodeExtension } from '../../lib/floorplan/floorplan-extension'

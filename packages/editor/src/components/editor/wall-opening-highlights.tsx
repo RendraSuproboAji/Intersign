@@ -1,7 +1,7 @@
 'use client'
 
-import { type AnyNodeId, sceneRegistry, useLiveNodeOverrides, useScene } from '@pascal-app/core'
-import { useViewer } from '@pascal-app/viewer'
+import { type AnyNodeId, sceneRegistry, useLiveNodeOverrides, useScene } from '@intersign/core'
+import { useViewer } from '@intersign/viewer'
 import { createPortal, useFrame, useThree } from '@react-three/fiber'
 import { useEffect, useLayoutEffect, useMemo, useRef } from 'react'
 import {

@@ -7,9 +7,9 @@ import {
   measurementFeatureLength,
   sceneRegistry,
   useScene,
-} from '@pascal-app/core'
-import type { MeasurementAxis, MeasurementAxisGuide, MeasurementPoint } from '@pascal-app/editor'
-import { setSurfaceRaycastLayers, ZONE_LAYER } from '@pascal-app/viewer'
+} from '@intersign/core'
+import type { MeasurementAxis, MeasurementAxisGuide, MeasurementPoint } from '@intersign/editor'
+import { setSurfaceRaycastLayers, ZONE_LAYER } from '@intersign/viewer'
 import {
   type Camera,
   type InstancedMesh,

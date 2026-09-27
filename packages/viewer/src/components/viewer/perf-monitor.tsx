@@ -1,4 +1,4 @@
-import { sceneRegistry, useScene } from '@pascal-app/core'
+import { sceneRegistry, useScene } from '@intersign/core'
 import { useFrame, useThree } from '@react-three/fiber'
 import { useEffect, useRef } from 'react'
 import { Vector3 } from 'three'
@@ -238,9 +238,9 @@ export const PerfMonitor = () => {
         }
       },
     }
-    ;(window as any).__pascalPerf = probe
+    ;(window as any).__intersignPerf = probe
     return () => {
-      if ((window as any).__pascalPerf === probe) delete (window as any).__pascalPerf
+      if ((window as any).__intersignPerf === probe) delete (window as any).__intersignPerf
     }
   }, [getThree])
   useEffect(() => {

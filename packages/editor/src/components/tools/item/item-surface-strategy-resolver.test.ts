@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, expect, spyOn, test } from 'bun:test'
-import * as core from '@pascal-app/core'
-import { type ItemEvent, ItemNode, nodeRegistry, sceneRegistry, useScene } from '@pascal-app/core'
+import * as core from '@intersign/core'
+import { type ItemEvent, ItemNode, nodeRegistry, sceneRegistry, useScene } from '@intersign/core'
 import { Group, Vector3 } from 'three'
 import useEditor from '../../../store/use-editor'
 import useInteractionScope from '../../../store/use-interaction-scope'

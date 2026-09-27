@@ -1,11 +1,11 @@
-# @pascal-app/core
+# @intersign/core
 
-Core library for Pascal 3D building editor.
+Core library for Intersign 3D building editor.
 
 ## Installation
 
 ```bash
-npm install @pascal-app/core
+npm install @intersign/core
 ```
 
 ## Peer Dependencies
@@ -23,14 +23,14 @@ npm install react three @react-three/fiber @react-three/drei
 - **Spatial Grid** - Collision detection and placement validation
 - **Event Bus** - Typed event emitter for inter-component communication
 - **Asset Storage** - IndexedDB-based file storage for user-uploaded assets
-- **Capture Contracts** (`@pascal-app/core/capture`) - Versioned capture-session manifests,
+- **Capture Contracts** (`@intersign/core/capture`) - Versioned capture-session manifests,
   normalized stream descriptors, packet headers, and transport-neutral static/live `CaptureSource`
   implementations
 
 ## Usage
 
 ```typescript
-import { useScene, WallNode } from '@pascal-app/core'
+import { useScene, WallNode } from '@intersign/core'
 
 // Create a wall
 const wall = WallNode.parse({
@@ -68,17 +68,17 @@ function MyComponent() {
 ## Built-in Node Definitions
 
 Core contains the schemas, scene state, and registry contracts. The built-in node definitions,
-renderers, geometry builders, tools, and systems ship in `@pascal-app/nodes`:
+renderers, geometry builders, tools, and systems ship in `@intersign/nodes`:
 
 ```typescript
-import { loadPlugin } from '@pascal-app/core'
-import { builtinPlugin } from '@pascal-app/nodes'
+import { loadPlugin } from '@intersign/core'
+import { builtinPlugin } from '@intersign/nodes'
 
 await loadPlugin(builtinPlugin)
 ```
 
-Load the plugin before mounting `@pascal-app/viewer`. See the
-[`@pascal-app/viewer` quick start](https://github.com/pascalorg/editor/tree/main/packages/viewer#usage)
+Load the plugin before mounting `@intersign/viewer`. See the
+[`@intersign/viewer` quick start](https://github.com/RendraSuproboAji/Intersign/tree/main/packages/viewer#usage)
 for a React example.
 
 ## Capture Sessions
@@ -86,7 +86,7 @@ for a React example.
 Capture contracts are a self-contained subpath — no React, no Three.js, no prescribed transport:
 
 ```typescript
-import { createHttpCaptureSource, type CaptureSessionLocator } from '@pascal-app/core/capture'
+import { createHttpCaptureSource, type CaptureSessionLocator } from '@intersign/core/capture'
 
 const locator: CaptureSessionLocator = {
   sessionId: 'capture_123',
@@ -99,7 +99,7 @@ const descriptor = await source.describe()
 
 For live producers, use `PushCaptureSource` directly or implement `CaptureSource.subscribe()` with
 the same descriptor and packet event contract. The reference renderers that consume these sources
-ship in [`@pascal-app/viewer/capture`](https://github.com/pascalorg/editor/tree/main/packages/viewer#capture-sessions).
+ship in [`@intersign/viewer/capture`](https://github.com/RendraSuproboAji/Intersign/tree/main/packages/viewer#capture-sessions).
 
 ## License
 

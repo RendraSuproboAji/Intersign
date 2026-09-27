@@ -1,4 +1,4 @@
-import type { AnyNode } from '@pascal-app/core'
+import type { AnyNode } from '@intersign/core'
 import * as THREE from 'three'
 import {
   prepareSemanticPrintShellSource,

@@ -2,18 +2,18 @@ import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
 import type { SceneOperations } from '../operations'
 
 /**
- * `pascal://scene/current` — full `{ nodes, rootNodeIds, collections }` snapshot.
+ * `intersign://scene/current` — full `{ nodes, rootNodeIds, collections }` snapshot.
  *
  * Static URI (not a template). MIME `application/json`.
  */
 export function registerSceneCurrent(server: McpServer, bridge: SceneOperations): void {
   server.registerResource(
     'scene-current',
-    'pascal://scene/current',
+    'intersign://scene/current',
     {
       title: 'Current scene',
       description:
-        'Complete snapshot of the live Pascal scene: nodes dict, rootNodeIds, collections.',
+        'Complete snapshot of the live Intersign scene: nodes dict, rootNodeIds, collections.',
       mimeType: 'application/json',
     },
     async (uri) => ({

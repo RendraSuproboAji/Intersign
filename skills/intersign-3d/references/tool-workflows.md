@@ -1,6 +1,6 @@
-# Pascal MCP tool workflows
+# Intersign MCP tool workflows
 
-Source reviewed on 2026-09-08 against repository code whose package version field is `@pascal-app/mcp` 1.0.0-beta.6. This is not a claim that the package was published or natively host-tested. Installed and hosted releases may expose a different schema, so inspect the advertised tools first.
+Source reviewed on 2026-09-08 against repository code whose package version field is `@intersign/mcp` 1.0.0-beta.6. This is not a claim that the package was published or natively host-tested. Installed and hosted releases may expose a different schema, so inspect the advertised tools first.
 
 Inspect the server's advertised tools because hosted and local releases may differ. Never call a guessed tool.
 
@@ -18,7 +18,7 @@ Inspect the server's advertised tools because hosted and local releases may diff
 
 ## Open a room scan (hosted only)
 
-These three tools exist only on the hosted Pascal server. A local CLI connection does not advertise them, so inspect the advertised tools before assuming this path is available.
+These three tools exist only on the hosted Intersign server. A local CLI connection does not advertise them, so inspect the advertised tools before assuming this path is available.
 
 1. `list_captures`, optionally narrowed by `projectId`, `status`, or `limit`.
 2. `get_capture` with the `captureId`, adding `includeScanMetrics` when the answer needs scan quality numbers.
@@ -61,6 +61,6 @@ Do not mutate just to make a report unless the user authorizes a temporary or sa
 - `place_item` uses catalog dimensions. If a catalog item is unavailable, its placeholder dimensions are not evidence for a real product.
 - `check_collisions` checks rotation-aware scaled item footprints using plan AABBs. Pass `minimumClearance` explicitly: zero reports overlap; a positive measurement also reports pairs closer than that gap. Inspect `status`, `checkedItems`, `skippedItems`, and `unsupportedChecks` before drawing a conclusion.
 - `verify_scene` adds practical issues, including item separation and rectangular door-access keep-outs. It does not model a door-leaf swing arc or a delivery route.
-- No tool starts a room scan or clones a scan into a new project. Scans are created only by the Pascal iOS app, and `open_capture_as_project` opens the scan's existing owning project.
+- No tool starts a room scan or clones a scan into a new project. Scans are created only by the Intersign iOS app, and `open_capture_as_project` opens the scan's existing owning project.
 
 When a requested deliverable is unsupported, return `partial` or `failed` with the tool status and the next supported action. Do not substitute an invented file, URL, or capability.

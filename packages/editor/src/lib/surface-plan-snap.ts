@@ -9,7 +9,7 @@ import {
   resolveLevelId,
   useScene,
   type WallNode,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   getSegmentGridStep,
   snapWallDraftPointDetailed,

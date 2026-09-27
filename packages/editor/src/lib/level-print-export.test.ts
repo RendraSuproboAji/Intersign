@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, test } from 'bun:test'
-import { type AnyNode, RoofSegmentNode, registerNode, sceneRegistry } from '@pascal-app/core'
-import { generateRoofSegmentGeometry } from '@pascal-app/viewer'
+import { type AnyNode, RoofSegmentNode, registerNode, sceneRegistry } from '@intersign/core'
+import { generateRoofSegmentGeometry } from '@intersign/viewer'
 import { XMLParser } from 'fast-xml-parser'
 import { strFromU8, unzipSync } from 'fflate'
 import * as THREE from 'three'
@@ -420,7 +420,7 @@ describe('per-level print STL export', () => {
     const items = asArray<Record<string, string>>(model.build.item)
     const metadata = asArray<Record<string, string>>(model.metadata)
     const partManifest = JSON.parse(
-      metadata.find((entry) => entry.name === 'Pascal.PartManifest')!['#text']!,
+      metadata.find((entry) => entry.name === 'Intersign.PartManifest')!['#text']!,
     ) as Array<{
       name: string
       vertexStart: number
@@ -437,7 +437,7 @@ describe('per-level print STL export', () => {
 
     expect(Object.keys(files)).toEqual(['[Content_Types].xml', '_rels/.rels', '3D/3dmodel.model'])
     expect(model.unit).toBe('millimeter')
-    expect(object.name).toBe('Pascal level parts')
+    expect(object.name).toBe('Intersign level parts')
     expect(partManifest.map((part) => part.name)).toEqual([
       '00 Plinth',
       '01 Ground & Entry',

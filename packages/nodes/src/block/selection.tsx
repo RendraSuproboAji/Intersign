@@ -6,7 +6,7 @@ import {
   type BlockTopology,
   emitter,
   sceneRegistry,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   cn,
   EDITOR_LAYER,
@@ -22,7 +22,7 @@ import {
   triggerSFX,
   useEditor,
   useInteractionScope,
-} from '@pascal-app/editor'
+} from '@intersign/editor'
 import { Html } from '@react-three/drei'
 import { createPortal, type ThreeEvent, useFrame, useThree } from '@react-three/fiber'
 import {

@@ -80,8 +80,8 @@ describe('runtime archive extraction safety', () => {
   test.each([
     ['a parent traversal', '../escaped.txt'],
     ['a nested parent traversal', 'apps/../../escaped.txt'],
-    ['an absolute path', '/tmp/pascal-escaped.txt'],
-    ['a Windows drive path', 'C:/pascal-escaped.txt'],
+    ['an absolute path', '/tmp/intersign-escaped.txt'],
+    ['a Windows drive path', 'C:/intersign-escaped.txt'],
   ])('rejects %s', async (_label, name) => {
     const root = await temporaryRoot()
     const archive = path.join(root, 'malicious.tar.gz')
@@ -91,7 +91,7 @@ describe('runtime archive extraction safety', () => {
       code: 'invalid_runtime_archive',
     })
     expect(await exists(path.join(root, 'escaped.txt'))).toBe(false)
-    expect(await exists('/tmp/pascal-escaped.txt')).toBe(false)
+    expect(await exists('/tmp/intersign-escaped.txt')).toBe(false)
   })
 
   test('rejects a symbolic-link entry that would point out of the target', async () => {
@@ -135,7 +135,7 @@ describe('runtime archive extraction safety', () => {
 })
 
 async function temporaryRoot(): Promise<string> {
-  const root = await mkdtemp(path.join(os.tmpdir(), 'pascal-cli-tar-test-'))
+  const root = await mkdtemp(path.join(os.tmpdir(), 'intersign-cli-tar-test-'))
   roots.push(root)
   return root
 }

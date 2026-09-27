@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, expect, test } from 'bun:test'
-import { LevelNode, useScene, WallNode, WindowNode } from '@pascal-app/core'
-import { getActiveSnapContext, useInteractionScope } from '@pascal-app/editor'
+import { LevelNode, useScene, WallNode, WindowNode } from '@intersign/core'
+import { getActiveSnapContext, useInteractionScope } from '@intersign/editor'
 import {
   closeWallSplit,
   commitWallSplit,

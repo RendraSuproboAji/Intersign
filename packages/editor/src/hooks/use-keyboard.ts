@@ -6,8 +6,8 @@ import {
   pauseSpaceDetection,
   resumeSpaceDetection,
   useScene,
-} from '@pascal-app/core'
-import { cancelPerfAction, markPerfAction, useViewer } from '@pascal-app/viewer'
+} from '@intersign/core'
+import { cancelPerfAction, markPerfAction, useViewer } from '@intersign/viewer'
 import { useEffect } from 'react'
 import {
   cutSelectionToEditorClipboard,

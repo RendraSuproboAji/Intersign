@@ -3,7 +3,7 @@ import { fileURLToPath } from 'node:url'
 import type { NextConfig } from 'next'
 
 const appDirectory = path.dirname(fileURLToPath(import.meta.url))
-const portableBuild = process.env.PASCAL_PORTABLE_BUILD === '1'
+const portableBuild = process.env.INTERSIGN_PORTABLE_BUILD === '1'
 
 const nextConfig: NextConfig = {
   ...(portableBuild
@@ -28,10 +28,14 @@ const nextConfig: NextConfig = {
   },
   transpilePackages: [
     'three',
-    '@pascal-app/viewer',
+    '@intersign/viewer',
+    '@intersign/core',
+    '@intersign/editor',
+    '@intersign/mcp',
     '@pascal-app/core',
     '@pascal-app/editor',
-    '@pascal-app/mcp',
+    '@pascal-app/viewer',
+    '@pascal-app/nodes',
     '@pascal-app/plugin-pool',
     '@pascal-app/plugin-streetscape',
     '@pascal-app/plugin-trees',

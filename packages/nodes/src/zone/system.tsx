@@ -1,5 +1,5 @@
 'use client'
 
-import { ZoneSystem } from '@pascal-app/viewer'
+import { ZoneSystem } from '@intersign/viewer'
 
 export default ZoneSystem

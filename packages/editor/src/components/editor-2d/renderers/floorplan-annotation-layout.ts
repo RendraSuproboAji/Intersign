@@ -1,4 +1,4 @@
-import type { FloorplanGeometry } from '@pascal-app/core'
+import type { FloorplanGeometry } from '@intersign/core'
 import { readFloorplanGeometryMetadata } from '../../../lib/floorplan/floorplan-extension'
 
 export type AnnotationLabelRectangle = {

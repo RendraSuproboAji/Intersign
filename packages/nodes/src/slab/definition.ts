@@ -9,7 +9,7 @@ import {
   type SceneApi,
   type SlabNode as SlabNodeType,
   syncStairRises,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   clearStructuralElevationGuide,
   DRAFTING_SURFACE_EXTENSION_KEY,
@@ -17,7 +17,7 @@ import {
   type FloorplanNodeExtension,
   publishStructuralElevationGuide,
   resolveStructuralElevationSnap,
-} from '@pascal-app/editor'
+} from '@intersign/editor'
 import { polygonMeasurementFeatures } from '../shared/polygon-measurement'
 import { sameOutlineSurfaceCounterparts } from '../shared/surface-counterparts'
 import {

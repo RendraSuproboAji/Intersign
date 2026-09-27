@@ -1,6 +1,6 @@
+import type { SceneGraph } from '@intersign/core/clone-scene-graph'
+import { AnyNode } from '@intersign/core/schema'
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
-import type { SceneGraph } from '@pascal-app/core/clone-scene-graph'
-import { AnyNode } from '@pascal-app/core/schema'
 import { z } from 'zod'
 import type { SceneOperations } from '../../operations'
 import { SceneVersionConflictError } from '../../storage/types'

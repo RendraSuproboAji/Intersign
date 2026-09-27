@@ -1,4 +1,4 @@
-import type { PaintCapability } from '@pascal-app/core'
+import type { PaintCapability } from '@intersign/core'
 import { surfacePaintCapability } from '../shared/surface-paint'
 
 export const gutterPaint: PaintCapability = {

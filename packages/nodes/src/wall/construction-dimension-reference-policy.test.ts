@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test'
-import { type AnyNode, WallNode, type WallNode as WallNodeType } from '@pascal-app/core'
+import { type AnyNode, WallNode, type WallNode as WallNodeType } from '@intersign/core'
 import { constructionDimensionStandard } from '../shared/construction-dimension-standards'
 import {
   buildLevelWallConstructionDimensionPlan,

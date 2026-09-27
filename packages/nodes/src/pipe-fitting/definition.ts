@@ -1,5 +1,5 @@
-import type { NodeDefinition } from '@pascal-app/core'
-import { useScene } from '@pascal-app/core'
+import type { NodeDefinition } from '@intersign/core'
+import { useScene } from '@intersign/core'
 import { getRotationAxis, rotateEulerWorld } from '../shared/fitting-rotation'
 import { pipeFittingToolOptions } from '../shared/fitting-tool-options'
 import { pipeFittingQuickActions } from '../shared/mep-fitting-actions'

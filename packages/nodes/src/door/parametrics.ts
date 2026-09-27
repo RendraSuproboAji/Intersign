@@ -1,4 +1,4 @@
-import type { ParametricDescriptor } from '@pascal-app/core'
+import type { ParametricDescriptor } from '@intersign/core'
 import type { DoorNode } from './schema'
 
 /**

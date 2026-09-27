@@ -1,7 +1,7 @@
 'use client'
 
-import { emitter, type SnapshotSavedEvent } from '@pascal-app/core'
-import { SNAPSHOT_MAX_EDGE } from '@pascal-app/viewer'
+import { emitter, type SnapshotSavedEvent } from '@intersign/core'
+import { SNAPSHOT_MAX_EDGE } from '@intersign/viewer'
 import {
   Check,
   Crop,

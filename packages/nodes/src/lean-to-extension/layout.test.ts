@@ -7,7 +7,7 @@ import {
   LeanToExtensionNode,
   RoofNode,
   WallNode,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   resolveLeanToEdgeSnapTargets,
   resolveLeanToLayout,

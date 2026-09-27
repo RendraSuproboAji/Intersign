@@ -1,4 +1,4 @@
-import type { AnyNode, AnyNodeId, HandleDescriptor, SceneApi } from '@pascal-app/core'
+import type { AnyNode, AnyNodeId, HandleDescriptor, SceneApi } from '@intersign/core'
 import { hostedChildUpdates, planHostedEdit, withHostedChildren } from '../shared/hosted-resize'
 
 const policy = {

@@ -6,7 +6,7 @@ import {
   getAngleToSegmentReference,
   type SegmentAngleReference,
   type WallPlanPoint,
-} from '@pascal-app/editor'
+} from '@intersign/editor'
 import { useMemo } from 'react'
 import { BufferGeometry, Vector3 } from 'three'
 

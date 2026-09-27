@@ -1,6 +1,6 @@
+import { resolveCeilingHeight } from '@intersign/core'
+import type { AnyNode, AnyNodeId } from '@intersign/core/schema'
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
-import { resolveCeilingHeight } from '@pascal-app/core'
-import type { AnyNode, AnyNodeId } from '@pascal-app/core/schema'
 import { z } from 'zod'
 import type { SceneOperations } from '../operations'
 import { READ_ONLY_TOOL_ANNOTATIONS } from './annotations'

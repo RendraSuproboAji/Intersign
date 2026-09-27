@@ -13,8 +13,8 @@ import {
   isCurvedWall,
   type WallMiterData,
   type WallNode,
-} from '@pascal-app/core'
-import { floorplanGeometryMetadata, readFloorplanContext } from '@pascal-app/editor'
+} from '@intersign/core'
+import { floorplanGeometryMetadata, readFloorplanContext } from '@intersign/editor'
 import { constructionDimensionStandard } from '../shared/construction-dimension-standards'
 import {
   buildCurvedWallConstructionDimensions,

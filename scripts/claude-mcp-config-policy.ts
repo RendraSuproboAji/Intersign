@@ -12,51 +12,53 @@ function hasExactKeys(value: Record<string, unknown>, expected: readonly string[
 }
 
 export const hostedMcpUrl = 'https://editor.pascal.app/api/mcp'
-export const hostedApiKeyOption = 'pascal_api_key'
+export const hostedApiKeyOption = 'intersign_api_key'
 export const hostedAuthorizationHeader = `Bearer \${user_config.${hostedApiKeyOption}}`
 
 function validateLocalServer(server: unknown, failures: string[]): void {
   if (!isRecord(server) || !hasExactKeys(server, ['type', 'command', 'args'])) {
     failures.push(
-      'skills/.mcp.json pascal server must contain only type, command, and args; remote or credential fields are not allowed',
+      'skills/.mcp.json intersign server must contain only type, command, and args; remote or credential fields are not allowed',
     )
     return
   }
 
-  if (server.type !== 'stdio') failures.push('skills/.mcp.json pascal server type must be stdio')
-  if (server.command !== 'pascal')
-    failures.push('skills/.mcp.json pascal server command must be pascal')
+  if (server.type !== 'stdio') failures.push('skills/.mcp.json intersign server type must be stdio')
+  if (server.command !== 'intersign')
+    failures.push('skills/.mcp.json intersign server command must be intersign')
   if (
     !Array.isArray(server.args) ||
     server.args.length !== 2 ||
     server.args[0] !== 'mcp' ||
     server.args[1] !== 'connect'
   ) {
-    failures.push('skills/.mcp.json pascal server args must be exactly ["mcp", "connect"]')
+    failures.push('skills/.mcp.json intersign server args must be exactly ["mcp", "connect"]')
   }
 }
 
 function validateHostedServer(server: unknown, failures: string[]): void {
   if (!isRecord(server) || !hasExactKeys(server, ['type', 'url', 'headers'])) {
-    failures.push('skills/.mcp.json pascal-hosted server must contain only type, url, and headers')
+    failures.push(
+      'skills/.mcp.json intersign-hosted server must contain only type, url, and headers',
+    )
     return
   }
 
   if (server.type !== 'http')
-    failures.push('skills/.mcp.json pascal-hosted server type must be http')
+    failures.push('skills/.mcp.json intersign-hosted server type must be http')
   if (server.url !== hostedMcpUrl)
-    failures.push(`skills/.mcp.json pascal-hosted server url must be ${hostedMcpUrl}`)
+    failures.push(`skills/.mcp.json intersign-hosted server url must be ${hostedMcpUrl}`)
 
   const headers = server.headers
   if (!isRecord(headers) || !hasExactKeys(headers, ['Authorization'])) {
-    failures.push('skills/.mcp.json pascal-hosted server must send only an Authorization header')
+    failures.push('skills/.mcp.json intersign-hosted server must send only an Authorization header')
     return
   }
   // The header must stay a ${user_config.*} reference. A literal token here would publish a
   // credential in the installed plugin source instead of resolving it from the host's secret store.
   if (headers.Authorization !== hostedAuthorizationHeader) {
     failures.push(
-      `skills/.mcp.json pascal-hosted Authorization header must be exactly "${hostedAuthorizationHeader}"`,
+      `skills/.mcp.json intersign-hosted Authorization header must be exactly "${hostedAuthorizationHeader}"`,
     )
   }
 }
@@ -104,12 +106,12 @@ export function validateClaudeMcpPolicy(
   }
 
   const servers = config.mcpServers
-  if (!isRecord(servers) || !hasExactKeys(servers, ['pascal', 'pascal-hosted'])) {
-    return ['skills/.mcp.json must declare exactly the pascal and pascal-hosted servers']
+  if (!isRecord(servers) || !hasExactKeys(servers, ['intersign', 'intersign-hosted'])) {
+    return ['skills/.mcp.json must declare exactly the intersign and intersign-hosted servers']
   }
 
-  validateLocalServer(servers.pascal, failures)
-  validateHostedServer(servers['pascal-hosted'], failures)
+  validateLocalServer(servers.intersign, failures)
+  validateHostedServer(servers['intersign-hosted'], failures)
 
   if (!isRecord(pluginManifest)) {
     failures.push('Claude plugin manifest must be an object')

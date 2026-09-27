@@ -1,4 +1,4 @@
-import { initializeGpuRenderer } from '@pascal-app/viewer'
+import { initializeGpuRenderer } from '@intersign/viewer'
 import type * as THREE from 'three'
 import { texture as textureNode, uv } from 'three/tsl'
 import { CanvasTexture, NodeMaterial, QuadMesh, WebGPURenderer } from 'three/webgpu'

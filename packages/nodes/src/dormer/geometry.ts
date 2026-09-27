@@ -4,7 +4,7 @@ import {
   getRoofModuleFaces,
   getRoofShapeRatios,
   ROOF_SHAPE_DEFAULTS,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import * as THREE from 'three'
 
 /**

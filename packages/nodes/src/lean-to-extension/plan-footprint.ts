@@ -1,4 +1,4 @@
-import type { LeanToExtensionNode, WallNode } from '@pascal-app/core'
+import type { LeanToExtensionNode, WallNode } from '@intersign/core'
 import { bendLocalPoint, isCurvedLeanTo } from './arc'
 import { leanToWallLocalPose, resolveLeanToLayout } from './layout'
 

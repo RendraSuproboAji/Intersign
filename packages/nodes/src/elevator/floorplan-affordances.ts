@@ -4,8 +4,8 @@ import {
   type FloorplanAffordance,
   useLiveNodeOverrides,
   useScene,
-} from '@pascal-app/core'
-import { isAngleSnapActive } from '@pascal-app/editor'
+} from '@intersign/core'
+import { isAngleSnapActive } from '@intersign/editor'
 import { rotateAffordanceDelta } from '../shared/rotate-affordance'
 
 const MIN_ELEVATOR_DIM = 0.6

@@ -1,9 +1,9 @@
 import { expect, mock, test } from 'bun:test'
-import * as core from '@pascal-app/core'
+import * as core from '@intersign/core'
 
 const saveAsset = mock(async () => 'asset://stored-scan')
 
-mock.module('@pascal-app/core', () => ({ ...core, saveAsset }))
+mock.module('@intersign/core', () => ({ ...core, saveAsset }))
 
 const { createLocalScan } = await import('./local-guide-image')
 

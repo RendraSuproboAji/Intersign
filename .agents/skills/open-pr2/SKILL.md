@@ -1,6 +1,6 @@
 ---
 name: open-pr2
-description: Open or update a pull request on pascalorg/editor with a plain-language issue-and-fix description based on the full branch diff. Use only when the user explicitly asks for OpenPR2 or /open-pr2.
+description: Open or update a pull request on RendraSuproboAji/Intersign with a plain-language issue-and-fix description based on the full branch diff. Use only when the user explicitly asks for OpenPR2 or /open-pr2.
 metadata:
   internal: true
 disable-model-invocation: true
@@ -9,7 +9,7 @@ allowed-tools: Bash(git *) Bash(gh *) Bash(bun *) Read
 
 # OpenPR2
 
-Open or update a pull request against `pascalorg/editor` from the current branch. Keep the repository's PR template, but write the body like one developer explaining the change to another.
+Open or update a pull request against `RendraSuproboAji/Intersign` from the current branch. Keep the repository's PR template, but write the body like one developer explaining the change to another.
 
 ## 1. Pre-flight
 

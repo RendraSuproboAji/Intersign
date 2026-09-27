@@ -5,7 +5,7 @@ import { join, resolve } from 'node:path'
 import { Client } from '@modelcontextprotocol/sdk/client/index.js'
 import { InMemoryTransport } from '@modelcontextprotocol/sdk/inMemory.js'
 import { SceneBridge } from '../bridge/scene-bridge'
-import { createPascalMcpServer } from '../server'
+import { createIntersignMcpServer } from '../server'
 import { SqliteSceneStore } from '../storage/sqlite-scene-store'
 
 const TOOL_POLICIES = [
@@ -130,9 +130,9 @@ describe('MCP tool annotations', () => {
     const bridge = new SceneBridge()
     bridge.setScene({}, [])
     bridge.loadDefault()
-    const directory = mkdtempSync(join(tmpdir(), 'pascal-mcp-annotations-'))
-    const store = new SqliteSceneStore({ databasePath: join(directory, 'pascal.db') })
-    const server = createPascalMcpServer({ bridge, store })
+    const directory = mkdtempSync(join(tmpdir(), 'intersign-mcp-annotations-'))
+    const store = new SqliteSceneStore({ databasePath: join(directory, 'intersign.db') })
+    const server = createIntersignMcpServer({ bridge, store })
     const [serverTransport, clientTransport] = InMemoryTransport.createLinkedPair()
     const client = new Client({ name: 'annotation-test-client', version: '0.0.0' })
     await Promise.all([server.connect(serverTransport), client.connect(clientTransport)])

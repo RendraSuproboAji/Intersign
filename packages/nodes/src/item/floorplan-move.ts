@@ -20,14 +20,14 @@ import {
   surfaceRegionContainsPoint,
   useLiveNodeOverrides,
   useScene,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   boundsOf,
   boxCorners,
   composeFrames,
   frame,
   transformPoint,
-} from '@pascal-app/core/procedural-items'
+} from '@intersign/core/procedural-items'
 import {
   applyFloorplanAlignment,
   isGridSnapActive,
@@ -38,7 +38,7 @@ import {
   useEditor,
   useInteractionScope,
   type WallPlanPoint,
-} from '@pascal-app/editor'
+} from '@intersign/editor'
 import { createFloorplanCursorResolver } from '../shared/floorplan-cursor'
 import { restingNodePlanFrame } from '../shared/resting-surface-plan'
 import { findClosestWallInPlan, snapLocalXToNeighbors } from '../shared/wall-attach-target'

@@ -14,7 +14,7 @@
  * Same hazard and same countermeasures as
  * `packages/nodes/src/shared/floor-placement.ts` (`stopPlacementCommitPropagation`)
  * and the `committed` flag in `move-registry-node-tool.tsx` — reimplemented
- * here because `@pascal-app/editor` cannot depend on `@pascal-app/nodes`.
+ * here because `@intersign/editor` cannot depend on `@intersign/nodes`.
  */
 
 export type StairCommitGate = {

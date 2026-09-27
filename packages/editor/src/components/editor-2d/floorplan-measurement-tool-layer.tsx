@@ -17,8 +17,8 @@ import {
   measurementPrismVolume,
   nodeRegistry,
   useScene,
-} from '@pascal-app/core'
-import { useViewer } from '@pascal-app/viewer'
+} from '@intersign/core'
+import { useViewer } from '@intersign/viewer'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { measurementPolygonLabelAnchor } from '../../lib/measurement-label'
 import {

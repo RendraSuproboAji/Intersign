@@ -4,7 +4,7 @@ import type {
   FloorPlacedFootprint,
   StairNode,
   StairSegmentNode,
-} from '@pascal-app/core'
+} from '@intersign/core'
 
 type SegmentTransform = {
   position: [number, number, number]

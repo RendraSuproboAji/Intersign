@@ -1,15 +1,15 @@
 {
   "mcpServers": {
-    "pascal": {
+    "intersign": {
       "type": "stdio",
-      "command": "pascal",
+      "command": "intersign",
       "args": ["mcp", "connect"]
     },
-    "pascal-hosted": {
+    "intersign-hosted": {
       "type": "http",
       "url": "https://editor.pascal.app/api/mcp",
       "headers": {
-        "Authorization": "Bearer ${user_config.pascal_api_key}"
+        "Authorization": "Bearer ${user_config.intersign_api_key}"
       }
     }
   }

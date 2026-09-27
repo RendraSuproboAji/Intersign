@@ -16,7 +16,7 @@ import {
   measurementPrismVolume,
   sceneRegistry,
   useScene,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   buildMeasurementAngleArcPoints,
   commitMeasurementDraft,
@@ -44,8 +44,8 @@ import {
   useEditor,
   useInteractionScope,
   useMeasurementDraft,
-} from '@pascal-app/editor'
-import { setSurfaceRaycastLayers, useViewer } from '@pascal-app/viewer'
+} from '@intersign/editor'
+import { setSurfaceRaycastLayers, useViewer } from '@intersign/viewer'
 import { Html } from '@react-three/drei'
 import { useFrame, useThree } from '@react-three/fiber'
 import { type FC, useEffect, useMemo, useRef, useState } from 'react'

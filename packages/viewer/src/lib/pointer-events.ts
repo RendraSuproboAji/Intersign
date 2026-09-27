@@ -98,7 +98,7 @@ export function choosePointerEvents(
 ): typeof createWebEvents {
   return process.env.NODE_ENV !== 'production' && new URLSearchParams(search).has('stockEvents')
     ? createWebEvents
-    : createPascalPointerEvents
+    : createIntersignPointerEvents
 }
 
 function querySnapshot(raycaster: THREE.Raycaster): unknown[] | undefined {
@@ -276,7 +276,7 @@ function createCachedRaycast() {
   }
 }
 
-export function createPascalPointerEvents(store: RootStore): EventManager<HTMLElement> {
+export function createIntersignPointerEvents(store: RootStore): EventManager<HTMLElement> {
   const manager = createWebEvents(store)
   const { handlePointer } = createEvents(store)
   for (const name of Object.keys(manager.handlers!) as (keyof Events)[]) {

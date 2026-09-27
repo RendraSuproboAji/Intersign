@@ -9,7 +9,7 @@ import {
   type SceneMaterial,
   type SceneMaterialId,
   type SurfaceRole,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import { addAfterEffect, invalidate } from '@react-three/fiber'
 import * as THREE from 'three'
 import { float, mix, positionViewDirection, transformedNormalView } from 'three/tsl'
@@ -18,7 +18,7 @@ import { MeshLambertNodeMaterial, MeshStandardNodeMaterial } from 'three/webgpu'
 import { resolveCdnUrl } from './asset-url'
 import { isKtx2Url, ktx2Loader, whenKtx2Ready } from './ktx2-loader'
 import { getSceneTheme } from './scene-themes'
-import { stampPascalTextureRef } from './texture-reference'
+import { stampIntersignTextureRef } from './texture-reference'
 
 export type RenderShading = 'solid' | 'rendered'
 export type ColorPreset = 'clay' | 'white' | 'mono' | 'blueprint'
@@ -94,7 +94,7 @@ export const glassMaterial = new MeshLambertNodeMaterial({
   opacity: 0.35,
   side: THREE.FrontSide,
 })
-glassMaterial.userData.__pascalCachedMaterial = true
+glassMaterial.userData.__intersignCachedMaterial = true
 
 function resolveNodeMaterialSide(side: THREE.Side): THREE.Side {
   return side === THREE.DoubleSide ? THREE.FrontSide : side
@@ -231,7 +231,7 @@ function getTexture(material?: MaterialSchema): THREE.Texture | undefined {
   texture.repeat.set(repeatX, repeatY)
   texture.updateMatrix()
   texture.colorSpace = THREE.SRGBColorSpace
-  stampPascalTextureRef(texture, {
+  stampIntersignTextureRef(texture, {
     kind: 'project-asset',
     src: resolvedUrl,
     slot: 'map',
@@ -273,7 +273,7 @@ function applyTextureProperties(
 }
 
 function setTextureCacheKey(texture: THREE.Texture, cacheKey: string): THREE.Texture {
-  texture.userData.pascalTextureCacheKey = cacheKey
+  texture.userData.intersignTextureCacheKey = cacheKey
   return texture
 }
 
@@ -297,7 +297,7 @@ function getPresetTexture(
 
   const texture = pickTextureLoader(resolvedPath).load(resolvedPath)
   applyTextureProperties(texture, props, slot)
-  stampPascalTextureRef(texture, {
+  stampIntersignTextureRef(texture, {
     kind: 'material',
     src: resolvedPath,
     slot: slot ?? 'map',
@@ -313,7 +313,7 @@ function createAssignedTexture(
   slot?: TextureSlot,
 ): THREE.Texture {
   const texture = source.clone()
-  const cacheKey = source.userData.pascalTextureCacheKey
+  const cacheKey = source.userData.intersignTextureCacheKey
   if (typeof cacheKey === 'string') {
     setTextureCacheKey(texture, cacheKey)
   }
@@ -357,7 +357,7 @@ async function loadPresetTexture(
   const promise = load
     .then((texture) => {
       applyTextureProperties(texture, props, slot)
-      stampPascalTextureRef(texture, {
+      stampIntersignTextureRef(texture, {
         kind: 'material',
         src: resolvedPath,
         slot: slot ?? 'map',
@@ -400,7 +400,7 @@ function queueTextureAssignment(
   const resolvedPath = resolveCdnUrl(path) ?? path
   const cacheKey = getPresetTextureCacheKey(resolvedPath, props, slot)
 
-  if (textureMaterial[slot]?.userData.pascalTextureCacheKey === cacheKey) {
+  if (textureMaterial[slot]?.userData.intersignTextureCacheKey === cacheKey) {
     applyTextureProperties(textureMaterial[slot], props, slot)
     return
   }
@@ -543,7 +543,7 @@ export function createMaterialFromPreset(
     shading === 'solid' ? new MeshLambertNodeMaterial() : new MeshStandardNodeMaterial()
   applyMaterialPresetToMaterials(material, preset)
   maybeApplyGlassFresnel(material)
-  material.userData.__pascalCachedMaterial = true
+  material.userData.__intersignCachedMaterial = true
   materialCache.set(cacheKey, material)
   return material
 }
@@ -594,7 +594,7 @@ export function createMaterial(
         })
 
   maybeApplyGlassFresnel(threeMaterial)
-  threeMaterial.userData.__pascalCachedMaterial = true
+  threeMaterial.userData.__intersignCachedMaterial = true
   materialCache.set(cacheKey, threeMaterial)
   return threeMaterial
 }
@@ -683,7 +683,7 @@ function cachedDefaultMaterial(
   if (cached) return cached
 
   const material = createDefaultMaterial(color, roughness, shading, side)
-  material.userData.__pascalCachedMaterial = true
+  material.userData.__intersignCachedMaterial = true
   defaultMaterialCache.set(cacheKey, material)
   return material
 }
@@ -720,7 +720,7 @@ export function createSurfaceRoleMaterial(
           side: resolvedSide,
         })
 
-  material.userData.__pascalCachedMaterial = true
+  material.userData.__intersignCachedMaterial = true
   surfaceRoleMaterialCache.set(cacheKey, material)
   return material
 }

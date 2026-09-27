@@ -10,8 +10,8 @@ import {
   type NodeCategory,
   nodeRegistry,
   registerNode,
-} from '@pascal-app/core'
-import { useViewer } from '@pascal-app/viewer'
+} from '@intersign/core'
+import { useViewer } from '@intersign/viewer'
 import PDFDocument from 'pdfkit'
 import { z } from 'zod'
 import { splitFloorplanOverlay } from '../../components/editor-2d/renderers/floorplan-registry-layer'

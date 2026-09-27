@@ -4,7 +4,8 @@ import { NextResponse } from 'next/server'
 const DEFAULT_RATE_LIMIT_PER_MINUTE = 120
 const WINDOW_MS = 60_000
 const ALLOWED_METHODS = 'GET, POST, PUT, PATCH, DELETE, OPTIONS'
-const ALLOWED_HEADERS = 'authorization, content-type, if-match, last-event-id, x-pascal-scene-token'
+const ALLOWED_HEADERS =
+  'authorization, content-type, if-match, last-event-id, x-intersign-scene-token'
 
 type RateBucket = {
   resetAt: number
@@ -63,13 +64,13 @@ function validateOrigin(request: Request): NextResponse | null {
 }
 
 function validateAuth(request: Request): NextResponse | null {
-  const token = process.env.PASCAL_SCENE_API_TOKEN
+  const token = process.env.INTERSIGN_SCENE_API_TOKEN
   if (!token) {
     if (isLoopbackRequest(request)) return null
     return sceneApiJson(request, { error: 'scene_api_token_required' }, { status: 503 })
   }
 
-  const supplied = bearerToken(request) ?? request.headers.get('x-pascal-scene-token')
+  const supplied = bearerToken(request) ?? request.headers.get('x-intersign-scene-token')
   if (supplied && safeEqual(supplied, token)) return null
   return sceneApiJson(request, { error: 'unauthorized' }, { status: 401 })
 }
@@ -110,7 +111,7 @@ function safeEqual(a: string, b: string): boolean {
 }
 
 function rateLimitPerMinute(): number {
-  const raw = process.env.PASCAL_SCENE_API_RATE_LIMIT
+  const raw = process.env.INTERSIGN_SCENE_API_RATE_LIMIT
   if (!raw) return DEFAULT_RATE_LIMIT_PER_MINUTE
   const n = Number.parseInt(raw, 10)
   return Number.isFinite(n) ? n : DEFAULT_RATE_LIMIT_PER_MINUTE
@@ -131,7 +132,7 @@ function isOriginAllowed(request: Request, origin: string): boolean {
 }
 
 function configuredOrigins(): Set<string> {
-  const raw = process.env.PASCAL_SCENE_API_ORIGINS
+  const raw = process.env.INTERSIGN_SCENE_API_ORIGINS
   if (!raw) return new Set()
   return new Set(
     raw

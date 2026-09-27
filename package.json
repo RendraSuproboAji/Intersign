@@ -57,7 +57,8 @@
   "workspaces": [
     "apps/*",
     "packages/*",
-    "tooling/*"
+    "tooling/*",
+    "compat/*"
   ],
   "patchedDependencies": {
     "iwer@2.3.0": "patches/iwer@2.3.0.patch",

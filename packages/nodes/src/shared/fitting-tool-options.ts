@@ -1,5 +1,5 @@
-import type { ToolOption } from '@pascal-app/core'
-import { useEditor } from '@pascal-app/editor'
+import type { ToolOption } from '@intersign/core'
+import { useEditor } from '@intersign/editor'
 import { reducerOutletDiameter } from './reducer-size'
 
 const label = (value: string) =>

@@ -4,7 +4,7 @@ import {
   finitePoseFraction,
   motionTimeline,
   type ProceduralItemNode,
-} from '@pascal-app/core/procedural-items'
+} from '@intersign/core/procedural-items'
 import * as THREE from 'three'
 
 export function poseProceduralMotionsAtRest(

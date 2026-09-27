@@ -7,7 +7,7 @@ const repositoryRoot = resolve(import.meta.dir, '..')
 const canonicalPolicy = `${clawHubRequiredIgnorePatterns.join('\n')}\n`
 
 describe('ClawHub ignore policy', () => {
-  test.each(['pascal-3d', 'furniture-fit'])('%s uses the protected policy', (skillName) => {
+  test.each(['intersign-3d', 'furniture-fit'])('%s uses the protected policy', (skillName) => {
     const content = readFileSync(
       join(repositoryRoot, 'skills', skillName, '.clawhubignore'),
       'utf8',

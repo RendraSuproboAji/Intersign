@@ -10,7 +10,7 @@ export function isNpxInvocation(environment: NodeJS.ProcessEnv = process.env): b
   )
 }
 
-export async function installGlobalPascalCommand(
+export async function installGlobalIntersignCommand(
   packageVersion: string,
   runInstaller: Installer = runNpmInstaller,
 ): Promise<boolean> {
@@ -20,7 +20,7 @@ export async function installGlobalPascalCommand(
       'install',
       '--global',
       '--ignore-scripts',
-      `@pascal-app/cli@${packageVersion}`,
+      `@intersign/cli@${packageVersion}`,
     ])) === 0
   )
 }

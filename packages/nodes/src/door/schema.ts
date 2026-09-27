@@ -2,4 +2,4 @@ export {
   DoorNode,
   OpeningConstructionType,
   OpeningDimensionReference,
-} from '@pascal-app/core'
+} from '@intersign/core'

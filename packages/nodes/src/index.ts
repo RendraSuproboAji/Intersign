@@ -1,4 +1,4 @@
-import type { AnyNodeDefinition, Plugin } from '@pascal-app/core'
+import type { AnyNodeDefinition, Plugin } from '@intersign/core'
 import { blockDefinition } from './block/definition'
 import { boxVentDefinition } from './box-vent'
 import { buildingDefinition } from './building'
@@ -51,7 +51,7 @@ import { windowDefinition } from './window'
 import { zoneDefinition } from './zone'
 
 /**
- * Built-in plugin bundling every node kind shipped with the Pascal editor.
+ * Built-in plugin bundling every node kind shipped with the Intersign editor.
  *
  * Apps load this once at bootstrap (`loadPlugin(builtinPlugin)`) before
  * mounting the viewer. New built-in nodes are added by creating a folder
@@ -67,7 +67,7 @@ import { zoneDefinition } from './zone'
  * gone — every kind dispatches through the registry.
  */
 export const builtinPlugin: Plugin = {
-  id: 'pascal:core',
+  id: 'intersign:core',
   apiVersion: 1,
   nodes: [
     // Stage E-complete (full registry path)

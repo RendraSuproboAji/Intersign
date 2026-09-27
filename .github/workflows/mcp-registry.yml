@@ -45,7 +45,7 @@ jobs:
               "url": "https://editor.pascal.app/api/mcp",
               "headers": [{
                 "name": "Authorization",
-                "description": "Bearer API key created in Pascal Settings, formatted as Bearer sk_live_...",
+                "description": "Bearer API key created in Intersign Settings, formatted as Bearer sk_live_...",
                 "isRequired": true,
                 "isSecret": true
               }]

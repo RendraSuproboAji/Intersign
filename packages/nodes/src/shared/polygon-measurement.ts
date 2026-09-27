@@ -1,4 +1,4 @@
-import type { MeasurementFeature, MeasurementPoint } from '@pascal-app/core'
+import type { MeasurementFeature, MeasurementPoint } from '@intersign/core'
 
 type PolygonPoint = readonly [number, number]
 

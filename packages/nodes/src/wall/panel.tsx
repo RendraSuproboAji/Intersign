@@ -19,7 +19,7 @@ import {
   WALL_SKIRTING_DEFAULT,
   type WallNode,
   type WallTrimProfile,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   ActionButton,
   ActionGroup,
@@ -34,8 +34,8 @@ import {
   SliderControl,
   triggerSFX,
   useInteractionScope,
-} from '@pascal-app/editor'
-import { useViewer } from '@pascal-app/viewer'
+} from '@intersign/editor'
+import { useViewer } from '@intersign/viewer'
 import { Spline } from 'lucide-react'
 import { useCallback, useEffect, useMemo, useRef } from 'react'
 import { resolveWallOpeningCeiling } from '../shared/wall-opening-ceiling'

@@ -2,7 +2,7 @@ import { describe, expect, test } from 'bun:test'
 import type {
   ViewerPresentationConfiguration,
   ViewerPresentationContribution,
-} from '@pascal-app/viewer'
+} from '@intersign/viewer'
 import {
   createLocalProjectPresentationPersistence,
   getLocalProjectPresentationStorageKey,
@@ -231,7 +231,7 @@ describe('local project presentation persistence', () => {
 
   test('recovers corrupted presentation data without touching scene storage', () => {
     const storage = new MemoryStorage()
-    const sceneStorageKey = 'pascal-editor-scene'
+    const sceneStorageKey = 'intersign-editor-scene'
     const sceneData = '{"nodes":{"site":{"type":"site"}}}'
     storage.setItem(sceneStorageKey, sceneData)
     storage.setItem(getLocalProjectPresentationStorageKey('corrupted'), '{not-json')

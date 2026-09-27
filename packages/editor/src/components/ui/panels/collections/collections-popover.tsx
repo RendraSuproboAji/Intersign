@@ -1,7 +1,7 @@
 'use client'
 
-import type { AnyNodeId, Collection, CollectionId } from '@pascal-app/core'
-import { useScene } from '@pascal-app/core'
+import type { AnyNodeId, Collection, CollectionId } from '@intersign/core'
+import { useScene } from '@intersign/core'
 import {
   Check,
   ChevronDown,

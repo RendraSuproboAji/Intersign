@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test'
-import type { FloorplanGeometry } from '@pascal-app/core'
+import type { FloorplanGeometry } from '@intersign/core'
 import {
   clientToFloorplanPoint,
   getFloorplanBounds,

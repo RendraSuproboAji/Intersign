@@ -8,8 +8,8 @@ import {
   type SceneApi,
   surfaceRegionContainsPoint,
   useLiveNodeOverrides,
-} from '@pascal-app/core'
-import { attachmentBounds } from '@pascal-app/core/procedural-items'
+} from '@intersign/core'
+import { attachmentBounds } from '@intersign/core/procedural-items'
 import { Euler, Matrix4, Quaternion, Vector3 } from 'three'
 import { type HostedUpdate, hostedChildUpdates } from '../shared/hosted-resize'
 import { blockFaceHost } from './face-host'

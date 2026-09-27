@@ -5,8 +5,8 @@ import {
   useLiveNodeOverrides,
   useScene,
   WallNode,
-} from '@pascal-app/core'
-import { WallCutoutCache, type WallCutoutViewerState } from '@pascal-app/viewer'
+} from '@intersign/core'
+import { WallCutoutCache, type WallCutoutViewerState } from '@intersign/viewer'
 import { Mesh, PerspectiveCamera } from 'three'
 import { getCurtainAwareWallMaterials } from './curtain-wall-materials'
 

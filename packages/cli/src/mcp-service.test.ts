@@ -8,15 +8,15 @@ import {
   type McpServiceState,
   stopMcpService,
 } from './mcp-service.js'
-import { type PascalPaths, resolvePascalPaths } from './paths.js'
+import { type IntersignPaths, resolveIntersignPaths } from './paths.js'
 import { readActiveRuntime } from './runtime.js'
 import { writeFakeMcpService } from './test-support/fake-mcp-service.js'
 
 const roots: string[] = []
-const started: PascalPaths[] = []
+const started: IntersignPaths[] = []
 /** The MCP service ships with the CLI; the tests inject a stand-in for the bundled bundle. */
-const serviceRoot = await mkdtemp(path.join(os.tmpdir(), 'pascal-cli-mcp-service-'))
-process.env.PASCAL_MCP_SERVICE_PATH = await writeFakeMcpService(serviceRoot)
+const serviceRoot = await mkdtemp(path.join(os.tmpdir(), 'intersign-cli-mcp-service-'))
+process.env.INTERSIGN_MCP_SERVICE_PATH = await writeFakeMcpService(serviceRoot)
 
 afterEach(async () => {
   for (const paths of started.splice(0)) {
@@ -70,7 +70,7 @@ describe('managed MCP service', () => {
 
   test('keeps the recorded editor origin when the caller does not run the editor', async () => {
     const paths = await temporaryPaths()
-    const editorOrigin = 'http://pascal.localhost:41234'
+    const editorOrigin = 'http://intersign.localhost:41234'
     const first = await ensureMcpService({ paths, editorOrigin })
 
     const connected = await ensureMcpService({ paths })
@@ -83,14 +83,20 @@ describe('managed MCP service', () => {
 
   test('restarts with the new origin when the editor moves to another port', async () => {
     const paths = await temporaryPaths()
-    const first = await ensureMcpService({ paths, editorOrigin: 'http://pascal.localhost:41234' })
+    const first = await ensureMcpService({
+      paths,
+      editorOrigin: 'http://intersign.localhost:41234',
+    })
 
-    const moved = await ensureMcpService({ paths, editorOrigin: 'http://pascal.localhost:41235' })
+    const moved = await ensureMcpService({
+      paths,
+      editorOrigin: 'http://intersign.localhost:41235',
+    })
 
     expect(moved.alreadyRunning).toBe(false)
     expect(moved.state.pid).not.toBe(first.state.pid)
-    expect(moved.state.editorOrigin).toBe('http://pascal.localhost:41235')
-    expect(await reportedEditorOrigin(paths, moved.state)).toBe('http://pascal.localhost:41235')
+    expect(moved.state.editorOrigin).toBe('http://intersign.localhost:41235')
+    expect(await reportedEditorOrigin(paths, moved.state)).toBe('http://intersign.localhost:41235')
   })
 
   test('stops the service once and clears its state and token', async () => {
@@ -120,7 +126,7 @@ describe('managed MCP service', () => {
         url: 'http://127.0.0.1:1/mcp',
         version: '0.0.0',
         instanceId: 'not-the-service',
-        servicePath: path.join(serviceRoot, 'pascal-mcp.mjs'),
+        servicePath: path.join(serviceRoot, 'intersign-mcp.mjs'),
         editorOrigin: null,
         startedAt: new Date().toISOString(),
       }),
@@ -134,10 +140,10 @@ describe('managed MCP service', () => {
   })
 })
 
-async function temporaryPaths(tracked = true): Promise<PascalPaths> {
-  const root = await mkdtemp(path.join(os.tmpdir(), 'pascal-cli-mcp-test-'))
+async function temporaryPaths(tracked = true): Promise<IntersignPaths> {
+  const root = await mkdtemp(path.join(os.tmpdir(), 'intersign-cli-mcp-test-'))
   roots.push(root)
-  const paths = resolvePascalPaths({ PASCAL_HOME: path.join(root, 'home') })
+  const paths = resolveIntersignPaths({ INTERSIGN_HOME: path.join(root, 'home') })
   await mkdir(paths.run, { recursive: true, mode: 0o700 })
   if (tracked) started.push(paths)
   return paths
@@ -145,7 +151,7 @@ async function temporaryPaths(tracked = true): Promise<PascalPaths> {
 
 /** The stand-in service echoes the origin it was started with, proving the restart repointed it. */
 async function reportedEditorOrigin(
-  paths: PascalPaths,
+  paths: IntersignPaths,
   state: McpServiceState,
 ): Promise<string | null> {
   const token = (await readFile(paths.mcpToken, 'utf8')).trim()

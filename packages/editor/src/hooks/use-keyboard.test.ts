@@ -11,7 +11,7 @@ import {
   PipeFittingNode,
   PipeSegmentNode,
   useScene,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import { runRedo, runUndo } from '../lib/history'
 import { meshEditScope } from '../lib/interaction/scope'
 import useEditor from '../store/use-editor'

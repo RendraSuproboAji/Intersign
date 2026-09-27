@@ -1,6 +1,6 @@
 'use client'
 
-import { emitter, type GridEvent, LinesetNode, useScene } from '@pascal-app/core'
+import { emitter, type GridEvent, LinesetNode, useScene } from '@intersign/core'
 import {
   CursorSphere,
   DimensionPill,
@@ -12,8 +12,8 @@ import {
   triggerSFX,
   useEditor,
   usePathDraftPreview,
-} from '@pascal-app/editor'
-import { useViewer } from '@pascal-app/viewer'
+} from '@intersign/editor'
+import { useViewer } from '@intersign/viewer'
 import { Html } from '@react-three/drei'
 import { useEffect, useRef, useState } from 'react'
 import { type Group, Vector3 } from 'three'

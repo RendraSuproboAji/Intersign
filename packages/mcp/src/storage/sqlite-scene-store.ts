@@ -2,7 +2,7 @@ import { createHash } from 'node:crypto'
 import { mkdirSync } from 'node:fs'
 import * as os from 'node:os'
 import * as path from 'node:path'
-import type { SceneGraph } from '@pascal-app/core/clone-scene-graph'
+import type { SceneGraph } from '@intersign/core/clone-scene-graph'
 import { z } from 'zod'
 import { generateSlug, isValidSlug, sanitizeSlug } from './slug'
 import { openSqliteDatabase, type SqliteDatabase } from './sqlite-driver'
@@ -85,34 +85,34 @@ const GraphSchema = z.object({
 })
 
 /**
- * Resolves Pascal's local SQLite database path.
+ * Resolves Intersign's local SQLite database path.
  *
  * Precedence:
- * 1. `PASCAL_DB_PATH`
- * 2. `PASCAL_DATA_DIR/pascal.db`
- * 3. On Windows: `%APPDATA%/Pascal/data/pascal.db`
- * 4. `$XDG_DATA_HOME/pascal/data/pascal.db`
- * 5. `$HOME/.pascal/data/pascal.db`
+ * 1. `INTERSIGN_DB_PATH`
+ * 2. `INTERSIGN_DATA_DIR/intersign.db`
+ * 3. On Windows: `%APPDATA%/Intersign/data/intersign.db`
+ * 4. `$XDG_DATA_HOME/intersign/data/intersign.db`
+ * 5. `$HOME/.intersign/data/intersign.db`
  */
 export function resolveDefaultDatabasePath(env: NodeJS.ProcessEnv = process.env): string {
-  if (env.PASCAL_DB_PATH && env.PASCAL_DB_PATH.length > 0) {
-    return env.PASCAL_DB_PATH
+  if (env.INTERSIGN_DB_PATH && env.INTERSIGN_DB_PATH.length > 0) {
+    return env.INTERSIGN_DB_PATH
   }
-  if (env.PASCAL_DATA_DIR && env.PASCAL_DATA_DIR.length > 0) {
-    return path.join(env.PASCAL_DATA_DIR, 'pascal.db')
+  if (env.INTERSIGN_DATA_DIR && env.INTERSIGN_DATA_DIR.length > 0) {
+    return path.join(env.INTERSIGN_DATA_DIR, 'intersign.db')
   }
   if (process.platform === 'win32') {
     const appData = env.APPDATA
     if (appData && appData.length > 0) {
-      return path.join(appData, 'Pascal', 'data', 'pascal.db')
+      return path.join(appData, 'Intersign', 'data', 'intersign.db')
     }
-    return path.join(os.homedir(), '.pascal', 'data', 'pascal.db')
+    return path.join(os.homedir(), '.intersign', 'data', 'intersign.db')
   }
   const xdg = env.XDG_DATA_HOME
   if (xdg && xdg.length > 0) {
-    return path.join(xdg, 'pascal', 'data', 'pascal.db')
+    return path.join(xdg, 'intersign', 'data', 'intersign.db')
   }
-  return path.join(os.homedir(), '.pascal', 'data', 'pascal.db')
+  return path.join(os.homedir(), '.intersign', 'data', 'intersign.db')
 }
 
 function resolveMaxSceneBytes(
@@ -126,11 +126,11 @@ function resolveMaxSceneBytes(
     return explicit
   }
 
-  const raw = env?.PASCAL_MAX_SCENE_BYTES
+  const raw = env?.INTERSIGN_MAX_SCENE_BYTES
   if (raw === undefined || raw === '') return DEFAULT_MAX_SCENE_BYTES
   const parsed = Number.parseInt(raw, 10)
   if (!Number.isInteger(parsed) || parsed <= 0) {
-    throw new SceneInvalidError('PASCAL_MAX_SCENE_BYTES must be a positive integer')
+    throw new SceneInvalidError('INTERSIGN_MAX_SCENE_BYTES must be a positive integer')
   }
   return parsed
 }
@@ -156,7 +156,7 @@ function rowToMeta(row: SceneRow): SceneMeta {
 }
 
 function editorUrlForScene(id: string): string {
-  const origin = process.env.PASCAL_EDITOR_ORIGIN?.replace(/\/$/, '')
+  const origin = process.env.INTERSIGN_EDITOR_ORIGIN?.replace(/\/$/, '')
   return origin ? `${origin}/scene/${encodeURIComponent(id)}` : `/editor/${id}`
 }
 

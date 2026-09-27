@@ -1,6 +1,6 @@
 'use client'
 
-import { ActionButton } from '@pascal-app/editor'
+import { ActionButton } from '@intersign/editor'
 import { ArrowLeftRight } from 'lucide-react'
 import type { DuctFittingNode } from './schema'
 

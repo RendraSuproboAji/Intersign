@@ -14,7 +14,7 @@ import {
   sceneRegistry,
   type WallEvent,
   type WallNode,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   CursorSphere,
   EDITOR_LAYER,
@@ -25,7 +25,7 @@ import {
   useEditor,
   useInteractionScope,
   useRegistryToolContext,
-} from '@pascal-app/editor'
+} from '@intersign/editor'
 import { useEffect, useState } from 'react'
 import { Euler, Quaternion, Vector3 } from 'three'
 import { stopPlacementCommitPropagation } from '../shared/floor-placement'

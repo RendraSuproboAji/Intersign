@@ -6,12 +6,12 @@ import {
   type RoofNode as RoofNodeType,
   type RoofSegmentNode,
   type SceneApi,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   DRAFTING_SURFACE_EXTENSION_KEY,
   type DraftingSurfaceExtension,
   PANEL_MODEL_EXTENSION,
-} from '@pascal-app/editor'
+} from '@intersign/editor'
 import { buildRoofFloorplan } from './floorplan'
 import { roofPanelModel } from './panel-model'
 import { roofParametrics } from './parametrics'

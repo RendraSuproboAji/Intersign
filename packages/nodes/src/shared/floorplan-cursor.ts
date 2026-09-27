@@ -3,7 +3,7 @@ import {
   type PlanarCursorPlacementMode,
   type PlanarPoint,
   resolvePlanarCursorPosition,
-} from '@pascal-app/editor'
+} from '@intersign/editor'
 
 type FloorplanCursorResolverOptions = {
   snap?: (value: number) => number

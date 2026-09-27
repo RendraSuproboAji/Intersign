@@ -1,4 +1,4 @@
-import type { BlockTopology } from '@pascal-app/core'
+import type { BlockTopology } from '@intersign/core'
 
 export type BlockComponentMode = 'vertex' | 'edge' | 'face'
 

@@ -1,4 +1,4 @@
-import type { AnyNode, SlabNode } from '@pascal-app/core'
+import type { AnyNode, SlabNode } from '@intersign/core'
 import { createSlotPaintCapability, previewGeometrySlot } from '../shared/slot-paint'
 
 /**

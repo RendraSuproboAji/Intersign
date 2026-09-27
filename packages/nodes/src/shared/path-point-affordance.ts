@@ -7,8 +7,8 @@ import {
   type PortConnectivity,
   resolveConnectivityUpdates,
   useScene,
-} from '@pascal-app/core'
-import { isGridSnapActive, snapPointToGrid, type WallPlanPoint } from '@pascal-app/editor'
+} from '@intersign/core'
+import { isGridSnapActive, snapPointToGrid, type WallPlanPoint } from '@intersign/editor'
 import { planRunEndCapFollowUpdates } from './automatic-run-end-cap'
 import {
   detectFittingEndpoint,

@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, test } from 'bun:test'
-import { sceneRegistry } from '@pascal-app/core'
+import { sceneRegistry } from '@intersign/core'
 import { Group } from 'three'
 import { isWallMeshHidden, shouldIgnoreWallEventForOpeningMove } from './opening-move-wall-gate'
 

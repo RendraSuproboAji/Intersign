@@ -1,4 +1,4 @@
-import type { ElevatorNode, ParametricDescriptor } from '@pascal-app/core'
+import type { ElevatorNode, ParametricDescriptor } from '@intersign/core'
 
 export const elevatorParametrics: ParametricDescriptor<ElevatorNode> = {
   groups: [

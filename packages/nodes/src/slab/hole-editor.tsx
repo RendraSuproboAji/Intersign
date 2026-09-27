@@ -1,8 +1,8 @@
 'use client'
 
-import { resolveLevelId, type SlabNode, useLiveNodeOverrides, useScene } from '@pascal-app/core'
-import { PolygonEditor } from '@pascal-app/editor'
-import { useViewer } from '@pascal-app/viewer'
+import { resolveLevelId, type SlabNode, useLiveNodeOverrides, useScene } from '@intersign/core'
+import { PolygonEditor } from '@intersign/editor'
+import { useViewer } from '@intersign/viewer'
 import { useCallback, useEffect } from 'react'
 
 /**

@@ -9,7 +9,7 @@ import {
   resolveFenceSupportSlabPatch,
   useScene,
   type WallNode,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   type FencePlanPoint,
   isAlignmentGuideActive,
@@ -18,7 +18,7 @@ import {
   isSegmentLongEnough,
   snapFenceDraftPoint,
   useAlignmentGuides,
-} from '@pascal-app/editor'
+} from '@intersign/editor'
 
 /**
  * Phase 5 Stage D — move-fence-endpoint drag affordance.

@@ -1,7 +1,7 @@
 import type * as THREE from 'three'
 import { ASSETS_CDN_URL } from './asset-url'
 
-export type PascalTextureMap =
+export type IntersignTextureMap =
   | 'basecolor'
   | 'normal'
   | 'roughness'
@@ -9,20 +9,20 @@ export type PascalTextureMap =
   | 'height'
   | 'other'
 
-export type PascalTextureColorSpace = 'srgb' | 'linear'
+export type IntersignTextureColorSpace = 'srgb' | 'linear'
 
-type PascalTextureRefBase = {
+type IntersignTextureRefBase = {
   v: 1
   src: string
-  map: PascalTextureMap
-  colorSpace: PascalTextureColorSpace
+  map: IntersignTextureMap
+  colorSpace: IntersignTextureColorSpace
 }
 
-export type PascalTextureRef =
-  | (PascalTextureRefBase & {
+export type IntersignTextureRef =
+  | (IntersignTextureRefBase & {
       kind: 'library-material' | 'app-material' | 'project-asset'
     })
-  | (PascalTextureRefBase & {
+  | (IntersignTextureRefBase & {
       kind: 'item-glb'
       imageIndex: number
     })
@@ -34,7 +34,7 @@ const STORAGE_BUCKET_BY_KIND = {
 } as const
 
 let cachedStorageOrigin: string | null | undefined
-function pascalStorageOrigin(): string | null {
+function intersignStorageOrigin(): string | null {
   if (cachedStorageOrigin !== undefined) return cachedStorageOrigin
   try {
     const url = process.env.NEXT_PUBLIC_SUPABASE_URL
@@ -57,7 +57,7 @@ function isAppMaterialUrl(src: string): boolean {
   }
 }
 
-const TEXTURE_MAPS = new Set<PascalTextureMap>([
+const TEXTURE_MAPS = new Set<IntersignTextureMap>([
   'basecolor',
   'normal',
   'roughness',
@@ -66,8 +66,8 @@ const TEXTURE_MAPS = new Set<PascalTextureMap>([
   'other',
 ])
 
-function isPascalStorageUrl(src: string, kind: keyof typeof STORAGE_BUCKET_BY_KIND): boolean {
-  const origin = pascalStorageOrigin()
+function isIntersignStorageUrl(src: string, kind: keyof typeof STORAGE_BUCKET_BY_KIND): boolean {
+  const origin = intersignStorageOrigin()
   if (!origin) return false
   try {
     const url = new URL(src)
@@ -78,7 +78,7 @@ function isPascalStorageUrl(src: string, kind: keyof typeof STORAGE_BUCKET_BY_KI
   }
 }
 
-export function textureMapForSlot(slot: string): PascalTextureMap {
+export function textureMapForSlot(slot: string): IntersignTextureMap {
   switch (slot) {
     case 'map':
       return 'basecolor'
@@ -96,11 +96,11 @@ export function textureMapForSlot(slot: string): PascalTextureMap {
   }
 }
 
-function textureColorSpace(texture: THREE.Texture): PascalTextureColorSpace {
+function textureColorSpace(texture: THREE.Texture): IntersignTextureColorSpace {
   return texture.colorSpace === 'srgb' ? 'srgb' : 'linear'
 }
 
-export function stampPascalTextureRef(
+export function stampIntersignTextureRef(
   texture: THREE.Texture,
   input:
     | {
@@ -116,7 +116,7 @@ export function stampPascalTextureRef(
         slot: string
         imageIndex: number
       },
-): PascalTextureRef | null {
+): IntersignTextureRef | null {
   const base = {
     v: 1 as const,
     src: input.src,
@@ -124,31 +124,31 @@ export function stampPascalTextureRef(
     colorSpace: textureColorSpace(texture),
   }
 
-  let ref: PascalTextureRef
+  let ref: IntersignTextureRef
   if (input.kind === 'item-glb') {
-    if (!isPascalStorageUrl(input.src, 'item-glb')) return null
+    if (!isIntersignStorageUrl(input.src, 'item-glb')) return null
     if (!Number.isInteger(input.imageIndex) || input.imageIndex < 0) return null
     ref = { ...base, kind: 'item-glb', imageIndex: input.imageIndex }
   } else {
     const kind =
       input.kind === 'material'
-        ? isPascalStorageUrl(input.src, 'library-material')
+        ? isIntersignStorageUrl(input.src, 'library-material')
           ? 'library-material'
           : isAppMaterialUrl(input.src)
             ? 'app-material'
             : null
-        : isPascalStorageUrl(input.src, 'project-asset')
+        : isIntersignStorageUrl(input.src, 'project-asset')
           ? 'project-asset'
           : null
     if (!kind) return null
     ref = { ...base, kind }
   }
-  texture.userData.pascalTextureRef = ref
+  texture.userData.intersignTextureRef = ref
   return ref
 }
 
-export function getPascalTextureRef(texture: THREE.Texture): PascalTextureRef | null {
-  const raw = texture.userData.pascalTextureRef
+export function getIntersignTextureRef(texture: THREE.Texture): IntersignTextureRef | null {
+  const raw = texture.userData.intersignTextureRef
   if (!raw || typeof raw !== 'object') return null
 
   const candidate = raw as Record<string, unknown>
@@ -162,18 +162,18 @@ export function getPascalTextureRef(texture: THREE.Texture): PascalTextureRef | 
     typeof candidate.src !== 'string' ||
     !(kind === 'app-material'
       ? isAppMaterialUrl(candidate.src)
-      : isPascalStorageUrl(candidate.src, kind)) ||
+      : isIntersignStorageUrl(candidate.src, kind)) ||
     typeof candidate.map !== 'string' ||
-    !TEXTURE_MAPS.has(candidate.map as PascalTextureMap) ||
+    !TEXTURE_MAPS.has(candidate.map as IntersignTextureMap) ||
     (candidate.colorSpace !== 'srgb' && candidate.colorSpace !== 'linear')
   ) {
     return null
   }
 
-  const base: PascalTextureRefBase = {
+  const base: IntersignTextureRefBase = {
     v: 1,
     src: candidate.src,
-    map: candidate.map as PascalTextureMap,
+    map: candidate.map as IntersignTextureMap,
     colorSpace: candidate.colorSpace,
   }
   if (kind === 'item-glb') {

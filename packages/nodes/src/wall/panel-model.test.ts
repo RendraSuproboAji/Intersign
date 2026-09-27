@@ -6,7 +6,7 @@ import {
   getWallCurveLength,
   getWallEffectiveHeightForNodes,
   WallNode,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import { wallSettings } from './panel-model'
 
 function fixture() {

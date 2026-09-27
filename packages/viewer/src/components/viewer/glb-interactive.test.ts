@@ -1,6 +1,6 @@
 import { expect, test } from 'bun:test'
-import { type AnyNodeId, type SceneGraph, useInteractive } from '@pascal-app/core'
-import type { EvaluatedLight } from '@pascal-app/core/procedural-items'
+import { type AnyNodeId, type SceneGraph, useInteractive } from '@intersign/core'
+import type { EvaluatedLight } from '@intersign/core/procedural-items'
 import { Group, Vector3 } from 'three'
 import chandelier from '../../../../core/src/procedural-items/__fixtures__/chandelier_six_arms.json'
 import {

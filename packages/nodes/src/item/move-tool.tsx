@@ -6,14 +6,14 @@ import {
   canHostSurfaceChild,
   type ItemNode,
   useScene,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   type PlacementState,
   triggerSFX,
   useDraftNode,
   useEditor,
   usePlacementCoordinator,
-} from '@pascal-app/editor'
+} from '@intersign/editor'
 import { useMemo } from 'react'
 import { Vector3 } from 'three'
 
@@ -37,7 +37,7 @@ import { Vector3 } from 'three'
  * time.
  *
  * Placement primitives (`useDraftNode`, `usePlacementCoordinator`,
- * `PlacementState`) are re-exported from `@pascal-app/editor` — same
+ * `PlacementState`) are re-exported from `@intersign/editor` — same
  * hooks the legacy code used. When `ItemTool` (item placement, not
  * move) also ports to `def.tool`, the primitives can be inlined here
  * and dropped from editor.

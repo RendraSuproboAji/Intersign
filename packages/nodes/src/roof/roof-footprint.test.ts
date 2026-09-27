@@ -6,7 +6,7 @@ import {
   resolveRoomRoofFootprint,
   type WallEvent,
   WallNode,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   isStandardRoofWallEligible,
   parseRoofFootprintSource,

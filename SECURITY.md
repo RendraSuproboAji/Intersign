@@ -4,10 +4,9 @@
 
 Please do not open a public issue, pull request, or discussion for a security problem.
 
-Report it privately through either channel:
+Report it privately through:
 
-- [GitHub private vulnerability reporting](https://github.com/pascalorg/editor/security/advisories/new) — preferred
-- Email **security@pascal.app**
+- [GitHub private vulnerability reporting](https://github.com/RendraSuproboAji/Intersign/security/advisories/new) — preferred
 
 Include what you have: affected package or route, version or commit, reproduction steps, and the impact you believe it has. A proof of concept helps a lot; a rough description is still worth sending.
 
@@ -15,13 +14,13 @@ We aim to acknowledge a report within three working days and to keep you updated
 
 ## Supported versions
 
-Fixes land on `main` and ship in the next release of the affected package. The `@pascal-app/*` packages are pre-1.0 and only the latest published version of each receives security fixes.
+Fixes land on `main` and ship in the next release of the affected package. The `@intersign/*` packages are pre-1.0 and only the latest published version of each receives security fixes.
 
 ## Scope
 
 In scope:
 
-- The packages published from this repo — `@pascal-app/core`, `@pascal-app/viewer`, `@pascal-app/editor`, `@pascal-app/nodes`, `@pascal-app/mcp`, `@pascal-app/ifc-converter`
+- The packages published from this repo — `@intersign/core`, `@intersign/viewer`, `@intersign/editor`, `@intersign/nodes`, `@intersign/mcp`, `@intersign/ifc-converter`
 - The standalone editor app in `apps/editor`
 - The scene save API and the MCP server surface, including anything that lets untrusted scene data reach a parser, a renderer, or a stored graph
 

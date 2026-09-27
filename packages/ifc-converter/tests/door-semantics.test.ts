@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'bun:test'
-import { DoorNode } from '@pascal-app/core'
+import { DoorNode } from '@intersign/core'
 import { doorGlazingStyle, doorStyleFromIfcOperation } from '../src/door-semantics'
 
 function door(overrides: Record<string, unknown> = {}) {

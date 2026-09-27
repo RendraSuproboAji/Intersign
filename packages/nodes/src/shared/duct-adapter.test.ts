@@ -1,5 +1,5 @@
 import { afterEach, expect, test } from 'bun:test'
-import { DuctSegmentNode, useScene } from '@pascal-app/core'
+import { DuctSegmentNode, useScene } from '@intersign/core'
 import { Vector3 } from 'three'
 import { buildDuctFittingGeometry } from '../duct-fitting/geometry'
 import { getDuctFittingPorts } from '../duct-fitting/ports'

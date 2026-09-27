@@ -4,7 +4,7 @@ import {
   type GeometryContext,
   RoofNode,
   type RoofSegmentNode,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import { buildRoofSegmentFloorplan, getRoofSegmentPlanLinework } from './floorplan'
 
 function dutchSegment(overrides: Partial<RoofSegmentNode> = {}): RoofSegmentNode {

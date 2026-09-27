@@ -9,7 +9,7 @@ import {
   sceneRegistry,
   useLiveTransforms,
   useScene,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   applyFloorplanAlignment,
   getFloorStackPreviewPosition,
@@ -18,7 +18,7 @@ import {
   triggerSFX,
   useEditor,
   type WallPlanPoint,
-} from '@pascal-app/editor'
+} from '@intersign/editor'
 import { createFloorplanCursorResolver } from '../shared/floorplan-cursor'
 import {
   collectStructuralGridAxes,

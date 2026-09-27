@@ -7,7 +7,7 @@ import {
   type ScanNode,
   saveAsset,
   useScene,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   Eye,
   EyeOff,

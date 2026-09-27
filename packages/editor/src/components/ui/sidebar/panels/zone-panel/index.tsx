@@ -3,8 +3,8 @@ import {
   emitter,
   useScene,
   type ZoneNode,
-} from '@pascal-app/core'
-import { useViewer } from '@pascal-app/viewer'
+} from '@intersign/core'
+import { useViewer } from '@intersign/viewer'
 import { Camera, Hexagon, Save, Trash2 } from 'lucide-react'
 import { useState } from 'react'
 import { sfxEmitter } from './../../../../../lib/sfx-bus'

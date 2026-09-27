@@ -8,7 +8,7 @@ import {
   type GridEvent,
   useLiveNodeOverrides,
   useScene,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   CursorSphere,
   getSegmentGridStep,
@@ -17,8 +17,8 @@ import {
   snapScalarToGrid,
   triggerSFX,
   useInteractionScope,
-} from '@pascal-app/editor'
-import { useViewer } from '@pascal-app/viewer'
+} from '@intersign/editor'
+import { useViewer } from '@intersign/viewer'
 import { useEffect, useState } from 'react'
 
 export const MoveFenceControlPointTool: React.FC<{

@@ -1,4 +1,4 @@
 export { SceneBridge } from './bridge/scene-bridge'
 export { createSceneOperations, type SceneOperations } from './operations'
-export { type CreatePascalMcpServerOptions, createPascalMcpServer } from './server'
+export { type CreateIntersignMcpServerOptions, createIntersignMcpServer } from './server'
 export { version } from './version'

@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test'
-import { RoofSegmentNode } from '@pascal-app/core'
+import { RoofSegmentNode } from '@intersign/core'
 import { resolveRidgeSnap } from './ridge-snap'
 
 describe('resolveRidgeSnap', () => {

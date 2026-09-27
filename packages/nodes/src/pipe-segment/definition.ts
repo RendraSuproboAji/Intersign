@@ -1,4 +1,4 @@
-import type { NodeDefinition } from '@pascal-app/core'
+import type { NodeDefinition } from '@intersign/core'
 import { createPathPointMoveAffordance } from '../shared/path-point-affordance'
 import { createRunHangerToolHint } from '../shared/run-hanger-mode'
 import { pipeBranchAffordance, pipeContinuationAffordance } from './continuation'

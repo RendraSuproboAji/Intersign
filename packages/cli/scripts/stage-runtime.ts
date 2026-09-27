@@ -26,7 +26,7 @@ const standaloneAppDirectory = path.join(standaloneDirectory, 'apps/editor')
  */
 const buildDirectory = path.join(packageDirectory, 'build')
 const outputDirectory = path.join(buildDirectory, 'runtime')
-const releaseAssetBaseUrl = 'https://github.com/pascalorg/editor/releases/download'
+const releaseAssetBaseUrl = 'https://github.com/RendraSuproboAji/Intersign/releases/download'
 
 /**
  * `next build` copies its tracing root into `.next/standalone`, so the portable runtime
@@ -60,13 +60,13 @@ const packageJson = JSON.parse(
   version: string
 }
 
-const archiveName = `pascal-web-runtime-${packageJson.version}.tar.gz`
+const archiveName = `intersign-web-runtime-${packageJson.version}.tar.gz`
 const archiveFile = path.join(buildDirectory, archiveName)
-const assetUrl = `${releaseAssetBaseUrl}/@pascal-app/cli@${packageJson.version}/${archiveName}`
+const assetUrl = `${releaseAssetBaseUrl}/@intersign/cli@${packageJson.version}/${archiveName}`
 
-await chmod(path.join(packageDirectory, 'dist/bin/pascal.js'), 0o755)
+await chmod(path.join(packageDirectory, 'dist/bin/intersign.js'), 0o755)
 await bundleMcpServer(
-  path.join(packageDirectory, 'dist/services/pascal-mcp.mjs'),
+  path.join(packageDirectory, 'dist/services/intersign-mcp.mjs'),
   packageJson.version,
 )
 await assertFile(path.join(standaloneAppDirectory, 'server.js'))
@@ -115,7 +115,7 @@ await writeFile(
   )}\n`,
 )
 
-console.log(`Staged Pascal web runtime ${packageJson.version} at ${outputDirectory}`)
+console.log(`Staged Intersign web runtime ${packageJson.version} at ${outputDirectory}`)
 console.log(
   `Archived ${archive.entryCount} entries to ${archiveFile} (${formatMegabytes(archive.size)} MB)`,
 )
@@ -128,7 +128,7 @@ async function bundleMcpServer(output: string, version: string): Promise<void> {
     process.execPath,
     [
       'build',
-      path.join(repositoryRoot, 'packages/mcp/src/bin/pascal-mcp.ts'),
+      path.join(repositoryRoot, 'packages/mcp/src/bin/intersign-mcp.ts'),
       '--outfile',
       output,
       '--target',
@@ -136,7 +136,7 @@ async function bundleMcpServer(output: string, version: string): Promise<void> {
       '--format',
       'esm',
       '--define',
-      `process.env.PASCAL_MCP_VERSION=${JSON.stringify(version)}`,
+      `process.env.INTERSIGN_MCP_VERSION=${JSON.stringify(version)}`,
     ],
     { stdio: ['ignore', 'ignore', 'pipe'] },
   )
@@ -147,7 +147,9 @@ async function bundleMcpServer(output: string, version: string): Promise<void> {
     child.once('exit', (code) => resolve(code ?? 1))
   })
   if (exitCode !== 0) {
-    throw new Error(`Unable to bundle the Pascal MCP server: ${Buffer.concat(stderr).toString()}`)
+    throw new Error(
+      `Unable to bundle the Intersign MCP server: ${Buffer.concat(stderr).toString()}`,
+    )
   }
 }
 
@@ -156,7 +158,7 @@ async function assertFile(filePath: string): Promise<void> {
     await readFile(filePath)
   } catch {
     throw new Error(
-      `standalone editor build not found at ${filePath}; run PASCAL_PORTABLE_BUILD=1 bun run build from apps/editor first`,
+      `standalone editor build not found at ${filePath}; run INTERSIGN_PORTABLE_BUILD=1 bun run build from apps/editor first`,
     )
   }
 }

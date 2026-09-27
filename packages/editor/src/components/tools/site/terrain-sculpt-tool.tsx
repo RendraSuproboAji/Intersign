@@ -13,8 +13,8 @@ import {
   type TerrainStroke,
   useLiveTerrain,
   useScene,
-} from '@pascal-app/core'
-import { useViewer } from '@pascal-app/viewer'
+} from '@intersign/core'
+import { useViewer } from '@intersign/viewer'
 import { useThree } from '@react-three/fiber'
 import { useEffect, useRef } from 'react'
 import { Raycaster, Vector2 } from 'three'

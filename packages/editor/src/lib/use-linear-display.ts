@@ -1,6 +1,6 @@
 'use client'
 
-import { useViewer } from '@pascal-app/viewer'
+import { useViewer } from '@intersign/viewer'
 import { useMemo } from 'react'
 import { getLinearDisplay } from './linear-display'
 

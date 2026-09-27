@@ -1,7 +1,7 @@
 ISO-10303-21;
 HEADER;
 FILE_DESCRIPTION(('Beam import regression fixture'),'2;1');
-FILE_NAME('beams.ifc','2026-09-11T00:00:00',('Pascal'),('Pascal'),'','','');
+FILE_NAME('beams.ifc','2026-09-11T00:00:00',('Intersign'),('Intersign'),'','','');
 FILE_SCHEMA(('IFC4'));
 ENDSEC;
 DATA;

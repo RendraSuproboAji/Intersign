@@ -6,8 +6,8 @@ import type {
   CabinetModuleNode as CabinetModuleNodeType,
   CabinetNode as CabinetNodeType,
   SceneApi,
-} from '@pascal-app/core'
-import { cascadeDirty, createSceneApi, resolveLevelId, useScene } from '@pascal-app/core'
+} from '@intersign/core'
+import { cascadeDirty, createSceneApi, resolveLevelId, useScene } from '@intersign/core'
 import {
   ActionButton,
   PanelSection,
@@ -15,8 +15,8 @@ import {
   SegmentedControl,
   SliderControl,
   ToggleControl,
-} from '@pascal-app/editor'
-import { useViewer } from '@pascal-app/viewer'
+} from '@intersign/editor'
+import { useViewer } from '@intersign/viewer'
 import { Copy, Equal as EqualIcon, Plus, Trash } from 'lucide-react'
 import { useCallback, useMemo, useState } from 'react'
 import { useShallow } from 'zustand/react/shallow'

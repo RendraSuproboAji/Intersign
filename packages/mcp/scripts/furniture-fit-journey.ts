@@ -4,9 +4,7 @@ import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync
 import { tmpdir } from 'node:os'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { Client } from '@modelcontextprotocol/sdk/client/index.js'
-import { StdioClientTransport } from '@modelcontextprotocol/sdk/client/stdio.js'
-import type { SceneGraph } from '@pascal-app/core/clone-scene-graph'
+import type { SceneGraph } from '@intersign/core/clone-scene-graph'
 import {
   type AnyNode,
   type AnyNodeId,
@@ -15,7 +13,9 @@ import {
   LevelNode,
   SiteNode,
   ZoneNode,
-} from '@pascal-app/core/schema'
+} from '@intersign/core/schema'
+import { Client } from '@modelcontextprotocol/sdk/client/index.js'
+import { StdioClientTransport } from '@modelcontextprotocol/sdk/client/stdio.js'
 
 type Vec3 = [number, number, number]
 
@@ -352,7 +352,7 @@ function requireSuccess<T>(result: ToolResult, label: string): T {
 
 function inheritedEnv(databasePath: string): Record<string, string> {
   return Object.fromEntries(
-    Object.entries({ ...process.env, PASCAL_DB_PATH: databasePath }).filter(
+    Object.entries({ ...process.env, INTERSIGN_DB_PATH: databasePath }).filter(
       (entry): entry is [string, string] => typeof entry[1] === 'string',
     ),
   )
@@ -369,7 +369,7 @@ async function connect(binPath: string, databasePath: string) {
   transport.stderr?.on('data', (chunk) => {
     stderr += String(chunk)
   })
-  const client = new Client({ name: 'pascal-w02-furniture-fit', version: '1.0.0' })
+  const client = new Client({ name: 'intersign-w02-furniture-fit', version: '1.0.0' })
   await client.connect(transport)
   return { client, transport, stderr: () => stderr }
 }
@@ -414,12 +414,13 @@ async function main() {
   const scriptDir = dirname(fileURLToPath(import.meta.url))
   const packageDir = resolve(scriptDir, '..')
   const repoDir = resolve(packageDir, '../..')
-  const binPath = resolve(packageDir, 'dist/bin/pascal-mcp.js')
+  const binPath = resolve(packageDir, 'dist/bin/intersign-mcp.js')
   assert(existsSync(binPath), `Missing ${binPath}; run \`bun run build\` in packages/mcp first.`)
 
-  const workingDir = mkdtempSync(join(tmpdir(), 'pascal-w02-'))
+  const workingDir = mkdtempSync(join(tmpdir(), 'intersign-w02-'))
   const outputDir =
-    process.env.PASCAL_W02_OUTPUT_DIR ?? mkdtempSync(join(tmpdir(), 'pascal-mcp-furniture-fit-'))
+    process.env.INTERSIGN_W02_OUTPUT_DIR ??
+    mkdtempSync(join(tmpdir(), 'intersign-mcp-furniture-fit-'))
   const databasePath = join(workingDir, 'journey.db')
   mkdirSync(outputDir, { recursive: true })
 
@@ -451,7 +452,7 @@ async function main() {
     implementationHash.update('\0')
   }
   const compiledFiles = [
-    'packages/mcp/dist/bin/pascal-mcp.js',
+    'packages/mcp/dist/bin/intersign-mcp.js',
     'packages/mcp/dist/tools/annotations.js',
     'packages/mcp/dist/tools/check-collisions.js',
     'packages/mcp/dist/tools/door-clearance.js',
@@ -765,7 +766,7 @@ async function main() {
       journey: 'W02 furniture footprint-fit assessment',
       status: 'passed',
       supportedTrials: { passed: results.length, total: trials.length },
-      transport: 'MCP stdio client -> compiled pascal-mcp server',
+      transport: 'MCP stdio client -> compiled intersign-mcp server',
       storage: 'SQLite file reused across a full server reconnect',
       sourceRevision: revision,
       implementationHash: implementationHash.digest('hex'),

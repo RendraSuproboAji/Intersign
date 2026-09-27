@@ -6,8 +6,8 @@ import {
   type StairSegmentNode,
   useLiveNodeOverrides,
   useScene,
-} from '@pascal-app/core'
-import { isAngleSnapActive } from '@pascal-app/editor'
+} from '@intersign/core'
+import { isAngleSnapActive } from '@intersign/editor'
 import { rotateAffordanceDelta } from '../shared/rotate-affordance'
 
 // Minimums + max sweep mirror the 3D handles in

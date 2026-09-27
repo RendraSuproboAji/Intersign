@@ -3,7 +3,7 @@ import {
   type QuickMeasurementReport,
   resolveAutoZonePolygon,
   type ZoneNode,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   polygonBoundaryLength,
   polygonReportAnchor,

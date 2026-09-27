@@ -1,4 +1,4 @@
-import type { AnyNodeId, ZoneNode } from '@pascal-app/core/schema'
+import type { AnyNodeId, ZoneNode } from '@intersign/core/schema'
 import type { SceneOperations } from '../operations'
 import { ErrorCode, throwMcpError } from './errors'
 

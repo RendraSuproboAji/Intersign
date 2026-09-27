@@ -1,4 +1,4 @@
-import type { AnyNode, AnyNodeId } from '@pascal-app/core'
+import type { AnyNode, AnyNodeId } from '@intersign/core'
 import { runLocalToPlan } from './run-layout'
 import {
   collectCabinetWallSnapNeighbors,

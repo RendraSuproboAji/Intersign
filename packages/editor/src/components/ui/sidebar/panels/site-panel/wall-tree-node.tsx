@@ -1,5 +1,5 @@
-import { type AnyNodeId, useScene, type WallNode } from '@pascal-app/core'
-import { useViewer } from '@pascal-app/viewer'
+import { type AnyNodeId, useScene, type WallNode } from '@intersign/core'
+import { useViewer } from '@intersign/viewer'
 import Image from 'next/image'
 import { memo, useCallback, useEffect, useRef, useState } from 'react'
 import { useShallow } from 'zustand/react/shallow'

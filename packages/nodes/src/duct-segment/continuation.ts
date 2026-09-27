@@ -4,9 +4,9 @@ import {
   type DuctFittingNode,
   type FloorplanAffordance,
   useScene,
-} from '@pascal-app/core'
-import { useEditor } from '@pascal-app/editor'
-import { useViewer } from '@pascal-app/viewer'
+} from '@intersign/core'
+import { useEditor } from '@intersign/editor'
+import { useViewer } from '@intersign/viewer'
 import {
   findMatedScenePorts,
   planDuctElbowBranchPromotion,

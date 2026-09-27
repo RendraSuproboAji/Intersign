@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test'
-import { DoorNode, WallNode, WindowNode } from '@pascal-app/core'
+import { DoorNode, WallNode, WindowNode } from '@intersign/core'
 import * as THREE from 'three'
 import { buildPrintableWallSolids } from './print-wall-solids'
 

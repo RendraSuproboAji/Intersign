@@ -18,11 +18,11 @@ import {
   useScene,
   type WindowNode,
   type ZoneNode,
-} from '@pascal-app/core'
-import { evaluateRecipe } from '@pascal-app/core/procedural-items'
+} from '@intersign/core'
+import { evaluateRecipe } from '@intersign/core/procedural-items'
 import {
   decorateProceduralEmission,
-  getPascalTextureRef,
+  getIntersignTextureRef,
   isViewerPresentationTextureBorrowed,
   poseDoorMovingParts,
   poseWindowMovingParts,
@@ -30,7 +30,7 @@ import {
   snapLevelsToTruePositions,
   type ViewerPresentationContribution,
   viewerPresentationRegistry,
-} from '@pascal-app/viewer'
+} from '@intersign/viewer'
 import type { Object3D } from 'three'
 import * as THREE from 'three'
 import {
@@ -165,24 +165,24 @@ export function writeTextureReferenceExtras(
   texture: THREE.Texture,
   textureDef: Record<string, unknown>,
 ) {
-  const ref = getPascalTextureRef(texture)
+  const ref = getIntersignTextureRef(texture)
   if (!ref) return
 
   const imageIndex = getExportedImageIndex(textureDef)
   const imageDef =
     imageIndex === null ? undefined : (writer as TextureReferenceWriter).json.images?.[imageIndex]
   if (!imageDef) {
-    throw new Error('GLTFExporter did not expose an image for a referenced Pascal texture')
+    throw new Error('GLTFExporter did not expose an image for a referenced Intersign texture')
   }
 
   const textureWithExtras = textureDef as GltfExtrasDef
   textureWithExtras.extras = {
     ...textureWithExtras.extras,
-    pascalTextureRef: ref,
+    intersignTextureRef: ref,
   }
   imageDef.extras = {
     ...imageDef.extras,
-    pascalTextureRef: ref,
+    intersignTextureRef: ref,
   }
 }
 
@@ -459,7 +459,7 @@ async function completeSceneExportPreparation(
     const byReference = (options.textures ?? 'embed') === 'reference'
     const normalizeOptions = {
       preserveNormalMap: (texture: THREE.Texture) =>
-        byReference && getPascalTextureRef(texture) !== null,
+        byReference && getIntersignTextureRef(texture) !== null,
     }
     await decompressCanonicalNormalMaps(prepared.scene, decompressor.decompress, normalizeOptions)
     prepared.warnings.push(
@@ -654,7 +654,7 @@ async function appendSelectedPresentations(preparation: SceneExportPreparation):
     const wrapper = new THREE.Group()
     wrapper.name = contribution.id
     wrapper.userData = {
-      pascalPresentationId: contribution.id,
+      intersignPresentationId: contribution.id,
       label: staticExport.label,
     }
     wrapper.add(built)
@@ -1273,7 +1273,7 @@ function replaceReferencedTextures(
   const textureMaterial = material as THREE.Material & Record<string, unknown>
   for (const slot of REFERENCE_MAP_SLOTS) {
     const texture = textureMaterial[slot]
-    if (!(texture instanceof THREE.Texture) || !getPascalTextureRef(texture)) continue
+    if (!(texture instanceof THREE.Texture) || !getIntersignTextureRef(texture)) continue
 
     let placeholder = placeholderCache.get(texture)
     if (!placeholder) {
@@ -1307,8 +1307,9 @@ function createPlaceholderCanvas(): OffscreenCanvas | HTMLCanvasElement | null {
 }
 
 function createReferencePlaceholder(texture: THREE.Texture): THREE.Texture {
-  const ref = getPascalTextureRef(texture)
-  if (!ref) throw new Error('Cannot create a placeholder for an invalid Pascal texture reference')
+  const ref = getIntersignTextureRef(texture)
+  if (!ref)
+    throw new Error('Cannot create a placeholder for an invalid Intersign texture reference')
 
   const canvas = createPlaceholderCanvas()
   const placeholder = canvas
@@ -1339,7 +1340,7 @@ function createReferencePlaceholder(texture: THREE.Texture): THREE.Texture {
   placeholder.flipY = texture.flipY
   placeholder.unpackAlignment = texture.unpackAlignment
   placeholder.colorSpace = texture.colorSpace
-  placeholder.userData = { pascalTextureRef: ref }
+  placeholder.userData = { intersignTextureRef: ref }
   placeholder.needsUpdate = true
   return placeholder
 }
@@ -1432,7 +1433,7 @@ function bakeItemClip(id: string, itemObject: THREE.Object3D): THREE.AnimationCl
 
 /**
  * Bake a door's open motion. Swing doors (hinged/double/french) carry a
- * `pascalSwingLeaf` marker and bake a single quaternion track per leaf;
+ * `intersignSwingLeaf` marker and bake a single quaternion track per leaf;
  * operation doors (sliding/pocket/barn/folding/garage-*) build their moving
  * parts in named groups posed by `poseDoorMovingParts`, sampled here into
  * keyframes (their motion is non-linear, e.g. the sectional's overhead curve).
@@ -1559,7 +1560,7 @@ function bakeSwingDoorClip(
   const tracks: THREE.KeyframeTrack[] = []
 
   doorObject.traverse((object) => {
-    const marker = object.userData.pascalSwingLeaf as SwingLeafMarker | undefined
+    const marker = object.userData.intersignSwingLeaf as SwingLeafMarker | undefined
     if (marker?.axis !== 'y') return
 
     object.rotation.y = 0
@@ -1589,7 +1590,7 @@ function bakeSwingDoorClip(
  * to a single action and a trigger on one would animate another. The
  * human-readable name lives in `extras.label` instead. glTF has no core loop
  * flag — the player decides — so we stamp `extras.loop = false` (via the clip's
- * userData, which `GLTFExporter` serialises onto the animation): Pascal's
+ * userData, which `GLTFExporter` serialises onto the animation): Intersign's
  * `/viewer` and any extras-aware consumer play it once and hold the open pose; a
  * dumb glTF player still loops. Consumers map a clip back to its node by walking
  * up from a channel's target to the nearest ancestor carrying `extras.pascalId`.
@@ -1663,7 +1664,7 @@ function bakeWindowClip(
 /**
  * Replace every clone's userData with `{}`, then stamp identity onto the nodes
  * that `sceneRegistry` tracks. Wiping first guarantees no editor/runtime marker
- * (e.g. `pascalSwingLeaf`, cached-material flags) leaks into glTF extras — the
+ * (e.g. `intersignSwingLeaf`, cached-material flags) leaks into glTF extras — the
  * file describes itself with exactly the fields a consumer needs.
  */
 /**
@@ -1710,7 +1711,7 @@ function stampIdentity(
   registryEntries: readonly RegistryEntry[],
 ) {
   scene.traverse((object) => {
-    const presentationId = object.userData.pascalPresentationId
+    const presentationId = object.userData.intersignPresentationId
     const label = object.userData.label
     const motion = object.userData.proceduralMotion as
       | {
@@ -1724,7 +1725,7 @@ function stampIdentity(
       | undefined
     const slotId = object.userData.slotId
     object.userData =
-      typeof presentationId === 'string' ? { pascalPresentationId: presentationId, label } : {}
+      typeof presentationId === 'string' ? { intersignPresentationId: presentationId, label } : {}
     if (typeof slotId === 'string') object.userData.slotId = slotId
     if (motion) {
       object.userData.proceduralMotion = {

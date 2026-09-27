@@ -5,8 +5,8 @@ import {
   type StairNode,
   type StairSegmentNode,
   type StairType,
-} from '@pascal-app/core'
-import { DEFAULT_SPIRAL_STAIR_SWEEP_ANGLE } from '@pascal-app/editor'
+} from '@intersign/core'
+import { DEFAULT_SPIRAL_STAIR_SWEEP_ANGLE } from '@intersign/editor'
 
 export type StairTypeChange = {
   updates: Partial<StairNode>

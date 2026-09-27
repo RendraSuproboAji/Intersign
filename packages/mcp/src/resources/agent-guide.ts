@@ -2,9 +2,9 @@ import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
 import type { SceneOperations } from '../operations'
 
 export const AGENT_GUIDE = [
-  '# Pascal MCP Agent Guide',
+  '# Intersign MCP Agent Guide',
   '',
-  'You are editing Pascal architectural projects. Use MCP tools only; do not inspect the Pascal repository unless the user explicitly asks.',
+  'You are editing Intersign architectural projects. Use MCP tools only; do not inspect the Intersign repository unless the user explicitly asks.',
   '',
   '## Standard Workflow',
   '',
@@ -65,9 +65,9 @@ export const AGENT_GUIDE = [
 export function registerAgentGuide(server: McpServer, _bridge: SceneOperations): void {
   server.registerResource(
     'agent-guide',
-    'pascal://agent-guide',
+    'intersign://agent-guide',
     {
-      title: 'Pascal MCP agent guide',
+      title: 'Intersign MCP agent guide',
       description:
         'Short MCP-first project creation, save/publish, validation, and output workflow for external agents.',
       mimeType: 'text/markdown',
@@ -85,10 +85,10 @@ export function registerAgentGuide(server: McpServer, _bridge: SceneOperations):
 
   server.registerResource(
     'agent-guide-legacy',
-    'pascal://agent/guide',
+    'intersign://agent/guide',
     {
-      title: 'Pascal MCP agent guide',
-      description: 'Legacy URI for the Pascal MCP agent guide. Prefer pascal://agent-guide.',
+      title: 'Intersign MCP agent guide',
+      description: 'Legacy URI for the Intersign MCP agent guide. Prefer intersign://agent-guide.',
       mimeType: 'text/markdown',
     },
     async (uri) => ({

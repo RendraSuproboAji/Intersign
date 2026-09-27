@@ -12,8 +12,8 @@ import {
   terrainSupportLift,
   useScene,
   type WallNode,
-} from '@pascal-app/core'
-import { useViewer } from '@pascal-app/viewer'
+} from '@intersign/core'
+import { useViewer } from '@intersign/viewer'
 import { useCallback } from 'react'
 import { useShallow } from 'zustand/react/shallow'
 import { formatLinearMeasurement } from '../../../lib/measurements'

@@ -12,12 +12,12 @@ const spawnMock = mock(() => {
 afterEach(() => spawnMock.mockClear())
 
 describe('browser launch', () => {
-  test('removes the Pascal API key from the spawned process environment', () => {
+  test('removes the Intersign API key from the spawned process environment', () => {
     openBrowser(
       'https://editor.pascal.app/settings/agents/claim',
       {
-        HOME: '/tmp/pascal-home',
-        PASCAL_API_KEY: 'sk_live_private-agent-key',
+        HOME: '/tmp/intersign-home',
+        INTERSIGN_API_KEY: 'sk_live_private-agent-key',
         PATH: '/usr/bin',
       },
       spawnMock,
@@ -25,7 +25,7 @@ describe('browser launch', () => {
 
     expect(spawnMock).toHaveBeenCalledTimes(1)
     const options = spawnMock.mock.calls[0]?.[2]
-    expect(options?.env).toEqual({ HOME: '/tmp/pascal-home', PATH: '/usr/bin' })
+    expect(options?.env).toEqual({ HOME: '/tmp/intersign-home', PATH: '/usr/bin' })
     expect(JSON.stringify(options)).not.toContain('sk_live_private-agent-key')
   })
 
@@ -33,8 +33,8 @@ describe('browser launch', () => {
     openBrowser(
       'https://editor.pascal.app/settings/agents/claim',
       {
-        PASCAL_API_KEY: 'sk_live_private-agent-key',
-        PASCAL_NO_OPEN: '1',
+        INTERSIGN_API_KEY: 'sk_live_private-agent-key',
+        INTERSIGN_NO_OPEN: '1',
       },
       spawnMock,
     )

@@ -5,9 +5,9 @@ import {
   type RoofSegmentNode,
   sceneRegistry,
   useScene,
-} from '@pascal-app/core'
-import { type OpeningGuide3D, useOpeningGuides } from '@pascal-app/editor'
-import { useViewer } from '@pascal-app/viewer'
+} from '@intersign/core'
+import { type OpeningGuide3D, useOpeningGuides } from '@intersign/editor'
+import { useViewer } from '@intersign/viewer'
 import * as THREE from 'three'
 import { buildBoxVentGeometry } from '../box-vent/geometry'
 import { buildChimneyGeometry } from '../chimney/geometry'

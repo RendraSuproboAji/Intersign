@@ -1,4 +1,4 @@
-import { isSplineFence, type ParametricDescriptor } from '@pascal-app/core'
+import { isSplineFence, type ParametricDescriptor } from '@intersign/core'
 import { FenceCurveEditor, FenceLengthEditor } from './inspector-editors'
 import type { FenceNode } from './schema'
 

@@ -5,7 +5,7 @@ import {
   pointToKey,
   type WallMiterData,
   type WallNode,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import { create } from 'zustand'
 import { shallow } from 'zustand/vanilla/shallow'
 

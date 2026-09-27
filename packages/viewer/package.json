@@ -1,7 +1,7 @@
 {
-  "name": "@pascal-app/viewer",
+  "name": "@intersign/viewer",
   "version": "1.0.3",
-  "description": "3D viewer component for Pascal building editor",
+  "description": "3D viewer component for Intersign building editor",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -33,7 +33,7 @@
     "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
-    "@pascal-app/core": "^1.0.3",
+    "@intersign/core": "^1.0.3",
     "@react-three/drei": "^10",
     "@react-three/fiber": "^9",
     "react": "^18 || ^19",
@@ -46,8 +46,8 @@
     "zustand": "^5"
   },
   "devDependencies": {
-    "@pascal-app/core": "^1.0.3",
-    "@pascal/typescript-config": "*",
+    "@intersign/core": "^1.0.3",
+    "@intersign/typescript-config": "*",
     "@react-three/test-renderer": "^9.1.0",
     "@types/node": "^22",
     "@types/react": "^19.2.2",
@@ -67,10 +67,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pascalorg/editor.git",
+    "url": "git+https://github.com/RendraSuproboAji/Intersign.git",
     "directory": "packages/viewer"
   },
   "license": "MIT",
-  "homepage": "https://github.com/pascalorg/editor/tree/main/packages/viewer#readme",
-  "bugs": "https://github.com/pascalorg/editor/issues"
+  "homepage": "https://github.com/RendraSuproboAji/Intersign/tree/main/packages/viewer#readme",
+  "bugs": "https://github.com/RendraSuproboAji/Intersign/issues"
 }

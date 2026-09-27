@@ -6,7 +6,7 @@ import {
   type WallNode,
   type WallPlanPoint,
   wallRectangleCorners,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   CursorSphere,
   clearPlacementSurface,
@@ -26,8 +26,8 @@ import {
   useLinearDisplay,
   useRegistryToolContext,
   useWallSnapIndicator,
-} from '@pascal-app/editor'
-import { getSceneTheme, useViewer } from '@pascal-app/viewer'
+} from '@intersign/editor'
+import { getSceneTheme, useViewer } from '@intersign/viewer'
 import { useThree } from '@react-three/fiber'
 import { useEffect, useState } from 'react'
 import { DoubleSide } from 'three'

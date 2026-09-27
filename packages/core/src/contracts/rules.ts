@@ -50,7 +50,7 @@ export const RULE_GUARDS: Record<`R${1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9}`, RuleGu
     plan: 'capability-parity probes in B-04/B-06',
   },
   R6: {
-    checks: [{ file: EXAMPLES, title: 'pascalPart v1 tags (F4)' }],
+    checks: [{ file: EXAMPLES, title: 'intersignPart v1 tags (F4)' }],
     gates: ['interactivityAfterBake'],
   },
   R7: {

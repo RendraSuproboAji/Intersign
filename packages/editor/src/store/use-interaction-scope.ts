@@ -7,13 +7,13 @@ import {
   useLiveNodeOverrides,
   useLiveTransforms,
   useScene,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   beginPerfAction,
   commitPerfAction,
   getActivePerfActionId,
   hasUncommittedPerfAction,
-} from '@pascal-app/viewer'
+} from '@intersign/viewer'
 import { useRef } from 'react'
 import { create } from 'zustand'
 import { useShallow } from 'zustand/react/shallow'

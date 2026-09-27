@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test'
-import { PipeFittingNode, PipeSegmentNode } from '@pascal-app/core'
+import { PipeFittingNode, PipeSegmentNode } from '@intersign/core'
 import { planPipeInlineInsertion } from './inline-insertion'
 import { getPipeFittingPorts } from './ports'
 

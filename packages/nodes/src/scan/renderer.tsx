@@ -1,7 +1,7 @@
 'use client'
 
-import { type ScanNode, useRegistry } from '@pascal-app/core'
-import { useAssetUrl, useGLTFKTX2, useViewer } from '@pascal-app/viewer'
+import { type ScanNode, useRegistry } from '@intersign/core'
+import { useAssetUrl, useGLTFKTX2, useViewer } from '@intersign/viewer'
 import { Suspense, useMemo, useRef } from 'react'
 import type { Group, Material, Mesh } from 'three'
 

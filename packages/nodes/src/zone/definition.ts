@@ -2,8 +2,8 @@ import {
   type NodeDefinition,
   resolveAutoZonePolygon,
   ZoneNode as ZoneNodeSchema,
-} from '@pascal-app/core'
-import type { FloorplanNodeExtension } from '@pascal-app/editor'
+} from '@intersign/core'
+import type { FloorplanNodeExtension } from '@intersign/editor'
 import { polygonMeasurementFeatures } from '../shared/polygon-measurement'
 import { buildZoneContextualDimensions } from './contextual-dimensions'
 import { buildZoneFloorplan } from './floorplan'

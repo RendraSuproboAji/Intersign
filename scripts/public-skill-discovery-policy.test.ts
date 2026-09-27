@@ -47,7 +47,7 @@ describe('public skill discovery policy', () => {
   })
 
   test('rejects hiding a product skill', () => {
-    const path = 'skills/pascal-3d/SKILL.md'
+    const path = 'skills/intersign-3d/SKILL.md'
     const entries = replaceEntry(path, (content) =>
       content.replace('metadata:\n', 'metadata:\n  internal: true\n'),
     )
@@ -76,7 +76,7 @@ describe('public skill discovery policy', () => {
   })
 
   test('collects nested skills so discovery cannot bypass the policy', () => {
-    const fixtureRoot = mkdtempSync(join(tmpdir(), 'pascal-skill-discovery-'))
+    const fixtureRoot = mkdtempSync(join(tmpdir(), 'intersign-skill-discovery-'))
     try {
       const nestedSkillRoot = join(fixtureRoot, 'skills', 'nested', 'unreviewed')
       mkdirSync(nestedSkillRoot, { recursive: true })

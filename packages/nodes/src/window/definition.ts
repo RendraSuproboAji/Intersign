@@ -7,12 +7,12 @@ import type {
   SceneApi,
   WallNode,
   WindowNode as WindowNodeType,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   getDormerWallHorizontalBoundsAtHeight,
   getDormerWallOpeningVerticalBounds,
-} from '@pascal-app/core'
-import type { FloorplanNodeExtension } from '@pascal-app/editor'
+} from '@intersign/core'
+import type { FloorplanNodeExtension } from '@intersign/editor'
 import { curtainOpeningResizeMax } from '../shared/curtain-opening-limits'
 import {
   buildWindowFloorplanSchedule,

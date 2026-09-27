@@ -1,5 +1,5 @@
 import { afterEach, expect, test } from 'bun:test'
-import { type AnyNode, useInteractive } from '@pascal-app/core'
+import { type AnyNode, useInteractive } from '@intersign/core'
 import {
   itemHasLights,
   itemHasMechanisms,

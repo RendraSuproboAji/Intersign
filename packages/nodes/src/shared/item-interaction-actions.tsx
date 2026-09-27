@@ -1,6 +1,6 @@
 'use client'
-import { type AnyNodeId, useInteractive, useScene } from '@pascal-app/core'
-import { useViewer } from '@pascal-app/viewer'
+import { type AnyNodeId, useInteractive, useScene } from '@intersign/core'
+import { useViewer } from '@intersign/viewer'
 import { Lightbulb, LightbulbOff, Play, Square } from 'lucide-react'
 import {
   itemHasLights,

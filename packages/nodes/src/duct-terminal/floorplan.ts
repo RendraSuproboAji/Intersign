@@ -1,4 +1,4 @@
-import type { FloorplanGeometry, FloorplanPoint, GeometryContext } from '@pascal-app/core'
+import type { FloorplanGeometry, FloorplanPoint, GeometryContext } from '@intersign/core'
 import { terminalSystem } from './ports'
 import type { DuctTerminalNode } from './schema'
 

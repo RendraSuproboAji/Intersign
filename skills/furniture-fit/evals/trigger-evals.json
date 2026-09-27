@@ -2,7 +2,7 @@
   "skill_name": "furniture-fit",
   "evals": [
     {
-      "query": "Will this 84 by 38 inch sofa overlap anything in my measured Pascal living room at its current rotation?",
+      "query": "Will this 84 by 38 inch sofa overlap anything in my measured Intersign living room at its current rotation?",
       "should_trigger": true
     },
     {
@@ -18,7 +18,7 @@
       "should_trigger": true
     },
     {
-      "query": "Find a collision-free pose for this existing table in the Pascal dining room, but don't save it.",
+      "query": "Find a collision-free pose for this existing table in the Intersign dining room, but don't save it.",
       "should_trigger": true
     },
     {

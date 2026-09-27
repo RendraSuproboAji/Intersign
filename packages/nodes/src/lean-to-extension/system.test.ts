@@ -17,7 +17,7 @@ import {
   subscribeSceneCommits,
   useScene,
   WallNode,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import { columnDefinition } from '../column'
 import {
   createLeanToAssembly,

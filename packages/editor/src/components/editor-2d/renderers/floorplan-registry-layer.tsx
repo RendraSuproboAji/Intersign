@@ -27,8 +27,8 @@ import {
   useLiveNodeOverrides,
   useLiveTransforms,
   useScene,
-} from '@pascal-app/core'
-import { beginPerfAction, cancelPerfAction, commitPerfAction, useViewer } from '@pascal-app/viewer'
+} from '@intersign/core'
+import { beginPerfAction, cancelPerfAction, commitPerfAction, useViewer } from '@intersign/viewer'
 import {
   type ComponentProps,
   memo,

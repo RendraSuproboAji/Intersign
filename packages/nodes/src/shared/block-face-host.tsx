@@ -7,7 +7,7 @@ import {
   getBlockFaceFrame,
   useLiveNodeOverrides,
   useScene,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import type { ReactNode } from 'react'
 import { useMemo } from 'react'
 import { Matrix4, Quaternion, Vector3 } from 'three'

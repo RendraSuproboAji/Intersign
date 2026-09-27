@@ -1,7 +1,7 @@
 'use client'
 
-import { type AnyNode, type AnyNodeId, useScene } from '@pascal-app/core'
-import { markPerfAction, useViewer } from '@pascal-app/viewer'
+import { type AnyNode, type AnyNodeId, useScene } from '@intersign/core'
+import { markPerfAction, useViewer } from '@intersign/viewer'
 import type { ReactNode } from 'react'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useShallow } from 'zustand/react/shallow'
@@ -157,8 +157,8 @@ export function ViewerStage({
   return (
     <div
       className={cn('relative h-full w-full overflow-hidden bg-neutral-100', className)}
-      data-pascal-navigation-sync={synchronizeNavigation ? 'on' : 'off'}
-      data-pascal-viewer-stage={activeMode}
+      data-intersign-navigation-sync={synchronizeNavigation ? 'on' : 'off'}
+      data-intersign-viewer-stage={activeMode}
     >
       {showCompass && compassHost === undefined ? (
         <div className="pointer-events-none absolute inset-0 z-30" ref={setInternalCompassHost} />

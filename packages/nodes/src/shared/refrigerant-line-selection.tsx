@@ -13,9 +13,9 @@ import {
   resumeSceneHistory,
   sceneRegistry,
   useScene,
-} from '@pascal-app/core'
-import { DimensionPill, swallowNextClick, triggerSFX, useEditor } from '@pascal-app/editor'
-import { useViewer } from '@pascal-app/viewer'
+} from '@intersign/core'
+import { DimensionPill, swallowNextClick, triggerSFX, useEditor } from '@intersign/editor'
+import { useViewer } from '@intersign/viewer'
 import { Html } from '@react-three/drei'
 import { createPortal, type ThreeEvent, useFrame, useThree } from '@react-three/fiber'
 import { useEffect, useMemo, useRef, useState } from 'react'

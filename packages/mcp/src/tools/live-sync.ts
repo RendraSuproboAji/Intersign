@@ -1,5 +1,5 @@
-import type { SceneGraph } from '@pascal-app/core/clone-scene-graph'
-import { syncAutoStairOpenings } from '@pascal-app/core/stair-openings'
+import type { SceneGraph } from '@intersign/core/clone-scene-graph'
+import { syncAutoStairOpenings } from '@intersign/core/stair-openings'
 import { z } from 'zod'
 import type { SceneOperations } from '../operations'
 import { SceneVersionConflictError } from '../storage/types'

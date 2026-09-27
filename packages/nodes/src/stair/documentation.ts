@@ -6,13 +6,13 @@ import {
   resolveStairTotalRise,
   type StairNode,
   useScene,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import type {
   FloorplanStairArrowEntry,
   FloorplanStairEntry,
   FloorplanStairSegmentEntry,
-} from '@pascal-app/editor'
-import { floorplanGeometryMetadata, readFloorplanContext } from '@pascal-app/editor'
+} from '@intersign/editor'
+import { floorplanGeometryMetadata, readFloorplanContext } from '@intersign/editor'
 import {
   type ConstructionLengthProfile,
   type ConstructionMetricNotation,

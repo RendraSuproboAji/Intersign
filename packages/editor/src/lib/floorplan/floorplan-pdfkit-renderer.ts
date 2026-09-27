@@ -1,4 +1,4 @@
-import { type FloorplanGeometry, type FloorplanPoint, loadAssetUrl } from '@pascal-app/core'
+import { type FloorplanGeometry, type FloorplanPoint, loadAssetUrl } from '@intersign/core'
 import {
   type ArchitecturalDimensionLayout,
   computeArchitecturalDimensionLayout,

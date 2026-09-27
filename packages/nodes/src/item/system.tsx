@@ -1,6 +1,6 @@
 'use client'
 
-import { ItemLightSystem, ItemSystem } from '@pascal-app/viewer'
+import { ItemLightSystem, ItemSystem } from '@intersign/viewer'
 import { NodeBatchSystem } from '../shared/node-batch/system'
 
 /**

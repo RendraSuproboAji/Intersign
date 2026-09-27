@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test'
-import { LeanToExtensionNode } from '@pascal-app/core'
+import { LeanToExtensionNode } from '@intersign/core'
 import { leanToExtensionParametrics } from './parametrics'
 
 describe('lean-to resize locks', () => {

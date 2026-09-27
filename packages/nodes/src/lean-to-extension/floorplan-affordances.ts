@@ -9,8 +9,8 @@ import {
   snapScalar,
   useLiveNodeOverrides,
   type WallNode,
-} from '@pascal-app/core'
-import { getSegmentGridStep, isAngleSnapActive, isGridSnapActive } from '@pascal-app/editor'
+} from '@intersign/core'
+import { getSegmentGridStep, isAngleSnapActive, isGridSnapActive } from '@intersign/editor'
 import { rotateAffordanceDelta } from '../shared/rotate-affordance'
 import {
   resolveLeanToEdgeSnapTargets,

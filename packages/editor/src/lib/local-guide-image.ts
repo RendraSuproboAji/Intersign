@@ -5,7 +5,7 @@ import {
   ScanNode,
   type ScanNode as ScanNodeType,
   saveAsset,
-} from '@pascal-app/core'
+} from '@intersign/core'
 
 export function getGuideImageName(filename: string) {
   return getAssetName(filename, 'Guide image')

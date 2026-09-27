@@ -1,1 +1,1 @@
-export { RoofNode } from '@pascal-app/core'
+export { RoofNode } from '@intersign/core'

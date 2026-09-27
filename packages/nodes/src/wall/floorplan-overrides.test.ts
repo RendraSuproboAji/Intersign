@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test'
-import { type AnyNode, DoorNode, ItemNode, WallNode } from '@pascal-app/core'
+import { type AnyNode, DoorNode, ItemNode, WallNode } from '@intersign/core'
 import { wallFloorplanSiblingOverrides } from './floorplan-overrides'
 
 describe('wallFloorplanSiblingOverrides', () => {

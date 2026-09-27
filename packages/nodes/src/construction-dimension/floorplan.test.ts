@@ -8,8 +8,8 @@ import {
   nodeRegistry,
   registerNode,
   WallNode,
-} from '@pascal-app/core'
-import { createFloorplanContextExtensions } from '@pascal-app/editor'
+} from '@intersign/core'
+import { createFloorplanContextExtensions } from '@intersign/editor'
 import { wallDefinition } from '../wall/definition'
 import { buildConstructionDimensionFloorplan } from './floorplan'
 

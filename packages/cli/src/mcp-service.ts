@@ -8,7 +8,7 @@ import { fileURLToPath } from 'node:url'
 import { CliError } from './errors.js'
 import { withFileLock } from './file-lock.js'
 import { readJsonFile, writeJsonFile } from './json-files.js'
-import type { PascalPaths } from './paths.js'
+import type { IntersignPaths } from './paths.js'
 import {
   findAvailablePort,
   isProcessRunning,
@@ -45,7 +45,7 @@ export type McpStartProgress =
   | { step: 'mcp-already-running'; port: number }
 
 export interface EnsureMcpServiceOptions {
-  paths: PascalPaths
+  paths: IntersignPaths
   /**
    * The editor origin the MCP service should format `editorUrl` values against. Omit it when
    * the caller does not run the web editor: a recorded origin is then kept as it is.
@@ -66,16 +66,16 @@ export interface McpServiceResult {
  * agent tools work before (and without) any editor runtime being installed.
  */
 export function resolveMcpServicePath(environment: NodeJS.ProcessEnv = process.env): string {
-  if (environment.PASCAL_MCP_SERVICE_PATH) {
-    return path.resolve(environment.PASCAL_MCP_SERVICE_PATH)
+  if (environment.INTERSIGN_MCP_SERVICE_PATH) {
+    return path.resolve(environment.INTERSIGN_MCP_SERVICE_PATH)
   }
   const moduleDirectory = path.dirname(fileURLToPath(import.meta.url))
   return path.basename(moduleDirectory) === 'dist'
-    ? path.join(moduleDirectory, 'services/pascal-mcp.mjs')
-    : path.resolve(moduleDirectory, '../dist/services/pascal-mcp.mjs')
+    ? path.join(moduleDirectory, 'services/intersign-mcp.mjs')
+    : path.resolve(moduleDirectory, '../dist/services/intersign-mcp.mjs')
 }
 
-export async function getMcpServiceStatus(paths: PascalPaths): Promise<McpServiceStatus> {
+export async function getMcpServiceStatus(paths: IntersignPaths): Promise<McpServiceStatus> {
   const state = await readJsonFile<McpServiceState>(paths.mcpState)
   if (state?.schemaVersion !== 1 || typeof state.pid !== 'number') {
     return { running: false, healthy: false, state: null }
@@ -91,7 +91,7 @@ export async function ensureMcpService(
 }
 
 export async function stopMcpService(
-  paths: PascalPaths,
+  paths: IntersignPaths,
   options: { force?: boolean } = {},
 ): Promise<boolean> {
   return withMcpLifecycleLock(paths, () => stopMcpServiceUnlocked(paths, options))
@@ -114,7 +114,7 @@ async function ensureMcpServiceUnlocked(
     if (!(status.healthy || (await matchesRecordedMcpProcess(status.state)))) {
       throw new CliError(
         'state_conflict',
-        'A recorded Pascal MCP process is running but its identity could not be verified. Inspect "pascal mcp status --json", then use "pascal stop --force" only if the recorded command is trusted.',
+        'A recorded Intersign MCP process is running but its identity could not be verified. Inspect "intersign mcp status --json", then use "intersign stop --force" only if the recorded command is trusted.',
       )
     }
     await terminateProcess(status.state.pid)
@@ -149,13 +149,13 @@ async function ensureMcpServiceUnlocked(
   const environment: NodeJS.ProcessEnv = {
     ...process.env,
     NODE_ENV: 'production',
-    PASCAL_DATA_DIR: paths.data,
-    PASCAL_INSTANCE_ID: instanceId,
-    PASCAL_RUNTIME_VERSION: version,
-    PASCAL_MCP_HTTP_TOKEN: token,
-    ...(state.editorOrigin ? { PASCAL_EDITOR_ORIGIN: state.editorOrigin } : {}),
+    INTERSIGN_DATA_DIR: paths.data,
+    INTERSIGN_INSTANCE_ID: instanceId,
+    INTERSIGN_RUNTIME_VERSION: version,
+    INTERSIGN_MCP_HTTP_TOKEN: token,
+    ...(state.editorOrigin ? { INTERSIGN_EDITOR_ORIGIN: state.editorOrigin } : {}),
   }
-  const nodeBinary = process.env.PASCAL_NODE_BINARY || 'node'
+  const nodeBinary = process.env.INTERSIGN_NODE_BINARY || 'node'
   const logDescriptor = options.foreground ? undefined : openSync(paths.editorLog, 'a', 0o600)
   options.onProgress?.({ step: 'mcp-starting', port })
   const child = spawn(
@@ -173,7 +173,7 @@ async function ensureMcpServiceUnlocked(
   if (logDescriptor !== undefined) closeSync(logDescriptor)
   try {
     await waitForSpawn(child, nodeBinary)
-    if (!child.pid) throw new CliError('start_failed', 'The Pascal MCP process did not start.')
+    if (!child.pid) throw new CliError('start_failed', 'The Intersign MCP process did not start.')
     state.pid = child.pid
     await writeJsonFile(paths.mcpState, state)
     if (!options.foreground) child.unref()
@@ -190,7 +190,7 @@ async function ensureMcpServiceUnlocked(
 }
 
 async function stopMcpServiceUnlocked(
-  paths: PascalPaths,
+  paths: IntersignPaths,
   options: { force?: boolean },
 ): Promise<boolean> {
   const status = await getMcpServiceStatus(paths)
@@ -203,8 +203,8 @@ async function stopMcpServiceUnlocked(
     throw new CliError(
       'state_conflict',
       options.force
-        ? 'Refusing to stop a process whose health identity and operating-system command do not match the recorded Pascal MCP service.'
-        : 'The Pascal MCP identity is unavailable. Inspect "pascal mcp status --json", then use "pascal stop --force" only if the recorded command is trusted.',
+        ? 'Refusing to stop a process whose health identity and operating-system command do not match the recorded Intersign MCP service.'
+        : 'The Intersign MCP identity is unavailable. Inspect "intersign mcp status --json", then use "intersign stop --force" only if the recorded command is trusted.',
     )
   }
   await terminateProcess(status.state.pid)
@@ -213,12 +213,15 @@ async function stopMcpServiceUnlocked(
   return true
 }
 
-export async function checkMcpHealth(paths: PascalPaths, state: McpServiceState): Promise<boolean> {
+export async function checkMcpHealth(
+  paths: IntersignPaths,
+  state: McpServiceState,
+): Promise<boolean> {
   return (await probeMcpHealth(paths, state)) === 'healthy'
 }
 
 async function probeMcpHealth(
-  paths: PascalPaths,
+  paths: IntersignPaths,
   state: McpServiceState,
 ): Promise<'healthy' | 'foreign' | 'unreachable'> {
   let token: string
@@ -252,7 +255,7 @@ async function probeMcpHealth(
 }
 
 async function waitForMcpHealth(
-  paths: PascalPaths,
+  paths: IntersignPaths,
   state: McpServiceState,
   timeoutMs: number,
 ): Promise<void> {
@@ -267,25 +270,31 @@ async function waitForMcpHealth(
       )
     }
     if (!isProcessRunning(state.pid)) {
-      throw new CliError('start_failed', 'Pascal MCP exited before becoming healthy.')
+      throw new CliError('start_failed', 'Intersign MCP exited before becoming healthy.')
     }
     await new Promise((resolve) => setTimeout(resolve, 200))
   }
-  throw new CliError('health_timeout', `Pascal MCP did not become healthy within ${timeoutMs}ms.`)
+  throw new CliError(
+    'health_timeout',
+    `Intersign MCP did not become healthy within ${timeoutMs}ms.`,
+  )
 }
 
 async function matchesRecordedMcpProcess(state: McpServiceState): Promise<boolean> {
   if (process.platform === 'win32') return false
   const servicePath = path.resolve(state.servicePath)
-  if (path.basename(servicePath) !== 'pascal-mcp.mjs') return false
+  if (path.basename(servicePath) !== 'intersign-mcp.mjs') return false
   return (await processCommand(state.pid)).includes(servicePath)
 }
 
-async function withMcpLifecycleLock<T>(paths: PascalPaths, action: () => Promise<T>): Promise<T> {
+async function withMcpLifecycleLock<T>(
+  paths: IntersignPaths,
+  action: () => Promise<T>,
+): Promise<T> {
   return withFileLock(
     path.join(paths.run, 'mcp-lifecycle.lock'),
     'mcp_locked',
-    'Another Pascal MCP lifecycle operation is active.',
+    'Another Intersign MCP lifecycle operation is active.',
     action,
     { timeoutMs: 30_000 },
   )

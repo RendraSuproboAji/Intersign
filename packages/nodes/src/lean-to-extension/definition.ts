@@ -7,12 +7,12 @@ import {
   type RoofSegmentNode,
   type SceneApi,
   type WallNode,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   clearStructuralElevationGuide,
   type FloorplanNodeExtension,
   publishResolvedElevationGuide,
-} from '@pascal-app/editor'
+} from '@intersign/editor'
 import { buildLeanToExtensionFloorplan } from './floorplan'
 import { leanToResizeAffordance, leanToRotateAffordance } from './floorplan-affordances'
 import { leanToFloorplanMoveTarget } from './floorplan-move'

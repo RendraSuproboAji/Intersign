@@ -7,7 +7,7 @@ import {
   roofPlanOverlapEntryOwns,
   subtractPolygonsFromPolygon,
   unionPolygons,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import { getConicalRoofPlanFootprint, getRoofSegmentPlanLinework } from '../roof-segment/floorplan'
 
 type Pt = [number, number]

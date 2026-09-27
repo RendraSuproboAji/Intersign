@@ -6,7 +6,7 @@ import {
   nodeRegistry,
   registerNode,
   sceneRegistry,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import * as THREE from 'three'
 import type { ExportTextureUtils } from './export-texture-utils'
 import {

@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test'
-import { ColumnNode, LeanToExtensionNode } from '@pascal-app/core'
+import { ColumnNode, LeanToExtensionNode } from '@intersign/core'
 import { columnParametrics } from './parametrics'
 
 describe('column deletion', () => {

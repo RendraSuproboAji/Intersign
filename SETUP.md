@@ -1,4 +1,4 @@
-# Pascal Editor — Setup
+# Intersign Editor — Setup
 
 ## Prerequisites
 
@@ -29,7 +29,7 @@ cp .env.example .env
 | Variable | Required | Description |
 |----------|----------|-------------|
 | `PORT` | No | Dev server port (default: 3002) |
-| `MINT_PASCAL_HOST_ORIGIN` | No | Public editor origin used by Mint sign-in and request checks. Set it for self-hosted deployments. |
+| `MINT_INTERSIGN_HOST_ORIGIN` | No | Public editor origin used by Mint sign-in and request checks. Set it for self-hosted deployments. |
 
 Local development and the official hosted editor work without any environment variables.
 
@@ -40,13 +40,13 @@ docker compose up -d
 ```
 
 The editor will be running at **http://localhost:3000**. Saved scenes live in
-the `pascal-data` volume, so they survive `docker compose down`.
+the `intersign-data` volume, so they survive `docker compose down`.
 
-Docker defaults `MINT_PASCAL_HOST_ORIGIN` to `http://localhost:3000`. Override
-it when hosting Pascal at another origin:
+Docker defaults `MINT_INTERSIGN_HOST_ORIGIN` to `http://localhost:3000`. Override
+it when hosting Intersign at another origin:
 
 ```bash
-MINT_PASCAL_HOST_ORIGIN=https://pascal.example.com docker compose up -d
+MINT_INTERSIGN_HOST_ORIGIN=https://intersign.example.com docker compose up -d
 ```
 
 Keep the container port at 3000: the `/scenes` page fetches its own API through
@@ -60,21 +60,21 @@ Node.js 22.13 or newer can install a persistent local runtime, start it in the
 background, and open it in the browser without a repository checkout:
 
 ```bash
-npx @pascal-app/cli editor
+npx @intersign/cli editor
 ```
 
 The command starts the editor and its authenticated local MCP service together, downloading
 the web editor runtime for that CLI version on the first run and verifying it against a
-digest published in the npm package. Configure an agent to launch `pascal mcp connect`; for
-example, run `pascal mcp setup codex`. That connector needs neither the editor process nor
+digest published in the npm package. Configure an agent to launch `intersign mcp connect`; for
+example, run `intersign mcp setup codex`. That connector needs neither the editor process nor
 the runtime download, and `--runtime <directory-or-archive>` covers an offline host.
 
-Use `npx @pascal-app/cli doctor` to check the runtime, storage, editor, and MCP state. Saved
-scenes live in `~/.pascal/data/pascal.db` independently from installed runtime versions.
+Use `npx @intersign/cli doctor` to check the runtime, storage, editor, and MCP state. Saved
+scenes live in `~/.intersign/data/intersign.db` independently from installed runtime versions.
 The CLI retains old runtime versions for rollback and warns after more than three have
 accumulated. It also replaces a damaged copy of the installed runtime on the next start;
 neither operation modifies the data directory.
-The complete command and storage reference is in [Run Pascal
+The complete command and storage reference is in [Run Intersign
 locally](https://editor.pascal.app/docs/developers/local-editor).
 
 ## Monorepo Structure
@@ -83,8 +83,8 @@ locally](https://editor.pascal.app/docs/developers/local-editor).
 ├── apps/
 │   └── editor/          # Next.js editor application
 ├── packages/
-│   ├── core/            # @pascal-app/core — Scene schema, state, systems
-│   ├── viewer/          # @pascal-app/viewer — 3D rendering
+│   ├── core/            # @intersign/core — Scene schema, state, systems
+│   ├── viewer/          # @intersign/viewer — 3D rendering
 │   └── ui/              # Shared UI components
 └── tooling/             # Build & release tooling
 ```

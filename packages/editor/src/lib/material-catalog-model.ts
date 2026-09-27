@@ -10,12 +10,12 @@ import {
   type MaterialSource,
   subscribeLibraryMaterials,
   toLibraryMaterialRef,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import { useEffect, useState, useSyncExternalStore } from 'react'
 
 export type MaterialSourceFilter = MaterialSource
 const SOURCE_FILTERS: { id: MaterialSourceFilter; label: string }[] = [
-  { id: 'pascal', label: 'Pascal' },
+  { id: 'intersign', label: 'Intersign' },
   { id: 'mine', label: 'Mine' },
   { id: 'workspace', label: 'Workspace' },
   { id: 'community', label: 'Community' },
@@ -29,7 +29,7 @@ export function useMaterialCatalogModel(
   const [selectedCategory, setCategory] = useState<(typeof MATERIAL_CATEGORIES)[number]>(
     MATERIAL_CATEGORIES[0],
   )
-  const [sourceFilter, setSourceFilter] = useState<MaterialSourceFilter>('pascal')
+  const [sourceFilter, setSourceFilter] = useState<MaterialSourceFilter>('intersign')
   useSyncExternalStore(
     subscribeLibraryMaterials,
     getLibraryMaterialsVersion,
@@ -44,7 +44,9 @@ export function useMaterialCatalogModel(
       getDynamicLibraryMaterials().some((item) => item.source === 'workspace'),
   )
   const itemsFor = (category: typeof selectedCategory) =>
-    getMaterialsForCategory(category).filter((item) => (item.source ?? 'pascal') === sourceFilter)
+    getMaterialsForCategory(category).filter(
+      (item) => (item.source ?? 'intersign') === sourceFilter,
+    )
   useEffect(() => {
     const entry = getCatalogMaterialById(
       getLibraryMaterialIdFromRef(selectedMaterialPreset) ?? undefined,

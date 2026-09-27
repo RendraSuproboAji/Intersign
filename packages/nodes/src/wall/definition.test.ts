@@ -5,12 +5,12 @@ import {
   RoofNode,
   RoofSegmentNode,
   type SceneApi,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   DRAFTING_SURFACE_EXTENSION_KEY,
   type DraftingSurfaceExtension,
   getFloorplanNodeExtension,
-} from '@pascal-app/editor'
+} from '@intersign/editor'
 import { createConicalRoofSectorAboveWall } from '../roof/conical-roof'
 import { wallDefinition } from './definition'
 

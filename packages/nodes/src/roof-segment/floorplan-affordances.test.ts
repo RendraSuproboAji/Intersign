@@ -5,7 +5,7 @@ import {
   RoofSegmentNode,
   useLiveNodeOverrides,
   useScene,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import { roofSegmentResizeAffordance } from './floorplan-affordances'
 
 globalThis.requestAnimationFrame ??= (callback) => {

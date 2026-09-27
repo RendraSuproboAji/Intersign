@@ -4,8 +4,8 @@ import type {
   GeometryContext,
   WallNode,
   WindowNode,
-} from '@pascal-app/core'
-import { floorplanGeometryMetadata, readFloorplanContext } from '@pascal-app/editor'
+} from '@intersign/core'
+import { floorplanGeometryMetadata, readFloorplanContext } from '@intersign/editor'
 import {
   buildOpeningMarkAnnotation,
   type OpeningFloorplanLevelData,

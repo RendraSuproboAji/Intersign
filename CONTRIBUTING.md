@@ -1,4 +1,4 @@
-# Contributing to Pascal Editor
+# Contributing to Intersign Editor
 
 Thanks for your interest in contributing! We welcome all kinds of contributions — bug fixes, new features, documentation, and ideas.
 
@@ -11,7 +11,7 @@ Thanks for your interest in contributing! We welcome all kinds of contributions 
 ### Setup
 
 ```bash
-git clone https://github.com/pascalorg/editor.git
+git clone https://github.com/RendraSuproboAji/Intersign.git
 cd editor
 bun install
 bun dev
@@ -85,12 +85,12 @@ New node kinds and sidebar panels can ship as a plugin instead of editing the bu
 
 ## Reporting bugs
 
-Use the [Bug Report](https://github.com/pascalorg/editor/issues/new?template=bug_report.yml) template. Include steps to reproduce — this helps us fix things faster.
+Use the [Bug Report](https://github.com/RendraSuproboAji/Intersign/issues/new?template=bug_report.yml) template. Include steps to reproduce — this helps us fix things faster.
 
 ## Suggesting features
 
-Use the [Feature Request](https://github.com/pascalorg/editor/issues/new?template=feature_request.yml) template, or start a [Discussion](https://github.com/pascalorg/editor/discussions) if you want to brainstorm first.
+Use the [Feature Request](https://github.com/RendraSuproboAji/Intersign/issues/new?template=feature_request.yml) template, or start a [Discussion](https://github.com/RendraSuproboAji/Intersign/discussions) if you want to brainstorm first.
 
 ## Questions?
 
-Head to [Discussions](https://github.com/pascalorg/editor/discussions) — we're happy to help!
+Head to [Discussions](https://github.com/RendraSuproboAji/Intersign/discussions) — we're happy to help!

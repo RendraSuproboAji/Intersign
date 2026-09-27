@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, test } from 'bun:test'
-import { useScene } from '@pascal-app/core'
+import { useScene } from '@intersign/core'
 import {
   DoubleSide,
   Group,

@@ -3,7 +3,7 @@
  *
  * One example per shared contract: end-cut offset, UVs in metres,
  * finished-face contact (with the horizontal frame and the anchor chart),
- * mask alpha, `pascalPart` v1 tags and legacy rendering, plus the frozen O3
+ * mask alpha, `intersignPart` v1 tags and legacy rendering, plus the frozen O3
  * display precedence, O4 section pinning and the kernel host seam. The
  * reference computations below are the contract: the slice that implements
  * each one (F1, F4, F5a, F6, SI-R2) must reproduce these numbers.
@@ -17,10 +17,10 @@ import type {
   DisplayMode,
   EndCut,
   FidelityV3,
+  IntersignBakeExtras,
+  IntersignPartTag,
   MaterialPattern,
   Mount,
-  PascalBakeExtras,
-  PascalPartTag,
   PortRef,
   ResolvedSectionProfile,
   SceneToolHost,
@@ -260,7 +260,7 @@ describe('mask alpha (SI-R2 patterns)', () => {
   })
 })
 
-describe('pascalPart v1 tags (F4)', () => {
+describe('intersignPart v1 tags (F4)', () => {
   const FAMILIES: readonly DisplayFamily[] = [
     'finish',
     'exposed-structure',
@@ -276,34 +276,36 @@ describe('pascalPart v1 tags (F4)', () => {
     'run',
     'inspection',
   ]
-  const FINISH: PascalPartTag = { v: 1, family: 'finish', role: 'finish' }
+  const FINISH: IntersignPartTag = { v: 1, family: 'finish', role: 'finish' }
   /** Validated at live, raw bake, optimised bake and saved viewer. A missing tag reads as finish. */
-  function readTag(userData: { pascalPart?: unknown }): PascalPartTag | Error {
-    const tag = userData.pascalPart as Partial<PascalPartTag> | undefined
+  function readTag(userData: { intersignPart?: unknown }): IntersignPartTag | Error {
+    const tag = userData.intersignPart as Partial<IntersignPartTag> | undefined
     if (tag === undefined) return FINISH
-    if (tag.v !== 1) return new Error(`unsupported pascalPart version ${String(tag.v)}`)
+    if (tag.v !== 1) return new Error(`unsupported intersignPart version ${String(tag.v)}`)
     if (!FAMILIES.includes(tag.family as DisplayFamily)) return new Error('unknown family')
     if (typeof tag.role !== 'string' || tag.role.length === 0) return new Error('missing role')
     if (tag.presentation !== undefined && tag.presentation !== true)
       return new Error('presentation must be true when present')
-    return tag as PascalPartTag
+    return tag as IntersignPartTag
   }
-  const canonical = (meshes: { pascalPart?: PascalPartTag }[]) =>
-    meshes.filter((m) => readTag(m) instanceof Error || !(readTag(m) as PascalPartTag).presentation)
-  const category = (tag: PascalPartTag, ownerCategory: string, byRole: Record<string, string>) =>
+  const canonical = (meshes: { intersignPart?: IntersignPartTag }[]) =>
+    meshes.filter(
+      (m) => readTag(m) instanceof Error || !(readTag(m) as IntersignPartTag).presentation,
+    )
+  const category = (tag: IntersignPartTag, ownerCategory: string, byRole: Record<string, string>) =>
     tag.source ?? byRole[tag.role] ?? ownerCategory
 
   test('accepts v1 and rejects other versions and families', () => {
-    const stud: PascalPartTag = {
+    const stud: IntersignPartTag = {
       v: 1,
       family: 'framing',
       role: 'stud',
       owner: 'wall_x',
       key: 'g1/stud/s3',
     }
-    expect(readTag({ pascalPart: stud })).toEqual(stud)
-    expect(readTag({ pascalPart: { ...stud, v: 2 } })).toBeInstanceOf(Error)
-    expect(readTag({ pascalPart: { ...stud, family: 'pipework' } })).toBeInstanceOf(Error)
+    expect(readTag({ intersignPart: stud })).toEqual(stud)
+    expect(readTag({ intersignPart: { ...stud, v: 2 } })).toBeInstanceOf(Error)
+    expect(readTag({ intersignPart: { ...stud, family: 'pipework' } })).toBeInstanceOf(Error)
   })
 
   test('legacy GLBs: an untagged mesh is finish', () => {
@@ -312,14 +314,16 @@ describe('pascalPart v1 tags (F4)', () => {
 
   test('presentation solids never reach the canonical bake; proxies do', () => {
     const occluder = {
-      pascalPart: { v: 1, family: 'finish', role: 'core', presentation: true } as const,
+      intersignPart: { v: 1, family: 'finish', role: 'core', presentation: true } as const,
     }
-    const proxy = { pascalPart: { v: 1, family: 'device', role: 'outlet', proxy: true } as const }
+    const proxy = {
+      intersignPart: { v: 1, family: 'device', role: 'outlet', proxy: true } as const,
+    }
     expect(canonical([occluder, proxy, {}])).toEqual([proxy, {}])
   })
 
   test('source overrides the benchmark category', () => {
-    const tag: PascalPartTag = { v: 1, family: 'finish', role: 'tread', source: 'floor' }
+    const tag: IntersignPartTag = { v: 1, family: 'finish', role: 'tread', source: 'floor' }
     expect(category(tag, 'stair', { tread: 'stair' })).toBe('floor')
     expect(category({ ...tag, source: undefined }, 'stair', {})).toBe('stair')
   })
@@ -548,21 +552,21 @@ describe('connection ends (F6): declared ports and run-body taps', () => {
 })
 
 describe('bake profiles (F4): canonical carries every family and omits nothing', () => {
-  const canonical: PascalBakeExtras = { profile: 'canonical', families: 'all' }
-  const lightweight: PascalBakeExtras = {
+  const canonical: IntersignBakeExtras = { profile: 'canonical', families: 'all' }
+  const lightweight: IntersignBakeExtras = {
     profile: 'lightweight',
     families: 'all',
     omissions: ['cmu-cores'],
   }
   // @ts-expect-error a canonical artifact cannot declare partial families
-  const partial: PascalBakeExtras = { profile: 'canonical', families: ['finish'] }
+  const partial: IntersignBakeExtras = { profile: 'canonical', families: ['finish'] }
   // @ts-expect-error a canonical artifact cannot declare omissions
-  const omitting: PascalBakeExtras = { profile: 'canonical', families: 'all', omissions: ['x'] }
+  const omitting: IntersignBakeExtras = { profile: 'canonical', families: 'all', omissions: ['x'] }
   // @ts-expect-error a lightweight artifact must declare its omissions
-  const undeclared: PascalBakeExtras = { profile: 'lightweight', families: 'all' }
+  const undeclared: IntersignBakeExtras = { profile: 'lightweight', families: 'all' }
 
   /** The harness accepts only a complete canonical bake. */
-  const harnessAccepts = (extras: PascalBakeExtras) =>
+  const harnessAccepts = (extras: IntersignBakeExtras) =>
     extras.profile === 'canonical' && extras.families === 'all' && extras.omissions === undefined
 
   test('the harness accepts canonical and refuses everything else', () => {

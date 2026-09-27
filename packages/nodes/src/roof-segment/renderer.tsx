@@ -9,14 +9,14 @@ import {
   type RoofSegmentSurfaceMaterialRole,
   useRegistry,
   useScene,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   createMaterial,
   createMaterialFromPresetRef,
   getRoofMaterialArray,
   useNodeEvents,
   useViewer,
-} from '@pascal-app/viewer'
+} from '@intersign/viewer'
 import { useEffect, useMemo, useRef } from 'react'
 import * as THREE from 'three'
 import { getRoofDebugMaterials, getRoofMaterials } from '../roof/roof-materials'

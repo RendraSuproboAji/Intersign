@@ -1,5 +1,5 @@
 /**
- * Hand a scene to a desktop app listening on loopback (the Pascal Blender add-on
+ * Hand a scene to a desktop app listening on loopback (the Intersign Blender add-on
  * today). The app answers `GET /pascal/health`, accepts a GLB on
  * `POST /pascal/import`, and reports the import on `GET /pascal/import/<id>`.
  * Protocol reference: https://github.com/pascalorg/blender-addon#send-to-blender-from-the-editor
@@ -88,7 +88,11 @@ export async function sendGlbToLocalApp(
   if (meta.name) headers['X-Pascal-Project-Name'] = encodeURIComponent(meta.name)
   if (meta.projectId) headers['X-Pascal-Project-Id'] = meta.projectId
   if (meta.version) headers['X-Pascal-Version'] = meta.version
-  const response = await fetchImpl(`${base}/pascal/import`, { method: 'POST', headers, body: blob })
+  const response = await fetchImpl(`${base}/pascal/import`, {
+    method: 'POST',
+    headers,
+    body: blob,
+  })
   if (response.status === 403) {
     throw new LocalAppError('refused', 'The app has not allowed this site to send scenes.')
   }

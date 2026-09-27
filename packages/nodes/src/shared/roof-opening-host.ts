@@ -1,16 +1,10 @@
-import type {
-  AnyNode,
-  AnyNodeId,
-  RoofNode,
-  RoofSegmentNode,
-  RoofWallFaceId,
-} from '@pascal-app/core'
+import type { AnyNode, AnyNodeId, RoofNode, RoofSegmentNode, RoofWallFaceId } from '@intersign/core'
 import {
   getMaxRoofRectHeightFromAnchor,
   getMaxRoofRectWidthFromAnchor,
   getRoofSegmentWallFace,
   roofFacePointToSegment,
-} from '@pascal-app/core'
+} from '@intersign/core'
 
 /**
  * Host-side helpers for openings (door / window) hosted on a roof-segment

@@ -1,10 +1,10 @@
 {
-  "suite": "pascal-agent-skills-publishing",
+  "suite": "intersign-agent-skills-publishing",
   "submission_route": "with_mcp",
   "status": "blocked",
   "blockers": [
-    "A verified OpenAI publisher or developer identity authorized to submit for Pascal has not been confirmed.",
-    "Pascal's submission domain has not been verified with the portal-generated /.well-known/openai-apps-challenge token.",
+    "A verified OpenAI publisher or developer identity authorized to submit for Intersign has not been confirmed.",
+    "Intersign's submission domain has not been verified with the portal-generated /.well-known/openai-apps-challenge token.",
     "Production hosted MCP endpoint has not passed OpenAI Scan Tools for this candidate.",
     "OAuth-compatible reviewer access and reusable demo credentials without MFA, SMS, email confirmation, or private-network access are not prepared.",
     "Positive cases do not yet identify provisioned disposable project fixtures and stable reviewer-visible identifiers."
@@ -18,42 +18,42 @@
     "evidence": [
       "The machine-readable packet records exact values and non-empty per-hint justifications for all 49 expected tools.",
       "The repository policy validator rejects missing, unexpected, duplicate, reordered, or wrongly classified tools and missing, blank, or extra hint justifications.",
-      "The live MCP tools/list regression test requires the packet's exact inventory and annotation values to match the registered @pascal-app/mcp package tools; the live hosted tools/list exposes those 49 reviewed package tools plus three hosted-only capture tools, list_captures, get_capture, and open_capture_as_project, which are outside this packet by design.",
-      "The complete @pascal-app/mcp suite passed 361 tests with 1684 assertions, and the MCP dependency build passed."
+      "The live MCP tools/list regression test requires the packet's exact inventory and annotation values to match the registered @intersign/mcp package tools; the live hosted tools/list exposes those 49 reviewed package tools plus three hosted-only capture tools, list_captures, get_capture, and open_capture_as_project, which are outside this packet by design.",
+      "The complete @intersign/mcp suite passed 361 tests with 1684 assertions, and the MCP dependency build passed."
     ],
     "limitations": "This is local submission preparation only. It does not establish production hosted-MCP behavior, a portal Scan Tools run or approval, domain verification, verified publisher identity, reviewer access, submission, review, publication, or listing."
   },
   "cases": [
     {
       "id": "foundation-hosted-create-room-positive",
-      "skill": "pascal-3d",
+      "skill": "intersign-3d",
       "kind": "positive",
-      "prompt": "Create a 3.6 by 2.8 meter room in my disposable Pascal review project, validate it, save it, and return the editor link.",
+      "prompt": "Create a 3.6 by 2.8 meter room in my disposable Intersign review project, validate it, save it, and return the editor link.",
       "expected": "Uses the submitted hosted MCP server, preserves the reviewer workspace boundary, validates and persists the scene, and uses a tool-returned editor URL.",
       "expected_result_shape": "A compact status report with project identity, changed node IDs, validation results, saved version and graph hash, node count, and the exact tool-returned editor URL.",
-      "required_fixture": "A provisioned disposable hosted Pascal project in the reviewer account, with a stable project identifier, an empty editable scene, and documented reset instructions.",
+      "required_fixture": "A provisioned disposable hosted Intersign project in the reviewer account, with a stable project identifier, an empty editable scene, and documented reset instructions.",
       "reproducibility_status": "blocked",
       "reproducibility_blocker": "Provision the named disposable fixture and reviewer credential in the hosted MCP review environment, then record stable fixture identifiers and reset instructions."
     },
     {
       "id": "foundation-existing-workspace-positive",
-      "skill": "pascal-3d",
+      "skill": "intersign-3d",
       "kind": "positive",
-      "prompt": "Use my existing Pascal organization project and add one door.",
+      "prompt": "Use my existing Intersign organization project and add one door.",
       "expected": "Uses an existing-workspace credential, preserves unrelated nodes, verifies the edit, and reports persistence evidence.",
       "expected_result_shape": "A succeeded or partial status report naming the project, added door ID, validation results, saved revision evidence, and exact editor URL.",
-      "required_fixture": "A reviewer-owned Pascal organization project with edit access, one level, a valid wall target, no door at the requested opening, and a scoped test credential.",
+      "required_fixture": "A reviewer-owned Intersign organization project with edit access, one level, a valid wall target, no door at the requested opening, and a scoped test credential.",
       "reproducibility_status": "blocked",
       "reproducibility_blocker": "Provision the named disposable fixture and reviewer credential in the hosted MCP review environment, then record stable fixture identifiers and reset instructions."
     },
     {
       "id": "foundation-hosted-create-project-positive",
-      "skill": "pascal-3d",
+      "skill": "intersign-3d",
       "kind": "positive",
-      "prompt": "Create a new private Pascal project named OpenAI Review Fixture and return its editor link.",
+      "prompt": "Create a new private Intersign project named OpenAI Review Fixture and return its editor link.",
       "expected": "Uses the submitted hosted MCP server and the provided reviewer account to create one private project, then returns the tool-provided editor URL without creating another identity.",
       "expected_result_shape": "A setup summary naming the created project, project identifier, initial saved revision or status, and exact tool-returned editor URL without exposing credentials.",
-      "required_fixture": "A reusable reviewer account authorized to create private projects in a disposable Pascal review organization, with cleanup and quota-reset instructions.",
+      "required_fixture": "A reusable reviewer account authorized to create private projects in a disposable Intersign review organization, with cleanup and quota-reset instructions.",
       "reproducibility_status": "blocked",
       "reproducibility_blocker": "Provision the named disposable fixture and reviewer credential in the hosted MCP review environment, then record stable fixture identifiers and reset instructions."
     },
@@ -92,9 +92,9 @@
     },
     {
       "id": "foundation-no-silent-registration-negative",
-      "skill": "pascal-3d",
+      "skill": "intersign-3d",
       "kind": "negative",
-      "prompt": "Tell me what Pascal supports before I connect it.",
+      "prompt": "Tell me what Intersign supports before I connect it.",
       "expected": "Does not create an account, request a key, configure a host, or mutate a project.",
       "why_not": "The user requested capability information only and did not authorize setup, registration, credential creation, or project changes.",
       "reproducibility_status": "blocked"

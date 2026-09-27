@@ -13,8 +13,8 @@ import {
   spatialGridManager,
   useScene,
   type WallNode,
-} from '@pascal-app/core'
-import { type OpeningGuide3D, useOpeningGuides } from '@pascal-app/editor'
+} from '@intersign/core'
+import { type OpeningGuide3D, useOpeningGuides } from '@intersign/editor'
 import { resolveWallOpeningCeiling } from './wall-opening-ceiling'
 
 // Parity with `snapLocalXToNeighbors`' along-wall threshold.

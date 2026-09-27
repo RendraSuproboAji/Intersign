@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, test } from 'bun:test'
-import { nodeRegistry, registerNode, useScene } from '@pascal-app/core'
-import { useViewer } from '@pascal-app/viewer'
+import { nodeRegistry, registerNode, useScene } from '@intersign/core'
+import { useViewer } from '@intersign/viewer'
 import { z } from 'zod'
 import useEditor from '../store/use-editor'
 import { normalizeSceneGraphNodes, syncEditorSelectionFromCurrentScene } from './scene'

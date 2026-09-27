@@ -7,8 +7,8 @@ import {
   useRegistry,
   useScene,
   type ZoneNode,
-} from '@pascal-app/core'
-import { useNodeEvents, useViewer, ZONE_LAYER } from '@pascal-app/viewer'
+} from '@intersign/core'
+import { useNodeEvents, useViewer, ZONE_LAYER } from '@intersign/viewer'
 import { Html } from '@react-three/drei'
 import { useMemo, useRef } from 'react'
 import { BufferGeometry, Color, DoubleSide, Float32BufferAttribute, type Group, Shape } from 'three'

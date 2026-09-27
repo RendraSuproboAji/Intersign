@@ -11,8 +11,8 @@ import {
   useScene,
   type WallNode,
   type WindowNode,
-} from '@pascal-app/core'
-import { readFloorplanContext } from '@pascal-app/editor'
+} from '@intersign/core'
+import { readFloorplanContext } from '@intersign/editor'
 import { formatConstructionLength } from './construction-length'
 import { resolveWallOpeningCeiling } from './wall-opening-ceiling'
 

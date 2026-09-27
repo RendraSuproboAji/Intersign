@@ -1,4 +1,4 @@
-import { type DuctFittingNode, type ParametricDescriptor, useScene } from '@pascal-app/core'
+import { type DuctFittingNode, type ParametricDescriptor, useScene } from '@intersign/core'
 import { Vector3 } from 'three'
 import { getDuctFittingPorts } from '../duct-fitting/ports'
 import { findAutomaticRunEndCapIds } from '../shared/automatic-run-end-cap'

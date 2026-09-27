@@ -7,8 +7,8 @@ import {
   resolveBuildingForLevel,
   resolveLevelId,
   useScene,
-} from '@pascal-app/core'
-import { useViewer } from '@pascal-app/viewer'
+} from '@intersign/core'
+import { useViewer } from '@intersign/viewer'
 import useEditor from '../../../store/use-editor'
 
 function isVisibleSelectableNode(node: AnyNode): boolean {

@@ -8,7 +8,7 @@ import {
   scopeSlabPolygonContext,
   slabPolygonContextChanges,
   slabPolygonContextForLevel,
-} from '@pascal-app/core'
+} from '@intersign/core'
 
 type LevelContext = { slabs: SlabNode[] }
 type CachedLevel = {

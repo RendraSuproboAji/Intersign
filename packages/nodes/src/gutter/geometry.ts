@@ -1,11 +1,11 @@
-import type { GutterNode } from '@pascal-app/core'
+import type { GutterNode } from '@intersign/core'
 import {
   Brush,
   csgEvaluator,
   csgGeometry,
   prepareBrushForCSG,
   SUBTRACTION,
-} from '@pascal-app/viewer'
+} from '@intersign/viewer'
 import * as THREE from 'three'
 import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js'
 import {

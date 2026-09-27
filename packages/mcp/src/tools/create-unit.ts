@@ -1,6 +1,6 @@
+import type { AnyNodeId } from '@intersign/core/schema'
+import { UnitNode } from '@intersign/core/schema'
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
-import type { AnyNodeId } from '@pascal-app/core/schema'
-import { UnitNode } from '@pascal-app/core/schema'
 import { z } from 'zod'
 import type { SceneOperations } from '../operations'
 import { ADDITIVE_TOOL_ANNOTATIONS } from './annotations'

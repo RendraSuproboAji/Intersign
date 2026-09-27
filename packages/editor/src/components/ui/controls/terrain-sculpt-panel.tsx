@@ -6,7 +6,7 @@ import {
   type SiteNode,
   type TerrainVerb,
   useScene,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import { Mountain, Pipette } from 'lucide-react'
 import { brushRadiusRange, flattenSite, resetSiteTerrain } from '../../../lib/terrain-sculpt'
 import useEditor from '../../../store/use-editor'

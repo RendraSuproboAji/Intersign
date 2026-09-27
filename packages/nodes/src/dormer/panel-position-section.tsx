@@ -7,8 +7,8 @@ import {
   type RoofSegmentNode,
   sceneRegistry,
   useScene,
-} from '@pascal-app/core'
-import { PanelSection, SliderControl } from '@pascal-app/editor'
+} from '@intersign/core'
+import { PanelSection, SliderControl } from '@intersign/editor'
 import { useMemo } from 'react'
 import { Vector3 } from 'three'
 

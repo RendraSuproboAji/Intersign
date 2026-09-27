@@ -1,4 +1,4 @@
-import type { SlotDeclaration } from '@pascal-app/core'
+import type { SlotDeclaration } from '@intersign/core'
 
 export type LeanToSlotId = 'flashing' | 'ledger' | 'beam' | 'framing' | 'posts' | 'footings'
 

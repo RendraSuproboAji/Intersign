@@ -1,4 +1,4 @@
-import type { GuideNode } from '@pascal-app/core'
+import type { GuideNode } from '@intersign/core'
 import mitt from 'mitt'
 
 type GuideEditorEvents = {

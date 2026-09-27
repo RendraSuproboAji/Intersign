@@ -10,8 +10,8 @@ import {
   type SceneMaterialId,
   type StairNode,
   useScene,
-} from '@pascal-app/core'
-import { useViewer } from '@pascal-app/viewer'
+} from '@intersign/core'
+import { useViewer } from '@intersign/viewer'
 
 type ClipboardPayload = {
   copiedAt: number
@@ -26,7 +26,7 @@ export type PasteResult = {
   skippedIds: AnyNodeId[]
 }
 
-const SYSTEM_CLIPBOARD_KIND = 'pascal.scene-nodes'
+const SYSTEM_CLIPBOARD_KIND = 'intersign.scene-nodes'
 const SYSTEM_CLIPBOARD_VERSION = 1
 
 const COPYABLE_ROOT_TYPES = new Set<AnyNode['type']>([

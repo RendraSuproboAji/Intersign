@@ -13,8 +13,8 @@ import {
   useLiveNodeOverrides,
   useLiveTransforms,
   useScene,
-} from '@pascal-app/core'
-import { markPerfAction, useViewer } from '@pascal-app/viewer'
+} from '@intersign/core'
+import { markPerfAction, useViewer } from '@intersign/viewer'
 import { Plane, Vector2, Vector3 } from 'three'
 import { GROUP_MOVE_DRAG_LABEL } from '../../lib/contextual-help'
 import { clientToPlan } from '../../lib/floorplan/plan-coords'
@@ -457,7 +457,7 @@ function removeUnusedPasteMaterials(materialIds: SceneMaterialId[]) {
 }
 
 /**
- * Paste the Pascal scene payload from the browser clipboard onto the active
+ * Paste the Intersign scene payload from the browser clipboard onto the active
  * level, then carry the clones under the cursor until click-to-place. Escape
  * removes the uncommitted clones and any scene materials imported with them.
  */

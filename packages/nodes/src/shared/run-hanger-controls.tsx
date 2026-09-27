@@ -1,8 +1,8 @@
 'use client'
 
-import { type AnyNode, type AnyNodeId, useScene } from '@pascal-app/core'
-import { EDITOR_LAYER } from '@pascal-app/editor'
-import { disposeObject3DResources } from '@pascal-app/viewer'
+import { type AnyNode, type AnyNodeId, useScene } from '@intersign/core'
+import { EDITOR_LAYER } from '@intersign/editor'
+import { disposeObject3DResources } from '@intersign/viewer'
 import { useEffect, useMemo } from 'react'
 import { Mesh, MeshBasicMaterial } from 'three'
 import { buildRunHangers, type SupportedRun } from './run-hangers'

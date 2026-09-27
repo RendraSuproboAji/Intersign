@@ -11,7 +11,7 @@ import {
   type SceneCommit,
   subscribeSceneCommits,
   useScene,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import { z } from 'zod'
 import {
   commitFreshPlacementSubtree,

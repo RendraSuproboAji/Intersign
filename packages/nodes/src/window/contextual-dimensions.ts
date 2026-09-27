@@ -1,4 +1,4 @@
-import type { FloorplanGeometry, GeometryContext, WindowNode } from '@pascal-app/core'
+import type { FloorplanGeometry, GeometryContext, WindowNode } from '@intersign/core'
 import { buildWallHostedOpeningContextualDimensions } from '../wall/contextual-dimensions'
 
 export function buildWindowContextualDimensions(

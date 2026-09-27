@@ -8,7 +8,7 @@ import {
   getWallCurveLength,
   isCurvedWall,
   type WallNode,
-} from '@pascal-app/core'
+} from '@intersign/core'
 
 export type WallPlanPoint = [number, number]
 

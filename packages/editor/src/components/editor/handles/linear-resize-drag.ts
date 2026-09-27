@@ -8,7 +8,7 @@ import {
   type SceneApi,
   useLiveNodeOverrides,
   useScene,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import { replacePreviewOverrideIds } from './preview-overrides'
 
 export function linearResizeFactor<N>(

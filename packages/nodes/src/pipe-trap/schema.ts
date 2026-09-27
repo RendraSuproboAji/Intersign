@@ -1,1 +1,1 @@
-export { PipeTrapNode } from '@pascal-app/core'
+export { PipeTrapNode } from '@intersign/core'

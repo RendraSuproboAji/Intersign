@@ -3,7 +3,7 @@ import { copyFile, mkdir, mkdtemp, open, rm, stat, writeFile } from 'node:fs/pro
 import os from 'node:os'
 import path from 'node:path'
 import { isProxyBypassed, resolveProxyUrl } from './http-download.js'
-import { resolvePascalPaths } from './paths.js'
+import { resolveIntersignPaths } from './paths.js'
 import { findInstalledRuntime, installBundledRuntime, readActiveRuntime } from './runtime.js'
 import {
   ensureWebRuntime,
@@ -107,7 +107,7 @@ describe('web runtime resolution order', () => {
       paths: fixture.paths,
       runtimeSource: fixture.sourceDirectory,
       sourceFile: fixture.sourceFile,
-      environment: { PASCAL_BUNDLED_RUNTIME_DIR: other },
+      environment: { INTERSIGN_BUNDLED_RUNTIME_DIR: other },
     })
 
     expect(result.runtime.version).toBe('1.2.3')
@@ -115,13 +115,13 @@ describe('web runtime resolution order', () => {
     expect(await findInstalledRuntime(fixture.paths, '9.9.9')).toBeNull()
   })
 
-  test('falls back to PASCAL_BUNDLED_RUNTIME_DIR when no flag is passed', async () => {
+  test('falls back to INTERSIGN_BUNDLED_RUNTIME_DIR when no flag is passed', async () => {
     const fixture = await createFixture()
 
     const result = await ensureWebRuntime({
       paths: fixture.paths,
       sourceFile: fixture.sourceFile,
-      environment: { PASCAL_BUNDLED_RUNTIME_DIR: fixture.sourceDirectory },
+      environment: { INTERSIGN_BUNDLED_RUNTIME_DIR: fixture.sourceDirectory },
     })
 
     expect(result).toMatchObject({ installed: true, runtime: { version: '1.2.3' } })
@@ -220,7 +220,7 @@ describe('web runtime resolution order', () => {
     const message = (failure as Error).message
     expect(message).toContain(fixture.source.url)
     expect(message).toContain(fixture.source.sha256)
-    expect(message).toContain('pascal editor --runtime')
+    expect(message).toContain('intersign editor --runtime')
     expect(message).toContain('HTTPS_PROXY')
     expect(await findInstalledRuntime(fixture.paths, '1.2.3')).toBeNull()
   })
@@ -228,7 +228,7 @@ describe('web runtime resolution order', () => {
 
 describe('proxy configuration', () => {
   test('prefers HTTPS_PROXY and trims the configured value', () => {
-    const target = new URL('https://github.com/pascalorg/editor')
+    const target = new URL('https://github.com/RendraSuproboAji/Intersign')
 
     expect(resolveProxyUrl(target, { HTTPS_PROXY: ' http://proxy:3128 ' })).toBe(
       'http://proxy:3128',
@@ -239,7 +239,7 @@ describe('proxy configuration', () => {
   })
 
   test('honours NO_PROXY for the download host', () => {
-    const target = new URL('https://github.com/pascalorg/editor')
+    const target = new URL('https://github.com/RendraSuproboAji/Intersign')
 
     expect(resolveProxyUrl(target, { HTTPS_PROXY: 'http://proxy:3128', NO_PROXY: '*' })).toBeNull()
     expect(
@@ -264,7 +264,7 @@ describe('proxy configuration', () => {
 
 interface Fixture {
   root: string
-  paths: ReturnType<typeof resolvePascalPaths>
+  paths: ReturnType<typeof resolveIntersignPaths>
   sourceDirectory: string
   archiveFile: string
   sourceFile: string
@@ -277,11 +277,11 @@ const UNREACHABLE_HOST = 'https://127.0.0.1:1'
 async function createFixture(version = '1.2.3'): Promise<Fixture> {
   const root = await temporaryRoot()
   const sourceDirectory = await fakeRuntimeDirectory(root, version)
-  const archiveFile = path.join(root, `pascal-web-runtime-${version}.tar.gz`)
+  const archiveFile = path.join(root, `intersign-web-runtime-${version}.tar.gz`)
   await createRuntimeArchive(sourceDirectory, archiveFile)
   const source: RuntimeSource = {
     version,
-    url: `${UNREACHABLE_HOST}/pascal-web-runtime-${version}.tar.gz`,
+    url: `${UNREACHABLE_HOST}/intersign-web-runtime-${version}.tar.gz`,
     sha256: await fileSha256(archiveFile),
     size: (await stat(archiveFile)).size,
   }
@@ -289,7 +289,7 @@ async function createFixture(version = '1.2.3'): Promise<Fixture> {
   await writeFile(sourceFile, JSON.stringify(source))
   return {
     root,
-    paths: resolvePascalPaths({ PASCAL_HOME: path.join(root, 'home') }),
+    paths: resolveIntersignPaths({ INTERSIGN_HOME: path.join(root, 'home') }),
     sourceDirectory,
     archiveFile,
     sourceFile,
@@ -298,7 +298,7 @@ async function createFixture(version = '1.2.3'): Promise<Fixture> {
 }
 
 async function temporaryRoot(): Promise<string> {
-  const root = await mkdtemp(path.join(os.tmpdir(), 'pascal-cli-download-test-'))
+  const root = await mkdtemp(path.join(os.tmpdir(), 'intersign-cli-download-test-'))
   roots.push(root)
   return root
 }
@@ -310,7 +310,7 @@ async function fakeRuntimeDirectory(root: string, version: string): Promise<stri
     path.join(runtime, 'runtime-manifest.json'),
     JSON.stringify({ schemaVersion: 2, version, entrypoint: 'apps/editor/server.js' }),
   )
-  await writeFile(path.join(runtime, 'apps/editor/server.js'), `// pascal ${version}\n`)
+  await writeFile(path.join(runtime, 'apps/editor/server.js'), `// intersign ${version}\n`)
   return runtime
 }
 

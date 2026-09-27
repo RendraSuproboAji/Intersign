@@ -5,15 +5,15 @@ import {
   getWallThickness,
   useScene,
   type WallNode,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   clientToPlan,
   FloorplanDraftWallMeasurement,
   type FloorplanToolContext,
   formatLinearMeasurement,
   useFloorplanRender,
-} from '@pascal-app/editor'
-import { getSceneTheme, useViewer } from '@pascal-app/viewer'
+} from '@intersign/editor'
+import { getSceneTheme, useViewer } from '@intersign/viewer'
 import { useEffect } from 'react'
 import { bindWallSplitPointer } from './split-pointer'
 import { wallSplitDistance, wallSplitMarkerColor, wallSplitSegmentLabels } from './split-preview'
@@ -56,7 +56,7 @@ export default function WallSplitFloorplanLayer(_props: FloorplanToolContext) {
   const color = wallSplitMarkerColor(preview.valid)
   const cut = preview.frames[0]?.point
   return (
-    <g pointerEvents="none" data-testid="pascal-split-marker-2d">
+    <g pointerEvents="none" data-testid="intersign-split-marker-2d">
       {snap?.kind === 'alignment' && cut && (
         <line
           stroke="#818cf8"

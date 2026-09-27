@@ -1,4 +1,4 @@
-import type { LeanToExtensionNode } from '@pascal-app/core'
+import type { LeanToExtensionNode } from '@intersign/core'
 import { type Group, type Material, Mesh, MeshBasicMaterial } from 'three'
 import { buildLeanToExtensionGeometry } from './geometry'
 

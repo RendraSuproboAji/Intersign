@@ -1,6 +1,6 @@
-import { type AnyNode, type AnyNodeId, type FloorplanAffordance, useScene } from '@pascal-app/core'
-import { useEditor } from '@pascal-app/editor'
-import { useViewer } from '@pascal-app/viewer'
+import { type AnyNode, type AnyNodeId, type FloorplanAffordance, useScene } from '@intersign/core'
+import { useEditor } from '@intersign/editor'
+import { useViewer } from '@intersign/viewer'
 import type { PipeFittingNode } from '../pipe-fitting/schema'
 import {
   findMatedScenePorts,

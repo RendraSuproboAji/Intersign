@@ -1,7 +1,7 @@
 'use client'
 
-import { type DoorNode, useLiveNodeOverrides, useRegistry, useScene } from '@pascal-app/core'
-import { useNodeEvents } from '@pascal-app/viewer'
+import { type DoorNode, useLiveNodeOverrides, useRegistry, useScene } from '@intersign/core'
+import { useNodeEvents } from '@intersign/viewer'
 import { useLayoutEffect, useRef } from 'react'
 import { type Mesh, MeshBasicMaterial } from 'three'
 import { RoofFaceHostFrame } from '../shared/roof-face-host'

@@ -1,11 +1,11 @@
-import { type ChimneyNode, getActiveRoofHeight, type RoofSegmentNode } from '@pascal-app/core'
+import { type ChimneyNode, getActiveRoofHeight, type RoofSegmentNode } from '@intersign/core'
 import {
   Brush,
   csgEvaluator,
   csgGeometry,
   prepareBrushForCSG,
   SUBTRACTION,
-} from '@pascal-app/viewer'
+} from '@intersign/viewer'
 import * as THREE from 'three'
 import { mergeVertices } from 'three/examples/jsm/utils/BufferGeometryUtils.js'
 import { flueXPositions } from './geometry'

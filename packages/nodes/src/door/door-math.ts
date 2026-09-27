@@ -3,7 +3,7 @@ import {
   getWallCurveFrameAt,
   getWallCurveLength,
   type WallNode,
-} from '@pascal-app/core'
+} from '@intersign/core'
 
 /**
  * Keep the door handle at the same relative height when the door is resized:

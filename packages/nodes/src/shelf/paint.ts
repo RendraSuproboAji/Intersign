@@ -10,8 +10,8 @@ import {
   type ShelfNode,
   toSceneMaterialRef,
   useScene,
-} from '@pascal-app/core'
-import { createMaterial, createMaterialFromPresetRef, useViewer } from '@pascal-app/viewer'
+} from '@intersign/core'
+import { createMaterial, createMaterialFromPresetRef, useViewer } from '@intersign/viewer'
 import type { Material, Mesh } from 'three'
 
 type ShelfSlotUserData = {

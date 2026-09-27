@@ -1,9 +1,4 @@
-import type {
-  BlockNode,
-  FloorplanGeometry,
-  FloorplanPoint,
-  GeometryContext,
-} from '@pascal-app/core'
+import type { BlockNode, FloorplanGeometry, FloorplanPoint, GeometryContext } from '@intersign/core'
 
 function cross(origin: FloorplanPoint, a: FloorplanPoint, b: FloorplanPoint) {
   return (a[0] - origin[0]) * (b[1] - origin[1]) - (a[1] - origin[1]) * (b[0] - origin[0])

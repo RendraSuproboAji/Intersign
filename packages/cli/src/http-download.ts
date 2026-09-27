@@ -110,7 +110,7 @@ async function requestOnce(
     headers: {
       accept: 'application/octet-stream, */*',
       'accept-encoding': 'identity',
-      'user-agent': `pascal-cli/${version}`,
+      'user-agent': `intersign-cli/${version}`,
     },
     ...(agent ? { agent } : {}),
   })

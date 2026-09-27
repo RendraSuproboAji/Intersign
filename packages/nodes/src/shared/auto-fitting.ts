@@ -1,9 +1,4 @@
-import {
-  DuctFittingNode,
-  DuctSegmentNode,
-  PipeFittingNode,
-  PipeSegmentNode,
-} from '@pascal-app/core'
+import { DuctFittingNode, DuctSegmentNode, PipeFittingNode, PipeSegmentNode } from '@intersign/core'
 import { Euler, Matrix4, Quaternion, Vector3 } from 'three'
 import { fittingLegLength } from '../duct-fitting/ports'
 import {

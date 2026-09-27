@@ -2537,11 +2537,11 @@ export type EvaluationContext = {
 // ─── Export identity (F4) ────────────────────────────────────────────
 
 /**
- * Per-mesh export identity (F4), `userData.pascalPart` / glTF
- * `extras.pascalPart`, version 1. Validated live, in the raw bake, the
+ * Per-mesh export identity (F4), `userData.intersignPart` / glTF
+ * `extras.intersignPart`, version 1. Validated live, in the raw bake, the
  * optimised bake and the saved viewer. A missing tag means `finish`.
  */
-export type PascalPartTag = {
+export type IntersignPartTag = {
   v: 1
   family: DisplayFamily
   role: string
@@ -2567,11 +2567,11 @@ export type PascalPartTag = {
 export type ExportProfile = 'canonical' | 'finished' | 'lightweight'
 
 /**
- * Root glTF `extras.pascalBake`, one arm per profile. A canonical artifact
+ * Root glTF `extras.intersignBake`, one arm per profile. A canonical artifact
  * always carries every family and declares no omissions; only `lightweight`
  * may omit. The benchmark harness refuses non-canonical bakes.
  */
-export type PascalBakeExtras =
+export type IntersignBakeExtras =
   | { profile: 'canonical'; families: 'all'; omissions?: never }
   | { profile: 'finished'; families: readonly DisplayFamily[]; omissions?: never }
   | {

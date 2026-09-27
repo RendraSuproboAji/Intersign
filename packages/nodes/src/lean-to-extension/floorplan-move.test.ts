@@ -10,8 +10,8 @@ import {
   SlabNode,
   useLiveNodeOverrides,
   WallNode,
-} from '@pascal-app/core'
-import { useEditor, useInteractionScope } from '@pascal-app/editor'
+} from '@intersign/core'
+import { useEditor, useInteractionScope } from '@intersign/editor'
 import { leanToExtensionDefinition } from './definition'
 import { leanToFloorplanMoveTarget } from './floorplan-move'
 import { resolveLeanToSlabEdgePlacement } from './placement'

@@ -1,8 +1,8 @@
 'use client'
 
-import type { AnyNode, AnyNodeId } from '@pascal-app/core'
-import { useScene } from '@pascal-app/core'
-import { useViewer } from '@pascal-app/viewer'
+import type { AnyNode, AnyNodeId } from '@intersign/core'
+import { useScene } from '@intersign/core'
+import { useViewer } from '@intersign/viewer'
 
 /**
  * Resolved current selection — selected node IDs plus a convenience

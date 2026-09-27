@@ -1,4 +1,4 @@
-import type { DimensionTerminator, DimensionTextPosition } from '@pascal-app/core'
+import type { DimensionTerminator, DimensionTextPosition } from '@intersign/core'
 import type {
   ConstructionImperialPrecision,
   ConstructionMetricNotation,

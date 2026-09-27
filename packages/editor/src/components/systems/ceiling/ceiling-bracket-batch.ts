@@ -1,4 +1,4 @@
-import type { CeilingNode } from '@pascal-app/core'
+import type { CeilingNode } from '@intersign/core'
 import {
   BoxGeometry,
   Color,

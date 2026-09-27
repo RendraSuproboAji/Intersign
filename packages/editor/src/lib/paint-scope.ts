@@ -15,7 +15,7 @@ import {
   toSceneMaterialRef,
   useScene,
   type WallNode,
-} from '@pascal-app/core'
+} from '@intersign/core'
 
 /**
  * Painter application scope — how far one paint click spreads. The scope set is

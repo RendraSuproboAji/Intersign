@@ -1,6 +1,6 @@
+import { buildUnitReport } from '@intersign/core'
+import { UnitNode } from '@intersign/core/schema'
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
-import { buildUnitReport } from '@pascal-app/core'
-import { UnitNode } from '@pascal-app/core/schema'
 import { z } from 'zod'
 import type { SceneOperations } from '../operations'
 import { READ_ONLY_TOOL_ANNOTATIONS } from './annotations'

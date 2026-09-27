@@ -1,4 +1,4 @@
-import type { FloorplanGeometry, FloorplanPoint } from '@pascal-app/core'
+import type { FloorplanGeometry, FloorplanPoint } from '@intersign/core'
 
 export type FloorplanBounds = {
   minX: number

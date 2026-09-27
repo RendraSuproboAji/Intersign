@@ -4,14 +4,14 @@ import {
   runAsSingleSceneHistoryStep,
   useScene,
   type WallNode,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   isGridSnapActive,
   isMagneticSnapActive,
   triggerSFX,
   useEditor,
   useInteractionScope,
-} from '@pascal-app/editor'
+} from '@intersign/editor'
 import {
   snapWallSplitDistance,
   WALL_SPLIT_MAX_CUTS,

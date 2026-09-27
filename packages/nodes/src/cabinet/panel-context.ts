@@ -1,4 +1,4 @@
-import type { AnyNode, AnyNodeId, CabinetModuleNode, CabinetNode } from '@pascal-app/core'
+import type { AnyNode, AnyNodeId, CabinetModuleNode, CabinetNode } from '@intersign/core'
 
 export type CabinetModulePanelContext = {
   parentRun: CabinetNode

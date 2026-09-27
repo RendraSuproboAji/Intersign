@@ -1,5 +1,5 @@
-import type { AnyNode, FloorplanGeometry, HandleDescriptor, NodeDefinition } from '@pascal-app/core'
-import { type AnyNodeId, useInteractive, useScene } from '@pascal-app/core'
+import type { AnyNode, FloorplanGeometry, HandleDescriptor, NodeDefinition } from '@intersign/core'
+import { type AnyNodeId, useInteractive, useScene } from '@intersign/core'
 import {
   boundsOf,
   boxCorners,
@@ -16,8 +16,8 @@ import {
   snapParameters,
   transformPoint,
   validateProceduralRelations,
-} from '@pascal-app/core/procedural-items'
-import { decorateProceduralEmission } from '@pascal-app/viewer'
+} from '@intersign/core/procedural-items'
+import { decorateProceduralEmission } from '@intersign/viewer'
 import { itemPaint } from '../item/paint'
 import {
   itemHasMechanisms,
@@ -189,7 +189,7 @@ export const proceduralItemDefinition: NodeDefinition<typeof ProceduralItemNode>
   relations: { hosts: ['item', 'procedural-item'], cascadeDelete: 'descendants' },
   renderer: { kind: 'parametric', module: () => import('./renderer') },
   exportAnimation: ({ node, object }) => bakeProceduralAnimationClips(node, object),
-  parametrics: { groups: [], customPanel: () => import('@pascal-app/editor/procedural-items') },
+  parametrics: { groups: [], customPanel: () => import('@intersign/editor/procedural-items') },
   affordanceTools: { move: () => import('./move-tool') },
   floorplanMoveTarget: proceduralFloorplanMoveTarget,
   floorplanAffectedIds: restingFloorplanAffectedIds,

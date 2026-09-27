@@ -1,4 +1,4 @@
-import type { CabinetModuleNode, CabinetNode } from '@pascal-app/core'
+import type { CabinetModuleNode, CabinetNode } from '@intersign/core'
 import { resolveCabinetType } from './run-ops'
 import type { CabinetCompartment } from './stack'
 

@@ -7,8 +7,8 @@ import {
   type GutterOutlet,
   useLiveNodeOverrides,
   useScene,
-} from '@pascal-app/core'
-import { SliderControl } from '@pascal-app/editor'
+} from '@intersign/core'
+import { SliderControl } from '@intersign/editor'
 
 /**
  * Position-along-the-eave editor for a downspout. The downspout's spot

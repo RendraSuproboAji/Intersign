@@ -2,7 +2,7 @@ import { describe, expect, test } from 'bun:test'
 import { Client } from '@modelcontextprotocol/sdk/client/index.js'
 import { InMemoryTransport } from '@modelcontextprotocol/sdk/inMemory.js'
 import { SceneBridge } from '../bridge/scene-bridge'
-import { createPascalMcpServer } from '../server'
+import { createIntersignMcpServer } from '../server'
 
 const DIALECT_2020_12 = 'https://json-schema.org/draft/2020-12/schema'
 
@@ -11,7 +11,7 @@ async function listRawSchemas() {
   bridge.setScene({}, [])
   bridge.loadDefault()
 
-  const server = createPascalMcpServer({ bridge })
+  const server = createIntersignMcpServer({ bridge })
   const [srvT, cliT] = InMemoryTransport.createLinkedPair()
   const client = new Client({ name: 'schema-dialect', version: '0.0.0' })
   await Promise.all([server.connect(srvT), client.connect(cliT)])

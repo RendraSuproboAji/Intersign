@@ -1,4 +1,4 @@
-import { type AnyNode, type AnyNodeId, getFloorStackedPosition, useScene } from '@pascal-app/core'
+import { type AnyNode, type AnyNodeId, getFloorStackedPosition, useScene } from '@intersign/core'
 
 type FloorStackPreviewArgs = {
   node: AnyNode

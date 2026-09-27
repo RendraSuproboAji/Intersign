@@ -12,8 +12,8 @@ import {
   type RoofSegmentNode,
   roofFacePointToSegment,
   useLiveTransforms,
-} from '@pascal-app/core'
-import { formatLinearMeasurement, readFloorplanMetricNotationOverride } from '@pascal-app/editor'
+} from '@intersign/core'
+import { formatLinearMeasurement, readFloorplanMetricNotationOverride } from '@intersign/editor'
 import { restingNodePlanFrame } from '../shared/resting-surface-plan'
 
 /**

@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, test } from 'bun:test'
-import { BlockNode, ItemNode, type LevelNode, useScene } from '@pascal-app/core'
+import { BlockNode, ItemNode, type LevelNode, useScene } from '@intersign/core'
 import { Vector3 } from 'three'
 import { resolveFaceHostPreviewCommit } from './face-host-commit'
 import type { PlacementContext } from './placement-types'

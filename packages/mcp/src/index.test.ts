@@ -6,7 +6,7 @@ test('version module loads', async () => {
   expect(mod.version).toBe(packageJson.version)
 })
 
-test('createPascalMcpServer is a function', async () => {
+test('createIntersignMcpServer is a function', async () => {
   const mod = await import('./index')
-  expect(typeof mod.createPascalMcpServer).toBe('function')
+  expect(typeof mod.createIntersignMcpServer).toBe('function')
 })

@@ -4,13 +4,13 @@ import {
   MaterialTarget as MaterialTargetSchema,
 } from './schema/material'
 
-export type MaterialSource = 'pascal' | 'community' | 'mine' | 'workspace'
+export type MaterialSource = 'intersign' | 'community' | 'mine' | 'workspace'
 
 export type MaterialCatalogItem = {
   id: string
   label: string
   category: MaterialCategory
-  /** Origin of the entry. Absent = 'pascal' (all static catalog entries). */
+  /** Origin of the entry. Absent = 'intersign' (all static catalog entries). */
   source?: MaterialSource
   /**
    * Where this finish is appropriate. Absent = universal (e.g. flat colors).

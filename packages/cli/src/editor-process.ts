@@ -12,7 +12,7 @@ import {
   type McpStartProgress,
   stopMcpService,
 } from './mcp-service.js'
-import type { PascalPaths } from './paths.js'
+import type { IntersignPaths } from './paths.js'
 import {
   errorMessage,
   findAvailablePort,
@@ -54,7 +54,7 @@ export interface EditorStatus {
 }
 
 export interface StartEditorOptions {
-  paths: PascalPaths
+  paths: IntersignPaths
   port?: number
   foreground?: boolean
   /** A web-runtime directory or `.tar.gz` archive to install instead of downloading one. */
@@ -93,7 +93,7 @@ export interface RuntimeActivationResult {
   restarted: boolean
 }
 
-export async function ensurePascalDirectories(paths: PascalPaths): Promise<void> {
+export async function ensureIntersignDirectories(paths: IntersignPaths): Promise<void> {
   await Promise.all(
     [paths.root, paths.runtime, paths.data, paths.plugins, paths.run, paths.logs, paths.tmp].map(
       (directory) => mkdir(directory, { recursive: true, mode: 0o700 }),
@@ -101,7 +101,7 @@ export async function ensurePascalDirectories(paths: PascalPaths): Promise<void>
   )
 }
 
-export async function getEditorStatus(paths: PascalPaths): Promise<EditorStatus> {
+export async function getEditorStatus(paths: IntersignPaths): Promise<EditorStatus> {
   const [runtime, state] = await Promise.all([
     readActiveRuntime(paths),
     readJsonFile<EditorState>(paths.state),
@@ -129,7 +129,7 @@ export async function pinnedRuntimeVersion(
   options: Pick<StartEditorOptions, 'runtimeSource' | 'runtimeSourceFile' | 'environment'>,
 ): Promise<string | null> {
   const environment = options.environment ?? process.env
-  if (options.runtimeSource || environment.PASCAL_BUNDLED_RUNTIME_DIR) return null
+  if (options.runtimeSource || environment.INTERSIGN_BUNDLED_RUNTIME_DIR) return null
   try {
     return (await readRuntimeSource(options.runtimeSourceFile)).version
   } catch {
@@ -142,7 +142,7 @@ export async function startEditor(options: StartEditorOptions): Promise<StartEdi
 }
 
 async function startEditorUnlocked(options: StartEditorOptions): Promise<StartEditorResult> {
-  await ensurePascalDirectories(options.paths)
+  await ensureIntersignDirectories(options.paths)
   options.onProgress?.({ step: 'storage-ready', dataDirectory: options.paths.data })
   let currentStatus: EditorStatus
   try {
@@ -173,7 +173,7 @@ async function startEditorUnlocked(options: StartEditorOptions): Promise<StartEd
   if (currentStatus.running) {
     throw new CliError(
       'state_conflict',
-      'A recorded Pascal editor process is running but its identity could not be verified. Inspect "pascal status --json", then use "pascal stop --force" only if the recorded command is trusted.',
+      'A recorded Intersign editor process is running but its identity could not be verified. Inspect "intersign status --json", then use "intersign stop --force" only if the recorded command is trusted.',
     )
   }
   await rm(options.paths.state, { force: true })
@@ -208,7 +208,7 @@ async function startEditorUnlocked(options: StartEditorOptions): Promise<StartEd
     version: runtime.version,
     port,
     host: '127.0.0.1',
-    url: `http://pascal.localhost:${port}`,
+    url: `http://intersign.localhost:${port}`,
     instanceId,
     runtimeDirectory: runtime.directory,
     startedAt: new Date().toISOString(),
@@ -219,12 +219,12 @@ async function startEditorUnlocked(options: StartEditorOptions): Promise<StartEd
     NODE_ENV: 'production',
     HOSTNAME: state.host,
     PORT: String(port),
-    PASCAL_DATA_DIR: options.paths.data,
-    PASCAL_INSTANCE_ID: instanceId,
-    PASCAL_RUNTIME_VERSION: runtime.version,
-    MINT_PASCAL_HOST_ORIGIN: process.env.MINT_PASCAL_HOST_ORIGIN || state.url,
+    INTERSIGN_DATA_DIR: options.paths.data,
+    INTERSIGN_INSTANCE_ID: instanceId,
+    INTERSIGN_RUNTIME_VERSION: runtime.version,
+    MINT_INTERSIGN_HOST_ORIGIN: process.env.MINT_INTERSIGN_HOST_ORIGIN || state.url,
   }
-  const nodeBinary = process.env.PASCAL_NODE_BINARY || 'node'
+  const nodeBinary = process.env.INTERSIGN_NODE_BINARY || 'node'
   if (!options.foreground) await rotateEditorLog(options.paths.editorLog)
   const logDescriptor = options.foreground
     ? undefined
@@ -241,7 +241,8 @@ async function startEditorUnlocked(options: StartEditorOptions): Promise<StartEd
   let mcp: McpServiceState
   try {
     await waitForSpawn(child, nodeBinary)
-    if (!child.pid) throw new CliError('start_failed', 'The Pascal editor process did not start.')
+    if (!child.pid)
+      throw new CliError('start_failed', 'The Intersign editor process did not start.')
     state.pid = child.pid
     await writeJsonFile(options.paths.state, state)
     if (!options.foreground) child.unref()
@@ -265,7 +266,7 @@ async function startEditorUnlocked(options: StartEditorOptions): Promise<StartEd
 }
 
 export async function stopEditor(
-  paths: PascalPaths,
+  paths: IntersignPaths,
   options: StopEditorOptions = {},
 ): Promise<boolean> {
   const editorStopped = await withEditorLifecycleLock(paths, () =>
@@ -276,7 +277,7 @@ export async function stopEditor(
 }
 
 async function stopEditorUnlocked(
-  paths: PascalPaths,
+  paths: IntersignPaths,
   options: StopEditorOptions = {},
 ): Promise<boolean> {
   const state = await readJsonFile<EditorState>(paths.state)
@@ -291,8 +292,8 @@ async function stopEditorUnlocked(
     throw new CliError(
       'state_conflict',
       options.force
-        ? 'Refusing to stop a process whose health identity and operating-system command do not match the recorded Pascal runtime.'
-        : 'The Pascal editor identity is unavailable. Inspect "pascal status --json", then use "pascal stop --force" only if the recorded command is trusted.',
+        ? 'Refusing to stop a process whose health identity and operating-system command do not match the recorded Intersign runtime.'
+        : 'The Intersign editor identity is unavailable. Inspect "intersign status --json", then use "intersign stop --force" only if the recorded command is trusted.',
     )
   }
   await terminateProcess(state.pid)
@@ -300,7 +301,7 @@ async function stopEditorUnlocked(
   return true
 }
 
-export async function restartEditor(paths: PascalPaths): Promise<StartEditorResult> {
+export async function restartEditor(paths: IntersignPaths): Promise<StartEditorResult> {
   return withEditorLifecycleLock(paths, async () => {
     const previousPort = (await readJsonFile<EditorState>(paths.state))?.port
     await stopEditorUnlocked(paths)
@@ -309,7 +310,7 @@ export async function restartEditor(paths: PascalPaths): Promise<StartEditorResu
 }
 
 export async function activateEditorRuntime(
-  paths: PascalPaths,
+  paths: IntersignPaths,
   candidate: ActiveRuntime,
 ): Promise<RuntimeActivationResult> {
   return withEditorLifecycleLock(paths, async () => {
@@ -338,7 +339,7 @@ export async function activateEditorRuntime(
     if (previousStatus.running && !previousStatus.healthy) {
       throw new CliError(
         'state_conflict',
-        'A recorded Pascal editor process is running but its identity could not be verified. Recover or stop it before updating.',
+        'A recorded Intersign editor process is running but its identity could not be verified. Recover or stop it before updating.',
       )
     }
     if (
@@ -491,31 +492,31 @@ export async function waitForHealth(state: EditorState, timeoutMs: number): Prom
     if (health === 'foreign') {
       throw new CliError(
         'port_conflict',
-        `Port ${state.port} is responding as another application. Run Pascal again to choose another port, or pass --port <n>.`,
+        `Port ${state.port} is responding as another application. Run Intersign again to choose another port, or pass --port <n>.`,
       )
     }
     if (!isProcessRunning(state.pid)) {
-      throw new CliError('start_failed', 'The Pascal editor exited before becoming healthy.')
+      throw new CliError('start_failed', 'The Intersign editor exited before becoming healthy.')
     }
     await new Promise((resolve) => setTimeout(resolve, 200))
   }
-  throw new CliError('health_timeout', `Pascal did not become healthy within ${timeoutMs}ms.`)
+  throw new CliError('health_timeout', `Intersign did not become healthy within ${timeoutMs}ms.`)
 }
 
 async function withEditorLifecycleLock<T>(
-  paths: PascalPaths,
+  paths: IntersignPaths,
   action: () => Promise<T>,
 ): Promise<T> {
   return withFileLock(
     path.join(paths.run, 'editor-lifecycle.lock'),
     'editor_locked',
-    'Another Pascal editor lifecycle operation is active.',
+    'Another Intersign editor lifecycle operation is active.',
     action,
   )
 }
 
 async function matchesRecordedEditorProcess(
-  paths: PascalPaths,
+  paths: IntersignPaths,
   state: EditorState,
 ): Promise<boolean> {
   if (process.platform === 'win32') return false

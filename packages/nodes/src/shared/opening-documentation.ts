@@ -5,8 +5,8 @@ import type {
   LevelNode,
   WallNode,
   WindowNode,
-} from '@pascal-app/core'
-import { type FloorplanSchedule, withFloorplanGeometryMetadata } from '@pascal-app/editor'
+} from '@intersign/core'
+import { type FloorplanSchedule, withFloorplanGeometryMetadata } from '@intersign/editor'
 import {
   type ConstructionLengthProfile,
   type ConstructionLinearUnit,

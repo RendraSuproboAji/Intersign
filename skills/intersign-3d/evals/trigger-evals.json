@@ -1,24 +1,24 @@
 {
-  "skill_name": "pascal-3d",
+  "skill_name": "intersign-3d",
   "evals": [
     {
-      "query": "Connect Codex to Pascal locally, build a two-room floor plan, validate it, and give me the editor link.",
+      "query": "Connect Codex to Intersign locally, build a two-room floor plan, validate it, and give me the editor link.",
       "should_trigger": true
     },
     {
-      "query": "Open my existing Pascal project and add one window to the west wall without changing the rest of the scene.",
+      "query": "Open my existing Intersign project and add one window to the west wall without changing the rest of the scene.",
       "should_trigger": true
     },
     {
-      "query": "I authorize a private agent-owned Pascal account for this task. Create a small studio model and keep the key secret.",
+      "query": "I authorize a private agent-owned Intersign account for this task. Create a small studio model and keep the key secret.",
       "should_trigger": true
     },
     {
-      "query": "Inspect this Pascal scene for schema and practical layout problems, but do not save any changes.",
+      "query": "Inspect this Intersign scene for schema and practical layout problems, but do not save any changes.",
       "should_trigger": true
     },
     {
-      "query": "Set up the Pascal MCP server in Claude Code for a project that must stay in my company workspace.",
+      "query": "Set up the Intersign MCP server in Claude Code for a project that must stay in my company workspace.",
       "should_trigger": true
     },
     {

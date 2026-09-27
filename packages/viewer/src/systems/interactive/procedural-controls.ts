@@ -1,5 +1,5 @@
-import type { Control, ControlValue } from '@pascal-app/core'
-import type { ProceduralItemNode } from '@pascal-app/core/procedural-items'
+import type { Control, ControlValue } from '@intersign/core'
+import type { ProceduralItemNode } from '@intersign/core/procedural-items'
 
 export type ControlDescriptor = {
   key: string

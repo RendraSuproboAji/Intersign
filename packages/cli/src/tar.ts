@@ -299,6 +299,6 @@ function writeOctal(block: Buffer, value: number, offset: number, length: number
 function invalidArchive(reason: string): CliError {
   return new CliError(
     'invalid_runtime_archive',
-    `The Pascal web runtime archive is invalid: ${reason}.`,
+    `The Intersign web runtime archive is invalid: ${reason}.`,
   )
 }

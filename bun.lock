@@ -29,18 +29,18 @@
       "version": "0.1.0",
       "dependencies": {
         "@iconify/react": "^6.0.2",
+        "@intersign/core": "*",
+        "@intersign/editor": "*",
+        "@intersign/mcp": "*",
+        "@intersign/nodes": "*",
+        "@intersign/viewer": "*",
         "@mint/pascal-plugin": "github:mintdotgg/mint-pascal-plugin#902c546dbaece6b31455c0dc394afe6b9cd136fe",
         "@number-flow/react": "^0.6.0",
-        "@pascal-app/core": "*",
-        "@pascal-app/editor": "*",
-        "@pascal-app/mcp": "*",
-        "@pascal-app/nodes": "*",
         "@pascal-app/plugin-bones": "github:pascalorg/plugin-bones#5679260261ee1c733656ff6dfb99e30bb24b58a7",
         "@pascal-app/plugin-environment": "github:AxiomeCG/environment#1aa0bc3cbed273dbf751e9af79e446f6de105c90",
         "@pascal-app/plugin-pool": "github:sudhir9297/pool-pascal-plugin#483a080558293cd344170e66318230e2ac9b6ae8",
         "@pascal-app/plugin-streetscape": "github:sudhir9297/streetscape-pascal-plugin#1c04ec9ccb3fa8124ec56dfc1026567cbbc51aef",
         "@pascal-app/plugin-trees": "github:pascalorg/plugin-trees#56d978cd9b409b716207b3f3d269455d3cd6f067",
-        "@pascal-app/viewer": "*",
         "@radix-ui/react-tooltip": "^1.2.8",
         "@react-three/drei": "^10.7.7",
         "@react-three/fiber": "^9.5.0",
@@ -61,7 +61,7 @@
         "zod": ">=4.5.4 <4.6",
       },
       "devDependencies": {
-        "@pascal/typescript-config": "*",
+        "@intersign/typescript-config": "*",
         "@types/howler": "^2.2.12",
         "@types/node": "^22.19.12",
         "@types/react": "19.2.2",
@@ -77,10 +77,10 @@
       "name": "ifc-converter-app",
       "version": "0.1.0",
       "dependencies": {
-        "@pascal-app/core": "*",
-        "@pascal-app/ifc-converter": "*",
-        "@pascal-app/nodes": "*",
-        "@pascal-app/viewer": "*",
+        "@intersign/core": "*",
+        "@intersign/ifc-converter": "*",
+        "@intersign/nodes": "*",
+        "@intersign/viewer": "*",
         "@react-three/drei": "^10.7.7",
         "@react-three/fiber": "^9.5.0",
         "@tailwindcss/postcss": "^4.2.1",
@@ -96,7 +96,7 @@
         "web-ifc": "^0.0.77",
       },
       "devDependencies": {
-        "@pascal/typescript-config": "*",
+        "@intersign/typescript-config": "*",
         "@types/node": "^22.19.12",
         "@types/react": "^19.2.2",
         "@types/react-dom": "^19.2.3",
@@ -104,23 +104,51 @@
         "typescript": "7.0.2",
       },
     },
+    "compat/pascal-app-core": {
+      "name": "@pascal-app/core",
+      "version": "1.0.3",
+      "dependencies": {
+        "@intersign/core": "*",
+      },
+    },
+    "compat/pascal-app-editor": {
+      "name": "@pascal-app/editor",
+      "version": "1.0.3",
+      "dependencies": {
+        "@intersign/editor": "*",
+      },
+    },
+    "compat/pascal-app-nodes": {
+      "name": "@pascal-app/nodes",
+      "version": "1.0.3",
+      "dependencies": {
+        "@intersign/nodes": "*",
+      },
+    },
+    "compat/pascal-app-viewer": {
+      "name": "@pascal-app/viewer",
+      "version": "1.0.3",
+      "dependencies": {
+        "@intersign/viewer": "*",
+      },
+    },
     "packages/cli": {
-      "name": "@pascal-app/cli",
+      "name": "@intersign/cli",
       "version": "1.0.3",
       "bin": {
-        "pascal": "dist/bin/pascal.js",
+        "intersign": "dist/bin/intersign.js",
       },
       "dependencies": {
         "@modelcontextprotocol/sdk": "^1.30.0",
       },
       "devDependencies": {
-        "@pascal/typescript-config": "*",
+        "@intersign/typescript-config": "*",
         "@types/node": "^22.19.20",
         "typescript": "6.0.3",
       },
     },
     "packages/core": {
-      "name": "@pascal-app/core",
+      "name": "@intersign/core",
       "version": "1.0.3",
       "dependencies": {
         "dedent": "^1.7.1",
@@ -132,7 +160,7 @@
         "zustand": "^5",
       },
       "devDependencies": {
-        "@pascal/typescript-config": "*",
+        "@intersign/typescript-config": "*",
         "@types/bun": "^1.3.0",
         "@types/react": "^19.2.2",
         "@types/three": "^0.184.0",
@@ -147,7 +175,7 @@
       },
     },
     "packages/editor": {
-      "name": "@pascal-app/editor",
+      "name": "@intersign/editor",
       "version": "1.0.3",
       "dependencies": {
         "@dnd-kit/core": "^6.3.1",
@@ -188,9 +216,9 @@
         "zustand": "^5.0.11",
       },
       "devDependencies": {
-        "@pascal-app/core": "^1.0.3",
-        "@pascal-app/viewer": "^1.0.3",
-        "@pascal/typescript-config": "*",
+        "@intersign/core": "^1.0.3",
+        "@intersign/typescript-config": "*",
+        "@intersign/viewer": "^1.0.3",
         "@react-three/test-renderer": "^9.1.0",
         "@types/blob-stream": "^0.1.33",
         "@types/bun": "^1.3.0",
@@ -203,8 +231,8 @@
         "typescript": "6.0.3",
       },
       "peerDependencies": {
-        "@pascal-app/core": "^1.0.3",
-        "@pascal-app/viewer": "^1.0.3",
+        "@intersign/core": "^1.0.3",
+        "@intersign/viewer": "^1.0.3",
         "@react-three/drei": "^10",
         "@react-three/fiber": "^9",
         "next": ">=15",
@@ -231,24 +259,24 @@
       },
     },
     "packages/ifc-converter": {
-      "name": "@pascal-app/ifc-converter",
+      "name": "@intersign/ifc-converter",
       "version": "1.0.3",
       "dependencies": {
-        "@pascal-app/core": "^1.0.3",
+        "@intersign/core": "^1.0.3",
         "nanoid": "^5.1.6",
         "web-ifc": "^0.0.77",
       },
       "devDependencies": {
-        "@pascal/typescript-config": "*",
+        "@intersign/typescript-config": "*",
         "@types/bun": "^1.3.0",
         "typescript": "6.0.3",
       },
     },
     "packages/mcp": {
-      "name": "@pascal-app/mcp",
+      "name": "@intersign/mcp",
       "version": "1.0.3",
       "bin": {
-        "pascal-mcp": "dist/bin/pascal-mcp.js",
+        "intersign-mcp": "dist/bin/intersign-mcp.js",
       },
       "dependencies": {
         "@modelcontextprotocol/sdk": "^1.30.0",
@@ -256,23 +284,23 @@
         "zod": ">=4.5.4 <4.6",
       },
       "devDependencies": {
-        "@pascal-app/core": "^1.0.3",
-        "@pascal/typescript-config": "*",
+        "@intersign/core": "^1.0.3",
+        "@intersign/typescript-config": "*",
         "@types/node": "^22.19.20",
         "typescript": "6.0.3",
       },
       "peerDependencies": {
-        "@pascal-app/core": "^1.0.3",
+        "@intersign/core": "^1.0.3",
       },
     },
     "packages/nodes": {
-      "name": "@pascal-app/nodes",
+      "name": "@intersign/nodes",
       "version": "1.0.3",
       "devDependencies": {
-        "@pascal-app/core": "^1.0.3",
-        "@pascal-app/editor": "^1.0.3",
-        "@pascal-app/viewer": "^1.0.3",
-        "@pascal/typescript-config": "*",
+        "@intersign/core": "^1.0.3",
+        "@intersign/editor": "^1.0.3",
+        "@intersign/typescript-config": "*",
+        "@intersign/viewer": "^1.0.3",
         "@react-three/test-renderer": "^9.1.0",
         "@types/bun": "^1.3.0",
         "@types/node": "^22.19.12",
@@ -282,9 +310,9 @@
         "typescript": "6.0.3",
       },
       "peerDependencies": {
-        "@pascal-app/core": "^1.0.3",
-        "@pascal-app/editor": "^1.0.3",
-        "@pascal-app/viewer": "^1.0.3",
+        "@intersign/core": "^1.0.3",
+        "@intersign/editor": "^1.0.3",
+        "@intersign/viewer": "^1.0.3",
         "@react-three/drei": "^10",
         "@react-three/fiber": "^9",
         "lucide-react": "^1",
@@ -316,7 +344,7 @@
       },
     },
     "packages/viewer": {
-      "name": "@pascal-app/viewer",
+      "name": "@intersign/viewer",
       "version": "1.0.3",
       "dependencies": {
         "three-bvh-csg": "^0.0.18",
@@ -324,8 +352,8 @@
         "zustand": "^5",
       },
       "devDependencies": {
-        "@pascal-app/core": "^1.0.3",
-        "@pascal/typescript-config": "*",
+        "@intersign/core": "^1.0.3",
+        "@intersign/typescript-config": "*",
         "@react-three/test-renderer": "^9.1.0",
         "@types/node": "^22",
         "@types/react": "^19.2.2",
@@ -334,7 +362,7 @@
         "typescript": "6.0.3",
       },
       "peerDependencies": {
-        "@pascal-app/core": "^1.0.3",
+        "@intersign/core": "^1.0.3",
         "@react-three/drei": "^10",
         "@react-three/fiber": "^9",
         "react": "^18 || ^19",
@@ -343,7 +371,7 @@
       },
     },
     "tooling/typescript": {
-      "name": "@pascal/typescript-config",
+      "name": "@intersign/typescript-config",
       "version": "0.0.0",
     },
   },
@@ -556,6 +584,22 @@
 
     "@img/sharp-win32-x64": ["@img/sharp-win32-x64@0.35.3", "", { "os": "win32", "cpu": "x64" }, "sha512-D4y1vNeZrIIJCN+uHaWVtH86B+aCrdMYYjicy9pXHvbGZeGYLLSd3wdVuC37FxVXlU1ARsk84eKWfWMXGYEqvA=="],
 
+    "@intersign/cli": ["@intersign/cli@workspace:packages/cli"],
+
+    "@intersign/core": ["@intersign/core@workspace:packages/core"],
+
+    "@intersign/editor": ["@intersign/editor@workspace:packages/editor"],
+
+    "@intersign/ifc-converter": ["@intersign/ifc-converter@workspace:packages/ifc-converter"],
+
+    "@intersign/mcp": ["@intersign/mcp@workspace:packages/mcp"],
+
+    "@intersign/nodes": ["@intersign/nodes@workspace:packages/nodes"],
+
+    "@intersign/typescript-config": ["@intersign/typescript-config@workspace:tooling/typescript"],
+
+    "@intersign/viewer": ["@intersign/viewer@workspace:packages/viewer"],
+
     "@iwer/devui": ["@iwer/devui@2.3.0", "", { "dependencies": { "@pmndrs/handle": "^6.6.29", "@pmndrs/pointer-events": "^6.6.29", "lucide-react": "^1.20.0", "react": "^19.2.6", "react-dom": "^19.2.6", "styled-components": "^6.4.1", "three": "^0.184.0", "zustand": "^5.0.13" }, "peerDependencies": { "iwer": "^2.3.0" } }, "sha512-UfBFR3qOYt/DUsLik20uF7Jn0NrNN2L0+uiDGJzuKXpXa/2btNOjOj1iSaTthz95MK5/O2HqqC+ymjkRMHi5UQ=="],
 
     "@iwer/sem": ["@iwer/sem@0.2.5", "", { "dependencies": { "three": "^0.165.0", "ts-proto": "^2.6.0" }, "peerDependencies": { "iwer": "^2.0.0" } }, "sha512-vMCfpu/7Qqc+hkBiGD9pxjeObgrhXOrL0KX94CA3yzJaU0dq0y49HXZT6fC+6X/jOmjaM3hjyE1m2h7ZmLzzyA=="],
@@ -760,19 +804,13 @@
 
     "@oxlint/binding-win32-x64-msvc": ["@oxlint/binding-win32-x64-msvc@1.69.0", "", { "os": "win32", "cpu": "x64" }, "sha512-w8SOXv3mT9Fi6jY8OXdXCfnvX/3KNLXGNr4HEz2TA7S4Mv/PYAOmpB8y/ge40mxvBMgGNaSaaDwZpAsQn7HtWA=="],
 
-    "@pascal-app/cli": ["@pascal-app/cli@workspace:packages/cli"],
+    "@pascal-app/core": ["@pascal-app/core@workspace:compat/pascal-app-core"],
 
-    "@pascal-app/core": ["@pascal-app/core@workspace:packages/core"],
-
-    "@pascal-app/editor": ["@pascal-app/editor@workspace:packages/editor"],
-
-    "@pascal-app/ifc-converter": ["@pascal-app/ifc-converter@workspace:packages/ifc-converter"],
+    "@pascal-app/editor": ["@pascal-app/editor@workspace:compat/pascal-app-editor"],
 
     "@pascal-app/lingo": ["@pascal-app/lingo@0.2.0", "", { "peerDependencies": { "react": "^19" }, "optionalPeers": ["react"] }, "sha512-Ws+Utm23SmDbMB0Jc7joIp4KPkXhs4Z1boUcW9dl8nC3ATJz+a50F7/MyVTbE3QaL5Fr+YwNfsiOMxrKdhwPhA=="],
 
-    "@pascal-app/mcp": ["@pascal-app/mcp@workspace:packages/mcp"],
-
-    "@pascal-app/nodes": ["@pascal-app/nodes@workspace:packages/nodes"],
+    "@pascal-app/nodes": ["@pascal-app/nodes@workspace:compat/pascal-app-nodes"],
 
     "@pascal-app/plugin-bones": ["@pascal-app/plugin-bones@github:pascalorg/plugin-bones#5679260", { "peerDependencies": { "@pascal-app/core": ">=0.9.1 <1", "@pascal-app/editor": ">=0.9.1 <1", "@pascal-app/viewer": ">=0.9.1 <1", "@react-three/fiber": "^9", "react": "^18 || ^19", "three": "^0.185", "zod": "^4", "zustand": "^5" } }, "pascalorg-plugin-bones-5679260", "sha512-uQkyHHOl/VuYx2+d/MmcJui/KEAQZ2UUnO4ywp1XaopmD2YfN+Yx/fR/lS/VL2joEoyyZeBLC3KaXK1Sx5qEvg=="],
 
@@ -784,9 +822,7 @@
 
     "@pascal-app/plugin-trees": ["@pascal-app/plugin-trees@github:pascalorg/plugin-trees#56d978c", { "dependencies": { "@dgreenheck/ez-tree": "^1.1.0" }, "peerDependencies": { "@pascal-app/core": ">=0.9.1 <1", "@pascal-app/editor": ">=0.9.1 <1", "@pascal-app/viewer": ">=0.9.1 <1", "@react-three/fiber": "^9", "react": "^18 || ^19", "three": "^0.185", "zod": "^4", "zustand": "^5" } }, "pascalorg-plugin-trees-56d978c", "sha512-16VzWot1oadvxCPqsRwMJbaP0a3u5FESFy7F7++pY5wAAFq9JTFwzHvKAsllrY5TZ5TJ7Y5vSqvbmQk8sy8HaA=="],
 
-    "@pascal-app/viewer": ["@pascal-app/viewer@workspace:packages/viewer"],
-
-    "@pascal/typescript-config": ["@pascal/typescript-config@workspace:tooling/typescript"],
+    "@pascal-app/viewer": ["@pascal-app/viewer@workspace:compat/pascal-app-viewer"],
 
     "@pmndrs/handle": ["@pmndrs/handle@6.6.30", "", { "dependencies": { "@pmndrs/pointer-events": "~6.6.30", "zustand": "^4.5.2" } }, "sha512-KPutdaLpCNPZoqXX2HvlRc+cQMETXdHTF0nKqFHMrJrne34apqELRVig53lO469rJhheedsRVepfdyo4g9Rukw=="],
 

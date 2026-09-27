@@ -4,7 +4,7 @@ import {
   ProceduralItemNode,
   parseRecipe,
   shelfRecipe,
-} from '@pascal-app/core/procedural-items'
+} from '@intersign/core/procedural-items'
 import cabinetJson from '../../../core/src/procedural-items/__fixtures__/cabinet_two_doors_drawer.json'
 import chandelierJson from '../../../core/src/procedural-items/__fixtures__/chandelier_six_arms.json'
 import deskJson from '../../../core/src/procedural-items/__fixtures__/desk_fan.json'

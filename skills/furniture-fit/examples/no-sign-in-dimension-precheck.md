@@ -6,7 +6,7 @@
 - Rectangular sofa footprint: 210 cm wide × 95 cm deep
 - Uniform requested clearance: 20 cm on every side
 - Exact source unit: centimeters
-- The user explicitly asked for a Pascal link using these measurements
+- The user explicitly asked for an Intersign link using these measurements
 - No project, person, address, workspace, or private scene value is required for the pre-check
 
 ## Report excerpt

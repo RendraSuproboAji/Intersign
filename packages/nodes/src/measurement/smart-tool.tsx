@@ -1,6 +1,6 @@
 'use client'
 
-import { type AnyNodeId, sceneRegistry, useScene } from '@pascal-app/core'
+import { type AnyNodeId, sceneRegistry, useScene } from '@intersign/core'
 import {
   activateQuickMeasurementHudSource,
   clearQuickMeasurementHudSource,
@@ -10,8 +10,8 @@ import {
   publishQuickMeasurementHudSource,
   resolveQuickMeasurementReport,
   useInteractionScope,
-} from '@pascal-app/editor'
-import { useViewer } from '@pascal-app/viewer'
+} from '@intersign/editor'
+import { useViewer } from '@intersign/viewer'
 import { useFrame, useThree } from '@react-three/fiber'
 import { memo, type RefObject, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import {

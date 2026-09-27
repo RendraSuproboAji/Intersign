@@ -1,4 +1,4 @@
-import type { AnyNode, AnyNodeId, CabinetModuleNode, CabinetNode } from '@pascal-app/core'
+import type { AnyNode, AnyNodeId, CabinetModuleNode, CabinetNode } from '@intersign/core'
 import { moduleMaxX, moduleMinX, sortRunModules } from './run-layout'
 import { cabinetModuleCeilingOverflow } from './run-ops'
 import { minCabinetCarcassHeightForStack } from './stack'

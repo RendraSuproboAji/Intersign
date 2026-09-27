@@ -17,7 +17,7 @@ import {
   type MeasurementPoint,
   nodeRegistry,
   type WallNode,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   buildSvgArcPath,
   clearSurfacePlanSnapFeedback,
@@ -33,7 +33,7 @@ import {
   useDrawingView,
   useFloorplanRender,
   useInteractionScope,
-} from '@pascal-app/editor'
+} from '@intersign/editor'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import {
   alignConstructionDimensionDirectionToSharedWall,

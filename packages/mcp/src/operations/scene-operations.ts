@@ -1,5 +1,5 @@
-import type { SceneGraph } from '@pascal-app/core/clone-scene-graph'
-import type { AnyNode, AnyNodeId, AnyNodeType } from '@pascal-app/core/schema'
+import type { SceneGraph } from '@intersign/core/clone-scene-graph'
+import type { AnyNode, AnyNodeId, AnyNodeType } from '@intersign/core/schema'
 import type { ActiveSceneMeta, Patch, SceneBridge, ValidationResult } from '../bridge/scene-bridge'
 import type {
   ProjectCreateOptions,

@@ -1,6 +1,6 @@
+import { forkSceneGraph, type SceneGraph } from '@intersign/core/clone-scene-graph'
+import { AnyNode as AnyNodeSchema } from '@intersign/core/schema'
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
-import { forkSceneGraph, type SceneGraph } from '@pascal-app/core/clone-scene-graph'
-import { AnyNode as AnyNodeSchema } from '@pascal-app/core/schema'
 import { z } from 'zod'
 import type { SceneOperations } from '../../operations'
 import { ADDITIVE_TOOL_ANNOTATIONS } from '../annotations'

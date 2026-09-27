@@ -9,7 +9,7 @@ import type {
 } from './types'
 
 const HOST_API_VERSION = 1 as const
-const BUILTIN_PLUGIN_ID = 'pascal:core'
+const BUILTIN_PLUGIN_ID = 'intersign:core'
 
 const pluginIdsByKind = new Map<string, string>()
 

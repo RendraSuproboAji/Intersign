@@ -1,4 +1,4 @@
-import type { HandleDescriptor, NodeDefinition, ShelfNode as ShelfNodeType } from '@pascal-app/core'
+import type { HandleDescriptor, NodeDefinition, ShelfNode as ShelfNodeType } from '@intersign/core'
 import { restingFloorplanAffectedIds } from '../shared/resting-surface-plan'
 import { sanitizeShelfDimensions } from './dimensions'
 import { buildShelfFloorplan } from './floorplan'

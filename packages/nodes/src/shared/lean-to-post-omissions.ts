@@ -1,4 +1,4 @@
-import type { AnyNode, AnyNodeId, ColumnNode, LeanToExtensionNode } from '@pascal-app/core'
+import type { AnyNode, AnyNodeId, ColumnNode, LeanToExtensionNode } from '@intersign/core'
 import type { LeanToPostSide } from '../lean-to-extension/assembly'
 import { resolveLeanToLayout } from '../lean-to-extension/layout'
 

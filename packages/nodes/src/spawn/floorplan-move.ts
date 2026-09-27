@@ -6,8 +6,8 @@ import {
   snapScalar,
   useLiveNodeOverrides,
   useScene,
-} from '@pascal-app/core'
-import { getSegmentGridStep, isGridSnapActive } from '@pascal-app/editor'
+} from '@intersign/core'
+import { getSegmentGridStep, isGridSnapActive } from '@intersign/editor'
 
 export const spawnFloorplanMoveTarget: FloorplanMoveTarget<SpawnNode> = ({ node }) => {
   const spawnId = node.id as AnyNodeId

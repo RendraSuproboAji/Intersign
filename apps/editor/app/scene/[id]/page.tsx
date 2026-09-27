@@ -1,4 +1,4 @@
-import type { SceneGraph } from '@pascal-app/editor'
+import type { SceneGraph } from '@intersign/editor'
 import { headers } from 'next/headers'
 import Link from 'next/link'
 import { SceneLoader, type SceneMeta } from '@/components/scene-loader'

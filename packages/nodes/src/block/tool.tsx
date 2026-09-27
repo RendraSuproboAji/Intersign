@@ -8,7 +8,7 @@ import {
   resolveFrozenFloorPlacementPatch,
   resolveSupportSlabPatch,
   useSpatialQuery,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   getFloorStackPreviewPosition,
   isAlignmentGuideActive,
@@ -22,7 +22,7 @@ import {
   useEditor,
   useInteractionScope,
   useRegistryToolContext,
-} from '@pascal-app/editor'
+} from '@intersign/editor'
 import { useThree } from '@react-three/fiber'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import type { Group } from 'three'

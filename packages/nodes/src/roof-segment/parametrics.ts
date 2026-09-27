@@ -1,4 +1,4 @@
-import type { ParametricDescriptor, RoofSegmentNode } from '@pascal-app/core'
+import type { ParametricDescriptor, RoofSegmentNode } from '@intersign/core'
 
 export const roofSegmentParametrics: ParametricDescriptor<RoofSegmentNode> = {
   groups: [

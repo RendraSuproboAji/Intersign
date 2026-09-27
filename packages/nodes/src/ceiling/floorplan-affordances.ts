@@ -1,5 +1,5 @@
-import { type AnyNode, type CeilingNode, resolveLevelId } from '@pascal-app/core'
-import { resolveCeilingPlanPointSnap } from '@pascal-app/editor'
+import { type AnyNode, type CeilingNode, resolveLevelId } from '@intersign/core'
+import { resolveCeilingPlanPointSnap } from '@intersign/editor'
 import {
   createPolygonAddVertexAffordance,
   createPolygonDeleteVertexAffordance,

@@ -4,8 +4,8 @@ import {
   type FloorplanPalette,
   type GeometryContext,
   WallNode,
-} from '@pascal-app/core'
-import { createFloorplanContextExtensions, readFloorplanGeometryMetadata } from '@pascal-app/editor'
+} from '@intersign/core'
+import { createFloorplanContextExtensions, readFloorplanGeometryMetadata } from '@intersign/editor'
 import { buildWallFloorplan } from './floorplan'
 
 const palette: FloorplanPalette = {

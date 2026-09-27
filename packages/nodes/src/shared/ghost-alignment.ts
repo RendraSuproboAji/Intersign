@@ -4,7 +4,7 @@ import {
   bboxCornerAnchors,
   collectAlignmentAnchors,
   resolveAlignment,
-} from '@pascal-app/core'
+} from '@intersign/core'
 
 /** XZ axis-aligned bounds (level-local meters). */
 export type Aabb2D = { minX: number; minZ: number; maxX: number; maxZ: number }

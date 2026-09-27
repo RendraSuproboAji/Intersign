@@ -1,9 +1,4 @@
-import {
-  type AnyNode,
-  type AnyNodeDefinition,
-  type GridEvent,
-  nodeRegistry,
-} from '@pascal-app/core'
+import { type AnyNode, type AnyNodeDefinition, type GridEvent, nodeRegistry } from '@intersign/core'
 import type { InteractionScope } from './scope'
 
 type RegisteredDraftingConfig = NonNullable<AnyNodeDefinition['drafting']>

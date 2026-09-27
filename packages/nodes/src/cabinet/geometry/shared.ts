@@ -4,7 +4,7 @@ import {
   type GeometryContext,
   getMaterialPresetByRef,
   type MaterialSchema,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   applyMaterialPresetToMaterials,
   applyWorldScaleBoxUVs,
@@ -16,7 +16,7 @@ import {
   type RenderShading,
   resolveMaterialRef,
   resolveSlotDefaultMaterial,
-} from '@pascal-app/viewer'
+} from '@intersign/viewer'
 import {
   BoxGeometry,
   CylinderGeometry,
@@ -427,7 +427,7 @@ for (const material of [
   ovenHeatElementMaterial,
   ...ovenStatusLightMaterials,
 ]) {
-  material.userData.__pascalCachedMaterial = true
+  material.userData.__intersignCachedMaterial = true
 }
 
 export function addApplianceHandle(

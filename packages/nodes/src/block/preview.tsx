@@ -1,8 +1,8 @@
 'use client'
 
-import type { BlockNode } from '@pascal-app/core'
-import { EDITOR_LAYER } from '@pascal-app/editor'
-import { useViewer } from '@pascal-app/viewer'
+import type { BlockNode } from '@intersign/core'
+import { EDITOR_LAYER } from '@intersign/editor'
+import { useViewer } from '@intersign/viewer'
 import { useEffect, useMemo } from 'react'
 import { Color, type Material, Mesh } from 'three'
 import { buildBlockGeometry } from './geometry'

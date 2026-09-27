@@ -1,4 +1,4 @@
-import type { PipeSegmentNode } from '@pascal-app/core'
+import type { PipeSegmentNode } from '@intersign/core'
 
 export type PipePreset = {
   id: string

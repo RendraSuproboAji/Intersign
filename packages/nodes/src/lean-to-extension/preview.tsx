@@ -1,7 +1,7 @@
 'use client'
 
-import type { LeanToExtensionNode } from '@pascal-app/core'
-import { EDITOR_LAYER } from '@pascal-app/editor'
+import type { LeanToExtensionNode } from '@intersign/core'
+import { EDITOR_LAYER } from '@intersign/editor'
 import { useEffect, useMemo } from 'react'
 import {
   buildLeanToExtensionPreviewGeometry,

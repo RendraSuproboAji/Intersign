@@ -1,14 +1,14 @@
-import { type AnyNodeId, sceneRegistry, useScene } from '@pascal-app/core'
-import { isProceduralItem } from '@pascal-app/core/procedural-items'
-import { useViewer } from '@pascal-app/viewer'
+import { type AnyNodeId, sceneRegistry, useScene } from '@intersign/core'
+import { isProceduralItem } from '@intersign/core/procedural-items'
+import { useViewer } from '@intersign/viewer'
 import { useEffect } from 'react'
 import { Color, type Material, type Mesh } from 'three'
 import useEditor from '../../../store/use-editor'
 import useInteractionScope, { useMovingNode } from '../../../store/use-interaction-scope'
 
 const CEILING_GRID_HIGHLIGHT_COLOR = '#ffffff'
-const CEILING_GRID_BASE_MATERIAL_KEY = '__pascalCeilingGridBaseMaterial'
-const CEILING_GRID_HIGHLIGHT_MATERIAL_KEY = '__pascalCeilingGridHighlightMaterial'
+const CEILING_GRID_BASE_MATERIAL_KEY = '__intersignCeilingGridBaseMaterial'
+const CEILING_GRID_HIGHLIGHT_MATERIAL_KEY = '__intersignCeilingGridHighlightMaterial'
 
 type CeilingGridUserData = {
   [CEILING_GRID_BASE_MATERIAL_KEY]?: Material | Material[]

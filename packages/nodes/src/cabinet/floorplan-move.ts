@@ -11,14 +11,14 @@ import {
   type SceneApi,
   useLiveNodeOverrides,
   useScene,
-} from '@pascal-app/core'
+} from '@intersign/core'
 import {
   isAlignmentGuideActive,
   isGridSnapActive,
   isMagneticSnapActive,
   useAlignmentGuides,
   useEditor,
-} from '@pascal-app/editor'
+} from '@intersign/editor'
 import { cabinetModuleParentFrame } from './move-frame'
 import {
   bumpCabinetRunLayoutRevision,

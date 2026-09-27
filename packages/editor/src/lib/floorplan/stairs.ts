@@ -1,4 +1,4 @@
-import type { Point2D, StairNode, StairSegmentNode } from '@pascal-app/core'
+import type { Point2D, StairNode, StairSegmentNode } from '@intersign/core'
 import {
   clampPlanValue,
   getPlanPointDistance,

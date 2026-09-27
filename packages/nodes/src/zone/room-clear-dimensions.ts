@@ -7,8 +7,8 @@ import {
   type SpaceBoundaryFace,
   type WallNode,
   type ZoneNode,
-} from '@pascal-app/core'
-import { readFloorplanContext } from '@pascal-app/editor'
+} from '@intersign/core'
+import { readFloorplanContext } from '@intersign/editor'
 import {
   type ConstructionLengthProfile,
   type ConstructionMetricNotation,
