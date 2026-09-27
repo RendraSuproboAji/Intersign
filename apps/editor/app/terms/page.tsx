@@ -2,9 +2,12 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Terms of Service',
-  description: 'Terms of Service for Intersign Editor and the Intersign platform.',
+  title: 'Terms of Use',
+  description: 'Terms for using the Intersign editor software.',
 }
+
+const REPO_URL = 'https://github.com/RendraSuproboAji/Intersign'
+const ISSUES_URL = `${REPO_URL}/issues`
 
 export default function TermsPage() {
   return (
@@ -19,7 +22,7 @@ export default function TermsPage() {
               Home
             </Link>
             <span className="text-muted-foreground">/</span>
-            <span className="font-medium text-foreground">Terms of Service</span>
+            <span className="font-medium text-foreground">Terms of Use</span>
             <span className="text-muted-foreground">|</span>
             <Link
               className="text-muted-foreground transition-colors hover:text-foreground"
@@ -33,141 +36,110 @@ export default function TermsPage() {
 
       <main className="container mx-auto max-w-3xl px-6 py-12">
         <article className="prose prose-neutral dark:prose-invert max-w-none">
-          <h1 className="mb-2 font-bold text-3xl">Terms of Service</h1>
-          <p className="mb-8 text-muted-foreground text-sm">Effective Date: February 20, 2026</p>
+          <h1 className="mb-2 font-bold text-3xl">Terms of Use</h1>
+          <p className="mb-8 text-muted-foreground text-sm">Effective Date: September 27, 2026</p>
 
           <section className="mb-8 space-y-4">
             <h2 className="font-semibold text-xl">1. Introduction</h2>
             <p className="text-foreground/90 leading-relaxed">
-              Welcome to Intersign Editor (&quot;Editor&quot;) and the Intersign platform at the
-              Intersign repository (&quot;Platform&quot;), operated by Intersign (&quot;we,&quot;
-              &quot;us,&quot; or &quot;our&quot;). By accessing or using our services, you agree to
-              these Terms of Service.
+              These terms apply to your use of the Intersign editor, an open-source 3D interior and
+              building design tool that you run on your own computer or server. By using Intersign,
+              you agree to these terms.
             </p>
           </section>
 
           <section className="mb-8 space-y-4">
-            <h2 className="font-semibold text-xl">2. The Editor and Platform</h2>
+            <h2 className="font-semibold text-xl">2. Open-Source License</h2>
             <p className="text-foreground/90 leading-relaxed">
-              The Intersign Editor is open-source software released under the MIT License. You may
-              use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the
-              Editor software in accordance with the MIT License terms.
-            </p>
-            <p className="text-foreground/90 leading-relaxed">
-              The Intersign platform (this repository) and its associated services, including user
-              accounts, cloud storage, and project hosting, are proprietary services owned and
-              operated by Intersign. These Terms govern your use of the Platform.
-            </p>
-          </section>
-
-          <section className="mb-8 space-y-4">
-            <h2 className="font-semibold text-xl">3. Accounts and Authentication</h2>
-            <p className="text-foreground/90 leading-relaxed">
-              To use certain features of the Platform, you must create an account. We use Google
-              OAuth and magic link email authentication through Supabase. You are responsible for
-              maintaining the security of your account credentials and for all activities that occur
-              under your account.
+              The Intersign source code is released under the{' '}
+              <a
+                className="text-foreground underline hover:text-foreground/80"
+                href={`${REPO_URL}/blob/main/LICENSE`}
+              >
+                MIT License
+              </a>
+              . Intersign is based on Pascal Editor, and the original copyright notice is kept as
+              that license requires (see{' '}
+              <a
+                className="text-foreground underline hover:text-foreground/80"
+                href={`${REPO_URL}/blob/main/NOTICE.md`}
+              >
+                NOTICE.md
+              </a>
+              ). Nothing in these terms limits your rights under the MIT License.
             </p>
           </section>
 
           <section className="mb-8 space-y-4">
-            <h2 className="font-semibold text-xl">4. Acceptable Use</h2>
-            <p className="text-foreground/90 leading-relaxed">You agree not to:</p>
+            <h2 className="font-semibold text-xl">3. Your Content</h2>
+            <p className="text-foreground/90 leading-relaxed">
+              You own the projects, designs and files you create with Intersign. Intersign claims no
+              rights to your content and does not receive it.
+            </p>
+          </section>
+
+          <section className="mb-8 space-y-4">
+            <h2 className="font-semibold text-xl">4. Outside Services and Plugins</h2>
+            <p className="text-foreground/90 leading-relaxed">
+              Some features rely on services and plugins provided by others, such as the 3D asset
+              library served from the Pascal Editor asset server, the Mint plugin and the hosted
+              Pascal MCP server. Your use of them is subject to their providers&apos; own terms,
+              licenses and privacy policies. Models and textures from these sources are licensed by
+              their providers, not under the Intersign license.
+            </p>
+          </section>
+
+          <section className="mb-8 space-y-4">
+            <h2 className="font-semibold text-xl">5. Acceptable Use</h2>
+            <p className="text-foreground/90 leading-relaxed">You agree not to use Intersign to:</p>
             <ul className="list-disc space-y-2 pl-6 text-foreground/90">
-              <li>
-                Use the Platform for any unlawful purpose or in violation of any applicable laws
-              </li>
-              <li>
-                Upload, share, or distribute content that infringes intellectual property rights
-              </li>
-              <li>Attempt to gain unauthorized access to the Platform or its systems</li>
-              <li>Interfere with or disrupt the Platform&apos;s infrastructure</li>
-              <li>Upload malicious code, viruses, or harmful content</li>
-              <li>Harass, abuse, or harm other users</li>
-              <li>Use the Platform to send spam or unsolicited communications</li>
+              <li>Break any applicable law or regulation</li>
+              <li>Infringe the intellectual property or other rights of others</li>
+              <li>Overload, disrupt or gain unauthorized access to outside services</li>
             </ul>
           </section>
 
           <section className="mb-8 space-y-4">
-            <h2 className="font-semibold text-xl">5. Your Content and Intellectual Property</h2>
+            <h2 className="font-semibold text-xl">6. Trademarks</h2>
             <p className="text-foreground/90 leading-relaxed">
-              You retain full ownership of all content, projects, and data you create or upload to
-              the Platform (&quot;Your Content&quot;). By using the Platform, you grant us a limited
-              license to store, display, and transmit Your Content solely to provide our services to
-              you.
-            </p>
-            <p className="text-foreground/90 leading-relaxed">
-              We do not claim any ownership rights over Your Content. You may export or delete Your
-              Content at any time.
+              The MIT License covers the source code, not the Intersign name or logo. Please do not
+              use them in a way that suggests endorsement without permission. &quot;Pascal&quot; and
+              other third-party names belong to their respective owners.
             </p>
           </section>
 
           <section className="mb-8 space-y-4">
-            <h2 className="font-semibold text-xl">6. Platform Ownership</h2>
+            <h2 className="font-semibold text-xl">7. No Warranty</h2>
             <p className="text-foreground/90 leading-relaxed">
-              The Platform, including its design, features, and proprietary code, is owned by
-              Intersign and protected by intellectual property laws. While the Editor source code is
-              open-source under the MIT License, the Platform services, branding, and infrastructure
-              remain our proprietary property.
+              Intersign is provided &quot;as is&quot;, without warranty of any kind, express or
+              implied, including warranties of merchantability, fitness for a particular purpose and
+              non-infringement. Designs made with Intersign are not a substitute for review by a
+              qualified professional.
             </p>
           </section>
 
           <section className="mb-8 space-y-4">
-            <h2 className="font-semibold text-xl">7. Account Termination</h2>
+            <h2 className="font-semibold text-xl">8. Limitation of Liability</h2>
             <p className="text-foreground/90 leading-relaxed">
-              We reserve the right to suspend or terminate your account if you violate these Terms
-              or engage in conduct that we determine is harmful to the Platform or other users. You
-              may also delete your account at any time by contacting us at{' '}
-              <a
-                className="text-foreground underline hover:text-foreground/80"
-                href="https://github.com/RendraSuproboAji/Intersign/issues"
-              >
-                GitHub Issues
-              </a>
-              .
+              To the maximum extent permitted by law, the Intersign authors and contributors are not
+              liable for any claim, damages or other liability arising from, or in connection with,
+              the software or its use, including loss of data.
             </p>
           </section>
 
           <section className="mb-8 space-y-4">
-            <h2 className="font-semibold text-xl">8. Disclaimer of Warranties</h2>
+            <h2 className="font-semibold text-xl">9. Changes to These Terms</h2>
             <p className="text-foreground/90 leading-relaxed">
-              THE PLATFORM IS PROVIDED &quot;AS IS&quot; AND &quot;AS AVAILABLE&quot; WITHOUT
-              WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO
-              IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND
-              NON-INFRINGEMENT.
-            </p>
-            <p className="text-foreground/90 leading-relaxed">
-              We do not warrant that the Platform will be uninterrupted, error-free, or free of
-              harmful components.
-            </p>
-          </section>
-
-          <section className="mb-8 space-y-4">
-            <h2 className="font-semibold text-xl">9. Limitation of Liability</h2>
-            <p className="text-foreground/90 leading-relaxed">
-              TO THE MAXIMUM EXTENT PERMITTED BY LAW, INTERSIGN GROUP INC. SHALL NOT BE LIABLE FOR
-              ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING LOSS
-              OF DATA, PROFITS, OR GOODWILL, ARISING FROM YOUR USE OF THE PLATFORM.
-            </p>
-          </section>
-
-          <section className="mb-8 space-y-4">
-            <h2 className="font-semibold text-xl">10. Changes to Terms</h2>
-            <p className="text-foreground/90 leading-relaxed">
-              We may update these Terms from time to time. We will notify you of material changes by
-              posting the updated Terms on the Platform. Your continued use of the Platform after
-              changes are posted constitutes your acceptance of the revised Terms.
+              We may update these terms as the software changes. Updates are published in the
+              Intersign repository with a new effective date.
             </p>
           </section>
 
           <section className="space-y-4">
-            <h2 className="font-semibold text-xl">11. Contact Us</h2>
+            <h2 className="font-semibold text-xl">10. Contact Us</h2>
             <p className="text-foreground/90 leading-relaxed">
-              If you have questions about these Terms, please contact us at{' '}
-              <a
-                className="text-foreground underline hover:text-foreground/80"
-                href="https://github.com/RendraSuproboAji/Intersign/issues"
-              >
+              Questions about these terms can be raised on{' '}
+              <a className="text-foreground underline hover:text-foreground/80" href={ISSUES_URL}>
                 GitHub Issues
               </a>
               .
