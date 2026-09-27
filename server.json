@@ -1,8 +1,8 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
-  "name": "io.github.RendraSuproboAji/Intersign",
+  "name": "io.github.pascalorg/editor",
   "title": "Intersign 3D Editor",
-  "description": "Create, inspect, validate, and save editable 3D building scenes with Intersign's hosted MCP server.",
+  "description": "Create, inspect, validate, and save editable 3D building scenes with the hosted Pascal MCP server that Intersign uses.",
   "version": "0.6.1",
   "websiteUrl": "https://editor.pascal.app/docs/developers/mcp",
   "repository": {

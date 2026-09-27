@@ -56,6 +56,8 @@ your own:
 - Asset CDN (furniture models, textures): `https://editor.pascal.app`,
   `cdn.pascal.app`, `assets.pascal.app`. Set `NEXT_PUBLIC_ASSETS_CDN_URL`.
 - Hosted MCP endpoint, agent-account claim flow and developer docs under
-  `https://editor.pascal.app`
+  `https://editor.pascal.app`. `server.json` describes that hosted server, so it
+  keeps Pascal's MCP Registry name `io.github.pascalorg/editor`, which CI checks
+  against the live API catalog.
 - Demo footage in `docs/media/next-demo/`, which is Pascal Group Inc. footage under
   CC BY 4.0 (see that folder's `LICENSE.md`)

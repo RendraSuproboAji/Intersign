@@ -16,7 +16,7 @@ marketplace install may continue to use the older bundle until Cursor publishes 
 | Claude Code plugin | Installable from this Git marketplace; not submitted to the Anthropic plugin directory. |
 | Codex and Cursor Agent Plugin | Installable from this repository, including the root [`mcp.json`](../mcp.json) server; a Cursor-native [`.cursor-plugin/plugin.json`](../.cursor-plugin/plugin.json) carries the marketplace logo and category and uses browser sign-in for hosted access; [listed in the Cursor marketplace](https://cursor.com/marketplace/intersign). The corrected Cursor bundle below still needs marketplace refresh; OpenAI submission remains separate. |
 | Gemini CLI extension | Root [`gemini-extension.json`](../gemini-extension.json) is present; installable from a release tag that carries it, and gallery listing waits on the `gemini-cli-extension` repository topic. |
-| Official MCP Registry | `io.github.RendraSuproboAji/Intersign` 0.6.1 is published. |
+| Official MCP Registry | `io.github.pascalorg/editor` 0.6.1 is published. |
 | ClawHub and OpenClaw | Not published; waiting on an authorized publisher accepting the MIT-0 terms. |
 
 ## Install with skills.sh
