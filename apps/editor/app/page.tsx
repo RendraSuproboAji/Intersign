@@ -1,11 +1,13 @@
 'use client'
 
-import { Editor, ItemsPanel } from '@pascal-app/editor'
+import { Editor } from '@pascal-app/editor'
 import { PascalWebXRButton } from '@webxr/plugin/pascal-editor'
 import { Hammer, Layers, Package, Settings } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { BuildTab } from '@/components/build-tab'
+import { FurnitureItemsPanel } from '@/components/furniture/furniture-items-panel'
+import { FurniturePanel } from '@/components/furniture/furniture-panel'
 import {
   CommunityViewerToolbarLeft,
   CommunityViewerToolbarRight,
@@ -15,13 +17,6 @@ import {
   WebXRFeatureConsumer,
   WebXRFeatureRuntime,
 } from '@/components/webxr-feature-gate'
-
-// The open-source editor only ships the built-in catalog (no uploaded items),
-// so the Library/Community/Mine source chips and tag filters add nothing —
-// drop them and keep the panel to plain categories.
-function EditorItemsPanel() {
-  return <ItemsPanel showSourceFilter={false} showTagFilters={false} />
-}
 
 const SIDEBAR_TABS = [
   {
@@ -59,7 +54,7 @@ const SIDEBAR_TABS = [
   {
     id: 'items',
     label: 'Items',
-    component: EditorItemsPanel,
+    component: FurnitureItemsPanel,
     mobileDefaultSnap: 0.5,
     mobileIcon: <Package className="h-5 w-5" />,
     icon: (
@@ -135,6 +130,7 @@ export default function Home() {
                   />
                 }
               />
+              <FurniturePanel />
             </>
           )}
         </WebXRFeatureConsumer>

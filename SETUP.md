@@ -33,6 +33,8 @@ cp .env.example .env
 | `PORT` | No | Dev server port (default: 3002) |
 | `MINT_PASCAL_HOST_ORIGIN` | No | Public editor origin used by Mint sign-in and request checks. Set it for self-hosted deployments. |
 | `PASCAL_DB_PATH` / `PASCAL_DATA_DIR` | No | Where saved scenes are stored (default `~/.pascal/data/pascal.db`). |
+| `INTERSIGN_ITEMS_DIR` | No | Where uploaded furniture is stored (default: an `items` folder next to the scene database). |
+| `INTERSIGN_ITEM_MAX_MB` | No | Largest furniture model that can be uploaded, in MB (default 50). |
 
 The variable names come from the Pascal packages that read them. Local development works
 without any environment variables.

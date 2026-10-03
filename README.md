@@ -65,6 +65,31 @@ The `@pascal-app/*` packages are released together at the same version. Bump the
 run the checks above. Pascal's release notes are at
 [pascalorg/editor releases](https://github.com/pascalorg/editor/releases).
 
+## Your own furniture
+
+Besides Pascal's built-in catalog, the **Items** tab can hold your own models:
+
+1. In **Items**, click **Upload** (the first tile in every category) and choose a `.glb` file
+   (glTF binary; SketchUp, Blender, 3ds Max and most furniture sites export it).
+2. Check the name, category, whether it stands on the floor or hangs on a wall or ceiling,
+   and the model units. The dialog guesses the units from the model's size and shows the
+   resulting size in cm.
+3. **Add to Items**. The piece is ready to place, and stays in the Items tab for every scene.
+
+Select a placed piece (in the 3D view or the Scene tree) to open the **Furniture** panel:
+
+- **Size**: width, depth and height in cm, with or without keeping proportions.
+- **Rotation**: an exact angle, or ±15° / ±90° steps.
+- **Colour**: a colour per part. Every material of an uploaded model becomes a part
+  (`slot_<name>`), so each one can be recoloured. Built-in items with paintable parts work
+  too. Colours are scene materials, so Undo and Pascal's Paint mode work with them.
+
+Uploads are stored by the Intersign server, next to the scene database
+(`<data dir>/items/<id>/` with `model.glb`, `thumbnail.png` and `item.json`; in Docker that's
+the `pascal-data` volume). Removing an upload ("My uploads" in the upload dialog) only takes it
+out of the Items tab: scenes that use it keep loading it. Uploads use the same access rules
+as the scene API.
+
 ## Agent skills and CLI
 
 Intersign doesn't ship its own CLI, MCP server or agent skills. Use Pascal's:

@@ -9,15 +9,18 @@ import {
   type SceneGraph,
   type SidebarTab,
 } from '@pascal-app/editor'
-import { Hammer, Layers, Settings } from 'lucide-react'
+import { Hammer, Layers, Package, Settings } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useCallback, useEffect, useRef, useState } from 'react'
+import { rehostItemUrls } from '@/lib/custom-items'
 import { countGraphNodes, isEmptyGraphOverwrite } from '@/lib/empty-graph-guard'
 import { type PersistedSceneGraph, sceneGraphSignature } from '@/lib/scene-signature'
 import { cn } from '@/lib/utils'
 import { BuildTab } from './build-tab'
+import { FurnitureItemsPanel } from './furniture/furniture-items-panel'
+import { FurniturePanel } from './furniture/furniture-panel'
 import { CommunityViewerToolbarLeft, CommunityViewerToolbarRight } from './viewer-toolbar'
 
 export interface SceneMeta {
@@ -62,6 +65,22 @@ const SIDEBAR_TABS: (SidebarTab & { component: React.ComponentType })[] = [
         className="h-8 w-8 object-contain"
         height={32}
         src="/icons/build.webp"
+        width={32}
+      />
+    ),
+  },
+  {
+    id: 'items',
+    label: 'Items',
+    component: FurnitureItemsPanel,
+    mobileDefaultSnap: 0.5,
+    mobileIcon: <Package className="h-5 w-5" />,
+    icon: (
+      <Image
+        alt=""
+        className="h-8 w-8 object-contain"
+        height={32}
+        src="/icons/couch.webp"
         width={32}
       />
     ),
@@ -123,7 +142,10 @@ export function SceneLoader({ initialScene, meta }: SceneLoaderProps) {
 
   const lightPreview = isLightPreviewQuery(searchParams)
 
-  const handleLoad = useCallback(async () => initialScene, [initialScene])
+  const handleLoad = useCallback(
+    async () => rehostItemUrls(initialScene, window.location.origin),
+    [initialScene],
+  )
 
   const handleSave = useCallback(
     async (graph: SceneGraph, options?: { keepalive?: boolean }) => {
@@ -208,11 +230,12 @@ export function SceneLoader({ initialScene, meta }: SceneLoaderProps) {
       if (payload.sceneId !== meta.id) return
       if (payload.version <= versionRef.current) return
 
+      const graph = rehostItemUrls(payload.graph, window.location.origin)
       versionRef.current = payload.version
-      serverNodeCountRef.current = countGraphNodes(payload.graph)
-      lastRemoteGraphJsonRef.current = sceneGraphSignature(payload.graph)
+      serverNodeCountRef.current = countGraphNodes(graph)
+      lastRemoteGraphJsonRef.current = sceneGraphSignature(graph)
       suppressRemoteSaveUntilRef.current = Date.now() + 2500
-      applySceneGraphToEditor(payload.graph)
+      applySceneGraphToEditor(graph)
       setConflict(false)
       setSaveError(null)
     })
@@ -304,6 +327,7 @@ export function SceneLoader({ initialScene, meta }: SceneLoaderProps) {
         viewerToolbarLeft={<CommunityViewerToolbarLeft />}
         viewerToolbarRight={<CommunityViewerToolbarRight />}
       />
+      <FurniturePanel />
     </div>
   )
 }
