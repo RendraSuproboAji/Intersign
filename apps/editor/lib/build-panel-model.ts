@@ -1,8 +1,8 @@
 'use client'
 
-import { RoofType as RoofTypeSchema, useRegistryVersion } from '@intersign/core'
-import { type PanelToolOption, useEditor, useFloorplanMode } from '@intersign/editor'
-import { useLiquidLineToolOptions } from '@intersign/nodes'
+import { RoofType as RoofTypeSchema, useRegistryVersion } from '@pascal-app/core'
+import { type PanelToolOption, useEditor, useFloorplanMode } from '@pascal-app/editor'
+import { useLiquidLineToolOptions } from '@pascal-app/nodes'
 import type { XRWandBuildItem, XRWandBuildModel } from '@webxr/plugin'
 import {
   activateBuildTool,

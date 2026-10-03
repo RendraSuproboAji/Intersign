@@ -14,20 +14,20 @@ We aim to acknowledge a report within three working days and to keep you updated
 
 ## Supported versions
 
-Fixes land on `main` and ship in the next release of the affected package. The `@intersign/*` packages are pre-1.0 and only the latest published version of each receives security fixes.
+Fixes land on `main`. Only the latest `main` receives security fixes.
 
 ## Scope
 
 In scope:
 
-- The packages published from this repo — `@intersign/core`, `@intersign/viewer`, `@intersign/editor`, `@intersign/nodes`, `@intersign/mcp`, `@intersign/ifc-converter`
-- The standalone editor app in `apps/editor`
-- The scene save API and the MCP server surface, including anything that lets untrusted scene data reach a parser, a renderer, or a stored graph
+- The Intersign apps in `apps/editor` and `apps/ifc-converter`
+- The scene save API, including anything that lets untrusted scene data reach a parser, a renderer, or a stored graph
 
 Out of scope:
 
+- Vulnerabilities in the `@pascal-app/*` engine packages themselves: report those to [Pascal Editor](https://github.com/pascalorg/editor/security)
 - Findings that require a user to run untrusted code in their own browser console
 - Denial of service through a deliberately enormous local scene file
 - Automated scanner output with no demonstrated impact
 
-The hosted service at editor.pascal.app is operated separately. Vulnerabilities there are welcome at the same address.
+The hosted service at editor.pascal.app is operated by Pascal, not Intersign; report issues there to Pascal Editor.

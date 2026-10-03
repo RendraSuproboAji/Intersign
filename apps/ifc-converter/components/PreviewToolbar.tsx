@@ -2,14 +2,14 @@
 
 // Lightweight viewer-settings toolbar for the converter preview. Drives
 // the same `useViewer` store the editor's own toolbar drives — the full
-// `@intersign/editor` Editor shell didn't fit (its CSS expects a
+// `@pascal-app/editor` Editor shell didn't fit (its CSS expects a
 // full-page layout) and we don't need its editing tools here.
 //
 // Once the editor extracts its toolbar into a reusable shell component,
 // this file can collapse to an import.
 
-import { type AnyNode, type LevelNode, useScene } from '@intersign/core'
-import { useViewer } from '@intersign/viewer'
+import { type AnyNode, type LevelNode, useScene } from '@pascal-app/core'
+import { useViewer } from '@pascal-app/viewer'
 import { Box, Grid2x2, Layers, Layers2, Maximize, ScanLine, Square } from 'lucide-react'
 import { type ReactNode, useMemo } from 'react'
 

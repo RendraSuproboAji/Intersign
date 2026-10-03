@@ -3,7 +3,7 @@ import { parseImportSrc } from './import-src'
 
 describe('parseImportSrc', () => {
   it('accepts plain https URLs', () => {
-    const result = parseImportSrc('https://example.com/scan/intersign.json')
+    const result = parseImportSrc('https://example.com/scan/pascal.json')
     expect(result.ok).toBe(true)
   })
 

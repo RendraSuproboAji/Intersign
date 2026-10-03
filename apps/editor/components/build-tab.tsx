@@ -1,6 +1,6 @@
 'use client'
 
-import { RoofType as RoofTypeSchema, useRegistryVersion } from '@intersign/core'
+import { RoofType as RoofTypeSchema, useRegistryVersion } from '@pascal-app/core'
 import {
   MaterialPaintPanel,
   TerrainSculptPanel,
@@ -8,8 +8,8 @@ import {
   triggerSFX,
   useEditor,
   useFloorplanMode,
-} from '@intersign/editor'
-import { useLiquidLineToolOptions } from '@intersign/nodes'
+} from '@pascal-app/editor'
+import { useLiquidLineToolOptions } from '@pascal-app/nodes'
 import Image from 'next/image'
 import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from 'react'
 import {

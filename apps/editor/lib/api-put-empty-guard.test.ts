@@ -24,7 +24,7 @@ const POPULATED_GRAPH = {
   rootNodeIds: ['n1'],
 }
 // FILE NAME MATTERS: scene-store-server.test.ts calls mock.module() on
-// '@intersign/mcp/operations', and bun module mocks leak process-wide to
+// '@pascal-app/mcp/operations', and bun module mocks leak process-wide to
 // every LATER test file in the same worker — this file must sort BEFORE it
 // alphabetically to see the real module (CI runs single-worker).
 const EMPTY_GRAPH = { nodes: {}, rootNodeIds: [] }
@@ -34,8 +34,8 @@ let restoreEnv: () => void
 
 beforeAll(async () => {
   const saved = {
-    INTERSIGN_DB_PATH: process.env.INTERSIGN_DB_PATH,
-    INTERSIGN_SCENE_API_TOKEN: process.env.INTERSIGN_SCENE_API_TOKEN,
+    PASCAL_DB_PATH: process.env.PASCAL_DB_PATH,
+    PASCAL_SCENE_API_TOKEN: process.env.PASCAL_SCENE_API_TOKEN,
   }
   restoreEnv = () => {
     for (const [key, value] of Object.entries(saved)) {
@@ -43,20 +43,22 @@ beforeAll(async () => {
       else process.env[key] = value
     }
   }
-  process.env.INTERSIGN_DB_PATH = join(tempDir, 'intersign.db')
-  delete process.env.INTERSIGN_SCENE_API_TOKEN // loopback requests need no token
+  process.env.PASCAL_DB_PATH = join(tempDir, 'pascal.db')
+  delete process.env.PASCAL_SCENE_API_TOKEN // loopback requests need no token
 
   const storeServer = await import('./scene-store-server')
   storeServer.__resetSceneStoreForTests()
 
-  // Build REAL store+operations from relative SOURCE imports and inject
-  // them: '@intersign/mcp/*' subpaths may be mock.module'd by other test
-  // files in the same process (the stubs stick for later dynamic imports
-  // on linux), which starved this fixture of saveScene/loadStoredScene in
-  // CI three runs straight.
-  const { SqliteSceneStore } = await import('../../../packages/mcp/src/storage/sqlite-scene-store')
+  // Build REAL store+operations from the package's built files by path and
+  // inject them: '@pascal-app/mcp/*' subpaths may be mock.module'd by other
+  // test files in the same process (the stubs stick for later dynamic
+  // imports on linux), which starved this fixture of saveScene/loadStoredScene
+  // in CI three runs straight.
+  const { SqliteSceneStore } = await import(
+    '../../../node_modules/@pascal-app/mcp/dist/storage/sqlite-scene-store.js'
+  )
   const { createSceneOperations } = await import(
-    '../../../packages/mcp/src/operations/scene-operations'
+    '../../../node_modules/@pascal-app/mcp/dist/operations/scene-operations.js'
   )
   const store = new SqliteSceneStore({ env: process.env })
   const operations = createSceneOperations({ store })

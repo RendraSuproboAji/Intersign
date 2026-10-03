@@ -62,9 +62,9 @@ export default function PrivacyPage() {
             <ul className="list-disc space-y-2 pl-6 text-foreground/90">
               <li>
                 <strong>Projects</strong> are saved in a local database file on the machine running
-                the editor, by default <code>~/.intersign/data/intersign.db</code>. You can choose
-                another location with the <code>INTERSIGN_DB_PATH</code> or{' '}
-                <code>INTERSIGN_DATA_DIR</code> settings.
+                the editor, by default <code>~/.pascal/data/pascal.db</code>. You can choose another
+                location with the <code>PASCAL_DB_PATH</code> or <code>PASCAL_DATA_DIR</code>{' '}
+                settings.
               </li>
               <li>
                 <strong>Editor preferences</strong> and the scene you are working on are kept in

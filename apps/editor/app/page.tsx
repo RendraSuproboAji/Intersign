@@ -1,6 +1,6 @@
 'use client'
 
-import { Editor, ItemsPanel } from '@intersign/editor'
+import { Editor, ItemsPanel } from '@pascal-app/editor'
 import { PascalWebXRButton } from '@webxr/plugin/pascal-editor'
 import { Hammer, Layers, Package, Settings } from 'lucide-react'
 import Image from 'next/image'

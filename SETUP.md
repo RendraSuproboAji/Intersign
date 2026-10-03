@@ -13,10 +13,12 @@ bun dev
 
 The editor will be running at **http://localhost:3002**.
 
-Environment is included as a pinned GitHub dependency, like the other bundled
-plugins. Open **+ → Plugins → Environment** to manage its installation for the
-current project, then open **Environment** in the sidebar. No separate plugin
-checkout, local tarball, or synchronization script is needed.
+The editor engine is installed from Pascal Editor's npm packages (`@pascal-app/*`), and
+the bundled plugins (trees, pool, bones, streetscape, environment, WebXR, Mint) are pinned
+GitHub dependencies. `bun install` fetches both; nothing else needs to be checked out.
+
+Environment is one of those bundled plugins. Open **+ → Plugins → Environment** to manage
+its installation for the current project, then open **Environment** in the sidebar.
 
 ## Environment Variables (optional)
 
@@ -29,9 +31,11 @@ cp .env.example .env
 | Variable | Required | Description |
 |----------|----------|-------------|
 | `PORT` | No | Dev server port (default: 3002) |
-| `MINT_INTERSIGN_HOST_ORIGIN` | No | Public editor origin used by Mint sign-in and request checks. Set it for self-hosted deployments. |
+| `MINT_PASCAL_HOST_ORIGIN` | No | Public editor origin used by Mint sign-in and request checks. Set it for self-hosted deployments. |
+| `PASCAL_DB_PATH` / `PASCAL_DATA_DIR` | No | Where saved scenes are stored (default `~/.pascal/data/pascal.db`). |
 
-Local development and the official hosted editor work without any environment variables.
+The variable names come from the Pascal packages that read them. Local development works
+without any environment variables.
 
 ## Docker
 
@@ -40,13 +44,13 @@ docker compose up -d
 ```
 
 The editor will be running at **http://localhost:3000**. Saved scenes live in
-the `intersign-data` volume, so they survive `docker compose down`.
+the `pascal-data` volume, so they survive `docker compose down`.
 
-Docker defaults `MINT_INTERSIGN_HOST_ORIGIN` to `http://localhost:3000`. Override
+Docker defaults `MINT_PASCAL_HOST_ORIGIN` to `http://localhost:3000`. Override
 it when hosting Intersign at another origin:
 
 ```bash
-MINT_INTERSIGN_HOST_ORIGIN=https://intersign.example.com docker compose up -d
+MINT_PASCAL_HOST_ORIGIN=https://intersign.example.com docker compose up -d
 ```
 
 Keep the container port at 3000: the `/scenes` page fetches its own API through
@@ -54,39 +58,15 @@ a base URL that only `NEXT_PUBLIC_APP_URL` can override, and Next inlines that
 value at build time, so remapping the port to something else makes the page
 return 500.
 
-## CLI-managed editor
-
-Node.js 22.13 or newer can install a persistent local runtime, start it in the
-background, and open it in the browser without a repository checkout:
-
-```bash
-npx @intersign/cli editor
-```
-
-The command starts the editor and its authenticated local MCP service together, downloading
-the web editor runtime for that CLI version on the first run and verifying it against a
-digest published in the npm package. Configure an agent to launch `intersign mcp connect`; for
-example, run `intersign mcp setup codex`. That connector needs neither the editor process nor
-the runtime download, and `--runtime <directory-or-archive>` covers an offline host.
-
-Use `npx @intersign/cli doctor` to check the runtime, storage, editor, and MCP state. Saved
-scenes live in `~/.intersign/data/intersign.db` independently from installed runtime versions.
-The CLI retains old runtime versions for rollback and warns after more than three have
-accumulated. It also replaces a damaged copy of the installed runtime on the next start;
-neither operation modifies the data directory.
-The complete command and storage reference is in [Run Intersign
-locally](https://editor.pascal.app/docs/developers/local-editor).
-
-## Monorepo Structure
+## Repository Structure
 
 ```
 ├── apps/
-│   └── editor/          # Next.js editor application
-├── packages/
-│   ├── core/            # @intersign/core — Scene schema, state, systems
-│   ├── viewer/          # @intersign/viewer — 3D rendering
-│   └── ui/              # Shared UI components
-└── tooling/             # Build & release tooling
+│   ├── editor/          # Intersign editor (Next.js)
+│   └── ifc-converter/   # IFC → Intersign converter (Next.js)
+├── packages/            # Shared lint/TS config and UI scaffolding (@repo/*)
+├── tooling/typescript/  # Shared TypeScript config
+└── patches/             # bun patches for three and iwer
 ```
 
 ## Scripts
@@ -94,11 +74,11 @@ locally](https://editor.pascal.app/docs/developers/local-editor).
 | Command | Description |
 |---------|-------------|
 | `bun dev` | Start the development server |
-| `bun build` | Build all packages |
+| `bun run build` | Build both apps |
 | `bun check` | Lint and format check (Biome) |
 | `bun check:fix` | Auto-fix lint and format issues |
 | `bun check-types` | TypeScript type checking |
-| `bun run test` | Run every package's test suite |
+| `bun run test` | Run the test suites |
 
 ## Contributing
 

@@ -1,47 +1,39 @@
 # Agent Instructions — `RendraSuproboAji/Intersign`
 
-Public, open-source home of `@intersign/{core,viewer,editor,mcp}` and the standalone editor app. Consumed both as npm packages and (in `pascalorg/private-editor`) as a git submodule.
+The Intersign editor: a branded Next.js app built on Pascal Editor's published npm
+packages (`@pascal-app/core`, `viewer`, `editor`, `nodes`, `mcp`, `ifc-converter`).
+This repo does not contain or publish the engine packages.
 
 ## Repo Shape
 
 | Path | Purpose |
 |---|---|
-| `packages/core` | Scene graph, node schemas, stores, event bus, core systems — pure logic, no Three.js. `src/capture/` holds the capture-session contracts published as `@intersign/core/capture` |
-| `packages/viewer` | Standalone 3D canvas: renderers, viewer systems, presentation state. `src/capture/` holds the capture runtime and reference layers published as `@intersign/viewer/capture` |
-| `packages/editor` | Editor UI components reused by the standalone app and embedders |
-| `packages/mcp` | MCP server and scene storage adapters |
-| `apps/editor` | Standalone editor app — composes `viewer` + `editor` + tools |
+| `apps/editor` | The Intersign editor app — composes `@pascal-app/viewer` + `@pascal-app/editor`, adds branding, the Privacy/Terms pages, the scene API routes and plugin wiring (`lib/bootstrap.ts`) |
+| `apps/ifc-converter` | IFC → Intersign scene converter app |
+| `tooling/typescript` | Shared TypeScript config |
+| `patches/` | bun patches for `three` and `iwer` |
 
 ## Where to look
 
-- **Architecture rules** — `wiki/architecture/` (read on demand; index in `wiki/architecture/README.md`).
+- **Engine architecture** (nodes, renderers, systems, tools, plugins) — Pascal's
+  `wiki/architecture/` in [pascalorg/editor](https://github.com/pascalorg/editor). Read the
+  relevant page before changing how the app uses the engine.
 - **Skills (ready workflows)** — `.agents/skills/<name>/SKILL.md`. Same content is reachable as `.claude/skills/`, `.cursor/skills/`, `.codex/skills/` (symlinks to `.agents/skills/`).
-- **Repo orientation for humans** — `README.md`, `SETUP.md`, `CONTRIBUTING.md`.
+- **Repo orientation for humans** — `README.md`, `SETUP.md`, `CONTRIBUTING.md`, `NOTICE.md`.
 
 `CLAUDE.md`, `GEMINI.md`, and `.github/copilot-instructions.md` are symlinks to this file. Codex reads this file directly.
 
-## Layer Boundaries (read once, internalise)
+## Working with the Pascal packages
 
-- **`packages/core`** owns domain data and pure logic. It must not import Three.js, `packages/viewer`, `apps/editor`, rendering/UI concepts, tools, modes, phases, or view-specific concepts such as floorplan or paint preview.
-- **`packages/viewer`** owns the standalone 3D canvas, renderers, viewer systems, and genuine presentation state. It must not know about `useEditor`, editor tools, phases, modes, paint mode, floorplan state, or editor-only presentation vocabulary.
-- **`apps/editor`** owns the editing experience: tools, `useEditor`, panels, floorplan helpers, paint mode, keyboard shortcuts, command palette, action menus, cursor badges, and editor-only overlays. Editor features are injected into `<Viewer>` via props and children.
-
-Details, examples, and rationale live in `wiki/architecture/layers.md`, `wiki/architecture/viewer-isolation.md`, `wiki/architecture/systems.md`, `wiki/architecture/renderers.md`, `wiki/architecture/tools.md`.
-
-## When making architecture-sensitive changes
-
-Read the relevant page in `wiki/architecture/` **before** writing code. The page list lives in `wiki/architecture/README.md`. As a minimum:
-
-- Adding a node type → `node-schemas.md`, `renderers.md`, `systems.md`
-- Adding a tool → `tools.md`, `spatial-queries.md`, `events.md`
-- Adding / changing a placement or move interaction → `tools.md` ("2D ↔ 3D behavioral parity": applicable behaviors must exist in both views; port the change to the sibling 2D/3D file in the same PR)
-- Adding a system → `systems.md`, `scene-registry.md`
-- Anything in `packages/viewer` → `viewer-isolation.md`, `layers.md`
-- Anything touching selection → `selection-managers.md`, `scene-registry.md`, `events.md`
-
-## When reviewing a PR
-
-Invoke the `review-architecture` skill (`.agents/skills/review-architecture/SKILL.md`). It loads the required architecture pages, fetches the diff, classifies each new file by layer, and reports findings grouped by severity.
+- Don't patch `@pascal-app/*` code in `node_modules`. Engine changes belong upstream in
+  `pascalorg/editor`; this repo changes the app around the engine.
+- Keep every `@pascal-app/*` dependency on the same version in both apps, and bump them
+  together.
+- `@pascal-app/editor` ships TypeScript source, so it must stay in each app's
+  `transpilePackages` (`next.config.ts`), and the editor app's Tailwind config scans it via
+  `@source` in `app/globals.css`.
+- Names the engine or plugins read at runtime stay Pascal's: `PASCAL_*` env vars, plugin ids
+  and extension keys (`pascal:*`), and `MINT_PASCAL_HOST_ORIGIN`.
 
 ## Operating rules
 

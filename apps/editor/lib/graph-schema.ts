@@ -1,4 +1,4 @@
-import { AnyNode, AssetUrl, BaseNode, nodeKindOf, SceneMaterial } from '@intersign/core/schema'
+import { AnyNode, AssetUrl, BaseNode, nodeKindOf, SceneMaterial } from '@pascal-app/core/schema'
 import { z } from 'zod'
 
 /**

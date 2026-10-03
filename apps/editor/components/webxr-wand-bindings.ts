@@ -1,6 +1,6 @@
 'use client'
 
-import { useEditor } from '@intersign/editor'
+import { useEditor } from '@pascal-app/editor'
 import type { PascalXRWandBindings } from '@webxr/plugin/pascal-editor'
 import {
   activateBuildTool,

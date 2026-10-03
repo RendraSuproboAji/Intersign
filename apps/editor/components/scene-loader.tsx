@@ -8,7 +8,7 @@ import {
   Editor,
   type SceneGraph,
   type SidebarTab,
-} from '@intersign/editor'
+} from '@pascal-app/editor'
 import { Hammer, Layers, Settings } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'

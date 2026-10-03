@@ -1,7 +1,7 @@
 # IFC → Intersign Converter
 
 A web app that converts IFC building models into Intersign scene-graph JSON and
-previews the result in the real `@intersign/viewer`. Drop in an `.ifc` file
+previews the result in the real `@pascal-app/viewer`. Drop in an `.ifc` file
 (or pick a bundled example), inspect what was extracted, and download the
 JSON to load into the Intersign editor.
 
@@ -21,9 +21,9 @@ JSON to load into the Intersign editor.
 
 ## How it works
 
-- **`@intersign/ifc-converter`** (`packages/ifc-converter`) — the pure
+- **`@pascal-app/ifc-converter`** (Pascal Editor's npm package) — the pure
   conversion logic. Parses IFC via [web-ifc](https://github.com/ThatOpen/engine_web-ifc),
-  maps elements onto Intersign node schemas from `@intersign/core`. No DOM, no
+  maps elements onto Pascal node schemas from `@pascal-app/core`. No DOM, no
   React.
 - **This app** — the UI: drop zone, example picker, element search/filters,
   the 3D preview, and JSON download.
@@ -44,8 +44,8 @@ fetched from a public bucket at runtime; the small ones are committed under
 
 - Plain `IFCWALL` (Brep/mapped geometry) falls back to a default height — exact
   per-wall heights need geometry-AABB extraction.
-- Items (furniture, etc.) are skipped — Intersign items require a catalog asset.
-- Beams have no Intersign node type yet and are skipped.
+- Items (furniture, etc.) are skipped — Pascal items require a catalog asset.
+- Beams have no Pascal node type yet and are skipped.
 - Doors/windows are matched to walls by proximity when the IFC omits fill
   relationships; matching isn't perfect.
 - Stairs/roofs are placeholders (bounding box / flat polygon in metadata).

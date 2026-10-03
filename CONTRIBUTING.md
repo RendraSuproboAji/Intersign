@@ -42,28 +42,27 @@ Run the whole suite from the repo root:
 bun run test     # every package, via Turborepo
 ```
 
-Run one package while you work on it:
+Run one app while you work on it:
 
 ```bash
-bun --cwd packages/core run test
+bun --cwd apps/editor run test
 ```
 
 Use `bun run test`, not bare `bun test`. `test` is one of Bun's own
 subcommands, so `bun test` never reaches the package script — it runs Bun's
-collector over every file it can find, including compiled copies under `dist/`,
-and reports inflated counts. `bun run test` goes through Turborepo, which
-builds workspace dependencies first (several packages import theirs from
-`dist/`) and runs each package's own scoped test script.
+collector over every file it can find and reports inflated counts.
+`bun run test` goes through Turborepo and runs each app's own scoped test script.
 
 ### Project structure
 
-| Package | What it does |
+| Path | What it does |
 |---------|-------------|
-| `packages/core` | Scene schema, state management, systems — no UI |
-| `packages/viewer` | 3D rendering with React Three Fiber |
-| `apps/editor` | The full editor app (Next.js) |
+| `apps/editor` | The Intersign editor app (Next.js) |
+| `apps/ifc-converter` | The IFC → Intersign converter app (Next.js) |
 
-A key rule: **`packages/viewer` must never import from `apps/editor`**. The viewer is a standalone component; editor-specific behavior is injected via props/children.
+The editor engine (`@pascal-app/core`, `viewer`, `editor`, `nodes`, `mcp`) is installed
+from npm. Changes to the engine itself belong upstream in
+[pascalorg/editor](https://github.com/pascalorg/editor); this repo changes the app around it.
 
 ### Building a plugin
 

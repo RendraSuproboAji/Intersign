@@ -90,10 +90,6 @@
     "ignoreUnknown": true,
     "includes": [
       "scripts/**/*.ts",
-      "skills/**/*.json",
-      ".agents/plugins/**/*.json",
-      ".claude-plugin/**/*.json",
-      ".codex-plugin/**/*.json",
       "packages/**/*.ts",
       "packages/**/*.tsx",
       "packages/**/*.js",
@@ -115,41 +111,5 @@
       "!**/components/ui",
       "!**/next-env.d.ts"
     ]
-  },
-  "overrides": [
-    {
-      "includes": ["packages/editor/components/debug/react-scan.tsx"],
-      "assist": {
-        "actions": {
-          "source": {
-            "organizeImports": "off"
-          }
-        }
-      }
-    },
-    {
-      "includes": [
-        "packages/core/**/*.ts",
-        "packages/core/**/*.tsx",
-        "packages/viewer/**/*.ts",
-        "packages/viewer/**/*.tsx",
-        "packages/editor/**/*.ts",
-        "packages/editor/**/*.tsx"
-      ],
-      "linter": {
-        "rules": {
-          "style": {
-            "noRestrictedImports": {
-              "level": "error",
-              "options": {
-                "paths": {
-                  "@intersign/nodes": "Framework packages must not import from @intersign/nodes — consult nodeRegistry.get(kind) instead. See plans/editor-node-registry.md."
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  ]
+  }
 }

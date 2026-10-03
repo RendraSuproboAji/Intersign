@@ -6,7 +6,7 @@ export const dynamic = 'force-dynamic'
 
 const route = (request: Request) =>
   handleMintPascalRequest(request, {
-    origin: process.env.MINT_INTERSIGN_HOST_ORIGIN ?? BASE_URL,
+    origin: process.env.MINT_PASCAL_HOST_ORIGIN ?? BASE_URL,
   })
 
 export { route as GET, route as POST }

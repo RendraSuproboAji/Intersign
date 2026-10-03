@@ -1,6 +1,6 @@
 'use client'
 
-import { useScene } from '@intersign/editor'
+import { useScene } from '@pascal-app/editor'
 import { WEBXR_PLUGIN_ID } from '@webxr/plugin'
 import { usePascalWebXR } from '@webxr/plugin/pascal-editor'
 import {
@@ -14,14 +14,14 @@ import {
 } from 'react'
 import { webXRWandBindings } from './webxr-wand-bindings'
 
-export type IntersignWebXRFeature = ReturnType<typeof usePascalWebXR>
+export type PascalWebXRFeature = ReturnType<typeof usePascalWebXR>
 
-const WebXRFeatureContext = createContext<IntersignWebXRFeature | null>(null)
+const WebXRFeatureContext = createContext<PascalWebXRFeature | null>(null)
 
 function EnabledWebXRFeature({
   onFeature,
 }: {
-  onFeature: (feature: IntersignWebXRFeature | null) => void
+  onFeature: (feature: PascalWebXRFeature | null) => void
 }) {
   const feature = usePascalWebXR(webXRWandBindings)
   // Keep the context stable when the plugin returns a new aggregate object.
@@ -55,8 +55,8 @@ export function WebXRFeatureRuntime({
   enabled: boolean
   children: ReactNode
 }) {
-  const [feature, setFeature] = useState<IntersignWebXRFeature | null>(null)
-  const setFeatureStable = useCallback((next: IntersignWebXRFeature | null) => setFeature(next), [])
+  const [feature, setFeature] = useState<PascalWebXRFeature | null>(null)
+  const setFeatureStable = useCallback((next: PascalWebXRFeature | null) => setFeature(next), [])
 
   return (
     <WebXRFeatureContext.Provider value={enabled ? feature : null}>
@@ -69,7 +69,7 @@ export function WebXRFeatureRuntime({
 export function WebXRFeatureConsumer({
   children,
 }: {
-  children: (feature: IntersignWebXRFeature | null) => ReactNode
+  children: (feature: PascalWebXRFeature | null) => ReactNode
 }) {
   return children(useContext(WebXRFeatureContext))
 }

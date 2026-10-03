@@ -5,534 +5,83 @@
 # Intersign Editor
 
 An open-source, local-first 3D interior and building editor built with React Three Fiber
-and WebGPU. Run it in the browser or from the CLI, and connect AI agents through MCP.
+and WebGPU.
 
 [![MIT License](https://img.shields.io/badge/license-MIT-1F4D2E.svg)](LICENSE)
 
-> Intersign is a fork of [Pascal Editor](https://github.com/pascalorg/editor) (MIT).
-> See [NOTICE.md](NOTICE.md) for attribution and for the upstream services and plugins
-> this fork still relies on.
+> Intersign is built on [Pascal Editor](https://github.com/pascalorg/editor) (MIT).
+> The editor engine comes from Pascal's published npm packages (`@pascal-app/*`);
+> this repository holds the Intersign app around it. See [NOTICE.md](NOTICE.md) for
+> attribution and for the Pascal services and plugins Intersign relies on.
 
-> **Note:** the `@intersign/*` packages are not published to npm yet. Until they are,
-> run the editor from source (see [SETUP.md](SETUP.md) and [Getting Started](#getting-started) below);
-> the `npx @intersign/cli` commands in this README describe the intended workflow.
-
-## Run the Editor Locally
-
-Node.js 22.13 or newer can create a persistent local Intersign installation without
-cloning this repository:
-
-```bash
-npx @intersign/cli editor
-```
-
-The CLI starts the editor and an authenticated MCP service in the background, selects
-collision-free loopback ports, and keeps projects in `~/.intersign/data/intersign.db`. The npm
-package holds the CLI and that MCP service; the web editor runtime is downloaded once per
-version on the first command that starts the editor and verified against a digest published
-inside the package. Configure an agent to launch `intersign mcp connect`, which needs neither
-the editor process nor that download. Install the `intersign` command with
-`npm install --global @intersign/cli`. See [Run Intersign locally](https://editor.pascal.app/docs/developers/local-editor)
-for pnpm/Bun commands, project management, MCP setup, updates, storage paths, and
-troubleshooting.
-
-Use one active agent client per local CLI service. The standalone local HTTP runtime shares active scene state between clients; use separate `INTERSIGN_HOME` directories and service processes when independent concurrent work is required.
-
-## Agent skills
-
-[![Install with skills](https://skills.sh/b/pascalorg/editor)](https://skills.sh/pascalorg/editor)
-
-The skills.sh badge links to the upstream Pascal listing, which carries the original
-`pascal-3d` and `furniture-fit` skills.
-
-Install Intersign's public agent workflows from this repository with [skills.sh](https://skills.sh):
-
-```bash
-npx skills add RendraSuproboAji/Intersign \
-  --skill intersign-3d \
-  --skill furniture-fit
-```
-
-Claude Code users can install the same canonical skill source as a plugin:
-
-```text
-/plugin marketplace add RendraSuproboAji/Intersign
-/plugin install intersign-agent-skills@intersign
-```
-
-The Claude plugin also supplies the local `intersign mcp connect` server. Install and start the Intersign CLI first, and keep `intersign` on the `PATH` used to launch Claude Code. This local connector needs no Intersign account or API key and does not upload projects automatically. Its plugin root is this repository's `skills/` directory, so an install copies only the skill bundles and their plugin metadata rather than the repository.
-
-The plugin bundles two servers: the local `intersign` connector above and a hosted `intersign-hosted` server for `https://editor.pascal.app/api/mcp`, which prompts for an optional Intersign API key at enable time and stores it in the OS keychain. Leave the key empty to run local-only.
-
-Claude Code 2.1.258 loads both the user-scoped `intersign` server created by `intersign mcp setup claude` and the plugin-provided server. Remove the manual entry before reloading or restarting Claude Code so only the plugin owns the connection lifecycle:
-
-```bash
-claude mcp remove --scope user intersign
-```
-
-Use `/mcp` to remove or disable any project- or local-scoped Intersign connection too. Leaving both connections active violates the one-active-agent-client-per-local-service requirement. When the intended project is hosted in an Intersign account or organization, disable the plugin-provided local server in `/mcp` and configure the hosted endpoint from the skill setup guide instead.
-
-Codex users can install the same plugin from the repository marketplace:
-
-```bash
-codex plugin marketplace add RendraSuproboAji/Intersign
-codex plugin add intersign-agent-skills@intersign
-```
-
-OpenClaw installation becomes available after the skills are published under Intersign's ClawHub publisher. See [skills/README.md](skills/README.md) for the owner-qualified install and verification commands.
-
-[`intersign-3d`](skills/intersign-3d/SKILL.md) covers safe local or hosted MCP setup and verified scene work. [`furniture-fit`](skills/furniture-fit/SKILL.md) produces a bounded, evidence-based footprint assessment without claiming unsupported height, swing, or delivery checks. See [skills/README.md](skills/README.md) for package details and validation.
-
-The skills inspect the connected MCP tool schemas before using optional fields. A capability present in this repository may be absent from an older installed or hosted release; the agent should report the narrower supported result instead of assuming source-only inputs are available.
-
-These workflows require a connected Intersign MCP server for their tool-backed actions. An OpenAI directory submission must therefore use **With MCP** and submit the production hosted MCP endpoint together with the skills. The repository package does not prove that the endpoint, OAuth flow, reviewer credentials, domain verification, or portal scan is ready for review.
-
-### MCP Registry
-
-[`server.json`](server.json) is Intersign's manifest for the official MCP Registry. Its
-version tracks the hosted MCP implementation independently of the npm package version.
-Pull requests validate the manifest and production endpoint. An Intersign organization
-owner publishes an approved version from `main` with the official registry publisher.
-
-## Using Published Packages
-
-The viewer runtime and built-in node definitions are separate packages. Install the full built-in
-viewer set, then load the built-in plugin once before mounting `<Viewer>`. Capture sessions are an
-optional extension shipped inside those packages as the `@intersign/core/capture` and
-`@intersign/viewer/capture` subpaths:
-
-```bash
-npm install @intersign/core @intersign/viewer @intersign/editor @intersign/nodes
-```
-
-```typescript
-import { loadPlugin } from '@intersign/core'
-import { builtinPlugin } from '@intersign/nodes'
-
-await loadPlugin(builtinPlugin)
-```
-
-See the [`@intersign/viewer` quick start](packages/viewer/README.md#usage) for a React example.
-
-
-## Repository Architecture
-
-This is a Turborepo monorepo with the reusable editor packages, the standalone app,
-and the CLI that distributes it:
+## What's in this repository
 
 ```
-editor/
-├── apps/
-│   └── editor/          # Next.js application
-├── packages/
-│   ├── core/            # Schemas, scene state, registry contracts, capture contracts
-│   ├── viewer/          # 3D rendering runtime, shared systems, capture runtime
-│   ├── editor/          # Editing tools and UI components
-│   ├── nodes/           # Built-in node definitions, renderers, and systems
-│   ├── cli/             # Persistent local editor installer and process manager
-│   ├── mcp/             # Model Context Protocol server and scene storage
-│   └── ui/              # Shared UI components
+apps/
+├── editor/          # The Intersign editor (Next.js): branding, pages, scene API, plugin wiring
+└── ifc-converter/   # IFC → Intersign scene converter (Next.js)
+tooling/typescript/  # Shared TypeScript config
+patches/             # bun patches for three and iwer
 ```
 
-### Separation of Concerns
-
-| Package | Responsibility |
-|---------|---------------|
-| **@intersign/core** | Node schemas, scene state (Zustand), registry contracts, spatial queries, and event bus. `core/capture` adds versioned capture manifests, normalized streams, and transport-neutral static/live sources |
-| **@intersign/viewer** | 3D rendering via React Three Fiber, shared render systems, default camera/controls, and post-processing. `viewer/capture` adds the capture runtime and reference model, device-motion, point-cloud, and surface-mesh layers |
-| **@intersign/editor** | Editing tools, panels, selection, and direct-manipulation UI |
-| **@intersign/nodes** | Built-in registry plugin with node definitions, renderers, geometry, and systems |
-| **@intersign/cli** | Installs and manages a versioned standalone editor runtime and persistent local data |
-| **@intersign/mcp** | Exposes scene tools, resources, prompts, and local storage to MCP-compatible AI hosts |
-| **apps/editor** | Standalone Next.js host for the editor packages |
-
-The **viewer** renders the scene with sensible defaults. The **editor** extends it with interactive tools, selection management, and editing capabilities.
-
-### Stores
-
-Each package has its own Zustand store for managing state:
-
-| Store | Package | Responsibility |
-|-------|---------|----------------|
-| `useScene` | `@intersign/core` | Scene data: nodes, root IDs, dirty nodes, CRUD operations. Persisted to IndexedDB with undo/redo via Zundo. |
-| `useViewer` | `@intersign/viewer` | Viewer state: current selection (building/level/zone IDs), level display mode (stacked/exploded/solo), camera mode. |
-| `useEditor` | `apps/editor` | Editor state: active tool, structure layer visibility, panel states, editor-specific preferences. |
-
-**Access patterns:**
-
-```typescript
-// Subscribe to state changes (React component)
-const nodes = useScene((state) => state.nodes)
-const levelId = useViewer((state) => state.selection.levelId)
-const activeTool = useEditor((state) => state.tool)
-
-// Access state outside React (callbacks, systems)
-const node = useScene.getState().nodes[id]
-useViewer.getState().setSelection({ levelId: 'level_123' })
-```
-
----
-
-## Core Concepts
-
-### Nodes
-
-Nodes are the data primitives that describe the 3D scene. All nodes extend `BaseNode`:
-
-```typescript
-BaseNode {
-  id: string              // Auto-generated with type prefix (e.g., "wall_abc123")
-  type: string            // Discriminator for type-safe handling
-  parentId: string | null // Parent node reference
-  visible: boolean
-  camera?: Camera         // Optional saved camera position
-  metadata?: JSON         // Arbitrary metadata (e.g., { isTransient: true })
-}
-```
-
-**Node Hierarchy:**
-
-```
-Site
-└── Building
-    └── Level
-        ├── Wall → Item (doors, windows)
-        ├── Slab
-        ├── Ceiling → Item (lights)
-        ├── Roof
-        ├── Zone
-        ├── Scan (3D reference)
-        └── Guide (2D reference)
-```
-
-Nodes are stored in a **flat dictionary** (`Record<id, Node>`), not a nested tree. Parent-child relationships are defined via `parentId` and `children` arrays.
-
----
-
-### Scene State (Zustand Store)
-
-The scene is managed by a Zustand store in `@intersign/core`:
-
-```typescript
-useScene.getState() = {
-  nodes: Record<id, AnyNode>,  // All nodes
-  rootNodeIds: string[],       // Top-level nodes (sites)
-  dirtyNodes: Set<string>,     // Nodes pending system updates
-
-  createNode(node, parentId),
-  updateNode(id, updates),
-  deleteNode(id),
-}
-```
-
-**Middleware:**
-- **Persist** - Saves to IndexedDB (excludes transient nodes)
-- **Temporal** (Zundo) - Undo/redo with 50-step history
-
----
-
-### Scene Registry
-
-The registry maps node IDs to their Three.js objects for fast lookup:
-
-```typescript
-sceneRegistry = {
-  nodes: Map<id, Object3D>,    // ID → 3D object
-  byType: {
-    wall: Set<id>,
-    item: Set<id>,
-    zone: Set<id>,
-    // ...
-  }
-}
-```
-
-Renderers register their refs using the `useRegistry` hook:
-
-```tsx
-const ref = useRef<Mesh>(null!)
-useRegistry(node.id, 'wall', ref)
-```
-
-This allows systems to access 3D objects directly without traversing the scene graph.
-
----
-
-### Node Renderers
-
-Renderers are React components that create Three.js objects for each node type:
-
-```
-SceneRenderer
-└── NodeRenderer (dispatches by type)
-    ├── BuildingRenderer
-    ├── LevelRenderer
-    ├── WallRenderer
-    ├── SlabRenderer
-    ├── ZoneRenderer
-    ├── ItemRenderer
-    └── ...
-```
-
-**Pattern:**
-1. Renderer creates a placeholder mesh/group
-2. Registers it with `useRegistry`
-3. Systems update geometry based on node data
-
-Example (simplified):
-```tsx
-const WallRenderer = ({ node }) => {
-  const ref = useRef<Mesh>(null!)
-  useRegistry(node.id, 'wall', ref)
-
-  return (
-    <mesh ref={ref}>
-      <boxGeometry args={[0, 0, 0]} />  {/* Replaced by WallSystem */}
-      <meshStandardMaterial />
-      {node.children.map(id => <NodeRenderer key={id} nodeId={id} />)}
-    </mesh>
-  )
-}
-```
-
----
-
-### Systems
-
-Systems are React components that run in the render loop (`useFrame`) to update geometry and transforms. They process **dirty nodes** marked by the store.
-
-**Core Systems (in `@intersign/core`):**
-
-| System | Responsibility |
-|--------|---------------|
-| `WallSystem` | Generates wall geometry with mitering and CSG cutouts for doors/windows |
-| `SlabSystem` | Generates floor geometry from polygons |
-| `CeilingSystem` | Generates ceiling geometry |
-| `RoofSystem` | Generates roof geometry |
-| `ItemSystem` | Positions items on walls, ceilings, or floors (slab elevation) |
-
-**Viewer Systems (in `@intersign/viewer`):**
-
-| System | Responsibility |
-|--------|---------------|
-| `LevelSystem` | Handles level visibility and vertical positioning (stacked/exploded/solo modes) |
-| `ScanSystem` | Controls 3D scan visibility |
-| `GuideSystem` | Controls guide image visibility |
-
-**Processing Pattern:**
-```typescript
-useFrame(() => {
-  for (const id of dirtyNodes) {
-    const obj = sceneRegistry.nodes.get(id)
-    const node = useScene.getState().nodes[id]
-
-    // Update geometry, transforms, etc.
-    updateGeometry(obj, node)
-
-    dirtyNodes.delete(id)
-  }
-})
-```
-
----
-
-### Dirty Nodes
-
-When a node changes, it's marked as **dirty** in `useScene.getState().dirtyNodes`. Systems check this set each frame and only recompute geometry for dirty nodes.
-
-```typescript
-// Automatic: createNode, updateNode, deleteNode mark nodes dirty
-useScene.getState().updateNode(wallId, { thickness: 0.2 })
-// → wallId added to dirtyNodes
-// → WallSystem regenerates geometry next frame
-// → wallId removed from dirtyNodes
-```
-
-**Manual marking:**
-```typescript
-useScene.getState().dirtyNodes.add(wallId)
-```
-
----
-
-### Event Bus
-
-Inter-component communication uses a typed event emitter (mitt):
-
-```typescript
-// Node events
-emitter.on('wall:click', (event) => { ... })
-emitter.on('item:enter', (event) => { ... })
-emitter.on('zone:context-menu', (event) => { ... })
-
-// Grid events (background)
-emitter.on('grid:click', (event) => { ... })
-
-// Event payload
-NodeEvent {
-  node: AnyNode
-  position: [x, y, z]
-  localPosition: [x, y, z]
-  normal?: [x, y, z]
-  stopPropagation: () => void
-}
-```
-
----
-
-### Spatial Grid Manager
-
-Handles collision detection and placement validation:
-
-```typescript
-spatialGridManager.canPlaceOnFloor(levelId, position, dimensions, rotation)
-spatialGridManager.canPlaceOnWall(wallId, t, height, dimensions)
-spatialGridManager.getSlabElevationAt(levelId, x, z)
-```
-
-Used by item placement tools to validate positions and calculate slab elevations.
-
----
-
-## Editor Architecture
-
-The editor extends the viewer with:
-
-### Tools
-
-Tools are activated via the toolbar and handle user input for specific operations:
-
-- **SelectTool** - Selection and manipulation
-- **WallTool** - Draw walls
-- **ZoneTool** - Create zones
-- **ItemTool** - Place furniture/fixtures
-- **SlabTool** - Create floor slabs
-
-### Selection Manager
-
-The editor uses a custom selection manager with hierarchical navigation:
-
-```
-Site → Building → Level → Zone → Items
-```
-
-Each depth level has its own selection strategy for hover/click behavior.
-
-### Editor-Specific Systems
-
-- `ZoneSystem` - Controls zone visibility based on level mode
-- Custom camera controls with node focusing
-
----
-
-## Data Flow
-
-```
-User Action (click, drag)
-       ↓
-Tool Handler
-       ↓
-useScene.createNode() / updateNode()
-       ↓
-Node added/updated in store
-Node marked dirty
-       ↓
-React re-renders NodeRenderer
-useRegistry() registers 3D object
-       ↓
-System detects dirty node (useFrame)
-Updates geometry via sceneRegistry
-Clears dirty flag
-```
-
----
-
-## Building a Plugin
-
-The editor is extensible: a plugin ships node kinds (schema, 3D/2D rendering, placement tools, inspector parametrics) and left-rail panels through the same `Plugin` manifest the built-ins use — there is no separate internal API.
-
-- **Developer guide** — [Create a plugin](https://editor.pascal.app/docs/developers/plugins): the `Plugin` shape, panel contributions, discovery, lifecycle, and what's in/out of v1.
-- **Worked example** — [`pascalorg/plugin-trees`](https://github.com/pascalorg/plugin-trees): a standalone plugin with procedural trees, flowers, grass, and a presets panel. Clone it as a starting point.
-
----
-
-## Technology Stack
-
-- **React 19** + **Next.js 16**
-- **Three.js** (WebGPU renderer)
-- **React Three Fiber** + **Drei**
-- **Zustand** (state management)
-- **Zod** (schema validation)
-- **Zundo** (undo/redo)
-- **three-bvh-csg** (Boolean geometry operations)
-- **Turborepo** (monorepo management)
-- **Bun** (package manager)
-
----
+The engine is installed from npm, pinned to one Pascal release:
+
+| Package | Used for |
+| --- | --- |
+| [`@pascal-app/core`](https://www.npmjs.com/package/@pascal-app/core) | Scene schema, state, systems |
+| [`@pascal-app/viewer`](https://www.npmjs.com/package/@pascal-app/viewer) | 3D rendering |
+| [`@pascal-app/editor`](https://www.npmjs.com/package/@pascal-app/editor) | Editor UI, tools and panels |
+| [`@pascal-app/nodes`](https://www.npmjs.com/package/@pascal-app/nodes) | Built-in node kinds |
+| [`@pascal-app/mcp`](https://www.npmjs.com/package/@pascal-app/mcp) | Local scene storage and operations |
+| [`@pascal-app/ifc-converter`](https://www.npmjs.com/package/@pascal-app/ifc-converter) | IFC conversion (IFC converter app) |
+
+Intersign does not publish npm packages of its own.
 
 ## Getting Started
 
-### Development
-
-Run the development server from the **root directory** to enable hot reload for all packages:
+You need [Bun](https://bun.sh/) 1.3+ and Node.js 20.9+.
 
 ```bash
-# Install dependencies
 bun install
-
-# Run development server (builds packages + starts editor with watch mode)
 bun dev
-
-# This will:
-# 1. Build @intersign/core and @intersign/viewer
-# 2. Start watching both packages for changes
-# 3. Start the Next.js editor dev server
-# Open http://localhost:3002
 ```
 
-**Important:** Always run `bun dev` from the root directory to ensure the package watchers are running. This enables hot reload when you edit files in `packages/core/src/` or `packages/viewer/src/`.
+The editor runs at **http://localhost:3002**. See [SETUP.md](SETUP.md) for environment
+variables and Docker.
 
-### Building for Production
+Other commands, run from the repo root:
 
 ```bash
-# Build all packages
-turbo build
-
-# Build specific package
-turbo build --filter=@intersign/core
+bun run check         # lint and format check (Biome)
+bun run check-types   # type check
+bun run test          # tests
+bun run build         # production build of both apps
 ```
 
-### Publishing Packages
+### Updating the Pascal engine
 
-Releases run from `.github/workflows/release.yml` (`workflow_dispatch`, with
-`package`, `bump`, and `dry-run` inputs). The workflow bumps versions, rewrites
-the internal `@intersign/*` ranges, builds, publishes in dependency order
-(`core` → `viewer` → `editor` → `nodes` → `mcp` → `ifc-converter` → `cli`),
-then commits the release and pushes one tag per package. A dry run validates
-the builds without touching the registry.
+The `@pascal-app/*` packages are released together at the same version. Bump them all in
+`apps/editor/package.json` and `apps/ifc-converter/package.json`, run `bun install`, then
+run the checks above. Pascal's release notes are at
+[pascalorg/editor releases](https://github.com/pascalorg/editor/releases).
 
----
+## Agent skills and CLI
 
-## Key Files
+Intersign doesn't ship its own CLI, MCP server or agent skills. Use Pascal's:
 
-| Path | Description |
-|------|-------------|
-| `packages/core/src/schema/` | Node type definitions (Zod schemas) |
-| `packages/core/src/store/use-scene.ts` | Scene state store |
-| `packages/core/src/hooks/scene-registry/` | 3D object registry |
-| `packages/core/src/systems/` | Geometry generation systems |
-| `packages/viewer/src/components/renderers/` | Node renderers |
-| `packages/viewer/src/components/viewer/` | Main Viewer component |
-| `apps/editor/components/tools/` | Editor tools |
-| `apps/editor/store/` | Editor-specific state |
+[![Install with skills](https://skills.sh/b/pascalorg/editor)](https://skills.sh/pascalorg/editor)
 
----
+See [Pascal Editor](https://github.com/pascalorg/editor) for the `@pascal-app/cli`
+command, MCP setup and the agent skills.
 
 ## Contributing
 
-Bug fixes, features, docs and ideas are all welcome. Start with [CONTRIBUTING.md](CONTRIBUTING.md) for setup, code style and the PR flow.
+Bug fixes, features, docs and ideas are all welcome. Start with
+[CONTRIBUTING.md](CONTRIBUTING.md).
 
-- New node kinds and sidebar panels ship as [plugins](https://editor.pascal.app/docs/developers/plugins) rather than edits to the built-ins — [`pascalorg/plugin-trees`](https://github.com/pascalorg/plugin-trees) is a worked example
+- Changes to the editor engine itself belong upstream in
+  [pascalorg/editor](https://github.com/pascalorg/editor); new node kinds and panels ship as
+  [plugins](https://editor.pascal.app/docs/developers/plugins)
 - Questions and ideas go to [Discussions](https://github.com/RendraSuproboAji/Intersign/discussions); reproducible bugs go to [Issues](https://github.com/RendraSuproboAji/Intersign/issues)
 - Participation is covered by our [Code of Conduct](CODE_OF_CONDUCT.md)
 - Security problems go to [SECURITY.md](SECURITY.md), not a public issue
